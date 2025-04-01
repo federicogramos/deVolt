@@ -1,0 +1,71 @@
+Protel Design System Design Rule Check
+PCB File : C:\0000 FEDE\16GB\0000 INTERIOR\0119 voltimetro 20cm baterias\PCB Triple Symb Advertencia\advertencia\PCB1.PcbDoc
+Date     : 14-Mar-17
+Time     : 1:36:26 AM
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=15mil) (All),(All)
+   Violation between Pad JP6-2(13075mil,11550mil)  Bottom Layer and 
+                     Pad JP6-1(13125mil,11550mil)  Bottom Layer
+   Violation between Track (13075mil,11550mil)(13075mil,11650mil)  Bottom Layer and 
+                     Pad JP6-1(13125mil,11550mil)  Bottom Layer
+   Violation between Track (13125mil,11550mil)(13200mil,11550mil)  Bottom Layer and 
+                     Pad JP6-2(13075mil,11550mil)  Bottom Layer
+   Violation between Pad JP5-2(13075mil,11650mil)  Bottom Layer and 
+                     Pad JP5-1(13125mil,11650mil)  Bottom Layer
+   Violation between Track (13075mil,11650mil)(13075mil,11750mil)  Bottom Layer and 
+                     Pad JP5-1(13125mil,11650mil)  Bottom Layer
+   Violation between Track (13075mil,11550mil)(13075mil,11650mil)  Bottom Layer and 
+                     Pad JP5-1(13125mil,11650mil)  Bottom Layer
+   Violation between Track (13125mil,11650mil)(13200mil,11650mil)  Bottom Layer and 
+                     Pad JP5-2(13075mil,11650mil)  Bottom Layer
+   Violation between Pad JP4-2(13075mil,11750mil)  Bottom Layer and 
+                     Pad JP4-1(13125mil,11750mil)  Bottom Layer
+   Violation between Track (13075mil,11650mil)(13075mil,11750mil)  Bottom Layer and 
+                     Pad JP4-1(13125mil,11750mil)  Bottom Layer
+   Violation between Track (13125mil,11750mil)(13200mil,11750mil)  Bottom Layer and 
+                     Pad JP4-2(13075mil,11750mil)  Bottom Layer
+   Violation between Track (13300mil,12100mil)(13425mil,12100mil)  Bottom Layer and 
+                     Pad JP3-1(13425mil,12050mil)  Bottom Layer
+   Violation between Pad JP3-2(13425mil,12100mil)  Bottom Layer and 
+                     Pad JP3-1(13425mil,12050mil)  Bottom Layer
+   Violation between Track (13425mil,12100mil)(13525mil,12100mil)  Bottom Layer and 
+                     Pad JP3-1(13425mil,12050mil)  Bottom Layer
+   Violation between Track (13525mil,12100mil)(13625mil,12100mil)  Bottom Layer and 
+                     Pad JP2-1(13525mil,12050mil)  Bottom Layer
+   Violation between Pad JP2-2(13525mil,12100mil)  Bottom Layer and 
+                     Pad JP2-1(13525mil,12050mil)  Bottom Layer
+   Violation between Track (13425mil,12100mil)(13525mil,12100mil)  Bottom Layer and 
+                     Pad JP2-1(13525mil,12050mil)  Bottom Layer
+   Violation between Track (13625mil,12100mil)(13725mil,12100mil)  Bottom Layer and 
+                     Pad JP1-1(13625mil,12050mil)  Bottom Layer
+   Violation between Track (13525mil,12100mil)(13625mil,12100mil)  Bottom Layer and 
+                     Pad JP1-1(13625mil,12050mil)  Bottom Layer
+   Violation between Pad JP1-2(13625mil,12100mil)  Bottom Layer and 
+                     Pad JP1-1(13625mil,12050mil)  Bottom Layer
+Rule Violations :19
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=15mil) (Max=100mil) (Preferred=50mil) (All)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=1mil) (Max=100mil) (All)
+   Violation between Hole Size Constraint (120mil > 100mil) : Pad H1-1(13602.362mil,12401.575mil)  Multi-Layer
+   Violation between Hole Size Constraint (120mil > 100mil) : Pad H2-1(11299.213mil,10413.386mil)  Multi-Layer
+   Violation between Hole Size Constraint (120mil > 100mil) : Pad H4-1(11299.213mil,13011.811mil)  Multi-Layer
+   Violation between Hole Size Constraint (120mil > 100mil) : Pad H3-1(13602.362mil,10413.386mil)  Multi-Layer
+Rule Violations :4
+
+
+Violations Detected : 23
+Time Elapsed        : 00:00:01

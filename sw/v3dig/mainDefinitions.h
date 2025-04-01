@@ -1,0 +1,12 @@
+////////////////////////////////////////////////////////////////////////////////
+// main.h                                                                     //
+////////////////////////////////////////////////////////////////////////////////
+
+#ifndef __MAIN_DEFINITIONS_H
+#define __MAIN_DEFINITIONS_H
+
+extern unsigned char seg,min,hora;
+extern char blink,blinkCols;
+
+#endif
+// __MAIN_DEFINITIONS_H

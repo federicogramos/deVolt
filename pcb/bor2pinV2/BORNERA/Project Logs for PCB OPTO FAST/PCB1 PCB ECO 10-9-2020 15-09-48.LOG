@@ -1,0 +1,9 @@
+Removed Member From Class: ClassName=PCB OPTO FAST Member=C1
+Removed Member From Class: ClassName=PCB OPTO FAST Member=JP1
+Removed Member From Class: ClassName=PCB OPTO FAST Member=JP2
+Removed Member From Class: ClassName=PCB OPTO FAST Member=R1
+Removed Member From Class: ClassName=PCB OPTO FAST Member=R2
+Removed Member From Class: ClassName=PCB OPTO FAST Member=U1
+Added Component: Designator=JP3(CONPOL2X1)
+Added Component: Designator=JP3(CONPOL2X1)
+Added Member To Class: ClassName=PCB OPTO FAST Member=Component JP3 Header2x1

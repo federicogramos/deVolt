@@ -1,0 +1,98 @@
+Version 3.2 HI-TECH Software Intermediate Code
+[c E2 0 1 2 3 4 5 6 7 8 9 10 11 12 13 .. ]
+[n E2 e_timer TMR_LONG_PULS_UP TMR_LONG_PULS_DWN TMR_BEEP TMR_SHOW_MENU TMR_250MS TMR_SHOW_SETTING TMR_SHOW_SETTING_ON TMR_SHOW_SETTING_OFF TMR_TEST_DISPLAYS TMR_TEST_ADVERTENCIA TMR_SHOW_DESCRIPTION TMR_SPACE TMR_ADCSAMPLE CANT_TIMERS  ]
+[s S1 `m 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1 . prescaler loop flag pause ]
+[; ;timer_user_settings.h: 7: typedef short long type_timerSize;
+[; ;timer_aliases.h: 7: enum e_timer {
+[; ;timer_aliases.h: 8: TMR_LONG_PULS_UP,
+[; ;timer_aliases.h: 9: TMR_LONG_PULS_DWN,
+[; ;timer_aliases.h: 10: TMR_BEEP,
+[; ;timer_aliases.h: 11: TMR_SHOW_MENU,
+[; ;timer_aliases.h: 12: TMR_250MS,
+[; ;timer_aliases.h: 13: TMR_SHOW_SETTING,
+[; ;timer_aliases.h: 14: TMR_SHOW_SETTING_ON,
+[; ;timer_aliases.h: 15: TMR_SHOW_SETTING_OFF,
+[; ;timer_aliases.h: 16: TMR_TEST_DISPLAYS,
+[; ;timer_aliases.h: 17: TMR_TEST_ADVERTENCIA,
+[; ;timer_aliases.h: 18: TMR_SHOW_DESCRIPTION,
+[; ;timer_aliases.h: 19: TMR_SPACE,
+[; ;timer_aliases.h: 20: TMR_ADCSAMPLE,
+[; ;timer_aliases.h: 21: CANT_TIMERS
+[; ;timer_aliases.h: 22: };
+[; ;timer_lib.h: 11: typedef struct
+[; ;timer_lib.h: 12: {
+[; ;timer_lib.h: 13: type_timerSize prescaler;
+[; ;timer_lib.h: 14: unsigned char loop:1;
+[; ;timer_lib.h: 15: unsigned char flag:1;
+[; ;timer_lib.h: 16: unsigned char pause:1;
+[; ;timer_lib.h: 17: }t_timer;
+[; ;timer_lib.h: 20: extern t_timer timerMem[CANT_TIMERS];
+[; ;timer_lib.h: 21: extern type_timerSize timerDelayConstant[CANT_TIMERS];
+[; ;timer_lib.h: 57: void timerDriver(char i);
+"6 C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007\timer.c
+[v _timerMem `S1 ~T0 . `E2 13 e ]
+[; ;timer.c: 6: t_timer timerMem[CANT_TIMERS];
+"7 C:\fgr\16gb\0000 interior\deVolt\sw\v3dig\timer_delays.h
+[v _timerDelayConstant `m ~T0 . `E2 13 e ]
+[i _timerDelayConstant
+:U ..
+-> -> 12 `i `m
+-> -> 12 `i `m
+-> -> 150 `i `m
+-> -> 18 `i `m
+-> -> 250 `i `m
+-> -> 18 `i `m
+-> -> 2 `i `m
+-> -> 1 `i `m
+-> -> 6 `i `m
+-> -> 2 `i `m
+-> -> 12 `i `m
+-> -> 8 `i `m
+-> -> 10 `i `m
+..
+]
+[; ;timer_delays.h: 7: type_timerSize timerDelayConstant[CANT_TIMERS]={12,12,150,18,250,18,2,1,6,2,12,8,10};
+"10 C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007\timer.c
+[v _timerDriver `(v ~T0 1 ef1`uc ]
+{
+[; ;timer.c: 9: void timerDriver(char i)
+[; ;timer.c: 10: {
+[e :U _timerDriver ]
+[v _i `uc ~T0 1 r1 ]
+[f ]
+[; ;timer.c: 12: if(!timerMem[i].pause && timerMem[i].prescaler>0)
+"12
+[e $ ! && ! != -> . *U + &U _timerMem * -> _i `ux -> -> # *U &U _timerMem `ui `ux 3 `i -> -> -> 0 `i `uc `i > . *U + &U _timerMem * -> _i `ux -> -> # *U &U _timerMem `ui `ux 0 -> -> 0 `i `m 3  ]
+[; ;timer.c: 13: {
+"13
+{
+[; ;timer.c: 14: timerMem[i].prescaler--;
+"14
+[e -- . *U + &U _timerMem * -> _i `ux -> -> # *U &U _timerMem `ui `ux 0 -> -> 1 `i `m ]
+[; ;timer.c: 15: if(timerMem[i].prescaler==0)
+"15
+[e $ ! == . *U + &U _timerMem * -> _i `ux -> -> # *U &U _timerMem `ui `ux 0 -> -> 0 `i `m 4  ]
+[; ;timer.c: 16: {
+"16
+{
+[; ;timer.c: 17: timerMem[i].flag=1;
+"17
+[e = . *U + &U _timerMem * -> _i `ux -> -> # *U &U _timerMem `ui `ux 2 -> -> 1 `i `uc ]
+[; ;timer.c: 18: if(timerMem[i].loop) timerMem[i].prescaler=timerDelayConstant[i];
+"18
+[e $ ! != -> . *U + &U _timerMem * -> _i `ux -> -> # *U &U _timerMem `ui `ux 1 `i -> -> -> 0 `i `uc `i 5  ]
+[e = . *U + &U _timerMem * -> _i `ux -> -> # *U &U _timerMem `ui `ux 0 *U + &U _timerDelayConstant * -> _i `ux -> -> # *U &U _timerDelayConstant `ui `ux ]
+[e :U 5 ]
+"19
+}
+[e :U 4 ]
+"20
+}
+[e :U 3 ]
+[; ;timer.c: 19: }
+[; ;timer.c: 20: }
+[; ;timer.c: 21: }
+"21
+[e :UE 2 ]
+}
