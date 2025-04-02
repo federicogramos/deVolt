@@ -913,15 +913,15 @@ CANT_TIMERS 13
 {
 "869
 } 0
-"88
-[v _enterMenu `(v  1 e 0 0 ]
-{
-"103
-} 0
 "105
 [v _incVar `(v  1 e 0 0 ]
 {
 "194
+} 0
+"88
+[v _enterMenu `(v  1 e 0 0 ]
+{
+"103
 } 0
 "68
 [v _ee_read_byte `(uc  1 e 1 0 ]
@@ -953,17 +953,17 @@ CANT_TIMERS 13
 {
 "377
 } 0
-"11 C:\fgr\16gb\0000 interior\deVolt\sw\v3dig\system.c
-[v _systemInit `(v  1 e 0 0 ]
-{
-"36
-} 0
 "60 C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007\pulsadorPin_1ms.c
 [v _pulsPinInit `(v  1 e 0 0 ]
 {
 "61
 [v pulsPinInit@i `uc  1 a 1 6 ]
 "68
+} 0
+"11 C:\fgr\16gb\0000 interior\deVolt\sw\v3dig\system.c
+[v _systemInit `(v  1 e 0 0 ]
+{
+"36
 } 0
 "10 C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007\timer.c
 [v _timerDriver `(v  1 e 0 0 ]
@@ -983,6 +983,18 @@ CANT_TIMERS 13
 [v uintToStr@strLen `uc  1 p 1 10 ]
 "295
 } 0
+"9 C:\fgr\16gb\0000 interior\deVolt\sw\v3dig\adc.c
+[v _adcDriver `(v  1 e 0 0 ]
+{
+"10
+[v adcDriver@ch2Cnv `uc  1 a 1 8 ]
+"30
+} 0
+"33
+[v _getConv `(i  1 e 2 0 ]
+{
+"37
+} 0
 "21 C:\fgr\16gb\0000 interior\deVolt\sw\v3dig\iir.c
 [v _iir `(f  1 e 3 0 ]
 {
@@ -1000,19 +1012,7 @@ CANT_TIMERS 13
 [v iir@F4237 `[3]f  1 s 9 F4237 ]
 "42
 } 0
-"9 C:\fgr\16gb\0000 interior\deVolt\sw\v3dig\adc.c
-[v _adcDriver `(v  1 e 0 0 ]
-{
-"10
-[v adcDriver@ch2Cnv `uc  1 a 1 8 ]
-"30
-} 0
-"33
-[v _getConv `(i  1 e 2 0 ]
-{
-"37
-} 0
-"48
+"48 C:\fgr\16gb\0000 interior\deVolt\sw\v3dig\adc.c
 [v _adcSetup `(v  1 e 0 0 ]
 {
 "56
@@ -1045,16 +1045,6 @@ CANT_TIMERS 13
 [v ___ftsub@f2 `f  1 p 3 46 ]
 "25
 } 0
-"10 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\lwmod.c
-[v ___lwmod `(ui  1 e 2 0 ]
-{
-"11
-[v ___lwmod@counter `uc  1 a 1 4 ]
-"10
-[v ___lwmod@dividend `ui  1 p 2 0 ]
-[v ___lwmod@divisor `ui  1 p 2 2 ]
-"26
-} 0
 "10 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\lwdiv.c
 [v ___lwdiv `(ui  1 e 2 0 ]
 {
@@ -1067,42 +1057,22 @@ CANT_TIMERS 13
 [v ___lwdiv@divisor `ui  1 p 2 2 ]
 "31
 } 0
+"10 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\lwmod.c
+[v ___lwmod `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwmod@counter `uc  1 a 1 4 ]
+"10
+[v ___lwmod@dividend `ui  1 p 2 0 ]
+[v ___lwmod@divisor `ui  1 p 2 2 ]
+"26
+} 0
 "5 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\asftadd.c
 [v ___asftadd `(f  1 e 3 0 ]
 {
 [v ___asftadd@f1p `*.0f  1 a 1 wreg ]
 [v ___asftadd@f1p `*.0f  1 a 1 wreg ]
 [v ___asftadd@f2 `f  1 p 3 49 ]
-"7
-} 0
-"5 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\asftdiv.c
-[v ___asftdiv `(f  1 e 3 0 ]
-{
-[v ___asftdiv@f1p `*.0f  1 a 1 wreg ]
-[v ___asftdiv@f1p `*.0f  1 a 1 wreg ]
-[v ___asftdiv@f2 `f  1 p 3 29 ]
-"7
-} 0
-"50 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\ftdiv.c
-[v ___ftdiv `(f  1 e 3 0 ]
-{
-"52
-[v ___ftdiv@f3 `f  1 a 3 24 ]
-"51
-[v ___ftdiv@sign `uc  1 a 1 28 ]
-[v ___ftdiv@exp `uc  1 a 1 27 ]
-[v ___ftdiv@cntr `uc  1 a 1 23 ]
-"50
-[v ___ftdiv@f1 `f  1 p 3 12 ]
-[v ___ftdiv@f2 `f  1 p 3 15 ]
-"78
-} 0
-"5 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\asftmul.c
-[v ___asftmul `(f  1 e 3 0 ]
-{
-[v ___asftmul@f1p `*.0f  1 a 1 wreg ]
-[v ___asftmul@f1p `*.0f  1 a 1 wreg ]
-[v ___asftmul@f2 `f  1 p 3 25 ]
 "7
 } 0
 "87 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\ftadd.c
@@ -1117,6 +1087,22 @@ CANT_TIMERS 13
 [v ___ftadd@f2 `f  1 p 3 32 ]
 "148
 } 0
+"5 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\asftdiv.c
+[v ___asftdiv `(f  1 e 3 0 ]
+{
+[v ___asftdiv@f1p `*.0f  1 a 1 wreg ]
+[v ___asftdiv@f1p `*.0f  1 a 1 wreg ]
+[v ___asftdiv@f2 `f  1 p 3 29 ]
+"7
+} 0
+"5 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\asftmul.c
+[v ___asftmul `(f  1 e 3 0 ]
+{
+[v ___asftmul@f1p `*.0f  1 a 1 wreg ]
+[v ___asftmul@f1p `*.0f  1 a 1 wreg ]
+[v ___asftmul@f2 `f  1 p 3 25 ]
+"7
+} 0
 "63 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\float.c
 [v ___ftpack `(f  1 e 3 0 ]
 {
@@ -1124,6 +1110,20 @@ CANT_TIMERS 13
 [v ___ftpack@exp `uc  1 p 1 3 ]
 [v ___ftpack@sign `uc  1 p 1 4 ]
 "86
+} 0
+"50 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\ftdiv.c
+[v ___ftdiv `(f  1 e 3 0 ]
+{
+"52
+[v ___ftdiv@f3 `f  1 a 3 24 ]
+"51
+[v ___ftdiv@sign `uc  1 a 1 28 ]
+[v ___ftdiv@exp `uc  1 a 1 27 ]
+[v ___ftdiv@cntr `uc  1 a 1 23 ]
+"50
+[v ___ftdiv@f1 `f  1 p 3 12 ]
+[v ___ftdiv@f2 `f  1 p 3 15 ]
+"78
 } 0
 "52 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\ftmul.c
 [v ___ftmul `(f  1 e 3 0 ]
@@ -1186,16 +1186,16 @@ CANT_TIMERS 13
 [v fseek@mode `i  1 p 2 22 ]
 "158
 } 0
-"74
-[v _fgetc `(uc  1 e 1 0 ]
-{
-[v fgetc@stream `*.bS1392  1 p 2 18 ]
-"85
-} 0
 "23 C:\fgr\16gb\0000 interior\deVolt\sw\v3dig\segments.c
 [v _char2pins `(v  1 e 0 0 ]
 {
 [v char2pins@c `uc  1 a 1 wreg ]
 [v char2pins@c `uc  1 a 1 wreg ]
 "218
+} 0
+"74 C:\fgr\16gb\0000 interior\deVolt\sw\v3dig\stdio.c
+[v _fgetc `(uc  1 e 1 0 ]
+{
+[v fgetc@stream `*.bS1392  1 p 2 18 ]
+"85
 } 0

@@ -5,7 +5,7 @@ _incVar: CODE, 3782 0 630
 _getConv: CODE, 10156 0 14
 ___ftpack: CODE, 8392 0 136
 _adcDriver: CODE, 8242 0 150
-_main: CODE, 144 0 9056
+_main: CODE, 144 0 3638
 _endTestDisplayActions: CODE, 10036 0 42
 _ee_write_byte: CODE, 9992 0 44
 _iir: CODE, 6362 0 350
@@ -36,4 +36,4 @@ _systemInit: CODE, 9082 0 118
 _isr_adc: CODE, 10140 0 16
 ___ftsub: CODE, 9946 0 46
 ___ftdiv: CODE, 7274 0 216
-Total: 23704
+Total: 18286

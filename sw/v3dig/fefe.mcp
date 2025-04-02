@@ -5,7 +5,7 @@ device=PIC18F2550
 [PATH_INFO]
 BuildDirPolicy=BuildDirIsProjectDir
 dir_src=
-dir_bin=
+dir_bin=C:\fgr\16gb\0000 interior\deVolt\sw\v3dig\build
 dir_tmp=
 dir_sin=
 dir_inc=C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007;C:\fgr\16gb\0000 interior\deVolt\sw\v3dig
@@ -33,6 +33,7 @@ file_005=.
 file_006=.
 file_007=.
 file_008=.
+file_009=.
 [GENERATED_FILES]
 file_000=no
 file_001=no
@@ -43,6 +44,7 @@ file_005=no
 file_006=no
 file_007=no
 file_008=no
+file_009=no
 [OTHER_FILES]
 file_000=no
 file_001=no
@@ -53,6 +55,7 @@ file_005=no
 file_006=no
 file_007=no
 file_008=no
+file_009=no
 [FILE_INFO]
 file_000=main.c
 file_001=system.c
@@ -63,6 +66,7 @@ file_005=stdio.c
 file_006=segments.c
 file_007=C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007\pulsadorPin_1ms.c
 file_008=C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007\timer.c
+file_009=C:\fgr\16gb\libSwPic\libSwPic\projectHeader\20220815 0221\projectHeader.h
 [SUITE_INFO]
 suite_guid={507D93FD-16F1-4270-980F-0C7C0207E6D3}
 suite_state=
@@ -78,6 +82,8 @@ TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}004=
 TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}005=
 TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}006=
 TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}006_alt=yes
+TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}007=
+TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}008=
 [ACTIVE_FILE_SETTINGS]
 TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}000_active=yes
 TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}001_active=yes
@@ -86,6 +92,8 @@ TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}003_active=yes
 TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}004_active=yes
 TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}005_active=yes
 TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}006_active=yes
+TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}007_active=yes
+TS{3FF1D5F2-E530-4850-9F70-F61D55BD1AC9}008_active=yes
 [INSTRUMENTED_TRACE]
 enable=0
 transport=0

@@ -19,7 +19,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE \
-  C:\Users\fgr\AppData\Local\Temp\s6jo.obj fefe.obj 
+  C:\Users\fgr\AppData\Local\Temp\s678.obj fefe.obj 
 
 Object code version is 3.10
 
@@ -31,7 +31,7 @@ Call graph: (short form)
 
 
                 Name          Link     Load   Length Selector   Space       Scale
-C:\Users\fgr\AppData\Local\Temp\s6jo.obj
+C:\Users\fgr\AppData\Local\Temp\s678.obj
                 end_init        8C       8C        4       C     0
                 reset_vec        0        0        4       0     0
                 idloc       200000   200000        8  200000     0
@@ -39,8 +39,8 @@ C:\Users\fgr\AppData\Local\Temp\s6jo.obj
 fefe.obj        eeprom_da   F00000   F00000       18  F00000     0
                 intcodelo       18       18       74       C     0
                 intcode          8        8       10       4     0
-                text37        13C4     13C4      228       C     0
-                text36        256C     256C       44       C     0
+                text37        256C     256C       44       C     0
+                text36        13C4     13C4      228       C     0
                 text35        1A4C     1A4C      124       C     0
                 text34        1F90     1F90       A2       C     0
                 intcode_b     22FE     22FE       7C       C     0
@@ -49,32 +49,32 @@ fefe.obj        eeprom_da   F00000   F00000       18  F00000     0
                 text30        279C     279C       10    13CE     0
                 text29        2524     2524       48       C     0
                 text27        1B70     1B70       FA       C     0
-                text26        20C8     20C8       92       C     0
-                text25        1766     1766      174       C     0
+                text26        1C6A     1C6A       E2       C     0
+                text25        20C8     20C8       92       C     0
                 text24        2666     2666       3C       C     0
-                text23        1C6A     1C6A       E2       C     0
-                text22        262A     262A       3C       C     0
+                text23        262A     262A       3C       C     0
+                text22        1766     1766      174       C     0
                 text21        25EE     25EE       3C       C     0
-                text20        2490     2490       4A       C     0
-                text19        25B0     25B0       3E       C     0
+                text20        25B0     25B0       3E       C     0
+                text19        2490     2490       4A       C     0
                 text18        26DA     26DA       2E       C     0
                 text17        1EE0     1EE0       B0       C     0
                 text16        26A2     26A2       38       C     0
                 text15        275E     275E       1A       C     0
-                text14        27AC     27AC        E    13CE     0
-                text13        2032     2032       96       C     0
-                text12        18DA     18DA      172       C     0
+                text14        18DA     18DA      172       C     0
+                text13        27AC     27AC        E    13CE     0
+                text12        2032     2032       96       C     0
                 text11        2442     2442       4E       C     0
                 text10        1E1E     1E1E       C2       C     0
-                text9         21E8     21E8       8C       C     0
-                text8         237A     237A       76       C     0
+                text9         237A     237A       76       C     0
+                text8         21E8     21E8       8C       C     0
                 text7         215A     215A       8E       C     0
                 text6         2734     2734       2A       C     0
                 text5         2708     2708       2C       C     0
                 text4         1146     1146      27E       C     0
                 text3         2778     2778       12       C     0
-                text2          EC6      EC6      280       C     0
-                text1         23F0     23F0       52       C     0
+                text2         23F0     23F0       52       C     0
+                text1          EC6      EC6      280       C     0
                 text0           90       90      E36       C     0
                 cstackCOM        1        1       27       1     1
                 cstackBAN       60       60       4D      60     1
@@ -96,8 +96,8 @@ TOTAL           Name          Link     Load   Length     Space
                 intcodelo       18       18       74     0
                 intcode          8        8       10     0
                 reset_vec        0        0        4     0
-                text37        13C4     13C4      228     0
-                text36        256C     256C       44     0
+                text37        256C     256C       44     0
+                text36        13C4     13C4      228     0
                 text35        1A4C     1A4C      124     0
                 text34        1F90     1F90       A2     0
                 intcode_b     22FE     22FE       7C     0
@@ -106,32 +106,32 @@ TOTAL           Name          Link     Load   Length     Space
                 text30        279C     279C       10     0
                 text29        2524     2524       48     0
                 text27        1B70     1B70       FA     0
-                text26        20C8     20C8       92     0
-                text25        1766     1766      174     0
+                text26        1C6A     1C6A       E2     0
+                text25        20C8     20C8       92     0
                 text24        2666     2666       3C     0
-                text23        1C6A     1C6A       E2     0
-                text22        262A     262A       3C     0
+                text23        262A     262A       3C     0
+                text22        1766     1766      174     0
                 text21        25EE     25EE       3C     0
-                text20        2490     2490       4A     0
-                text19        25B0     25B0       3E     0
+                text20        25B0     25B0       3E     0
+                text19        2490     2490       4A     0
                 text18        26DA     26DA       2E     0
                 text17        1EE0     1EE0       B0     0
                 text16        26A2     26A2       38     0
                 text15        275E     275E       1A     0
-                text14        27AC     27AC        E     0
-                text13        2032     2032       96     0
-                text12        18DA     18DA      172     0
+                text14        18DA     18DA      172     0
+                text13        27AC     27AC        E     0
+                text12        2032     2032       96     0
                 text11        2442     2442       4E     0
                 text10        1E1E     1E1E       C2     0
-                text9         21E8     21E8       8C     0
-                text8         237A     237A       76     0
+                text9         237A     237A       76     0
+                text8         21E8     21E8       8C     0
                 text7         215A     215A       8E     0
                 text6         2734     2734       2A     0
                 text5         2708     2708       2C     0
                 text4         1146     1146      27E     0
                 text3         2778     2778       12     0
-                text2          EC6      EC6      280     0
-                text1         23F0     23F0       52     0
+                text2         23F0     23F0       52     0
+                text1          EC6      EC6      280     0
                 text0           90       90      E36     0
                 cinit         2274     2274       8A     0
                 idataBANK     24DA     24DA       4A     0
@@ -605,7 +605,7 @@ __S1                                (abs)        0001C8
 ___asftadd                          text21       0025EE
 ___asftadd@f1p                      cstackBANK0  000094
 ___asftadd@f2                       cstackBANK0  000091
-___asftdiv                          text22       00262A
+___asftdiv                          text23       00262A
 ___asftdiv@f1p                      cstackBANK0  000080
 ___asftdiv@f2                       cstackBANK0  00007D
 ___asftmul                          text24       002666
@@ -614,13 +614,13 @@ ___asftmul@f2                       cstackBANK0  000079
 ___awtoft                           text16       0026A2
 ___awtoft@c                         cstackBANK0  000068
 ___awtoft@sign                      cstackBANK0  00006B
-___ftadd                            text25       001766
+___ftadd                            text22       001766
 ___ftadd@exp1                       cstackBANK0  00008A
 ___ftadd@exp2                       cstackBANK0  000089
 ___ftadd@f1                         cstackBANK0  00007D
 ___ftadd@f2                         cstackBANK0  000080
 ___ftadd@sign                       cstackBANK0  000088
-___ftdiv                            text23       001C6A
+___ftdiv                            text26       001C6A
 ___ftdiv@cntr                       cstackBANK0  000077
 ___ftdiv@exp                        cstackBANK0  00007B
 ___ftdiv@f1                         cstackBANK0  00006C
@@ -634,7 +634,7 @@ ___ftmul@f1                         cstackBANK0  000068
 ___ftmul@f2                         cstackBANK0  00006B
 ___ftmul@f3_as_product              cstackBANK0  000074
 ___ftmul@sign                       cstackBANK0  000078
-___ftpack                           text26       0020C8
+___ftpack                           text25       0020C8
 ___ftpack@arg                       cstackBANK0  000060
 ___ftpack@exp                       cstackBANK0  000063
 ___ftpack@sign                      cstackBANK0  000064
@@ -646,52 +646,52 @@ ___fttol@exp1                       cstackBANK0  00006E
 ___fttol@f1                         cstackBANK0  000060
 ___fttol@lval                       cstackBANK0  00006A
 ___fttol@sign1                      cstackBANK0  000069
-___lwdiv                            text20       002490
+___lwdiv                            text19       002490
 ___lwdiv@counter                    cstackBANK0  000064
 ___lwdiv@dividend                   cstackBANK0  000060
 ___lwdiv@divisor                    cstackBANK0  000062
 ___lwdiv@quotient                   cstackBANK0  000065
-___lwmod                            text19       0025B0
+___lwmod                            text20       0025B0
 ___lwmod@counter                    cstackBANK0  000064
 ___lwmod@dividend                   cstackBANK0  000060
 ___lwmod@divisor                    cstackBANK0  000062
 __accesstop                         (abs)        000060
 __activetblptr                      (abs)        000000
 __end_of___asftadd                  text21       00262A
-__end_of___asftdiv                  text22       002666
+__end_of___asftdiv                  text23       002666
 __end_of___asftmul                  text24       0026A2
 __end_of___awtoft                   text16       0026DA
-__end_of___ftadd                    text25       0018C2
-__end_of___ftdiv                    text23       001D42
+__end_of___ftadd                    text22       0018C2
+__end_of___ftdiv                    text26       001D42
 __end_of___ftmul                    text27       001C54
-__end_of___ftpack                   text26       002150
+__end_of___ftpack                   text25       002150
 __end_of___ftsub                    text18       002708
 __end_of___fttol                    text17       001F6C
-__end_of___lwdiv                    text20       0024DA
-__end_of___lwmod                    text19       0025EE
+__end_of___lwdiv                    text19       0024DA
+__end_of___lwmod                    text20       0025EE
 __end_of_actionsTimeoutShowSetting  text7        0021E8
-__end_of_adcDriver                  text13       0020C8
+__end_of_adcDriver                  text12       0020C8
 __end_of_adcSetup                   text15       002778
-__end_of_char2pins                  text37       00156E
+__end_of_char2pins                  text36       00156E
 __end_of_decVar                     text4        0013A4
 __end_of_ee_read_byte               text3        00278A
 __end_of_ee_write_byte              text5        002734
 __end_of_endTestDisplayActions      text6        00275E
-__end_of_enterMenu                  text1        002442
-__end_of_fgetc                      text36       0025B0
+__end_of_enterMenu                  text2        002442
+__end_of_fgetc                      text37       0025B0
 __end_of_fseek                      text35       001AF2
-__end_of_getConv                    text14       0027BA
-__end_of_iir                        text12       001A38
-__end_of_incVar                     text2        00113C
+__end_of_getConv                    text13       0027BA
+__end_of_iir                        text14       001A38
+__end_of_incVar                     text1        00113C
 __end_of_isr                        intcode_body 00237A
 __end_of_isr2                       intcodelo    00008C
 __end_of_isr_adc                    text30       0027AC
 __end_of_isr_timer0                 text34       002032
 __end_of_isr_timer3                 text29       00256C
-__end_of_main                       text1        0023F0
+__end_of_main                       text1        000EC6
 __end_of_pulsPinDriver              text31       001716
-__end_of_pulsPinInit                text9        002266
-__end_of_systemInit                 text8        0023F0
+__end_of_pulsPinInit                text8        002266
+__end_of_systemInit                 text9        0023F0
 __end_of_timerDriver                text10       001EC6
 __end_of_uintToStr                  text11       002490
 __end_ofi1_timerDriver              text32       001DF6
@@ -713,25 +713,25 @@ __pintcode                          intcode      000008
 __pintcode_body                     intcode_body 0022FE
 __pintcodelo                        intcodelo    000018
 __ptext0                            text0        000090
-__ptext1                            text1        0023F0
+__ptext1                            text1        000EC6
 __ptext10                           text10       001E1E
 __ptext11                           text11       002442
-__ptext12                           text12       0018DA
-__ptext13                           text13       002032
-__ptext14                           text14       0027AC
+__ptext12                           text12       002032
+__ptext13                           text13       0027AC
+__ptext14                           text14       0018DA
 __ptext15                           text15       00275E
 __ptext16                           text16       0026A2
 __ptext17                           text17       001EE0
 __ptext18                           text18       0026DA
-__ptext19                           text19       0025B0
-__ptext2                            text2        000EC6
-__ptext20                           text20       002490
+__ptext19                           text19       002490
+__ptext2                            text2        0023F0
+__ptext20                           text20       0025B0
 __ptext21                           text21       0025EE
-__ptext22                           text22       00262A
-__ptext23                           text23       001C6A
+__ptext22                           text22       001766
+__ptext23                           text23       00262A
 __ptext24                           text24       002666
-__ptext25                           text25       001766
-__ptext26                           text26       0020C8
+__ptext25                           text25       0020C8
+__ptext26                           text26       001C6A
 __ptext27                           text27       001B70
 __ptext29                           text29       002524
 __ptext3                            text3        002778
@@ -740,15 +740,15 @@ __ptext31                           text31       0015EC
 __ptext32                           text32       001D4C
 __ptext34                           text34       001F90
 __ptext35                           text35       001A4C
-__ptext36                           text36       00256C
-__ptext37                           text37       0013C4
+__ptext36                           text36       0013C4
+__ptext37                           text37       00256C
 __ptext38                           text38       000000
 __ptext4                            text4        001146
 __ptext5                            text5        002708
 __ptext6                            text6        002734
 __ptext7                            text7        00215A
-__ptext8                            text8        00237A
-__ptext9                            text9        0021E8
+__ptext8                            text8        0021E8
+__ptext9                            text9        00237A
 __ramtop                            ramtop       000800
 __size_of___asftadd                 (abs)        000000
 __size_of___asftdiv                 (abs)        000000
@@ -791,14 +791,14 @@ __size_ofi1_timerDriver             (abs)        000000
 __smallconst                        smallconst   000000
 _actionsTimeoutShowSetting          text7        00215A
 _actionsTimeoutShowSetting$438      cstackBANK0  000060
-_adcDriver                          text13       002032
+_adcDriver                          text12       002032
 _adcSetup                           text15       00275E
 _adcStruct                          bssBANK0     0000AD
 _advModeMem                         bssCOMRAM    000038
 _brilloMem                          bssCOMRAM    000039
 _brilloToff                         dataBANK1    000139
 _brilloTon                          dataBANK1    00013E
-_char2pins                          text37       0013C4
+_char2pins                          text36       0013C4
 _decVar                             text4        001146
 _display                            bssBANK0     0000B5
 _eLoMem                             bssCOMRAM    000028
@@ -806,16 +806,16 @@ _eUpMem                             bssCOMRAM    00002A
 _ee_read_byte                       text3        002778
 _ee_write_byte                      text5        002708
 _endTestDisplayActions              text6        002734
-_enterMenu                          text1        0023F0
+_enterMenu                          text2        0023F0
 _escDecMem                          bssCOMRAM    00002C
 _escEntMem                          bssCOMRAM    00002E
 _escala                             bssBANK0     0000B2
-_fgetc                              text36       00256C
+_fgetc                              text37       00256C
 _fseek                              text35       001A4C
-_getConv                            text14       0027AC
+_getConv                            text13       0027AC
 _ignoreNextFp                       bssBANK0     0000BB
-_iir                                text12       0018DA
-_incVar                             text2        000EC6
+_iir                                text14       0018DA
+_incVar                             text1        000EC6
 _isr                                intcode      000008
 _isr2                               intcodelo    000018
 _isr_adc                            text30       00279C
@@ -862,11 +862,11 @@ _muxFile                            dataBANK1    000143
 _pulsPin                            dataCOMRAM   00003D
 _pulsPinBuffer                      bssBANK0     0000BC
 _pulsPinDriver                      text31       0015EC
-_pulsPinInit                        text9        0021E8
+_pulsPinInit                        text8        0021E8
 _segments                           bssBANK0     0000B9
 _setInc                             dataCOMRAM   00003C
 _state                              bssCOMRAM    00003A
-_systemInit                         text8        00237A
+_systemInit                         text9        00237A
 _tOnFlag                            bssCOMRAM    00003B
 _timerDelayConstant                 dataBANK1    000100
 _timerDriver                        text10       001E1E
