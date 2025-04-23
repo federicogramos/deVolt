@@ -1,4 +1,4 @@
-//////// Standard Header file for the PIC12F683 device ////////////////
+//////// Standard Header file for the PIC12F683 device ///////////////
 //#device PIC12F683
 //#nolist
 //////// Program memory: 2048x14  Data RAM: 128  Stack: 8
