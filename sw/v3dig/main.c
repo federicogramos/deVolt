@@ -1,18 +1,16 @@
-//==============================================================================
-// Archivo: /deVolt/sw/v3dig/main.c
-// Autor: Federico Ramos
-// Modificado: 20250401 1748
-//==============================================================================
+/*
+ * @file /deVolt/sw/v3dig/main.c
+ * @author Federico Ramos <federico.g.ramos@gmail.com>
+ * @version 20250401 1748
+ */
 
 
-//==============================================================================
 // Headers
-//==============================================================================
 
 #include <projectHeader.h>
 #include <thisProject.h>
 #include <main.h>// Fuses y otras cosas.
-#include <system.h>// Inicializaci�n del sistema.
+#include <system.h>// Inicializacion del sistema.
 #include <segments.h>
 #include <timer_lib.h>
 #include <mainDefinitions.h>
@@ -24,6 +22,9 @@
 //#include <kPin.h>;;
 
 
+/*
+ * Macro calls to initialize eeprom data.
+ */
 __EEPROM_DATA	(
 				0x00,//EEADDR_BRILLO_MEM
 				0x00,//EEADDR_ADV_MODE_MEM
