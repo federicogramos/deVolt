@@ -2,10 +2,13 @@
  * @file /deVolt/sw/v3dig/main.c
  * @author Federico Ramos <federico.g.ramos@gmail.com>
  * @version 20250401 1748
+ * @note Contains entry point for deVolt project.
  */
 
 
+//==============================================================================
 // Headers
+//
 
 #include <projectHeader.h>
 #include <thisProject.h>
@@ -17,34 +20,40 @@
 #include <adc.h>
 #include <iir.h>
 #include "stdio.h"
-
 #include <pulsadorPin_lib_1ms.h>
 //#include <kPin.h>;;
 
 
-/*
- * Macro calls to initialize eeprom data.
- */
-__EEPROM_DATA	(
-				0x00,//EEADDR_BRILLO_MEM
-				0x00,//EEADDR_ADV_MODE_MEM
-				0x00,0x00,//EEADDR_XLO_MEM
-				0x00,0x00,//EEADDR_XUP_MEM
-				0x00,0x00//EEADDR_ELO_MEM
-				);
-__EEPROM_DATA	(
-				0x00,0x00,//EEADDR_EUP_MEM
-				0x00,0x00,//EEADDR_VLO_MEM
-				0x00,0x00,//EEADDR_VUP_MEM
-				0x00,0x01//EEADDR_ESC_ENT_MEM
-				);
-__EEPROM_DATA	(
-				0x00,0x00,//EEADDR_ESC_DEC_MEM
-				0x00,0x00,//
-				0x00,0x00,//
-				0x00,0x00
-				);
+//==============================================================================
+// Macro calls to initialize eeprom data.
+ //
 
+__EEPROM_DATA	(
+    0x00,// EEADDR_BRILLO_MEM
+    0x00,// EEADDR_ADV_MODE_MEM
+    0x00,0x00,// EEADDR_XLO_MEM
+    0x00,0x00,// EEADDR_XUP_MEM
+    0x00,0x00// EEADDR_ELO_MEM
+    );
+
+__EEPROM_DATA	(
+    0x00,0x00,// EEADDR_EUP_MEM
+    0x00,0x00,// EEADDR_VLO_MEM
+    0x00,0x00,// EEADDR_VUP_MEM
+    0x00,0x01// EEADDR_ESC_ENT_MEM
+    );
+
+__EEPROM_DATA	(
+    0x00,0x00,// EEADDR_ESC_DEC_MEM
+    0x00,0x00,//
+    0x00,0x00,//
+    0x00,0x00
+    );
+
+
+/*
+ *
+ */
 void ee_write_byte(unsigned char address, unsigned char _data)
 	{
 	EEDATA = _data;
@@ -63,8 +72,9 @@ void ee_write_byte(unsigned char address, unsigned char _data)
 	INTCONbits.GIE = 1;  // enable interrupts
 	}
 
-
-
+/*
+ *
+ */
 unsigned char ee_read_byte(unsigned char address)
 	{
 	EEADR = address;
@@ -85,6 +95,9 @@ char brilloMem,advModeMem;
 char state;
 char ignoreNextFp,setInc=1;
 
+/*
+ *
+ */
 void enterMenu(void)
 	{
 	if(state==E_MENU_BRILLO) state=E_SET_BRILLO;
@@ -102,6 +115,10 @@ void enterMenu(void)
 	else if(state==E_MENU_USER_CAL) state=E_SET_CAL_DESCRIPTION;
 	else if(state==E_MENU_FACTORY_CAL) state=E_SET_RST_DESCRIPTION;
 	}
+
+/*
+ *
+ */
 void incVar(void)
 	{
 	//int aux;
@@ -194,6 +211,10 @@ void incVar(void)
 	TMR_START(TMR_SHOW_SETTING_ON);
 	}
 
+
+/*
+ *
+ */
 void decVar(void)
 	{
 	//int aux;
@@ -286,6 +307,10 @@ void decVar(void)
 	TMR_START(TMR_SHOW_SETTING_ON);
 	}
 
+
+/*
+ *
+ */
 void endTestDisplayActions(void)
 	{
 	state=E_IDLE;
@@ -298,6 +323,10 @@ void endTestDisplayActions(void)
 	TMR_INIT_LOOP(TMR_ADCSAMPLE);
 	}
 
+
+/*
+ *
+ */
 void actionsTimeoutShowSetting(void)
 	{
 	if(TMR_TIMEOUT(TMR_SHOW_SETTING))
@@ -380,39 +409,41 @@ void actionsTimeoutShowSetting(void)
 
 char aux;
 
-//==============================================================================
-// Punto de entrada.
-//==============================================================================
 
+/*
+ * @brief Punto de entrada.
+ */
 void main(void)
 	{
-	pulsPinInit();//hago seteo de variables antes de que habilite interrupciones.
+	pulsPinInit();// Seteo de variables antes de que habilite interrupciones.
 	systemInit();
-	segments.portState=0x01;//uso este auxiliar en lugar de directamente el puerto, para poder "saltear" el encendido de un digito sin alterar el ciclo de multiplexado
+	segments.portState=0x01;// Uso este auxiliar en lugar de directamente el pue
+	// rto, para poder "saltear" el encendido de un digito sin alterar el ciclo 
+	// de multiplexado.
 
-	EEPROM_READ_CHAR(EEADDR_BRILLO_MEM,brilloMem);
-	EEPROM_READ_CHAR(EEADDR_ADV_MODE_MEM,advModeMem);
+	EEPROM_READ_CHAR(EEADDR_BRILLO_MEM, brilloMem);
+	EEPROM_READ_CHAR(EEADDR_ADV_MODE_MEM, advModeMem);
 
-	EEPROM_READ_INT(EEADDR_ESC_ENT_MEM,escEntMem);
-	EEPROM_READ_INT(EEADDR_ESC_DEC_MEM,escDecMem);
-	escala=(float)escEntMem+(float)escDecMem/1000.0;
+	EEPROM_READ_INT(EEADDR_ESC_ENT_MEM, escEntMem);
+	EEPROM_READ_INT(EEADDR_ESC_DEC_MEM, escDecMem);
+	escala = (float) escEntMem + (float) escDecMem / 1000.0;
 
-	EEPROM_READ_INT(EEADDR_XLO_MEM,xLoMem);
-	EEPROM_READ_INT(EEADDR_XUP_MEM,xUpMem);
-	EEPROM_READ_INT(EEADDR_ELO_MEM,eLoMem);
-	EEPROM_READ_INT(EEADDR_EUP_MEM,eUpMem);
-	EEPROM_READ_INT(EEADDR_VLO_MEM,vLoMem);
-	EEPROM_READ_INT(EEADDR_VUP_MEM,vUpMem);
+	EEPROM_READ_INT(EEADDR_XLO_MEM, xLoMem);
+	EEPROM_READ_INT(EEADDR_XUP_MEM, xUpMem);
+	EEPROM_READ_INT(EEADDR_ELO_MEM, eLoMem);
+	EEPROM_READ_INT(EEADDR_EUP_MEM, eUpMem);
+	EEPROM_READ_INT(EEADDR_VLO_MEM, vLoMem);
+	EEPROM_READ_INT(EEADDR_VUP_MEM, vUpMem);
 
-	BUZZER=1;
-	muxBuffer[0]='8';
-	muxBuffer[1]='8';
-	muxBuffer[2]='8';
-	muxBuffer[ADV]='x';
+	BUZZER = 1;
+	muxBuffer[0] = '8';
+	muxBuffer[1] = '8';
+	muxBuffer[2] = '8';
+	muxBuffer[ADV] = 'x';
 
 	TMR_INIT_LOOP(TMR_250MS);
 
-	//FGR: NECESARIOS PARA ESTADO TEST_DISPLAYS
+	// Necesarios para estado TEST_DISPLAYS.
 	TMR_START(TMR_TEST_DISPLAYS);
 	TMR_START(TMR_TEST_ADVERTENCIA);
 
@@ -434,27 +465,27 @@ void main(void)
 
 		if(TMR_TIMEOUT(TMR_SHOW_MENU)) state=E_IDLE;
 
-		//FGR: ALGUNAS TRANSICIONES DE ESTADO
+		// Algunas transiciones de estaodo.
 		actionsTimeoutShowSetting();
 
 		if(TMR_TIMEOUT(TMR_LONG_PULS_UP))
 			{
 			TMR_STOP(TMR_SHOW_MENU);
-			BUZZER=1;
+			BUZZER = 1;
 			TMR_START(TMR_BEEP);
 			TMR_START(TMR_SHOW_SETTING);
 			TMR_START(TMR_SHOW_SETTING_ON);
 			enterMenu();
-			ignoreNextFp=1;//FGR: SOLO PARA QUE CUENDO SE PULSA LARGO, ACEPTE LA PULSACION PERO NO GENERE AL SOLTAR OTRA PULSACION CORTA
+			ignoreNextFp = 1;//FGR: SOLO PARA QUE CUENDO SE PULSA LARGO, ACEPTE LA PULSACION PERO NO GENERE AL SOLTAR OTRA PULSACION CORTA
 			if( state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
 				|| state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
 				|| state==E_SET_ADV_VLO || state==E_SET_ADV_VUP
 				|| state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC)
 				switch(setInc)
 					{
-					case 1: setInc=10; break;
-					case 10: setInc=100; break;
-					case 100: setInc=1; break;
+					case 1: setInc = 10; break;
+					case 10: setInc = 100; break;
+					case 100: setInc = 1; break;
 					}
 			}
 
