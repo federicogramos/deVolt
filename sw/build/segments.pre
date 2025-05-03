@@ -5165,10 +5165,7 @@ extern void _delaywdt(unsigned long);
 #pragma inline(_delay3)
 extern void _delay3(unsigned char);
 
-# 23 "C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007\stdio.h"
-enum e_mode_fseek{SEEK_END,SEEK_CUR,SEEK_SET};
-
-# 45
+# 45 "C:\fgr\16gb\0000 interior\deVolt\sw\stdio.h"
 typedef struct
 {
 char flg;
@@ -5193,9 +5190,8 @@ void fprintf(FILE *fp,char *fmt,...);
 void fprinti(FILE *fp,char *str);
 
 char *intToStr(int num,char *str,char strLen);
-char *longToStr(long num,char *str,char strLen);
 void ucharToStr(unsigned char num,char *str,char strLen);
-char *uToStr(unsigned int num,char *str,char strLen);
+void uintToStr(unsigned int num,char *str,char strLen);
 
 # 19 "C:\fgr\16gb\0000 interior\deVolt\sw\segments.h"
 typedef struct
@@ -5218,6 +5214,34 @@ void char2pins(char c);
 
 # 90 "C:\fgr\16gb\0000 interior\deVolt\sw\system.h"
 void systemInit(void);
+
+# 45 "C:\fgr\16gb\0000 interior\deVolt\sw\stdio.h"
+typedef struct
+{
+char flg;
+char *nxr;
+char *nxw;
+char *bas;
+char nr;
+char nw;
+char bufsiz;
+}FILE;
+
+# 65
+char fputc(char c, FILE *stream);
+char fgetc(FILE *stream);
+void fseek(FILE *fp,int offset,int mode);
+void unget(FILE *stream);
+
+
+
+
+void fprintf(FILE *fp,char *fmt,...);
+void fprinti(FILE *fp,char *str);
+
+char *intToStr(int num,char *str,char strLen);
+void ucharToStr(unsigned char num,char *str,char strLen);
+void uintToStr(unsigned int num,char *str,char strLen);
 
 # 8 "C:\fgr\16gb\0000 interior\deVolt\sw\segments.c"
 char muxBuffer[(4*1+1)]={' ',' ',' ',' ',0};

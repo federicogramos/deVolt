@@ -1,5 +1,5 @@
 
-# 1 "C:\fgr\16gb\0000 interior\deVolt\sw\interrupts.c"
+# 1 "C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.c"
 
 # 17 "C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\include\pic18f2550.h"
 extern volatile unsigned short UFRM @ 0xF66;
@@ -5165,117 +5165,136 @@ extern void _delaywdt(unsigned long);
 #pragma inline(_delay3)
 extern void _delay3(unsigned char);
 
-# 6 "C:\fgr\16gb\0000 interior\deVolt\sw\thisProject.h"
-enum e_bufferIx {
-MORE_DIG,
-MIDS_DIG,
-LESS_DIG,
-ADV,
-CANT_BUFFER_IX};
+# 16 "C:\fgr\16gb\0000 interior\deVolt\sw\kPin_aliases.h"
+enum e_pulsadorPinFastAlias
+{
+P0N,
+P1N,
+P0P,
+IN_FN,
+IN_FP,
+PULS_PIN_CANT
+};
 
-enum e_advMode {
-ADV_MOD_OFF,
-ADV_MOD_XEVEX_BLANK_EXTREMOS,
-ADV_MOD_XEVEX,
-ADV_MOD_VEXEV,
-ADV_MOD_XEV,
-ADV_MOD_VEX,
-ADV_MOD_EXEVE,
-ADV_MOD_EVEXE,
-CANT_ADV_MODES};
+# 25 "C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.h"
+typedef struct
+{
+unsigned char kId : 5;
+unsigned char flag : 1;
+unsigned char flanco : 1;
+} t_kEvent;
 
-enum e_estados {
-E_TEST_DISPLAYS,
-E_IDLE,
-E_MENU_BRILLO,
-E_MENU_ADV_MODE,
-E_MENU_LIMITS,
-E_MENU_ESCALA,
-E_MENU_USER_CAL,
-E_MENU_FACTORY_CAL,
-E_SET_BRILLO,
-E_SET_ESCALA_ENT_DESCRIPTION,
-E_SET_ESCALA_ENT,
-E_SET_ESCALA_DEC_DESCRIPTION,
-E_SET_ESCALA_DEC,
-E_SET_ADV_MODE,
-E_SET_ADV_XLO_DESCRIPTION,
-E_SET_ADV_XLO,
-E_SET_ADV_XUP_DESCRIPTION,
-E_SET_ADV_XUP,
-E_SET_ADV_ELO_DESCRIPTION,
-E_SET_ADV_ELO,
-E_SET_ADV_EUP_DESCRIPTION,
-E_SET_ADV_EUP,
-E_SET_ADV_VLO_DESCRIPTION,
-E_SET_ADV_VLO,
-E_SET_ADV_VUP_DESCRIPTION,
-E_SET_ADV_VUP,
-E_SET_CAL_DESCRIPTION,
-E_SET_0V_OFFSET,
-E_SET_CAL_P0_DESCRIPTION,
-E_SET_CAL_P0,
-E_SET_CAL_P1_DESCRIPTION,
-E_SET_CAL_P1,
-E_SET_CAL_P2_DESCRIPTION,
-E_SET_CAL_P2,
-E_SET_RST_DESCRIPTION,
-CANT_ESTADOS};
+typedef struct
+{
+unsigned char state : 1;
+unsigned char prevState : 1;
+unsigned char timer;
+} t_kPin;
 
+# 23 "C:\fgr\16gb\0000 interior\deVolt\sw\kPin_pindef.h"
+volatile bit PULSADOR_0 @ ((unsigned)&PORTA*8)+0;
+volatile bit PULSADOR_1 @ ((unsigned)&PORTA*8)+2;
+volatile bit PULSADOR_2 @ ((unsigned)&PORTA*8)+0;
+volatile bit PULSADOR_3 @ ((unsigned)&PORTE*8)+3;
 
-extern char state;
-extern char brilloMem;
+# 41
+t_kPin kPin[PULS_PIN_CANT]=
+{
+{1,1,0},
+{1,1,0},
+{1,1,0},
+{1,1,0}
+};
 
-# 110 "C:\fgr\16gb\0000 interior\deVolt\sw\interrupts.h"
-void isr_timer0(void);
-void isr_timer3(void);
+# 52 "C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.h"
+enum e_flanco {FLANCO_N,FLANCO_P};
+
+# 59
+extern t_kEvent kPinBuffer;
+
+# 77
+void kPin_driverDc(char pi, char kCurrLogState);
+void kPin_driverAcFn(char pi, char flanco, char kCurrLogState);
+void kPin_driverAcFp(char pi, char flanco, char kCurrLogState);
+
+# 20 "C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.c"
+t_kEvent kPinBuffer;
 
 # 90 "C:\fgr\16gb\0000 interior\deVolt\sw\system.h"
 void systemInit(void);
 
-# 45 "C:\fgr\16gb\0000 interior\deVolt\sw\stdio.h"
-typedef struct
+# 39 "C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.c"
+void kPin_driverDc(char pi, char kCurrLogState)
 {
-char flg;
-char *nxr;
-char *nxw;
-char *bas;
-char nr;
-char nw;
-char bufsiz;
-}FILE;
-
-# 65
-char fputc(char c, FILE *stream);
-char fgetc(FILE *stream);
-void fseek(FILE *fp,int offset,int mode);
-void unget(FILE *stream);
-
-
-
-
-void fprintf(FILE *fp,char *fmt,...);
-void fprinti(FILE *fp,char *str);
-
-char *intToStr(int num,char *str,char strLen);
-void ucharToStr(unsigned char num,char *str,char strLen);
-void uintToStr(unsigned int num,char *str,char strLen);
-
-# 19 "C:\fgr\16gb\0000 interior\deVolt\sw\segments.h"
-typedef struct
+if(kPin[pi].timer) kPin[pi].timer--;
+else
 {
-unsigned char nextUp;
-char portState;
-} t_7seg;
+kPin[pi].state = kCurrLogState;
 
+if(kPin[pi].state==FLANCO_P && kPin[pi].prevState==!FLANCO_P)
+{
+kPinBuffer.flag = 1;
+kPinBuffer.flanco = FLANCO_P;
+kPin[pi].timer = 10;
 
+# 56
+kPinBuffer.kId = pi;
+}
+else if(kPin[pi].state==FLANCO_N && kPin[pi].prevState==!FLANCO_N)
+{
+kPinBuffer.flag = 1;
+kPinBuffer.flanco = FLANCO_N;
+kPin[pi].timer = 10;
+kPinBuffer.kId = pi;
+}
 
+kPin[pi].prevState = kPin[pi].state;
+}
+}
 
-extern char muxBuffer[(4*1+1)];
-extern FILE muxFile;
-extern t_7seg segments;
+# 76
+void kPin_driverAcFn(char pi, char flanco, char kCurrLogState)
+{
+if(kPin[pi].timer)
+{
+kPin[pi].timer--;
+kPin[pi].state=kCurrLogState;
+if(kPin[pi].state==flanco && kPin[pi].prevState==!flanco) kPin[pi].timer=10;
+kPin[pi].prevState=kPin[pi].state;
+}
+else
+{
+kPin[pi].state=kCurrLogState;
+if(kPin[pi].state==flanco && kPin[pi].prevState==!flanco)
+{
+kPin[pi].timer=10;
+kPinBuffer.kId=pi;
+kPinBuffer.flag=1;
+}
+kPin[pi].prevState=kPin[pi].state;
+}
+}
 
+# 104
+void kPin_driverAcFp(char pi, char flanco, char kCurrLogState)
+{
+if(kPin[pi].timer)
+{
+kPin[pi].timer--;
+if(kPin[pi].timer==0) kPinBuffer.flag=1;
+kPin[pi].state=kCurrLogState;
+if(kPin[pi].state==flanco && kPin[pi].prevState==!flanco) kPin[pi].timer=10;
+kPin[pi].prevState=kPin[pi].state;
+}
+else
+{
+kPin[pi].state=kCurrLogState;
+if(kPin[pi].state==flanco && kPin[pi].prevState==!flanco)
+{
+kPin[pi].timer=10;
+kPinBuffer.kId=pi;
+}
+kPin[pi].prevState=kPin[pi].state;
+}
+}
 
-
-
-void char2pins(char c);

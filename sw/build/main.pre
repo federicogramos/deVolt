@@ -5287,10 +5287,7 @@ extern char brilloMem;
 # 90 "C:\fgr\16gb\0000 interior\deVolt\sw\system.h"
 void systemInit(void);
 
-# 23 "C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007\stdio.h"
-enum e_mode_fseek{SEEK_END,SEEK_CUR,SEEK_SET};
-
-# 45
+# 45 "C:\fgr\16gb\0000 interior\deVolt\sw\stdio.h"
 typedef struct
 {
 char flg;
@@ -5315,9 +5312,8 @@ void fprintf(FILE *fp,char *fmt,...);
 void fprinti(FILE *fp,char *str);
 
 char *intToStr(int num,char *str,char strLen);
-char *longToStr(long num,char *str,char strLen);
 void ucharToStr(unsigned char num,char *str,char strLen);
-char *uToStr(unsigned int num,char *str,char strLen);
+void uintToStr(unsigned int num,char *str,char strLen);
 
 # 19 "C:\fgr\16gb\0000 interior\deVolt\sw\segments.h"
 typedef struct
@@ -5338,42 +5334,38 @@ extern t_7seg segments;
 
 void char2pins(char c);
 
-# 7 "C:\fgr\16gb\0000 interior\deVolt\sw\timer_user_settings.h"
-typedef short long type_timerSize;
+# 12 "C:\fgr\16gb\0000 interior\deVolt\sw\t0_setupUser.h"
+typedef unsigned int type_timerSize;
+typedef type_timerSize type_timerDelayConstant;
 
-# 7 "C:\fgr\16gb\0000 interior\deVolt\sw\timer_aliases.h"
-enum e_timer {
-TMR_LONG_PULS_UP,
-TMR_LONG_PULS_DWN,
-TMR_BEEP,
-TMR_SHOW_MENU,
-TMR_250MS,
-TMR_SHOW_SETTING,
-TMR_SHOW_SETTING_ON,
-TMR_SHOW_SETTING_OFF,
-TMR_TEST_DISPLAYS,
-TMR_TEST_ADVERTENCIA,
-TMR_SHOW_DESCRIPTION,
-TMR_SPACE,
-TMR_ADCSAMPLE,
+# 12 "C:\fgr\16gb\0000 interior\deVolt\sw\t0_aliases.h"
+enum e_timer
+{
+TMR_RETURN,
+TMR_PULSADO_LARGO_HOLD,
+TMR_PULSADO_LARGO_SILENT,
+TMR_7SEG_SCROLL,
+TMP_11_XXXV_FALLA,
+TMR_VENTANA,
+TMR_ZERO,
 CANT_TIMERS
 };
 
-# 11 "C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007\timer_lib.h"
+# 28 "C:\fgr\16gb\libSwPic\timer0\20220922 2300\t0.h"
 typedef struct
 {
-type_timerSize prescaler;
+type_t0Size prescaler;
 unsigned char loop:1;
 unsigned char flag:1;
 unsigned char pause:1;
-}t_timer;
+}t_t0;
 
+# 40
+extern t_t0 t0Mem[T0_CANT];
+extern type_t0DelayConstant t0DelayConstant[T0_CANT];
 
-extern t_timer timerMem[CANT_TIMERS];
-extern type_timerSize timerDelayConstant[CANT_TIMERS];
-
-# 57
-void timerDriver(char i);
+# 83
+void t0Driver(char i);
 
 # 8 "C:\fgr\16gb\0000 interior\deVolt\sw\mainDefinitions.h"
 extern unsigned char seg,min,hora;
@@ -5431,45 +5423,71 @@ char *intToStr(int num,char *str,char strLen);
 void ucharToStr(unsigned char num,char *str,char strLen);
 void uintToStr(unsigned int num,char *str,char strLen);
 
-# 7 "C:\fgr\16gb\0000 interior\deVolt\sw\pulsadorPin_1ms_aliases.h"
-enum e_pulsadorPinAlias {UP_FN,DWN_FN,UP_FP,DWN_FP,PULS_PIN_CANT};
+# 16 "C:\fgr\16gb\0000 interior\deVolt\sw\kPin_aliases.h"
+enum e_pulsadorPinFastAlias
+{
+P0N,
+P1N,
+P0P,
+IN_FN,
+IN_FP,
+PULS_PIN_CANT
+};
 
-# 13 "C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007\pulsadorPin_lib_1ms.h"
+# 25 "C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.h"
 typedef struct
 {
-unsigned char pulsId:5;
-unsigned char flag:1;
-unsigned char fp:1;
-}t_pulsEvent;
+unsigned char kId : 5;
+unsigned char flag : 1;
+unsigned char flanco : 1;
+} t_kEvent;
 
 typedef struct
 {
-char *p2port;
-unsigned char bitNum:3;
-unsigned char state:1;
-unsigned char prevState:1;
-unsigned char fp:1;
-unsigned char fn:1;
-unsigned char unbounceRst:1;
+unsigned char state : 1;
+unsigned char prevState : 1;
 unsigned char timer;
-}t_pulsPin;
+} t_kPin;
 
-
-void pulsPinDriver(void);
-void pulsPinInit(void);
-
-extern t_pulsEvent pulsPinBuffer;
-
-# 28 "C:\fgr\16gb\0000 interior\deVolt\sw\main.c"
-asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00");
-
-# 35
-asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x01");
+# 23 "C:\fgr\16gb\0000 interior\deVolt\sw\kPin_pindef.h"
+volatile bit PULSADOR_0 @ ((unsigned)&PORTA*8)+0;
+volatile bit PULSADOR_1 @ ((unsigned)&PORTA*8)+2;
+volatile bit PULSADOR_2 @ ((unsigned)&PORTA*8)+0;
+volatile bit PULSADOR_3 @ ((unsigned)&PORTE*8)+3;
 
 # 41
+t_kPin kPin[PULS_PIN_CANT]=
+{
+{1,1,0},
+{1,1,0},
+{1,1,0},
+{1,1,0}
+};
+
+# 52 "C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.h"
+enum e_flanco {FLANCO_N,FLANCO_P};
+
+# 59
+extern t_kEvent kPinBuffer;
+
+# 77
+void kPin_driverDc(char pi, char kCurrLogState);
+void kPin_driverAcFn(char pi, char flanco, char kCurrLogState);
+void kPin_driverAcFp(char pi, char flanco, char kCurrLogState);
+
+# 25 "C:\fgr\16gb\0000 interior\deVolt\sw\main.c"
+;;
+
+# 32
 asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00");
 
-# 48
+# 40
+asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x01");
+
+# 47
+asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00");
+
+# 58
 void ee_write_byte(unsigned char address, unsigned char _data)
 {
 EEDATA = _data;
@@ -5488,8 +5506,7 @@ EECON1bits.WREN = 0;
 INTCONbits.GIE = 1;
 }
 
-
-
+# 80
 unsigned char ee_read_byte(unsigned char address)
 {
 EEADR = address;
@@ -5500,202 +5517,206 @@ return EEDATA;
 }
 
 
-unsigned int measurement,display;
+unsigned int measurement, display;
 
 int escEntMem,escDecMem;
-float escala,medicionFloat;
+float escala, medicionFloat;
 
-int xLoMem,xUpMem,eLoMem,eUpMem,vLoMem,vUpMem;
-char brilloMem,advModeMem;
+int xLoMem, xUpMem, eLoMem, eUpMem, vLoMem, vUpMem;
+char brilloMem, advModeMem;
 char state;
-char ignoreNextFp,setInc=1;
+char ignoreNextFp, setInc = 1;
 
+# 104
 void enterMenu(void)
 {
-if(state==E_MENU_BRILLO) state=E_SET_BRILLO;
-else if(state==E_MENU_ADV_MODE) state=E_SET_ADV_MODE;
-else if(state==E_MENU_LIMITS)
+if(state == E_MENU_BRILLO) state = E_SET_BRILLO;
+else if(state == E_MENU_ADV_MODE) state = E_SET_ADV_MODE;
+else if(state == E_MENU_LIMITS)
 {
-setInc=1;
-state=E_SET_ADV_XLO_DESCRIPTION;
+setInc = 1;
+state = E_SET_ADV_XLO_DESCRIPTION;
 }
-else if(state==E_MENU_ESCALA)
+else if(state == E_MENU_ESCALA)
 {
-setInc=1;
-state=E_SET_ESCALA_ENT_DESCRIPTION;
+setInc = 1;
+state = E_SET_ESCALA_ENT_DESCRIPTION;
 }
-else if(state==E_MENU_USER_CAL) state=E_SET_CAL_DESCRIPTION;
-else if(state==E_MENU_FACTORY_CAL) state=E_SET_RST_DESCRIPTION;
+else if(state == E_MENU_USER_CAL) state = E_SET_CAL_DESCRIPTION;
+else if(state == E_MENU_FACTORY_CAL) state = E_SET_RST_DESCRIPTION;
 }
+
+# 126
 void incVar(void)
 {
 
 
 
-if(state==E_SET_BRILLO)
+if(state == E_SET_BRILLO)
 {
-if(brilloMem<4)
+if(brilloMem < 4)
 {
 brilloMem++;
-{ ee_write_byte(0,brilloMem); };
+EEPROM_WRITE_CHAR(EEADDR_BRILLO_MEM, brilloMem);
 }
 }
-if(state==E_SET_ESCALA_ENT)
+if(state == E_SET_ESCALA_ENT)
 {
-if((escEntMem+setInc)<=999)
+if((escEntMem + setInc) <= 999)
 {
-escEntMem=escEntMem+setInc;
-{ ee_write_byte(14,((unsigned char)(((escEntMem)>>8)&0xFF))); ee_write_byte(14+1,((unsigned char)((escEntMem)&0xFF))); };
-escala=(float)escEntMem+(float)escDecMem/1000.0;
+escEntMem = escEntMem + setInc;
+EEPROM_WRITE_INT(EEADDR_ESC_ENT_MEM, escEntMem);
+escala = (float) escEntMem + (float) escDecMem / 1000.0;
 }
 }
-if(state==E_SET_ESCALA_DEC)
+if(state == E_SET_ESCALA_DEC)
 {
-if((escDecMem+setInc)<=999)
+if((escDecMem + setInc) <= 999)
 {
-escDecMem=escDecMem+setInc;
-{ ee_write_byte(16,((unsigned char)(((escDecMem)>>8)&0xFF))); ee_write_byte(16+1,((unsigned char)((escDecMem)&0xFF))); };
-escala=(float)escEntMem+(float)escDecMem/1000.0;
+escDecMem = escDecMem + setInc;
+EEPROM_WRITE_INT(EEADDR_ESC_DEC_MEM, escDecMem);
+escala = (float) escEntMem + (float) escDecMem / 1000.0;
 }
 }
-if(state==E_SET_ADV_MODE)
+if(state == E_SET_ADV_MODE)
 {
-if(advModeMem<CANT_ADV_MODES-1)
+if(advModeMem < CANT_ADV_MODES - 1)
 {
 advModeMem++;
-{ ee_write_byte(1,advModeMem); };
+EEPROM_WRITE_CHAR(EEADDR_ADV_MODE_MEM, advModeMem);
 }
 }
-if(state==E_SET_ADV_XLO)
+if(state == E_SET_ADV_XLO)
 {
-if((xLoMem+setInc)<=999)
+if((xLoMem + setInc) <= 999)
 {
-xLoMem=xLoMem+setInc;
-{ ee_write_byte(2,((unsigned char)(((xLoMem)>>8)&0xFF))); ee_write_byte(2+1,((unsigned char)((xLoMem)&0xFF))); };
+xLoMem = xLoMem + setInc;
+EEPROM_WRITE_INT(EEADDR_XLO_MEM, xLoMem);
 }
 }
-if(state==E_SET_ADV_XUP)
+if(state == E_SET_ADV_XUP)
 {
-if((xUpMem+setInc)<=999)
+if((xUpMem + setInc) <= 999)
 {
-xUpMem=xUpMem+setInc;
-{ ee_write_byte(4,((unsigned char)(((xUpMem)>>8)&0xFF))); ee_write_byte(4+1,((unsigned char)((xUpMem)&0xFF))); };
+xUpMem = xUpMem + setInc;
+EEPROM_WRITE_INT(EEADDR_XUP_MEM, xUpMem);
 }
 }
-if(state==E_SET_ADV_ELO)
+if(state == E_SET_ADV_ELO)
 {
-if((eLoMem+setInc)<=999)
+if((eLoMem + setInc) <= 999)
 {
-eLoMem=eLoMem+setInc;
-{ ee_write_byte(6,((unsigned char)(((eLoMem)>>8)&0xFF))); ee_write_byte(6+1,((unsigned char)((eLoMem)&0xFF))); };
+eLoMem = eLoMem + setInc;
+EEPROM_WRITE_INT(EEADDR_ELO_MEM, eLoMem);
 }
 }
-if(state==E_SET_ADV_EUP)
+if(state == E_SET_ADV_EUP)
 {
-if((eUpMem+setInc)<=999)
+if((eUpMem+setInc) <= 999)
 {
-eUpMem=eUpMem+setInc;
-{ ee_write_byte(8,((unsigned char)(((eUpMem)>>8)&0xFF))); ee_write_byte(8+1,((unsigned char)((eUpMem)&0xFF))); };
+eUpMem = eUpMem + setInc;
+EEPROM_WRITE_INT(EEADDR_EUP_MEM, eUpMem);
 }
 }
-if(state==E_SET_ADV_VLO)
+if(state == E_SET_ADV_VLO)
 {
-if((vLoMem+setInc)<=999)
+if((vLoMem+setInc) <= 999)
 {
-vLoMem=vLoMem+setInc;
-{ ee_write_byte(10,((unsigned char)(((vLoMem)>>8)&0xFF))); ee_write_byte(10+1,((unsigned char)((vLoMem)&0xFF))); };
+vLoMem = vLoMem + setInc;
+EEPROM_WRITE_INT(EEADDR_VLO_MEM, vLoMem);
 }
 }
-if(state==E_SET_ADV_VUP)
+if(state == E_SET_ADV_VUP)
 {
-if((vUpMem+setInc)<=999)
+if((vUpMem+setInc) <= 999)
 {
-vUpMem=vUpMem+setInc;
-{ ee_write_byte(12,((unsigned char)(((vUpMem)>>8)&0xFF))); ee_write_byte(12+1,((unsigned char)((vUpMem)&0xFF))); };
+vUpMem = vUpMem + setInc;
+EEPROM_WRITE_INT(EEADDR_VUP_MEM, vUpMem);
 }
 }
 
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
-{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
+TMR_START(TMR_SHOW_SETTING_ON);
 }
 
+# 222
 void decVar(void)
 {
 
 
 
-if(state==E_SET_BRILLO)
+if(state == E_SET_BRILLO)
 {
-if(brilloMem>0)
+if(brilloMem > 0)
 {
 brilloMem--;
-{ ee_write_byte(0,brilloMem); };
+EEPROM_WRITE_CHAR(EEADDR_BRILLO_MEM, brilloMem);
 }
 }
-if(state==E_SET_ESCALA_ENT)
+if(state == E_SET_ESCALA_ENT)
 {
-if((escEntMem-setInc)>=0)
+if((escEntMem-setInc) >= 0)
 {
-escEntMem=escEntMem-setInc;
-{ ee_write_byte(14,((unsigned char)(((escEntMem)>>8)&0xFF))); ee_write_byte(14+1,((unsigned char)((escEntMem)&0xFF))); };
-escala=(float)escEntMem+(float)escDecMem/1000.0;
+escEntMem = escEntMem - setInc;
+EEPROM_WRITE_INT(EEADDR_ESC_ENT_MEM, escEntMem);
+escala = (float) escEntMem + (float) escDecMem / 1000.0;
 }
 }
-if(state==E_SET_ESCALA_DEC)
+if(state == E_SET_ESCALA_DEC)
 {
-if((escDecMem-setInc)>=0)
+if((escDecMem-setInc) >= 0)
 {
-escDecMem=escDecMem-setInc;
-{ ee_write_byte(16,((unsigned char)(((escDecMem)>>8)&0xFF))); ee_write_byte(16+1,((unsigned char)((escDecMem)&0xFF))); };
-escala=(float)escEntMem+(float)escDecMem/1000.0;
+escDecMem = escDecMem - setInc;
+EEPROM_WRITE_INT(EEADDR_ESC_DEC_MEM, escDecMem);
+escala = (float) escEntMem + (float) escDecMem / 1000.0;
 }
 }
-if(state==E_SET_ADV_MODE)
+if(state == E_SET_ADV_MODE)
 {
-if(advModeMem>0)
+if(advModeMem > 0)
 {
 advModeMem--;
-{ ee_write_byte(1,advModeMem); };
+EEPROM_WRITE_CHAR(EEADDR_ADV_MODE_MEM, advModeMem);
 }
 }
-if(state==E_SET_ADV_XLO)
+if(state == E_SET_ADV_XLO)
 {
-if((xLoMem-setInc)>=0)
+if((xLoMem - setInc) >= 0)
 {
-xLoMem=xLoMem-setInc;
-{ ee_write_byte(2,((unsigned char)(((xLoMem)>>8)&0xFF))); ee_write_byte(2+1,((unsigned char)((xLoMem)&0xFF))); };
+xLoMem = xLoMem - setInc;
+EEPROM_WRITE_INT(EEADDR_XLO_MEM, xLoMem);
 }
 }
-if(state==E_SET_ADV_XUP)
+if(state == E_SET_ADV_XUP)
 {
-if((xUpMem-setInc)>=0)
+if((xUpMem - setInc) >= 0)
 {
-xUpMem=xUpMem-setInc;
-{ ee_write_byte(4,((unsigned char)(((xUpMem)>>8)&0xFF))); ee_write_byte(4+1,((unsigned char)((xUpMem)&0xFF))); };
+xUpMem = xUpMem - setInc;
+EEPROM_WRITE_INT(EEADDR_XUP_MEM, xUpMem);
 }
 }
-if(state==E_SET_ADV_ELO)
+if(state == E_SET_ADV_ELO)
 {
-if((eLoMem-setInc)>=0)
+if((eLoMem - setInc) >= 0)
 {
-eLoMem=eLoMem-setInc;
-{ ee_write_byte(6,((unsigned char)(((eLoMem)>>8)&0xFF))); ee_write_byte(6+1,((unsigned char)((eLoMem)&0xFF))); };
+eLoMem = eLoMem - setInc;
+EEPROM_WRITE_INT(EEADDR_ELO_MEM, eLoMem);
 }
 }
-if(state==E_SET_ADV_EUP)
+if(state == E_SET_ADV_EUP)
 {
-if((eUpMem-setInc)>=0)
+if((eUpMem - setInc) >= 0)
 {
-eUpMem=eUpMem-setInc;
-{ ee_write_byte(8,((unsigned char)(((eUpMem)>>8)&0xFF))); ee_write_byte(8+1,((unsigned char)((eUpMem)&0xFF))); };
+eUpMem = eUpMem - setInc;
+EEPROM_WRITE_INT(EEADDR_EUP_MEM, eUpMem);
 }
 }
-if(state==E_SET_ADV_VLO)
+if(state == E_SET_ADV_VLO)
 {
-if((vLoMem-setInc)>=0)
+if((vLoMem - setInc) >= 0)
 {
-vLoMem=vLoMem-setInc;
-{ ee_write_byte(10,((unsigned char)(((vLoMem)>>8)&0xFF))); ee_write_byte(10+1,((unsigned char)((vLoMem)&0xFF))); };
+vLoMem = vLoMem - setInc;
+EEPROM_WRITE_INT(EEADDR_VLO_MEM, vLoMem);
 }
 }
 if(state==E_SET_ADV_VUP)
@@ -5703,14 +5724,15 @@ if(state==E_SET_ADV_VUP)
 if((vUpMem-setInc)>=0)
 {
 vUpMem=vUpMem-setInc;
-{ ee_write_byte(12,((unsigned char)(((vUpMem)>>8)&0xFF))); ee_write_byte(12+1,((unsigned char)((vUpMem)&0xFF))); };
+EEPROM_WRITE_INT(EEADDR_VUP_MEM,vUpMem);
 }
 }
 
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
-{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
+TMR_START(TMR_SHOW_SETTING_ON);
 }
 
+# 318
 void endTestDisplayActions(void)
 {
 state=E_IDLE;
@@ -5720,77 +5742,78 @@ muxBuffer[0]='0';
 muxBuffer[1]='0';
 muxBuffer[2]='0';
 muxBuffer[ADV]=' ';
-{ timerMem[TMR_ADCSAMPLE].flag=0; timerMem[TMR_ADCSAMPLE].prescaler=timerDelayConstant[TMR_ADCSAMPLE]; timerMem[TMR_ADCSAMPLE].pause=0; timerMem[TMR_ADCSAMPLE].loop=1; };
+TMR_INIT_LOOP(TMR_ADCSAMPLE);
 }
 
+# 334
 void actionsTimeoutShowSetting(void)
 {
-if((timerMem[TMR_SHOW_SETTING].flag?!(timerMem[TMR_SHOW_SETTING].flag=0):0))
+if(TMR_TIMEOUT(TMR_SHOW_SETTING))
 {
 switch(state)
 {
 case E_SET_ESCALA_ENT_DESCRIPTION:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ESCALA_ENT:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ESCALA_DEC_DESCRIPTION:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ESCALA_DEC:
 state=E_IDLE;
 break;
 case E_SET_ADV_XLO_DESCRIPTION:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ADV_XLO:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ADV_XUP_DESCRIPTION:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ADV_XUP:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ADV_ELO_DESCRIPTION:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ADV_ELO:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ADV_EUP_DESCRIPTION:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ADV_EUP:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ADV_VLO_DESCRIPTION:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ADV_VLO_DESCRIPTION:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ADV_VLO:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ADV_VUP_DESCRIPTION:
 state++;
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
+TMR_START(TMR_SHOW_SETTING);
 break;
 case E_SET_ADV_VUP:
 state=E_IDLE;
@@ -5805,42 +5828,44 @@ break;
 
 char aux;
 
-# 387
+# 420
 void main(void)
 {
 pulsPinInit();
 systemInit();
-segments.portState=0x01;
-
-{ brilloMem=ee_read_byte(0); };
-{ advModeMem=ee_read_byte(1); };
-
-{ escEntMem=0x00; escEntMem|=ee_read_byte(14)<<8; escEntMem|=ee_read_byte(14+1)<<0; };
-{ escDecMem=0x00; escDecMem|=ee_read_byte(16)<<8; escDecMem|=ee_read_byte(16+1)<<0; };
-escala=(float)escEntMem+(float)escDecMem/1000.0;
-
-{ xLoMem=0x00; xLoMem|=ee_read_byte(2)<<8; xLoMem|=ee_read_byte(2+1)<<0; };
-{ xUpMem=0x00; xUpMem|=ee_read_byte(4)<<8; xUpMem|=ee_read_byte(4+1)<<0; };
-{ eLoMem=0x00; eLoMem|=ee_read_byte(6)<<8; eLoMem|=ee_read_byte(6+1)<<0; };
-{ eUpMem=0x00; eUpMem|=ee_read_byte(8)<<8; eUpMem|=ee_read_byte(8+1)<<0; };
-{ vLoMem=0x00; vLoMem|=ee_read_byte(10)<<8; vLoMem|=ee_read_byte(10+1)<<0; };
-{ vUpMem=0x00; vUpMem|=ee_read_byte(12)<<8; vUpMem|=ee_read_byte(12+1)<<0; };
-
-PORTCbits.RC6=1;
-muxBuffer[0]='8';
-muxBuffer[1]='8';
-muxBuffer[2]='8';
-muxBuffer[ADV]='x';
-
-{ timerMem[TMR_250MS].flag=0; timerMem[TMR_250MS].prescaler=timerDelayConstant[TMR_250MS]; timerMem[TMR_250MS].pause=0; timerMem[TMR_250MS].loop=1; };
+segments.portState = 0x01;
 
 
-{ timerMem[TMR_TEST_DISPLAYS].flag=0; timerMem[TMR_TEST_DISPLAYS].prescaler=timerDelayConstant[TMR_TEST_DISPLAYS]; timerMem[TMR_TEST_DISPLAYS].pause=0; };
-{ timerMem[TMR_TEST_ADVERTENCIA].flag=0; timerMem[TMR_TEST_ADVERTENCIA].prescaler=timerDelayConstant[TMR_TEST_ADVERTENCIA]; timerMem[TMR_TEST_ADVERTENCIA].pause=0; };
+
+EEPROM_READ_CHAR(EEADDR_BRILLO_MEM, brilloMem);
+EEPROM_READ_CHAR(EEADDR_ADV_MODE_MEM, advModeMem);
+
+EEPROM_READ_INT(EEADDR_ESC_ENT_MEM, escEntMem);
+EEPROM_READ_INT(EEADDR_ESC_DEC_MEM, escDecMem);
+escala = (float) escEntMem + (float) escDecMem / 1000.0;
+
+EEPROM_READ_INT(EEADDR_XLO_MEM, xLoMem);
+EEPROM_READ_INT(EEADDR_XUP_MEM, xUpMem);
+EEPROM_READ_INT(EEADDR_ELO_MEM, eLoMem);
+EEPROM_READ_INT(EEADDR_EUP_MEM, eUpMem);
+EEPROM_READ_INT(EEADDR_VLO_MEM, vLoMem);
+EEPROM_READ_INT(EEADDR_VUP_MEM, vUpMem);
+
+PORTCbits.RC6 = 1;
+muxBuffer[0] = '8';
+muxBuffer[1] = '8';
+muxBuffer[2] = '8';
+muxBuffer[ADV] = 'x';
+
+TMR_INIT_LOOP(TMR_250MS);
+
+
+TMR_START(TMR_TEST_DISPLAYS);
+TMR_START(TMR_TEST_ADVERTENCIA);
 
 while(1)
 {
-if((timerMem[TMR_250MS].flag?!(timerMem[TMR_250MS].flag=0):0))
+if(TMR_TIMEOUT(TMR_250MS))
 {
 timerDriver(TMR_LONG_PULS_UP);
 timerDriver(TMR_LONG_PULS_DWN);
@@ -5854,39 +5879,39 @@ timerDriver(TMR_SHOW_DESCRIPTION);
 timerDriver(TMR_SPACE);
 }
 
-if((timerMem[TMR_SHOW_MENU].flag?!(timerMem[TMR_SHOW_MENU].flag=0):0)) state=E_IDLE;
+if(TMR_TIMEOUT(TMR_SHOW_MENU)) state=E_IDLE;
 
 
 actionsTimeoutShowSetting();
 
-if((timerMem[TMR_LONG_PULS_UP].flag?!(timerMem[TMR_LONG_PULS_UP].flag=0):0))
+if(TMR_TIMEOUT(TMR_LONG_PULS_UP))
 {
-{ timerMem[TMR_SHOW_MENU].prescaler=0; timerMem[TMR_SHOW_MENU].pause=1; };
-PORTCbits.RC6=1;
-{ timerMem[TMR_BEEP].flag=0; timerMem[TMR_BEEP].prescaler=timerDelayConstant[TMR_BEEP]; timerMem[TMR_BEEP].pause=0; };
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
-{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };
+TMR_STOP(TMR_SHOW_MENU);
+PORTCbits.RC6 = 1;
+TMR_START(TMR_BEEP);
+TMR_START(TMR_SHOW_SETTING);
+TMR_START(TMR_SHOW_SETTING_ON);
 enterMenu();
-ignoreNextFp=1;
+ignoreNextFp = 1;
 if( state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
 || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
 || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP
 || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC)
 switch(setInc)
 {
-case 1: setInc=10; break;
-case 10: setInc=100; break;
-case 100: setInc=1; break;
+case 1: setInc = 10; break;
+case 10: setInc = 100; break;
+case 100: setInc = 1; break;
 }
 }
 
-if((timerMem[TMR_LONG_PULS_DWN].flag?!(timerMem[TMR_LONG_PULS_DWN].flag=0):0))
+if(TMR_TIMEOUT(TMR_LONG_PULS_DWN))
 {
-{ timerMem[TMR_SHOW_MENU].prescaler=0; timerMem[TMR_SHOW_MENU].pause=1; };
+TMR_STOP(TMR_SHOW_MENU);
 PORTCbits.RC6=1;
-{ timerMem[TMR_BEEP].flag=0; timerMem[TMR_BEEP].prescaler=timerDelayConstant[TMR_BEEP]; timerMem[TMR_BEEP].pause=0; };
-{ timerMem[TMR_SHOW_SETTING].flag=0; timerMem[TMR_SHOW_SETTING].prescaler=timerDelayConstant[TMR_SHOW_SETTING]; timerMem[TMR_SHOW_SETTING].pause=0; };
-{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };
+TMR_START(TMR_BEEP);
+TMR_START(TMR_SHOW_SETTING);
+TMR_START(TMR_SHOW_SETTING_ON);
 enterMenu();
 ignoreNextFp=1;
 if( state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
@@ -5905,18 +5930,18 @@ case 100: setInc=10; break;
 
 if(state==E_TEST_DISPLAYS)
 {
-if((timerMem[TMR_TEST_ADVERTENCIA].flag?!(timerMem[TMR_TEST_ADVERTENCIA].flag=0):0))
+if(TMR_TIMEOUT(TMR_TEST_ADVERTENCIA))
 {
-{ timerMem[TMR_TEST_ADVERTENCIA].flag=0; timerMem[TMR_TEST_ADVERTENCIA].prescaler=timerDelayConstant[TMR_TEST_ADVERTENCIA]; timerMem[TMR_TEST_ADVERTENCIA].pause=0; };
+TMR_START(TMR_TEST_ADVERTENCIA);
 if(muxBuffer[ADV]=='x') muxBuffer[ADV]='!';
 else if(muxBuffer[ADV]=='!') muxBuffer[ADV]='v';
 }
-if((timerMem[TMR_TEST_DISPLAYS].flag?!(timerMem[TMR_TEST_DISPLAYS].flag=0):0)) endTestDisplayActions();
+if(TMR_TIMEOUT(TMR_TEST_DISPLAYS)) endTestDisplayActions();
 }
 else if(state==E_IDLE)
 {
 adcDriver();
-if((timerMem[TMR_ADCSAMPLE].flag?!(timerMem[TMR_ADCSAMPLE].flag=0):0)) ((adcStruct.flgs2convert) |= 1UL << (12));
+if(TMR_TIMEOUT(TMR_ADCSAMPLE)) ((adcStruct.flgs2convert) |= 1UL << (12));
 if((adcStruct.completeFlg && adcStruct.chComp==12))
 {
 
@@ -6024,10 +6049,10 @@ muxBuffer[ADV]=' ';
 }
 else if(state==E_SET_BRILLO)
 {
-if((timerMem[TMR_SHOW_SETTING_OFF].flag?!(timerMem[TMR_SHOW_SETTING_OFF].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };}
-if((timerMem[TMR_SHOW_SETTING_ON].flag?!(timerMem[TMR_SHOW_SETTING_ON].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_OFF].flag=0; timerMem[TMR_SHOW_SETTING_OFF].prescaler=timerDelayConstant[TMR_SHOW_SETTING_OFF]; timerMem[TMR_SHOW_SETTING_OFF].pause=0; };}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
 
-if((!timerMem[TMR_SHOW_SETTING_ON].pause && timerMem[TMR_SHOW_SETTING_ON].prescaler!=0))
+if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
 {
 muxBuffer[ADV]=' ';
 display=brilloMem;
@@ -6038,10 +6063,10 @@ else
 }
 else if(state==E_SET_ADV_MODE)
 {
-if((timerMem[TMR_SHOW_SETTING_OFF].flag?!(timerMem[TMR_SHOW_SETTING_OFF].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };}
-if((timerMem[TMR_SHOW_SETTING_ON].flag?!(timerMem[TMR_SHOW_SETTING_ON].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_OFF].flag=0; timerMem[TMR_SHOW_SETTING_OFF].prescaler=timerDelayConstant[TMR_SHOW_SETTING_OFF]; timerMem[TMR_SHOW_SETTING_OFF].pause=0; };}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
 
-if((!timerMem[TMR_SHOW_SETTING_ON].pause && timerMem[TMR_SHOW_SETTING_ON].prescaler!=0))
+if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
 {
 muxBuffer[ADV]=' ';
 display=advModeMem;
@@ -6059,10 +6084,10 @@ muxBuffer[ADV]=' ' ;
 }
 else if(state==E_SET_ESCALA_ENT)
 {
-if((timerMem[TMR_SHOW_SETTING_OFF].flag?!(timerMem[TMR_SHOW_SETTING_OFF].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };}
-if((timerMem[TMR_SHOW_SETTING_ON].flag?!(timerMem[TMR_SHOW_SETTING_ON].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_OFF].flag=0; timerMem[TMR_SHOW_SETTING_OFF].prescaler=timerDelayConstant[TMR_SHOW_SETTING_OFF]; timerMem[TMR_SHOW_SETTING_OFF].pause=0; };}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
 
-if((!timerMem[TMR_SHOW_SETTING_ON].pause && timerMem[TMR_SHOW_SETTING_ON].prescaler!=0))
+if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
 {
 display=escEntMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6079,10 +6104,10 @@ muxBuffer[ADV]=' ';
 }
 else if(state==E_SET_ESCALA_DEC)
 {
-if((timerMem[TMR_SHOW_SETTING_OFF].flag?!(timerMem[TMR_SHOW_SETTING_OFF].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };}
-if((timerMem[TMR_SHOW_SETTING_ON].flag?!(timerMem[TMR_SHOW_SETTING_ON].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_OFF].flag=0; timerMem[TMR_SHOW_SETTING_OFF].prescaler=timerDelayConstant[TMR_SHOW_SETTING_OFF]; timerMem[TMR_SHOW_SETTING_OFF].pause=0; };}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
 
-if((!timerMem[TMR_SHOW_SETTING_ON].pause && timerMem[TMR_SHOW_SETTING_ON].prescaler!=0))
+if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
 {
 display=escDecMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6134,10 +6159,10 @@ muxBuffer[ADV]='v';
 }
 else if(state==E_SET_ADV_XLO)
 {
-if((timerMem[TMR_SHOW_SETTING_OFF].flag?!(timerMem[TMR_SHOW_SETTING_OFF].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };}
-if((timerMem[TMR_SHOW_SETTING_ON].flag?!(timerMem[TMR_SHOW_SETTING_ON].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_OFF].flag=0; timerMem[TMR_SHOW_SETTING_OFF].prescaler=timerDelayConstant[TMR_SHOW_SETTING_OFF]; timerMem[TMR_SHOW_SETTING_OFF].pause=0; };}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
 
-if((!timerMem[TMR_SHOW_SETTING_ON].pause && timerMem[TMR_SHOW_SETTING_ON].prescaler!=0))
+if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
 {
 display=xLoMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6147,10 +6172,10 @@ else
 }
 else if(state==E_SET_ADV_XUP)
 {
-if((timerMem[TMR_SHOW_SETTING_OFF].flag?!(timerMem[TMR_SHOW_SETTING_OFF].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };}
-if((timerMem[TMR_SHOW_SETTING_ON].flag?!(timerMem[TMR_SHOW_SETTING_ON].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_OFF].flag=0; timerMem[TMR_SHOW_SETTING_OFF].prescaler=timerDelayConstant[TMR_SHOW_SETTING_OFF]; timerMem[TMR_SHOW_SETTING_OFF].pause=0; };}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
 
-if((!timerMem[TMR_SHOW_SETTING_ON].pause && timerMem[TMR_SHOW_SETTING_ON].prescaler!=0))
+if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
 {
 display=xUpMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6160,10 +6185,10 @@ else
 }
 else if(state==E_SET_ADV_ELO)
 {
-if((timerMem[TMR_SHOW_SETTING_OFF].flag?!(timerMem[TMR_SHOW_SETTING_OFF].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };}
-if((timerMem[TMR_SHOW_SETTING_ON].flag?!(timerMem[TMR_SHOW_SETTING_ON].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_OFF].flag=0; timerMem[TMR_SHOW_SETTING_OFF].prescaler=timerDelayConstant[TMR_SHOW_SETTING_OFF]; timerMem[TMR_SHOW_SETTING_OFF].pause=0; };}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
 
-if((!timerMem[TMR_SHOW_SETTING_ON].pause && timerMem[TMR_SHOW_SETTING_ON].prescaler!=0))
+if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
 {
 display=eLoMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6173,10 +6198,10 @@ else
 }
 else if(state==E_SET_ADV_EUP)
 {
-if((timerMem[TMR_SHOW_SETTING_OFF].flag?!(timerMem[TMR_SHOW_SETTING_OFF].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };}
-if((timerMem[TMR_SHOW_SETTING_ON].flag?!(timerMem[TMR_SHOW_SETTING_ON].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_OFF].flag=0; timerMem[TMR_SHOW_SETTING_OFF].prescaler=timerDelayConstant[TMR_SHOW_SETTING_OFF]; timerMem[TMR_SHOW_SETTING_OFF].pause=0; };}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
 
-if((!timerMem[TMR_SHOW_SETTING_ON].pause && timerMem[TMR_SHOW_SETTING_ON].prescaler!=0))
+if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
 {
 display=eUpMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6186,10 +6211,10 @@ else
 }
 else if(state==E_SET_ADV_VLO)
 {
-if((timerMem[TMR_SHOW_SETTING_OFF].flag?!(timerMem[TMR_SHOW_SETTING_OFF].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };}
-if((timerMem[TMR_SHOW_SETTING_ON].flag?!(timerMem[TMR_SHOW_SETTING_ON].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_OFF].flag=0; timerMem[TMR_SHOW_SETTING_OFF].prescaler=timerDelayConstant[TMR_SHOW_SETTING_OFF]; timerMem[TMR_SHOW_SETTING_OFF].pause=0; };}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
 
-if((!timerMem[TMR_SHOW_SETTING_ON].pause && timerMem[TMR_SHOW_SETTING_ON].prescaler!=0))
+if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
 {
 display=vLoMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6199,10 +6224,10 @@ else
 }
 else if(state==E_SET_ADV_VUP)
 {
-if((timerMem[TMR_SHOW_SETTING_OFF].flag?!(timerMem[TMR_SHOW_SETTING_OFF].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_ON].flag=0; timerMem[TMR_SHOW_SETTING_ON].prescaler=timerDelayConstant[TMR_SHOW_SETTING_ON]; timerMem[TMR_SHOW_SETTING_ON].pause=0; };}
-if((timerMem[TMR_SHOW_SETTING_ON].flag?!(timerMem[TMR_SHOW_SETTING_ON].flag=0):0)) {{ timerMem[TMR_SHOW_SETTING_OFF].flag=0; timerMem[TMR_SHOW_SETTING_OFF].prescaler=timerDelayConstant[TMR_SHOW_SETTING_OFF]; timerMem[TMR_SHOW_SETTING_OFF].pause=0; };}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
+if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
 
-if((!timerMem[TMR_SHOW_SETTING_ON].pause && timerMem[TMR_SHOW_SETTING_ON].prescaler!=0))
+if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
 {
 display=vUpMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6212,61 +6237,61 @@ else
 }
 
 
-if((pulsPinBuffer.flag && pulsPinBuffer.pulsId==UP_FP && pulsPinBuffer.fp==1 ?!(pulsPinBuffer.flag=0):0))
+if(PULSPIN_EVENT_ID_FP(UP_FP))
 {
 if(ignoreNextFp) ignoreNextFp=0;
 else
 {
-{ timerMem[TMR_LONG_PULS_UP].prescaler=0; timerMem[TMR_LONG_PULS_UP].pause=1; };
+TMR_STOP(TMR_LONG_PULS_UP);
 
 
 if(state>=E_IDLE && state<E_MENU_FACTORY_CAL)
 {
 state++;
 PORTCbits.RC6=1;
-{ timerMem[TMR_SHOW_MENU].flag=0; timerMem[TMR_SHOW_MENU].prescaler=timerDelayConstant[TMR_SHOW_MENU]; timerMem[TMR_SHOW_MENU].pause=0; };
-{ timerMem[TMR_BEEP].flag=0; timerMem[TMR_BEEP].prescaler=timerDelayConstant[TMR_BEEP]; timerMem[TMR_BEEP].pause=0; };
+TMR_START(TMR_SHOW_MENU);
+TMR_START(TMR_BEEP);
 }
 else if(state==E_MENU_FACTORY_CAL)
 {
 state=E_MENU_BRILLO;
 PORTCbits.RC6=1;
-{ timerMem[TMR_SHOW_MENU].flag=0; timerMem[TMR_SHOW_MENU].prescaler=timerDelayConstant[TMR_SHOW_MENU]; timerMem[TMR_SHOW_MENU].pause=0; };
-{ timerMem[TMR_BEEP].flag=0; timerMem[TMR_BEEP].prescaler=timerDelayConstant[TMR_BEEP]; timerMem[TMR_BEEP].pause=0; };
+TMR_START(TMR_SHOW_MENU);
+TMR_START(TMR_BEEP);
 }
 else incVar();
 }
 }
 
 
-if((pulsPinBuffer.flag && pulsPinBuffer.pulsId==DWN_FP && pulsPinBuffer.fp==1 ?!(pulsPinBuffer.flag=0):0))
+if(PULSPIN_EVENT_ID_FP(DWN_FP))
 {
 if(ignoreNextFp) ignoreNextFp=0;
 else
 {
-{ timerMem[TMR_LONG_PULS_DWN].prescaler=0; timerMem[TMR_LONG_PULS_DWN].pause=1; };
+TMR_STOP(TMR_LONG_PULS_DWN);
 
 
 if(state>=E_IDLE && state<E_MENU_FACTORY_CAL)
 {
 state++;
 PORTCbits.RC6=1;
-{ timerMem[TMR_SHOW_MENU].flag=0; timerMem[TMR_SHOW_MENU].prescaler=timerDelayConstant[TMR_SHOW_MENU]; timerMem[TMR_SHOW_MENU].pause=0; };
-{ timerMem[TMR_BEEP].flag=0; timerMem[TMR_BEEP].prescaler=timerDelayConstant[TMR_BEEP]; timerMem[TMR_BEEP].pause=0; };
+TMR_START(TMR_SHOW_MENU);
+TMR_START(TMR_BEEP);
 }
 else if(state==E_MENU_FACTORY_CAL)
 {
 state=E_MENU_BRILLO;
 PORTCbits.RC6=1;
-{ timerMem[TMR_SHOW_MENU].flag=0; timerMem[TMR_SHOW_MENU].prescaler=timerDelayConstant[TMR_SHOW_MENU]; timerMem[TMR_SHOW_MENU].pause=0; };
-{ timerMem[TMR_BEEP].flag=0; timerMem[TMR_BEEP].prescaler=timerDelayConstant[TMR_BEEP]; timerMem[TMR_BEEP].pause=0; };
+TMR_START(TMR_SHOW_MENU);
+TMR_START(TMR_BEEP);
 }
 else decVar();
 }
 }
 
 
-if((pulsPinBuffer.flag && pulsPinBuffer.pulsId==UP_FN && pulsPinBuffer.fp==0?!(pulsPinBuffer.flag=0):0))
+if(PULSPIN_EVENT_ID_FN(UP_FN))
 {
 if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
 || state==E_MENU_ESCALA || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC
@@ -6274,11 +6299,11 @@ if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
 || state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
 || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
 || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP)
-{ timerMem[TMR_LONG_PULS_UP].flag=0; timerMem[TMR_LONG_PULS_UP].prescaler=timerDelayConstant[TMR_LONG_PULS_UP]; timerMem[TMR_LONG_PULS_UP].pause=0; };
+TMR_START(TMR_LONG_PULS_UP);
 }
 
 
-if((pulsPinBuffer.flag && pulsPinBuffer.pulsId==DWN_FN && pulsPinBuffer.fp==0?!(pulsPinBuffer.flag=0):0))
+if(PULSPIN_EVENT_ID_FN(DWN_FN))
 {
 if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
 || state==E_MENU_ESCALA || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC
@@ -6286,7 +6311,7 @@ if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
 || state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
 || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
 || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP)
-{ timerMem[TMR_LONG_PULS_DWN].flag=0; timerMem[TMR_LONG_PULS_DWN].prescaler=timerDelayConstant[TMR_LONG_PULS_DWN]; timerMem[TMR_LONG_PULS_DWN].pause=0; };
+TMR_START(TMR_LONG_PULS_DWN);
 }
 }
 }

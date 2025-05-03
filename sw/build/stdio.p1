@@ -1,17 +1,14 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [s S1 `uc 1 `*uc 1 `*uc 1 `*uc 1 `uc 1 `uc 1 `uc 1 ]
 [n S1 . flg nxr nxw bas nr nw bufsiz ]
-[c E1 0 1 2 .. ]
-[n E1 e_mode_fseek SEEK_END SEEK_CUR SEEK_SET  ]
 "34 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\include\stdarg.h
 [v ___va_start `(*v ~T0 0 ef ]
 [p i ___va_start ]
 "37
 [v ___va_arg `(*v ~T0 0 ev`*v ]
 [p i ___va_arg ]
-"76 C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007\stdio.h
+"76 C:\fgr\16gb\0000 interior\deVolt\sw\stdio.h
 [v _intToStr `(*uc ~T0 0 ef3`i`*uc`uc ]
-[; ;stdio.h: 23: enum e_mode_fseek{SEEK_END,SEEK_CUR,SEEK_SET};
 [; ;stdio.h: 45: typedef struct
 [; ;stdio.h: 46: {
 [; ;stdio.h: 47: char flg;
@@ -29,9 +26,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 73: void fprintf(FILE *fp,char *fmt,...);
 [; ;stdio.h: 74: void fprinti(FILE *fp,char *str);
 [; ;stdio.h: 76: char *intToStr(int num,char *str,char strLen);
-[; ;stdio.h: 77: char *longToStr(long num,char *str,char strLen);
-[; ;stdio.h: 78: void ucharToStr(unsigned char num,char *str,char strLen);
-[; ;stdio.h: 79: char *uToStr(unsigned int num,char *str,char strLen);
+[; ;stdio.h: 77: void ucharToStr(unsigned char num,char *str,char strLen);
+[; ;stdio.h: 78: void uintToStr(unsigned int num,char *str,char strLen);
 [; ;string.h: 4: typedef int ptrdiff_t;
 [; ;string.h: 5: typedef unsigned size_t;
 [; ;string.h: 6: typedef unsigned short wchar_t;
@@ -191,9 +187,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.c: 118: fp->flg&=~(1<<3);
 "118
 [e =& . *U _fp 0 -> ~ << -> 1 `i -> 3 `i `uc ]
-[; ;stdio.c: 119: if(mode==SEEK_SET)
+[; ;stdio.c: 119: if(mode==2)
 "119
-[e $ ! == _mode -> . `E1 2 `i 11  ]
+[e $ ! == _mode -> 2 `i 11  ]
 [; ;stdio.c: 120: {
 "120
 {
@@ -235,8 +231,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 14  ]
 "132
 [e :U 11 ]
-[; ;stdio.c: 132: else if(mode==SEEK_END)
-[e $ ! == _mode -> . `E1 0 `i 15  ]
+[; ;stdio.c: 132: else if(mode==0)
+[e $ ! == _mode -> 0 `i 15  ]
 [; ;stdio.c: 133: {
 "133
 {
@@ -335,7 +331,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "174
 [v _ap `*v ~T0 -> -> 1 `i `ux a ]
 "175
-[v _str `uc ~T0 -> 12 `i a ]
+[v _str `uc ~T0 -> 7 `i a ]
 "176
 [v _p `*uc ~T0 1 a ]
 [v _sval `*uc ~T0 1 a ]
@@ -348,7 +344,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "181
 [v _v `*uc ~T0 1 a ]
 [; ;stdio.c: 174: va_list ap;
-[; ;stdio.c: 175: char str[12];
+[; ;stdio.c: 175: char str[7];
 [; ;stdio.c: 176: char *p,*sval;
 [; ;stdio.c: 177: int ival;
 [; ;stdio.c: 178: double dval;
@@ -397,9 +393,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.c: 195: ival=(*(int *)__va_arg((*(int **)ap), (int)0));
 "195
 [e = _ival *U -> ( ___va_arg , (. -> *U -> &U _ap `**i `*v -> 0 `i `*i ]
-[; ;stdio.c: 196: v=intToStr(ival,str,12);
+[; ;stdio.c: 196: v=intToStr(ival,str,7);
 "196
-[e = _v ( _intToStr (3 , , _ival &U _str -> -> 12 `i `uc ]
+[e = _v ( _intToStr (3 , , _ival &U _str -> -> 7 `i `uc ]
 [; ;stdio.c: 197: while(*v) fputc(*(v++),fp);
 "197
 [e $U 31  ]

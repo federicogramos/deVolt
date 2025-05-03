@@ -4036,7 +4036,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 186: extern void _delay(unsigned long);
 [; ;pic18.h: 188: extern void _delaywdt(unsigned long);
 [; ;pic18.h: 190: extern void _delay3(unsigned char);
-[; ;stdio.h: 23: enum e_mode_fseek{SEEK_END,SEEK_CUR,SEEK_SET};
 [; ;stdio.h: 45: typedef struct
 [; ;stdio.h: 46: {
 [; ;stdio.h: 47: char flg;
@@ -4054,9 +4053,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 73: void fprintf(FILE *fp,char *fmt,...);
 [; ;stdio.h: 74: void fprinti(FILE *fp,char *str);
 [; ;stdio.h: 76: char *intToStr(int num,char *str,char strLen);
-[; ;stdio.h: 77: char *longToStr(long num,char *str,char strLen);
-[; ;stdio.h: 78: void ucharToStr(unsigned char num,char *str,char strLen);
-[; ;stdio.h: 79: char *uToStr(unsigned int num,char *str,char strLen);
+[; ;stdio.h: 77: void ucharToStr(unsigned char num,char *str,char strLen);
+[; ;stdio.h: 78: void uintToStr(unsigned int num,char *str,char strLen);
 [; ;segments.h: 19: typedef struct
 [; ;segments.h: 20: {
 [; ;segments.h: 21: unsigned char nextUp;
@@ -4067,6 +4065,25 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;segments.h: 30: extern t_7seg segments;
 [; ;segments.h: 35: void char2pins(char c);
 [; ;system.h: 90: void systemInit(void);
+[; ;stdio.h: 45: typedef struct
+[; ;stdio.h: 46: {
+[; ;stdio.h: 47: char flg;
+[; ;stdio.h: 48: char *nxr;
+[; ;stdio.h: 49: char *nxw;
+[; ;stdio.h: 50: char *bas;
+[; ;stdio.h: 51: char nr;
+[; ;stdio.h: 52: char nw;
+[; ;stdio.h: 53: char bufsiz;
+[; ;stdio.h: 54: }FILE;
+[; ;stdio.h: 65: char fputc(char c, FILE *stream);
+[; ;stdio.h: 66: char fgetc(FILE *stream);
+[; ;stdio.h: 67: void fseek(FILE *fp,int offset,int mode);
+[; ;stdio.h: 68: void unget(FILE *stream);
+[; ;stdio.h: 73: void fprintf(FILE *fp,char *fmt,...);
+[; ;stdio.h: 74: void fprinti(FILE *fp,char *str);
+[; ;stdio.h: 76: char *intToStr(int num,char *str,char strLen);
+[; ;stdio.h: 77: void ucharToStr(unsigned char num,char *str,char strLen);
+[; ;stdio.h: 78: void uintToStr(unsigned int num,char *str,char strLen);
 "8 C:\fgr\16gb\0000 interior\deVolt\sw\segments.c
 [v _muxBuffer `uc ~T0 + * -> 4 `i -> 1 `i -> 1 `i e ]
 [i _muxBuffer
@@ -4123,13 +4140,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;segments.c: 24: switch(c)
 "24
-[e $U 657  ]
+[e $U 658  ]
 [; ;segments.c: 25: {
 "25
 {
 [; ;segments.c: 26: case '0':
 "26
-[e :U 658 ]
+[e :U 659 ]
 [; ;segments.c: 27: PORTAbits.RA2=1;
 "27
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
@@ -4153,10 +4170,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
 [; ;segments.c: 34: break;
 "34
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 35: case '1':
 "35
-[e :U 659 ]
+[e :U 660 ]
 [; ;segments.c: 36: PORTAbits.RA2=0;
 "36
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
@@ -4180,10 +4197,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
 [; ;segments.c: 43: break;
 "43
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 44: case '2':
 "44
-[e :U 660 ]
+[e :U 661 ]
 [; ;segments.c: 45: PORTAbits.RA2=1;
 "45
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
@@ -4207,10 +4224,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 52: break;
 "52
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 53: case '3':
 "53
-[e :U 661 ]
+[e :U 662 ]
 [; ;segments.c: 54: PORTAbits.RA2=1;
 "54
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
@@ -4234,10 +4251,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 61: break;
 "61
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 62: case '4':
 "62
-[e :U 662 ]
+[e :U 663 ]
 [; ;segments.c: 63: PORTAbits.RA2=0;
 "63
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
@@ -4261,10 +4278,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 70: break;
 "70
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 71: case '5':
 "71
-[e :U 663 ]
+[e :U 664 ]
 [; ;segments.c: 72: PORTAbits.RA2=1;
 "72
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
@@ -4288,10 +4305,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 79: break;
 "79
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 80: case '6':
 "80
-[e :U 664 ]
+[e :U 665 ]
 [; ;segments.c: 81: PORTAbits.RA2=1;
 "81
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
@@ -4315,10 +4332,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 88: break;
 "88
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 89: case '7':
 "89
-[e :U 665 ]
+[e :U 666 ]
 [; ;segments.c: 90: PORTAbits.RA2=1;
 "90
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
@@ -4342,10 +4359,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
 [; ;segments.c: 97: break;
 "97
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 98: case '8':
 "98
-[e :U 666 ]
+[e :U 667 ]
 [; ;segments.c: 99: PORTAbits.RA2=1;
 "99
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
@@ -4369,10 +4386,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 106: break;
 "106
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 107: case '9':
 "107
-[e :U 667 ]
+[e :U 668 ]
 [; ;segments.c: 108: PORTAbits.RA2=1;
 "108
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
@@ -4396,10 +4413,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 115: break;
 "115
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 116: case 'x':
 "116
-[e :U 668 ]
+[e :U 669 ]
 [; ;segments.c: 117: PORTAbits.RA2=0;
 "117
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
@@ -4423,10 +4440,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
 [; ;segments.c: 124: break;
 "124
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 125: case 'v':
 "125
-[e :U 669 ]
+[e :U 670 ]
 [; ;segments.c: 126: PORTAbits.RA2=0;
 "126
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
@@ -4453,10 +4470,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
 [; ;segments.c: 134: break;
 "134
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 135: case '!':
 "135
-[e :U 670 ]
+[e :U 671 ]
 [; ;segments.c: 136: PORTAbits.RA2=0;
 "136
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
@@ -4480,10 +4497,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
 [; ;segments.c: 143: break;
 "143
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 146: case 'A':PORTAbits.RA2=1;PORTBbits.RB7=1;PORTBbits.RB1=1;PORTBbits.RB2=0;
 "146
-[e :U 671 ]
+[e :U 672 ]
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
@@ -4495,10 +4512,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 148: break;
 "148
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 149: case 'b':PORTAbits.RA2=0;PORTBbits.RB7=0;PORTBbits.RB1=1;PORTBbits.RB2=1;
 "149
-[e :U 672 ]
+[e :U 673 ]
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
@@ -4510,10 +4527,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 151: break;
 "151
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 152: case 'C':PORTAbits.RA2=1;PORTBbits.RB7=0;PORTBbits.RB1=0;PORTBbits.RB2=1;
 "152
-[e :U 673 ]
+[e :U 674 ]
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
@@ -4525,10 +4542,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
 [; ;segments.c: 154: break;
 "154
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 155: case 'c':PORTAbits.RA2=0;PORTBbits.RB7=0;PORTBbits.RB1=0;PORTBbits.RB2=1;
 "155
-[e :U 674 ]
+[e :U 675 ]
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
@@ -4540,10 +4557,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 157: break;
 "157
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 158: case 'd':PORTAbits.RA2=0;PORTBbits.RB7=1;PORTBbits.RB1=1;PORTBbits.RB2=1;
 "158
-[e :U 675 ]
+[e :U 676 ]
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
@@ -4553,10 +4570,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 4 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 6 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 160: case 'E':PORTAbits.RA2=1;PORTBbits.RB7=0;PORTBbits.RB1=0;PORTBbits.RB2=1;
 "160
-[e :U 676 ]
+[e :U 677 ]
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
@@ -4568,10 +4585,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 162: break;
 "162
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 163: case 'e':PORTAbits.RA2=1;PORTBbits.RB7=1;PORTBbits.RB1=0;PORTBbits.RB2=1;
 "163
-[e :U 677 ]
+[e :U 678 ]
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
@@ -4583,10 +4600,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 165: break;
 "165
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 166: case 'F':PORTAbits.RA2=1;PORTBbits.RB7=0;PORTBbits.RB1=0;PORTBbits.RB2=0;
 "166
-[e :U 678 ]
+[e :U 679 ]
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
@@ -4598,10 +4615,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 168: break;
 "168
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 169: case 'H':PORTAbits.RA2=0;PORTBbits.RB7=1;PORTBbits.RB1=1;PORTBbits.RB2=0;
 "169
-[e :U 679 ]
+[e :U 680 ]
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
@@ -4613,10 +4630,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 171: break;
 "171
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 172: case 'i':PORTAbits.RA2=0;PORTBbits.RB7=0;PORTBbits.RB1=1;PORTBbits.RB2=0;
 "172
-[e :U 680 ]
+[e :U 681 ]
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
@@ -4628,10 +4645,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
 [; ;segments.c: 174: break;
 "174
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 175: case 'L':PORTAbits.RA2=0;PORTBbits.RB7=0;PORTBbits.RB1=0;PORTBbits.RB2=1;
 "175
-[e :U 681 ]
+[e :U 682 ]
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
@@ -4643,10 +4660,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
 [; ;segments.c: 177: break;
 "177
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 178: case 'n':PORTAbits.RA2=0;PORTBbits.RB7=0;PORTBbits.RB1=1;PORTBbits.RB2=0;
 "178
-[e :U 682 ]
+[e :U 683 ]
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
@@ -4658,10 +4675,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 180: break;
 "180
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 181: case 'o':PORTAbits.RA2=0;PORTBbits.RB7=0;PORTBbits.RB1=1;PORTBbits.RB2=1;
 "181
-[e :U 683 ]
+[e :U 684 ]
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
@@ -4673,10 +4690,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 183: break;
 "183
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 184: case 'P':PORTAbits.RA2=1;PORTBbits.RB7=1;PORTBbits.RB1=0;PORTBbits.RB2=0;
 "184
-[e :U 684 ]
+[e :U 685 ]
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
@@ -4688,10 +4705,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 186: break;
 "186
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 187: case 'r':PORTAbits.RA2=0;PORTBbits.RB7=0;PORTBbits.RB1=0;PORTBbits.RB2=0;
 "187
-[e :U 685 ]
+[e :U 686 ]
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
@@ -4703,10 +4720,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 189: break;
 "189
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 190: case 'S':PORTAbits.RA2=1;PORTBbits.RB7=0;PORTBbits.RB1=1;PORTBbits.RB2=1;
 "190
-[e :U 686 ]
+[e :U 687 ]
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
@@ -4718,10 +4735,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 192: break;
 "192
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 193: case 't':PORTAbits.RA2=0;PORTBbits.RB7=0;PORTBbits.RB1=0;PORTBbits.RB2=1;
 "193
-[e :U 687 ]
+[e :U 688 ]
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
@@ -4733,10 +4750,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 195: break;
 "195
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 196: case 'u':PORTAbits.RA2=0;PORTBbits.RB7=0;PORTBbits.RB1=1;PORTBbits.RB2=1;
 "196
-[e :U 688 ]
+[e :U 689 ]
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
@@ -4748,10 +4765,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
 [; ;segments.c: 198: break;
 "198
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 199: case 'y':PORTAbits.RA2=0;PORTBbits.RB7=1;PORTBbits.RB1=1;PORTBbits.RB2=1;
 "199
-[e :U 689 ]
+[e :U 690 ]
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 1 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
@@ -4763,10 +4780,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 201: break;
 "201
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 202: case '-':PORTAbits.RA2=0;PORTBbits.RB7=0;PORTBbits.RB1=0;PORTBbits.RB2=0;
 "202
-[e :U 690 ]
+[e :U 691 ]
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 [e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
@@ -4778,13 +4795,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
 [; ;segments.c: 204: break;
 "204
-[e $U 656  ]
+[e $U 657  ]
 [; ;segments.c: 207: case ' ':
 "207
-[e :U 691 ]
+[e :U 692 ]
 [; ;segments.c: 208: default:
 "208
-[e :U 692 ]
+[e :U 693 ]
 [; ;segments.c: 209: PORTAbits.RA2=0;
 "209
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
@@ -4812,47 +4829,47 @@ Version 3.2 HI-TECH Software Intermediate Code
 "217
 }
 [; ;segments.c: 217: }
-[e $U 656  ]
+[e $U 657  ]
 "24
-[e :U 657 ]
-[e [\ _c , $ -> -> 48 `ui `uc 658
- , $ -> -> 49 `ui `uc 659
- , $ -> -> 50 `ui `uc 660
- , $ -> -> 51 `ui `uc 661
- , $ -> -> 52 `ui `uc 662
- , $ -> -> 53 `ui `uc 663
- , $ -> -> 54 `ui `uc 664
- , $ -> -> 55 `ui `uc 665
- , $ -> -> 56 `ui `uc 666
- , $ -> -> 57 `ui `uc 667
- , $ -> -> 120 `ui `uc 668
- , $ -> -> 118 `ui `uc 669
- , $ -> -> 33 `ui `uc 670
- , $ -> -> 65 `ui `uc 671
- , $ -> -> 98 `ui `uc 672
- , $ -> -> 67 `ui `uc 673
- , $ -> -> 99 `ui `uc 674
- , $ -> -> 100 `ui `uc 675
- , $ -> -> 69 `ui `uc 676
- , $ -> -> 101 `ui `uc 677
- , $ -> -> 70 `ui `uc 678
- , $ -> -> 72 `ui `uc 679
- , $ -> -> 105 `ui `uc 680
- , $ -> -> 76 `ui `uc 681
- , $ -> -> 110 `ui `uc 682
- , $ -> -> 111 `ui `uc 683
- , $ -> -> 80 `ui `uc 684
- , $ -> -> 114 `ui `uc 685
- , $ -> -> 83 `ui `uc 686
- , $ -> -> 116 `ui `uc 687
- , $ -> -> 117 `ui `uc 688
- , $ -> -> 121 `ui `uc 689
- , $ -> -> 45 `ui `uc 690
- , $ -> -> 32 `ui `uc 691
- 692 ]
+[e :U 658 ]
+[e [\ _c , $ -> -> 48 `ui `uc 659
+ , $ -> -> 49 `ui `uc 660
+ , $ -> -> 50 `ui `uc 661
+ , $ -> -> 51 `ui `uc 662
+ , $ -> -> 52 `ui `uc 663
+ , $ -> -> 53 `ui `uc 664
+ , $ -> -> 54 `ui `uc 665
+ , $ -> -> 55 `ui `uc 666
+ , $ -> -> 56 `ui `uc 667
+ , $ -> -> 57 `ui `uc 668
+ , $ -> -> 120 `ui `uc 669
+ , $ -> -> 118 `ui `uc 670
+ , $ -> -> 33 `ui `uc 671
+ , $ -> -> 65 `ui `uc 672
+ , $ -> -> 98 `ui `uc 673
+ , $ -> -> 67 `ui `uc 674
+ , $ -> -> 99 `ui `uc 675
+ , $ -> -> 100 `ui `uc 676
+ , $ -> -> 69 `ui `uc 677
+ , $ -> -> 101 `ui `uc 678
+ , $ -> -> 70 `ui `uc 679
+ , $ -> -> 72 `ui `uc 680
+ , $ -> -> 105 `ui `uc 681
+ , $ -> -> 76 `ui `uc 682
+ , $ -> -> 110 `ui `uc 683
+ , $ -> -> 111 `ui `uc 684
+ , $ -> -> 80 `ui `uc 685
+ , $ -> -> 114 `ui `uc 686
+ , $ -> -> 83 `ui `uc 687
+ , $ -> -> 116 `ui `uc 688
+ , $ -> -> 117 `ui `uc 689
+ , $ -> -> 121 `ui `uc 690
+ , $ -> -> 45 `ui `uc 691
+ , $ -> -> 32 `ui `uc 692
+ 693 ]
 "217
-[e :U 656 ]
+[e :U 657 ]
 [; ;segments.c: 218: }
 "218
-[e :UE 655 ]
+[e :UE 656 ]
 }

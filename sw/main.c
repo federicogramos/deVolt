@@ -15,13 +15,14 @@
 #include <main.h>// Fuses y otras cosas.
 #include <system.h>// Inicializacion del sistema.
 #include <segments.h>
-#include <timer_lib.h>
+//#include <timer_lib.h>
+#include <t0.h>// Software timer0.
 #include <mainDefinitions.h>
 #include <adc.h>
 #include <iir.h>
 #include "stdio.h"
-#include <pulsadorPin_lib_1ms.h>
-//#include <kPin.h>;;
+//#include <pulsadorPin_lib_1ms.h>
+#include <kPin.h>;;
 
 
 //==============================================================================

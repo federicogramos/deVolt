@@ -5201,7 +5201,7 @@ ch2Cnv=adcStruct.nx2convert;
 if(adcStruct.nx2convert<=12) adcStruct.nx2convert++;
 else adcStruct.nx2convert=0;
 }
-while(!((1UL<<(ch2Cnv)) & (adcStruct.flgs2convert)));
+while(!((1UL << (ch2Cnv)) & (adcStruct.flgs2convert)));
 
 ADCON0bits.CHS=ch2Cnv;
 

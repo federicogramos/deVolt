@@ -4128,7 +4128,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "19
 }
 [; ;adc.c: 19: }
-[; ;adc.c: 20: while(!((1UL<<(ch2Cnv)) & (adcStruct.flgs2convert)));
+[; ;adc.c: 20: while(!((1UL << (ch2Cnv)) & (adcStruct.flgs2convert)));
 "20
 [e $ ! != & << -> 1 `ul -> _ch2Cnv `i -> . _adcStruct 3 `ul -> -> 0 `i `ul 658  ]
 [e :U 657 ]

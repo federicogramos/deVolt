@@ -1,18 +1,12 @@
 Version 3.2 HI-TECH Software Intermediate Code
+[c E4229 0 1 2 3 4 5 .. ]
+[n E4229 e_pulsadorPinFastAlias P0N P1N P0P IN_FN IN_FP PULS_PIN_CANT  ]
+[s S654 :1 `uc 1 :1 `uc 1 `uc 1 ]
+[n S654 . state prevState timer ]
 [s S653 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S653 . pulsId flag fp ]
-[c E4229 0 1 2 3 4 .. ]
-[n E4229 e_pulsadorPinAlias UP_FN DWN_FN UP_FP DWN_FP PULS_PIN_CANT  ]
-[s S654 `*uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 `uc 1 ]
-[n S654 . p2port bitNum state prevState fp fn unbounceRst timer ]
-"1032 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\include\pic18f2550.h
-[v _PORTC `Vuc ~T0 0 e@3970 ]
+[n S653 . kId flag flanco ]
 [c E4255 0 1 .. ]
-[n E4255 e_flancoPos FP_DIS FP_EN  ]
-[c E4258 0 1 .. ]
-[n E4258 e_flancoNeg FN_DIS FN_EN  ]
-[c E4261 0 1 .. ]
-[n E4261 e_unbounceRst UNBOUNCE_RST_DIS UNBOUNCE_RST_EN  ]
+[n E4255 e_flanco FLANCO_N FLANCO_P  ]
 [; ;pic18f2550.h: 17: extern volatile unsigned short UFRM @ 0xF66;
 "19 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\include\pic18f2550.h
 [; ;pic18f2550.h: 19: asm("UFRM equ 0F66h");
@@ -4014,282 +4008,310 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 186: extern void _delay(unsigned long);
 [; ;pic18.h: 188: extern void _delaywdt(unsigned long);
 [; ;pic18.h: 190: extern void _delay3(unsigned char);
-[; ;pulsadorPin_1ms_aliases.h: 7: enum e_pulsadorPinAlias {UP_FN,DWN_FN,UP_FP,DWN_FP,PULS_PIN_CANT};
-[; ;pulsadorPin_lib_1ms.h: 13: typedef struct
-[; ;pulsadorPin_lib_1ms.h: 14: {
-[; ;pulsadorPin_lib_1ms.h: 15: unsigned char pulsId:5;
-[; ;pulsadorPin_lib_1ms.h: 16: unsigned char flag:1;
-[; ;pulsadorPin_lib_1ms.h: 17: unsigned char fp:1;
-[; ;pulsadorPin_lib_1ms.h: 18: }t_pulsEvent;
-[; ;pulsadorPin_lib_1ms.h: 20: typedef struct
-[; ;pulsadorPin_lib_1ms.h: 21: {
-[; ;pulsadorPin_lib_1ms.h: 22: char *p2port;
-[; ;pulsadorPin_lib_1ms.h: 23: unsigned char bitNum:3;
-[; ;pulsadorPin_lib_1ms.h: 24: unsigned char state:1;
-[; ;pulsadorPin_lib_1ms.h: 25: unsigned char prevState:1;
-[; ;pulsadorPin_lib_1ms.h: 26: unsigned char fp:1;
-[; ;pulsadorPin_lib_1ms.h: 27: unsigned char fn:1;
-[; ;pulsadorPin_lib_1ms.h: 28: unsigned char unbounceRst:1;
-[; ;pulsadorPin_lib_1ms.h: 29: unsigned char timer;
-[; ;pulsadorPin_lib_1ms.h: 30: }t_pulsPin;
-[; ;pulsadorPin_lib_1ms.h: 33: void pulsPinDriver(void);
-[; ;pulsadorPin_lib_1ms.h: 34: void pulsPinInit(void);
-[; ;pulsadorPin_lib_1ms.h: 36: extern t_pulsEvent pulsPinBuffer;
-"7 C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007\pulsadorPin_1ms.c
-[v _pulsPinBuffer `S653 ~T0 1 e ]
-[; ;pulsadorPin_1ms.c: 7: t_pulsEvent pulsPinBuffer;
-[; ;pulsadorPin_1ms_pindef.h: 6: enum e_flancoPos {FP_DIS,FP_EN};
-[; ;pulsadorPin_1ms_pindef.h: 7: enum e_flancoNeg {FN_DIS,FN_EN};
-[; ;pulsadorPin_1ms_pindef.h: 8: enum e_unbounceRst {UNBOUNCE_RST_DIS,UNBOUNCE_RST_EN};
-"10 C:\fgr\16gb\0000 interior\deVolt\sw\pulsadorPin_1ms_pindef.h
-[v _pulsPin `S654 ~T0 . `E4229 4 e ]
-[i _pulsPin
+[; ;kPin_aliases.h: 16: enum e_pulsadorPinFastAlias
+[; ;kPin_aliases.h: 17: {
+[; ;kPin_aliases.h: 18: P0N,
+[; ;kPin_aliases.h: 19: P1N,
+[; ;kPin_aliases.h: 20: P0P,
+[; ;kPin_aliases.h: 21: IN_FN,
+[; ;kPin_aliases.h: 22: IN_FP,
+[; ;kPin_aliases.h: 23: PULS_PIN_CANT
+[; ;kPin_aliases.h: 24: };
+[; ;kPin.h: 25: typedef struct
+[; ;kPin.h: 26: {
+[; ;kPin.h: 27: unsigned char kId : 5;
+[; ;kPin.h: 28: unsigned char flag : 1;
+[; ;kPin.h: 29: unsigned char flanco : 1;
+[; ;kPin.h: 30: } t_kEvent;
+[; ;kPin.h: 32: typedef struct
+[; ;kPin.h: 33: {
+[; ;kPin.h: 34: unsigned char state : 1;
+[; ;kPin.h: 35: unsigned char prevState : 1;
+[; ;kPin.h: 36: unsigned char timer;
+[; ;kPin.h: 37: } t_kPin;
+"23 C:\fgr\16gb\0000 interior\deVolt\sw\kPin_pindef.h
+[v _PULSADOR_0 `Vb ~T0 1 e@31744 ]
+[; ;kPin_pindef.h: 23: volatile bit PULSADOR_0 @ ((unsigned)&PORTA*8)+0;
+"24
+[v _PULSADOR_1 `Vb ~T0 1 e@31746 ]
+[; ;kPin_pindef.h: 24: volatile bit PULSADOR_1 @ ((unsigned)&PORTA*8)+2;
+"25
+[v _PULSADOR_2 `Vb ~T0 1 e@31744 ]
+[; ;kPin_pindef.h: 25: volatile bit PULSADOR_2 @ ((unsigned)&PORTA*8)+0;
+"26
+[v _PULSADOR_3 `Vb ~T0 1 e@31779 ]
+[; ;kPin_pindef.h: 26: volatile bit PULSADOR_3 @ ((unsigned)&PORTE*8)+3;
+"41
+[v _kPin `S654 ~T0 . `E4229 5 e ]
+[i _kPin
 :U ..
 :U ..
-"11
--> &U _PORTC `*uc
--> -> 0 `i `uc
+"43
 -> -> 1 `i `uc
 -> -> 1 `i `uc
--> . `E4255 0 `uc
--> . `E4258 1 `uc
--> . `E4261 1 `uc
--> -> 0 `i `uc
-..
-:U ..
-"12
--> &U _PORTC `*uc
--> -> 1 `i `uc
--> -> 1 `i `uc
--> -> 1 `i `uc
--> . `E4255 0 `uc
--> . `E4258 1 `uc
--> . `E4261 1 `uc
 -> -> 0 `i `uc
 ..
 :U ..
-"13
--> &U _PORTC `*uc
--> -> 0 `i `uc
+"44
 -> -> 1 `i `uc
 -> -> 1 `i `uc
--> . `E4255 1 `uc
--> . `E4258 0 `uc
--> . `E4261 1 `uc
 -> -> 0 `i `uc
 ..
 :U ..
-"14
--> &U _PORTC `*uc
+"45
 -> -> 1 `i `uc
 -> -> 1 `i `uc
+-> -> 0 `i `uc
+..
+:U ..
+"46
 -> -> 1 `i `uc
--> . `E4255 1 `uc
--> . `E4258 0 `uc
--> . `E4261 1 `uc
+-> -> 1 `i `uc
 -> -> 0 `i `uc
 ..
 ..
 ]
-[; ;pulsadorPin_1ms_pindef.h: 10: t_pulsPin pulsPin[PULS_PIN_CANT]={
-[; ;pulsadorPin_1ms_pindef.h: 11: {(char*)&PORTC,0,1,1,FP_DIS,FN_EN,UNBOUNCE_RST_EN,0},
-[; ;pulsadorPin_1ms_pindef.h: 12: {(char*)&PORTC,1,1,1,FP_DIS,FN_EN,UNBOUNCE_RST_EN,0},
-[; ;pulsadorPin_1ms_pindef.h: 13: {(char*)&PORTC,0,1,1,FP_EN,FN_DIS,UNBOUNCE_RST_EN,0},
-[; ;pulsadorPin_1ms_pindef.h: 14: {(char*)&PORTC,1,1,1,FP_EN,FN_DIS,UNBOUNCE_RST_EN,0}
-[; ;pulsadorPin_1ms_pindef.h: 15: };
-"14 C:\fgr\16gb\libSwPic\oldV2\lib_sw_pic_20171007\pulsadorPin_1ms.c
-[v _pulsPinDriver `(v ~T0 1 ef ]
+[; ;kPin_pindef.h: 41: t_kPin kPin[PULS_PIN_CANT]=
+[; ;kPin_pindef.h: 42: {
+[; ;kPin_pindef.h: 43: {1,1,0},
+[; ;kPin_pindef.h: 44: {1,1,0},
+[; ;kPin_pindef.h: 45: {1,1,0},
+[; ;kPin_pindef.h: 46: {1,1,0}
+[; ;kPin_pindef.h: 47: };
+[; ;kPin.h: 52: enum e_flanco {FLANCO_N,FLANCO_P};
+[; ;kPin.h: 59: extern t_kEvent kPinBuffer;
+[; ;kPin.h: 77: void kPin_driverDc(char pi, char kCurrLogState);
+[; ;kPin.h: 78: void kPin_driverAcFn(char pi, char flanco, char kCurrLogState);
+[; ;kPin.h: 79: void kPin_driverAcFp(char pi, char flanco, char kCurrLogState);
+"20 C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.c
+[v _kPinBuffer `S653 ~T0 1 e ]
+[; ;kPin.c: 20: t_kEvent kPinBuffer;
+[; ;system.h: 90: void systemInit(void);
+"40
+[v _kPin_driverDc `(v ~T0 1 ef2`uc`uc ]
 {
-[; ;pulsadorPin_1ms.c: 13: void pulsPinDriver(void)
-[; ;pulsadorPin_1ms.c: 14: {
-[e :U _pulsPinDriver ]
+[; ;kPin.c: 39: void kPin_driverDc(char pi, char kCurrLogState)
+[; ;kPin.c: 40: {
+[e :U _kPin_driverDc ]
+[v _pi `uc ~T0 1 r1 ]
+[v _kCurrLogState `uc ~T0 1 r2 ]
 [f ]
-"15
-[v _i `uc ~T0 1 a ]
-[v _j `uc ~T0 1 a ]
-[; ;pulsadorPin_1ms.c: 15: char i,j;
-[; ;pulsadorPin_1ms.c: 17: for(i=0;i<PULS_PIN_CANT;i++)
-"17
-{
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> . `E4229 4 `i 656  ]
+[; ;kPin.c: 41: if(kPin[pi].timer) kPin[pi].timer--;
+"41
+[e $ ! != -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 `i -> -> -> 0 `i `uc `i 656  ]
+[e -- . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 1 `i `uc ]
 [e $U 657  ]
-"18
+"42
 [e :U 656 ]
-[; ;pulsadorPin_1ms.c: 18: {
+[; ;kPin.c: 42: else
+[; ;kPin.c: 43: {
+"43
 {
-[; ;pulsadorPin_1ms.c: 19: pulsPin[i].state=!(((1UL<<(pulsPin[i].bitNum)) & (*(pulsPin[i].p2port)))==0);
-"19
-[e = . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 2 -> -> ! == & << -> 1 `ul -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 1 `i -> *U . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 0 `ul -> -> -> 0 `i `l `ul `i `uc ]
-[; ;pulsadorPin_1ms.c: 20: if(pulsPin[i].state!=pulsPin[i].prevState)
-"20
-[e $ ! != -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 2 `i -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 3 `i 659  ]
-[; ;pulsadorPin_1ms.c: 21: {
-"21
+[; ;kPin.c: 44: kPin[pi].state = kCurrLogState;
+"44
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 _kCurrLogState ]
+[; ;kPin.c: 46: if(kPin[pi].state==FLANCO_P && kPin[pi].prevState==!FLANCO_P)
+"46
+[e $ ! && == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 `i -> . `E4255 1 `i == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 `i -> ! != -> . `E4255 1 `i -> -> -> 0 `i `E4255 `i `i 658  ]
+[; ;kPin.c: 47: {
+"47
 {
-[; ;pulsadorPin_1ms.c: 22: if(pulsPin[i].fp && pulsPin[i].state==1 && pulsPin[i].prevState==0)
-"22
-[e $ ! && && != -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 4 `i -> -> -> 0 `i `uc `i == -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 2 `i -> 1 `i == -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 3 `i -> 0 `i 660  ]
-[; ;pulsadorPin_1ms.c: 23: {
-"23
-{
-[; ;pulsadorPin_1ms.c: 24: if(pulsPin[i].timer)
-"24
-[e $ ! != -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 7 `i -> -> -> 0 `i `uc `i 661  ]
-[; ;pulsadorPin_1ms.c: 25: if(pulsPin[i].unbounceRst)
-"25
-[e $ ! != -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 6 `i -> -> -> 0 `i `uc `i 662  ]
-[; ;pulsadorPin_1ms.c: 26: pulsPin[i].timer=100;
-"26
-[e = . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 7 -> -> 100 `i `uc ]
-[e $U 663  ]
-"27
-[e :U 662 ]
-[; ;pulsadorPin_1ms.c: 27: else
-[; ;pulsadorPin_1ms.c: 28: pulsPin[i].timer--;
-"28
-[e -- . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 7 -> -> 1 `i `uc ]
-[e :U 663 ]
-[e $U 664  ]
-"29
-[e :U 661 ]
-[; ;pulsadorPin_1ms.c: 29: else
-[; ;pulsadorPin_1ms.c: 30: {
-"30
-{
-[; ;pulsadorPin_1ms.c: 31: pulsPin[i].timer=100;
-"31
-[e = . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 7 -> -> 100 `i `uc ]
-[; ;pulsadorPin_1ms.c: 32: pulsPinBuffer.pulsId=i;
-"32
-[e = . _pulsPinBuffer 0 _i ]
-[; ;pulsadorPin_1ms.c: 33: pulsPinBuffer.flag=1;
-"33
-[e = . _pulsPinBuffer 1 -> -> 1 `i `uc ]
-[; ;pulsadorPin_1ms.c: 34: pulsPinBuffer.fp=1;
-"34
-[e = . _pulsPinBuffer 2 -> -> 1 `i `uc ]
-"35
+[; ;kPin.c: 48: kPinBuffer.flag = 1;
+"48
+[e = . _kPinBuffer 1 -> -> 1 `i `uc ]
+[; ;kPin.c: 49: kPinBuffer.flanco = FLANCO_P;
+"49
+[e = . _kPinBuffer 2 -> . `E4255 1 `uc ]
+[; ;kPin.c: 50: kPin[pi].timer = 10;
+"50
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 10 `i `uc ]
+[; ;kPin.c: 56: kPinBuffer.kId = pi;
+"56
+[e = . _kPinBuffer 0 _pi ]
+"57
 }
-[e :U 664 ]
-"36
+[; ;kPin.c: 57: }
+[e $U 659  ]
+"58
+[e :U 658 ]
+[; ;kPin.c: 58: else if(kPin[pi].state==FLANCO_N && kPin[pi].prevState==!FLANCO_N)
+[e $ ! && == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 `i -> . `E4255 0 `i == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 `i -> ! != -> . `E4255 0 `i -> -> -> 0 `i `E4255 `i `i 660  ]
+[; ;kPin.c: 59: {
+"59
+{
+[; ;kPin.c: 60: kPinBuffer.flag = 1;
+"60
+[e = . _kPinBuffer 1 -> -> 1 `i `uc ]
+[; ;kPin.c: 61: kPinBuffer.flanco = FLANCO_N;
+"61
+[e = . _kPinBuffer 2 -> . `E4255 0 `uc ]
+[; ;kPin.c: 62: kPin[pi].timer = 10;
+"62
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 10 `i `uc ]
+[; ;kPin.c: 63: kPinBuffer.kId = pi;
+"63
+[e = . _kPinBuffer 0 _pi ]
+"64
 }
 [e :U 660 ]
-[; ;pulsadorPin_1ms.c: 35: }
-[; ;pulsadorPin_1ms.c: 36: }
-[; ;pulsadorPin_1ms.c: 37: if(pulsPin[i].fn && pulsPin[i].state==0 && pulsPin[i].prevState==1)
-"37
-[e $ ! && && != -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 5 `i -> -> -> 0 `i `uc `i == -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 2 `i -> 0 `i == -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 3 `i -> 1 `i 665  ]
-[; ;pulsadorPin_1ms.c: 38: {
-"38
-{
-[; ;pulsadorPin_1ms.c: 39: if(pulsPin[i].timer)
-"39
-[e $ ! != -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 7 `i -> -> -> 0 `i `uc `i 666  ]
-[; ;pulsadorPin_1ms.c: 40: if(pulsPin[i].unbounceRst)
-"40
-[e $ ! != -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 6 `i -> -> -> 0 `i `uc `i 667  ]
-[; ;pulsadorPin_1ms.c: 41: pulsPin[i].timer=100;
-"41
-[e = . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 7 -> -> 100 `i `uc ]
-[e $U 668  ]
-"42
-[e :U 667 ]
-[; ;pulsadorPin_1ms.c: 42: else
-[; ;pulsadorPin_1ms.c: 43: pulsPin[i].timer--;
-"43
-[e -- . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 7 -> -> 1 `i `uc ]
-[e :U 668 ]
-[e $U 669  ]
-"44
-[e :U 666 ]
-[; ;pulsadorPin_1ms.c: 44: else
-[; ;pulsadorPin_1ms.c: 45: {
-"45
-{
-[; ;pulsadorPin_1ms.c: 46: pulsPin[i].timer=100;
-"46
-[e = . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 7 -> -> 100 `i `uc ]
-[; ;pulsadorPin_1ms.c: 47: pulsPinBuffer.pulsId=i;
-"47
-[e = . _pulsPinBuffer 0 _i ]
-[; ;pulsadorPin_1ms.c: 48: pulsPinBuffer.flag=1;
-"48
-[e = . _pulsPinBuffer 1 -> -> 1 `i `uc ]
-[; ;pulsadorPin_1ms.c: 49: pulsPinBuffer.fp=0;
-"49
-[e = . _pulsPinBuffer 2 -> -> 0 `i `uc ]
-"50
-}
-[e :U 669 ]
-"51
-}
-[e :U 665 ]
-[; ;pulsadorPin_1ms.c: 50: }
-[; ;pulsadorPin_1ms.c: 51: }
-[; ;pulsadorPin_1ms.c: 52: pulsPin[i].prevState=pulsPin[i].state;
-"52
-[e = . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 3 . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 2 ]
-"53
-}
-[; ;pulsadorPin_1ms.c: 53: }
-[e $U 670  ]
-"54
+"66
 [e :U 659 ]
-[; ;pulsadorPin_1ms.c: 54: else if(pulsPin[i].timer) pulsPin[i].timer--;
-[e $ ! != -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 7 `i -> -> -> 0 `i `uc `i 671  ]
-[e -- . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 7 -> -> 1 `i `uc ]
-[e :U 671 ]
-"55
-[e :U 670 ]
+[; ;kPin.c: 64: }
+[; ;kPin.c: 66: kPin[pi].prevState = kPin[pi].state;
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 ]
+"67
 }
-"17
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> . `E4229 4 `i 656  ]
 [e :U 657 ]
-"55
-}
-[; ;pulsadorPin_1ms.c: 55: }
-[; ;pulsadorPin_1ms.c: 56: }
-"56
+[; ;kPin.c: 67: }
+[; ;kPin.c: 68: }
+"68
 [e :UE 655 ]
 }
-"60
-[v _pulsPinInit `(v ~T0 1 ef ]
+"77
+[v _kPin_driverAcFn `(v ~T0 1 ef3`uc`uc`uc ]
 {
-[; ;pulsadorPin_1ms.c: 59: void pulsPinInit(void)
-[; ;pulsadorPin_1ms.c: 60: {
-[e :U _pulsPinInit ]
+[; ;kPin.c: 76: void kPin_driverAcFn(char pi, char flanco, char kCurrLogState)
+[; ;kPin.c: 77: {
+[e :U _kPin_driverAcFn ]
+[v _pi `uc ~T0 1 r1 ]
+[v _flanco `uc ~T0 1 r2 ]
+[v _kCurrLogState `uc ~T0 1 r3 ]
 [f ]
-"61
-[v _i `uc ~T0 1 a ]
-[; ;pulsadorPin_1ms.c: 61: char i;
-[; ;pulsadorPin_1ms.c: 63: for(i=0;i<PULS_PIN_CANT;i++)
-"63
+[; ;kPin.c: 78: if(kPin[pi].timer)
+"78
+[e $ ! != -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 `i -> -> -> 0 `i `uc `i 662  ]
+[; ;kPin.c: 79: {
+"79
 {
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> . `E4229 4 `i 673  ]
-[e $U 674  ]
-"64
-[e :U 673 ]
-[; ;pulsadorPin_1ms.c: 64: {
+[; ;kPin.c: 80: kPin[pi].timer--;
+"80
+[e -- . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 1 `i `uc ]
+[; ;kPin.c: 81: kPin[pi].state=kCurrLogState;
+"81
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 _kCurrLogState ]
+[; ;kPin.c: 82: if(kPin[pi].state==flanco && kPin[pi].prevState==!flanco) kPin[pi].timer=10;
+"82
+[e $ ! && == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 `i -> _flanco `i == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 `i -> ! != -> _flanco `i -> -> -> 0 `i `uc `i `i 663  ]
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 10 `i `uc ]
+[e :U 663 ]
+[; ;kPin.c: 83: kPin[pi].prevState=kPin[pi].state;
+"83
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 ]
+"84
+}
+[; ;kPin.c: 84: }
+[e $U 664  ]
+"85
+[e :U 662 ]
+[; ;kPin.c: 85: else
+[; ;kPin.c: 86: {
+"86
 {
-[; ;pulsadorPin_1ms.c: 65: pulsPin[i].state=!(((1UL<<(pulsPin[i].bitNum)) & (*(pulsPin[i].p2port)))==0);
-"65
-[e = . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 2 -> -> ! == & << -> 1 `ul -> . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 1 `i -> *U . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 0 `ul -> -> -> 0 `i `l `ul `i `uc ]
-[; ;pulsadorPin_1ms.c: 66: pulsPin[i].prevState=pulsPin[i].state;
-"66
-[e = . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 3 . *U + &U _pulsPin * -> _i `ux -> -> # *U &U _pulsPin `ui `ux 2 ]
-"67
+[; ;kPin.c: 87: kPin[pi].state=kCurrLogState;
+"87
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 _kCurrLogState ]
+[; ;kPin.c: 88: if(kPin[pi].state==flanco && kPin[pi].prevState==!flanco)
+"88
+[e $ ! && == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 `i -> _flanco `i == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 `i -> ! != -> _flanco `i -> -> -> 0 `i `uc `i `i 665  ]
+[; ;kPin.c: 89: {
+"89
+{
+[; ;kPin.c: 90: kPin[pi].timer=10;
+"90
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 10 `i `uc ]
+[; ;kPin.c: 91: kPinBuffer.kId=pi;
+"91
+[e = . _kPinBuffer 0 _pi ]
+[; ;kPin.c: 92: kPinBuffer.flag=1;
+"92
+[e = . _kPinBuffer 1 -> -> 1 `i `uc ]
+"93
 }
-"63
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> . `E4229 4 `i 673  ]
-[e :U 674 ]
-"67
+[e :U 665 ]
+[; ;kPin.c: 93: }
+[; ;kPin.c: 94: kPin[pi].prevState=kPin[pi].state;
+"94
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 ]
+"95
 }
-[; ;pulsadorPin_1ms.c: 67: }
-[; ;pulsadorPin_1ms.c: 68: }
-"68
-[e :UE 672 ]
+[e :U 664 ]
+[; ;kPin.c: 95: }
+[; ;kPin.c: 96: }
+"96
+[e :UE 661 ]
+}
+"105
+[v _kPin_driverAcFp `(v ~T0 1 ef3`uc`uc`uc ]
+{
+[; ;kPin.c: 104: void kPin_driverAcFp(char pi, char flanco, char kCurrLogState)
+[; ;kPin.c: 105: {
+[e :U _kPin_driverAcFp ]
+[v _pi `uc ~T0 1 r1 ]
+[v _flanco `uc ~T0 1 r2 ]
+[v _kCurrLogState `uc ~T0 1 r3 ]
+[f ]
+[; ;kPin.c: 106: if(kPin[pi].timer)
+"106
+[e $ ! != -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 `i -> -> -> 0 `i `uc `i 667  ]
+[; ;kPin.c: 107: {
+"107
+{
+[; ;kPin.c: 108: kPin[pi].timer--;
+"108
+[e -- . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 1 `i `uc ]
+[; ;kPin.c: 109: if(kPin[pi].timer==0) kPinBuffer.flag=1;
+"109
+[e $ ! == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 `i -> 0 `i 668  ]
+[e = . _kPinBuffer 1 -> -> 1 `i `uc ]
+[e :U 668 ]
+[; ;kPin.c: 110: kPin[pi].state=kCurrLogState;
+"110
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 _kCurrLogState ]
+[; ;kPin.c: 111: if(kPin[pi].state==flanco && kPin[pi].prevState==!flanco) kPin[pi].timer=10;
+"111
+[e $ ! && == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 `i -> _flanco `i == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 `i -> ! != -> _flanco `i -> -> -> 0 `i `uc `i `i 669  ]
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 10 `i `uc ]
+[e :U 669 ]
+[; ;kPin.c: 112: kPin[pi].prevState=kPin[pi].state;
+"112
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 ]
+"113
+}
+[; ;kPin.c: 113: }
+[e $U 670  ]
+"114
+[e :U 667 ]
+[; ;kPin.c: 114: else
+[; ;kPin.c: 115: {
+"115
+{
+[; ;kPin.c: 116: kPin[pi].state=kCurrLogState;
+"116
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 _kCurrLogState ]
+[; ;kPin.c: 117: if(kPin[pi].state==flanco && kPin[pi].prevState==!flanco)
+"117
+[e $ ! && == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 `i -> _flanco `i == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 `i -> ! != -> _flanco `i -> -> -> 0 `i `uc `i `i 671  ]
+[; ;kPin.c: 118: {
+"118
+{
+[; ;kPin.c: 119: kPin[pi].timer=10;
+"119
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 10 `i `uc ]
+[; ;kPin.c: 120: kPinBuffer.kId=pi;
+"120
+[e = . _kPinBuffer 0 _pi ]
+"121
+}
+[e :U 671 ]
+[; ;kPin.c: 121: }
+[; ;kPin.c: 122: kPin[pi].prevState=kPin[pi].state;
+"122
+[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 ]
+"123
+}
+[e :U 670 ]
+[; ;kPin.c: 123: }
+[; ;kPin.c: 124: }
+"124
+[e :UE 666 ]
 }
