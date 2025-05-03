@@ -26,9 +26,9 @@
 
 //==============================================================================
 // Macro calls to initialize eeprom data.
- //
+//
 
-__EEPROM_DATA	(
+__EEPROM_DATA(
     0x00,// EEADDR_BRILLO_MEM
     0x00,// EEADDR_ADV_MODE_MEM
     0x00,0x00,// EEADDR_XLO_MEM
@@ -36,14 +36,14 @@ __EEPROM_DATA	(
     0x00,0x00// EEADDR_ELO_MEM
     );
 
-__EEPROM_DATA	(
+__EEPROM_DATA(
     0x00,0x00,// EEADDR_EUP_MEM
     0x00,0x00,// EEADDR_VLO_MEM
     0x00,0x00,// EEADDR_VUP_MEM
     0x00,0x01// EEADDR_ESC_ENT_MEM
     );
 
-__EEPROM_DATA	(
+__EEPROM_DATA(
     0x00,0x00,// EEADDR_ESC_DEC_MEM
     0x00,0x00,//
     0x00,0x00,//
@@ -72,6 +72,7 @@ void ee_write_byte(unsigned char address, unsigned char _data)
 	INTCONbits.GIE = 1;  // enable interrupts
 	}
 
+
 /*
  *
  */
@@ -85,36 +86,38 @@ unsigned char ee_read_byte(unsigned char address)
 	}
 
 
-unsigned int measurement,display;
+unsigned int measurement, display;
 
 int escEntMem,escDecMem;
-float escala,medicionFloat;
+float escala, medicionFloat;
 
-int xLoMem,xUpMem,eLoMem,eUpMem,vLoMem,vUpMem;
-char brilloMem,advModeMem;
+int xLoMem, xUpMem, eLoMem, eUpMem, vLoMem, vUpMem;
+char brilloMem, advModeMem;
 char state;
-char ignoreNextFp,setInc=1;
+char ignoreNextFp, setInc = 1;
+
 
 /*
  *
  */
 void enterMenu(void)
-	{
-	if(state==E_MENU_BRILLO) state=E_SET_BRILLO;
-	else if(state==E_MENU_ADV_MODE) state=E_SET_ADV_MODE;
-	else if(state==E_MENU_LIMITS)
-		{
-		setInc=1;
-		state=E_SET_ADV_XLO_DESCRIPTION;
-		}
-	else if(state==E_MENU_ESCALA)
-		{
-		setInc=1;
-		state=E_SET_ESCALA_ENT_DESCRIPTION;
-		}
-	else if(state==E_MENU_USER_CAL) state=E_SET_CAL_DESCRIPTION;
-	else if(state==E_MENU_FACTORY_CAL) state=E_SET_RST_DESCRIPTION;
-	}
+    {
+    if(state == E_MENU_BRILLO) state = E_SET_BRILLO;
+    else if(state == E_MENU_ADV_MODE) state = E_SET_ADV_MODE;
+    else if(state == E_MENU_LIMITS)
+        {
+        setInc = 1;
+        state = E_SET_ADV_XLO_DESCRIPTION;
+        }
+    else if(state == E_MENU_ESCALA)
+        {
+        setInc = 1;
+        state = E_SET_ESCALA_ENT_DESCRIPTION;
+        }
+    else if(state == E_MENU_USER_CAL) state = E_SET_CAL_DESCRIPTION;
+    else if(state == E_MENU_FACTORY_CAL) state = E_SET_RST_DESCRIPTION;
+    }
+
 
 /*
  *
@@ -124,86 +127,86 @@ void incVar(void)
 	//int aux;
 	//short long pulseLimitAux;
 
-	if(state==E_SET_BRILLO)
+	if(state == E_SET_BRILLO)
 		{
-		if(brilloMem<4)
+		if(brilloMem < 4)
 			{
 			brilloMem++;
-			EEPROM_WRITE_CHAR(EEADDR_BRILLO_MEM,brilloMem);
+			EEPROM_WRITE_CHAR(EEADDR_BRILLO_MEM, brilloMem);
 			}
 		}
-	if(state==E_SET_ESCALA_ENT)
+	if(state == E_SET_ESCALA_ENT)
 		{
-		if((escEntMem+setInc)<=999)
+		if((escEntMem + setInc) <= 999)
 			{
-			escEntMem=escEntMem+setInc;
-			EEPROM_WRITE_INT(EEADDR_ESC_ENT_MEM,escEntMem);
-			escala=(float)escEntMem+(float)escDecMem/1000.0;
+			escEntMem = escEntMem + setInc;
+			EEPROM_WRITE_INT(EEADDR_ESC_ENT_MEM, escEntMem);
+			escala = (float) escEntMem + (float) escDecMem / 1000.0;
 			}
 		}
-	if(state==E_SET_ESCALA_DEC)
+	if(state == E_SET_ESCALA_DEC)
 		{
-		if((escDecMem+setInc)<=999)
+		if((escDecMem + setInc) <= 999)
 			{
-			escDecMem=escDecMem+setInc;
-			EEPROM_WRITE_INT(EEADDR_ESC_DEC_MEM,escDecMem);
-			escala=(float)escEntMem+(float)escDecMem/1000.0;
+			escDecMem = escDecMem + setInc;
+			EEPROM_WRITE_INT(EEADDR_ESC_DEC_MEM, escDecMem);
+			escala = (float) escEntMem + (float) escDecMem / 1000.0;
 			}
 		}
-	if(state==E_SET_ADV_MODE)
+	if(state == E_SET_ADV_MODE)
 		{
-		if(advModeMem<CANT_ADV_MODES-1)
+		if(advModeMem < CANT_ADV_MODES - 1)
 			{
 			advModeMem++;
-			EEPROM_WRITE_CHAR(EEADDR_ADV_MODE_MEM,advModeMem);
+			EEPROM_WRITE_CHAR(EEADDR_ADV_MODE_MEM, advModeMem);
 			}
 		}
-	if(state==E_SET_ADV_XLO)
+	if(state == E_SET_ADV_XLO)
 		{
-		if((xLoMem+setInc)<=999)
+		if((xLoMem + setInc) <= 999)
 			{
-			xLoMem=xLoMem+setInc;
-			EEPROM_WRITE_INT(EEADDR_XLO_MEM,xLoMem);
+			xLoMem = xLoMem + setInc;
+			EEPROM_WRITE_INT(EEADDR_XLO_MEM, xLoMem);
 			}
 		}
-	if(state==E_SET_ADV_XUP)
+	if(state == E_SET_ADV_XUP)
 		{
-		if((xUpMem+setInc)<=999)
+		if((xUpMem + setInc) <= 999)
 			{
-			xUpMem=xUpMem+setInc;
-			EEPROM_WRITE_INT(EEADDR_XUP_MEM,xUpMem);
+			xUpMem = xUpMem + setInc;
+			EEPROM_WRITE_INT(EEADDR_XUP_MEM, xUpMem);
 			}
 		}
-	if(state==E_SET_ADV_ELO)
+	if(state == E_SET_ADV_ELO)
 		{
-		if((eLoMem+setInc)<=999)
+		if((eLoMem + setInc) <= 999)
 			{
-			eLoMem=eLoMem+setInc;
-			EEPROM_WRITE_INT(EEADDR_ELO_MEM,eLoMem);
+			eLoMem = eLoMem + setInc;
+			EEPROM_WRITE_INT(EEADDR_ELO_MEM, eLoMem);
 			}
 		}
-	if(state==E_SET_ADV_EUP)
+	if(state == E_SET_ADV_EUP)
 		{
-		if((eUpMem+setInc)<=999)
+		if((eUpMem+setInc) <= 999)
 			{
-			eUpMem=eUpMem+setInc;
-			EEPROM_WRITE_INT(EEADDR_EUP_MEM,eUpMem);
+			eUpMem = eUpMem + setInc;
+			EEPROM_WRITE_INT(EEADDR_EUP_MEM, eUpMem);
 			}
 		}
-	if(state==E_SET_ADV_VLO)
+	if(state == E_SET_ADV_VLO)
 		{
-		if((vLoMem+setInc)<=999)
+		if((vLoMem+setInc) <= 999)
 			{
-			vLoMem=vLoMem+setInc;
-			EEPROM_WRITE_INT(EEADDR_VLO_MEM,vLoMem);
+			vLoMem = vLoMem + setInc;
+			EEPROM_WRITE_INT(EEADDR_VLO_MEM, vLoMem);
 			}
 		}
-	if(state==E_SET_ADV_VUP)
+	if(state == E_SET_ADV_VUP)
 		{
-		if((vUpMem+setInc)<=999)
+		if((vUpMem+setInc) <= 999)
 			{
-			vUpMem=vUpMem+setInc;
-			EEPROM_WRITE_INT(EEADDR_VUP_MEM,vUpMem);
+			vUpMem = vUpMem + setInc;
+			EEPROM_WRITE_INT(EEADDR_VUP_MEM, vUpMem);
 			}
 		}
 
@@ -220,78 +223,78 @@ void decVar(void)
 	//int aux;
 	//short long pulseLimitAux;
 
-	if(state==E_SET_BRILLO)
+	if(state == E_SET_BRILLO)
 		{
-		if(brilloMem>0)
+		if(brilloMem > 0)
 			{
 			brilloMem--;
-			EEPROM_WRITE_CHAR(EEADDR_BRILLO_MEM,brilloMem);
+			EEPROM_WRITE_CHAR(EEADDR_BRILLO_MEM, brilloMem);
 			}
 		}
-	if(state==E_SET_ESCALA_ENT)
+	if(state == E_SET_ESCALA_ENT)
 		{
-		if((escEntMem-setInc)>=0)
+		if((escEntMem-setInc) >= 0)
 			{
-			escEntMem=escEntMem-setInc;
-			EEPROM_WRITE_INT(EEADDR_ESC_ENT_MEM,escEntMem);
-			escala=(float)escEntMem+(float)escDecMem/1000.0;
+			escEntMem = escEntMem - setInc;
+			EEPROM_WRITE_INT(EEADDR_ESC_ENT_MEM, escEntMem);
+			escala = (float) escEntMem + (float) escDecMem / 1000.0;
 			}
 		}
-	if(state==E_SET_ESCALA_DEC)
+	if(state == E_SET_ESCALA_DEC)
 		{
-		if((escDecMem-setInc)>=0)
+		if((escDecMem-setInc) >= 0)
 			{
-			escDecMem=escDecMem-setInc;
-			EEPROM_WRITE_INT(EEADDR_ESC_DEC_MEM,escDecMem);
-			escala=(float)escEntMem+(float)escDecMem/1000.0;
+			escDecMem = escDecMem - setInc;
+			EEPROM_WRITE_INT(EEADDR_ESC_DEC_MEM, escDecMem);
+			escala = (float) escEntMem + (float) escDecMem / 1000.0;
 			}
 		}
-	if(state==E_SET_ADV_MODE)
+	if(state == E_SET_ADV_MODE)
 		{
-		if(advModeMem>0)
+		if(advModeMem > 0)
 			{
 			advModeMem--;
-			EEPROM_WRITE_CHAR(EEADDR_ADV_MODE_MEM,advModeMem);
+			EEPROM_WRITE_CHAR(EEADDR_ADV_MODE_MEM, advModeMem);
 			}
 		}
-	if(state==E_SET_ADV_XLO)
+	if(state == E_SET_ADV_XLO)
 		{
-		if((xLoMem-setInc)>=0)
+		if((xLoMem - setInc) >= 0)
 			{
-			xLoMem=xLoMem-setInc;
-			EEPROM_WRITE_INT(EEADDR_XLO_MEM,xLoMem);
+			xLoMem = xLoMem - setInc;
+			EEPROM_WRITE_INT(EEADDR_XLO_MEM, xLoMem);
 			}
 		}
-	if(state==E_SET_ADV_XUP)
+	if(state == E_SET_ADV_XUP)
 		{
-		if((xUpMem-setInc)>=0)
+		if((xUpMem - setInc) >= 0)
 			{
-			xUpMem=xUpMem-setInc;
-			EEPROM_WRITE_INT(EEADDR_XUP_MEM,xUpMem);
+			xUpMem = xUpMem - setInc;
+			EEPROM_WRITE_INT(EEADDR_XUP_MEM, xUpMem);
 			}
 		}
-	if(state==E_SET_ADV_ELO)
+	if(state == E_SET_ADV_ELO)
 		{
-		if((eLoMem-setInc)>=0)
+		if((eLoMem - setInc) >= 0)
 			{
-			eLoMem=eLoMem-setInc;
-			EEPROM_WRITE_INT(EEADDR_ELO_MEM,eLoMem);
+			eLoMem = eLoMem - setInc;
+			EEPROM_WRITE_INT(EEADDR_ELO_MEM, eLoMem);
 			}
 		}
-	if(state==E_SET_ADV_EUP)
+	if(state == E_SET_ADV_EUP)
 		{
-		if((eUpMem-setInc)>=0)
+		if((eUpMem - setInc) >= 0)
 			{
-			eUpMem=eUpMem-setInc;
-			EEPROM_WRITE_INT(EEADDR_EUP_MEM,eUpMem);
+			eUpMem = eUpMem - setInc;
+			EEPROM_WRITE_INT(EEADDR_EUP_MEM, eUpMem);
 			}
 		}
-	if(state==E_SET_ADV_VLO)
+	if(state == E_SET_ADV_VLO)
 		{
-		if((vLoMem-setInc)>=0)
+		if((vLoMem - setInc) >= 0)
 			{
-			vLoMem=vLoMem-setInc;
-			EEPROM_WRITE_INT(EEADDR_VLO_MEM,vLoMem);
+			vLoMem = vLoMem - setInc;
+			EEPROM_WRITE_INT(EEADDR_VLO_MEM, vLoMem);
 			}
 		}
 	if(state==E_SET_ADV_VUP)
@@ -417,7 +420,7 @@ void main(void)
 	{
 	pulsPinInit();// Seteo de variables antes de que habilite interrupciones.
 	systemInit();
-	segments.portState=0x01;// Uso este auxiliar en lugar de directamente el pue
+	segments.portState = 0x01;// Uso este auxiliar en lugar de directamente el pue
 	// rto, para poder "saltear" el encendido de un digito sin alterar el ciclo 
 	// de multiplexado.
 
@@ -447,7 +450,7 @@ void main(void)
 	TMR_START(TMR_TEST_DISPLAYS);
 	TMR_START(TMR_TEST_ADVERTENCIA);
 
-	while(1)
+	while(1)// Main program loop.
 		{
 		if(TMR_TIMEOUT(TMR_250MS))
 			{
