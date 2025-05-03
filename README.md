@@ -1,6 +1,6 @@
 Implementación de voltímetro con algunas características ajustables segun el requerimiento de uso.
 
-./sw/
+<h1>./sw/</h1>
 Contiene el firmware para ser utilizado con https://github.com/federicogramos/led7SegDriverWithPS
 
 ./pcb/
