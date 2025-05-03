@@ -5,10 +5,10 @@ Contiene el firmware para ser utilizado con https://github.com/federicogramos/le
 <h1>./pcb/</h1>
 Contiene distintas placas adicionales que se conectan a la placa controladora (led7SegDriverWithPS). Algunos ejemplos:
 <ul>
-<li>- una placa para que en lugar de medir voltaje, mida corriente 4 a 20mA.</li>
-<li>- placa optoacopladora.</li>
-<li>- placa pulsadores.</li>
-<li>- etc.</li>
+<li>Una placa para que en lugar de medir voltaje, mida corriente 4 a 20mA.</li>
+<li>Placa optoacopladora.</li>
+<li>Placa pulsadores.</li>
+<li>Etc.</li>
 </ul>
 Nota: la placa principal no se encuentra en este repositorio, sino en al anteriormente mencionado, que reitero: https://github.com/federicogramos/led7SegDriverWithPS
 <h1>./manual/</h1>
