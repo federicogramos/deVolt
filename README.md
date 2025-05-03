@@ -10,6 +10,6 @@ Contiene distintas placas adicionales que se conectan a la placa controladora (l
 <li>Placa pulsadores.</li>
 <li>Etc.</li>
 </ul>
-Nota: la placa principal no se encuentra en este repositorio, sino en al anteriormente mencionado, que reitero: https://github.com/federicogramos/led7SegDriverWithPS
+Nota: la placa principal no se encuentra en este repositorio, sino en el anteriormente mencionado, que reitero: https://github.com/federicogramos/led7SegDriverWithPS
 <h1>./manual</h1>
 Archivos historicamente utilizados como manual para el usuario. Estoy en proceso de modificar distintos aspectos de funcionamiento, y estos manuales deben ser actualizados.
