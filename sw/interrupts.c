@@ -7,7 +7,7 @@
 #include <interrupts.h>
 #include <system.h>
 #include <segments.h>
-#include <timer_lib.h>
+#include <t0.h>
 #include <mainDefinitions.h>
 #include <adc.h>
 #include <pulsadorPin_lib_1ms.h>

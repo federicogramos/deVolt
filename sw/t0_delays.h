@@ -3,23 +3,29 @@
 //******************************************************************************
 
 
-#ifndef __TIMER_DELAYS_H
-#define __TIMER_DELAYS_H
+#ifndef __T0_DELAYS_H
+#define __T0_DELAYS_H
 
 
 //******************************************************************************
 // DEFINICION DE TIEMPOS POR PARTE DEL USUARIO
 //******************************************************************************
-type_timerDelayConstant timerDelayConstant[CANT_TIMERS]=
+type_t0DelayConstant t0DelayConstant[T0_CANT]=
 	{
-	40,
-	16,
-	8,
-	1,
-	0,
-	1,
-	0//mem_tZero=000.0[ms] -> LEVANTA EL VALOR DESDE MEMORIA
+    12,
+    12,
+    150,
+    18,
+    250,
+    18,
+    2,
+    1,
+    6,
+    2,
+    12,
+    8,
+    10
 	};
 
 
-#endif//__TIMER_DELAYS_H
+#endif//__T0_DELAYS_H

@@ -1,0 +1,128 @@
+Version 3.2 HI-TECH Software Intermediate Code
+[c E3 0 1 2 3 4 5 6 7 8 9 10 11 12 13 .. ]
+[n E3 e_t0 TMR_LONG_PULS_UP TMR_LONG_PULS_DWN TMR_BEEP TMR_SHOW_MENU TMR_250MS TMR_SHOW_SETTING TMR_SHOW_SETTING_ON TMR_SHOW_SETTING_OFF TMR_TEST_DISPLAYS TMR_TEST_ADVERTENCIA TMR_SHOW_DESCRIPTION TMR_SPACE TMR_ADCSAMPLE T0_CANT  ]
+[s S1 `ui 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1 . prescaler loop flag pause ]
+[; ;t0_setupUser.h: 12: typedef unsigned int type_t0Size;
+[; ;t0_setupUser.h: 13: typedef type_t0Size type_t0DelayConstant;
+[; ;t0_aliases.h: 12: enum e_t0
+[; ;t0_aliases.h: 13: {
+[; ;t0_aliases.h: 14: TMR_LONG_PULS_UP,
+[; ;t0_aliases.h: 15: TMR_LONG_PULS_DWN,
+[; ;t0_aliases.h: 16: TMR_BEEP,
+[; ;t0_aliases.h: 17: TMR_SHOW_MENU,
+[; ;t0_aliases.h: 18: TMR_250MS,
+[; ;t0_aliases.h: 19: TMR_SHOW_SETTING,
+[; ;t0_aliases.h: 20: TMR_SHOW_SETTING_ON,
+[; ;t0_aliases.h: 21: TMR_SHOW_SETTING_OFF,
+[; ;t0_aliases.h: 22: TMR_TEST_DISPLAYS,
+[; ;t0_aliases.h: 23: TMR_TEST_ADVERTENCIA,
+[; ;t0_aliases.h: 24: TMR_SHOW_DESCRIPTION,
+[; ;t0_aliases.h: 25: TMR_SPACE,
+[; ;t0_aliases.h: 26: TMR_ADCSAMPLE,
+[; ;t0_aliases.h: 27: T0_CANT
+[; ;t0_aliases.h: 28: };
+[; ;t0.h: 28: typedef struct
+[; ;t0.h: 29: {
+[; ;t0.h: 30: type_t0Size prescaler;
+[; ;t0.h: 31: unsigned char loop:1;
+[; ;t0.h: 32: unsigned char flag:1;
+[; ;t0.h: 33: unsigned char pause:1;
+[; ;t0.h: 34: }t_t0;
+[; ;t0.h: 40: extern t_t0 t0Mem[T0_CANT];
+[; ;t0.h: 41: extern type_t0DelayConstant t0DelayConstant[T0_CANT];
+[; ;t0.h: 83: void t0Driver(char i);
+"13 C:\fgr\16gb\0000 interior\deVolt\sw\t0_delays.h
+[v _t0DelayConstant `ui ~T0 . `E3 13 e ]
+[i _t0DelayConstant
+:U ..
+"15
+-> -> 12 `i `ui
+"16
+-> -> 12 `i `ui
+"17
+-> -> 150 `i `ui
+"18
+-> -> 18 `i `ui
+"19
+-> -> 250 `i `ui
+"20
+-> -> 18 `i `ui
+"21
+-> -> 2 `i `ui
+"22
+-> -> 1 `i `ui
+"23
+-> -> 6 `i `ui
+"24
+-> -> 2 `i `ui
+"25
+-> -> 12 `i `ui
+"26
+-> -> 8 `i `ui
+"28
+-> -> 10 `i `ui
+..
+]
+[; ;t0_delays.h: 13: type_t0DelayConstant t0DelayConstant[T0_CANT]=
+[; ;t0_delays.h: 14: {
+[; ;t0_delays.h: 15: 12,
+[; ;t0_delays.h: 16: 12,
+[; ;t0_delays.h: 17: 150,
+[; ;t0_delays.h: 18: 18,
+[; ;t0_delays.h: 19: 250,
+[; ;t0_delays.h: 20: 18,
+[; ;t0_delays.h: 21: 2,
+[; ;t0_delays.h: 22: 1,
+[; ;t0_delays.h: 23: 6,
+[; ;t0_delays.h: 24: 2,
+[; ;t0_delays.h: 25: 12,
+[; ;t0_delays.h: 26: 8,
+[; ;t0_delays.h: 27: 10
+[; ;t0_delays.h: 28: };
+"23 C:\fgr\16gb\libSwPic\timer0\20220922 2300\t0.c
+[v _t0Mem `S1 ~T0 . `E3 13 e ]
+[; ;t0.c: 23: t_t0 t0Mem[T0_CANT];
+"31
+[v _t0Driver `(v ~T0 1 ef1`uc ]
+{
+[; ;t0.c: 30: void t0Driver(char i)
+[; ;t0.c: 31: {
+[e :U _t0Driver ]
+[v _i `uc ~T0 1 r1 ]
+[f ]
+[; ;t0.c: 33: if(!t0Mem[i].pause && t0Mem[i].prescaler>0)
+"33
+[e $ ! && ! != -> . *U + &U _t0Mem * -> _i `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i > . *U + &U _t0Mem * -> _i `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 3  ]
+[; ;t0.c: 34: {
+"34
+{
+[; ;t0.c: 35: t0Mem[i].prescaler--;
+"35
+[e -- . *U + &U _t0Mem * -> _i `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 1 `i `ui ]
+[; ;t0.c: 36: if(t0Mem[i].prescaler==0)
+"36
+[e $ ! == . *U + &U _t0Mem * -> _i `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 4  ]
+[; ;t0.c: 37: {
+"37
+{
+[; ;t0.c: 38: t0Mem[i].flag=1;
+"38
+[e = . *U + &U _t0Mem * -> _i `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 1 `i `uc ]
+[; ;t0.c: 39: if(t0Mem[i].loop) t0Mem[i].prescaler=t0DelayConstant[i];
+"39
+[e $ ! != -> . *U + &U _t0Mem * -> _i `ux -> -> # *U &U _t0Mem `ui `ux 1 `i -> -> -> 0 `i `uc `i 5  ]
+[e = . *U + &U _t0Mem * -> _i `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> _i `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e :U 5 ]
+"40
+}
+[e :U 4 ]
+"41
+}
+[e :U 3 ]
+[; ;t0.c: 40: }
+[; ;t0.c: 41: }
+[; ;t0.c: 42: }
+"42
+[e :UE 2 ]
+}

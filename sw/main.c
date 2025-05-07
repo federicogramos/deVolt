@@ -14,6 +14,7 @@
 #include <thisProject.h>
 #include <main.h>// Fuses y otras cosas.
 #include <system.h>// Inicializacion del sistema.
+#include <eeprom18f.h>
 #include <segments.h>
 //#include <timer_lib.h>
 #include <t0.h>// Software timer0.
