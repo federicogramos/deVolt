@@ -5287,7 +5287,16 @@ extern char brilloMem;
 # 90 "C:\fgr\16gb\0000 interior\deVolt\sw\system.h"
 void systemInit(void);
 
-# 78 "C:\fgr\16gb\libSwPic\eeprom18f\20220815 0220\eeprom18f.h"
+# 26 "C:\fgr\16gb\0000 interior\deVolt\sw\eeprom18f_memInit.h"
+asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00");
+
+# 34
+asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x01");
+
+# 41
+asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00");
+
+# 89 "C:\fgr\16gb\libSwPic\eeprom18f\20220815 0220\eeprom18f.h"
 void ee_write_byte(unsigned char address, unsigned char _data);
 unsigned char ee_read_byte(unsigned char address);
 
@@ -5345,19 +5354,19 @@ typedef type_t0Size type_t0DelayConstant;
 # 12 "C:\fgr\16gb\0000 interior\deVolt\sw\t0_aliases.h"
 enum e_t0
 {
-TMR_LONG_PULS_UP,
-TMR_LONG_PULS_DWN,
-TMR_BEEP,
-TMR_SHOW_MENU,
-TMR_250MS,
-TMR_SHOW_SETTING,
-TMR_SHOW_SETTING_ON,
-TMR_SHOW_SETTING_OFF,
-TMR_TEST_DISPLAYS,
-TMR_TEST_ADVERTENCIA,
-TMR_SHOW_DESCRIPTION,
-TMR_SPACE,
-TMR_ADCSAMPLE,
+T0_LONG_PULS_UP,
+T0_LONG_PULS_DWN,
+T0_BEEP,
+T0_SHOW_MENU,
+T0_250MS,
+T0_SHOW_SETTING,
+T0_SHOW_SETTING_ON,
+T0_SHOW_SETTING_OFF,
+T0_TEST_DISPLAYS,
+T0_TEST_ADVERTENCIA,
+T0_SHOW_DESCRIPTION,
+T0_SPACE,
+T0_ADCSAMPLE,
 T0_CANT
 };
 
@@ -5489,44 +5498,6 @@ void kPin_driverAcFp(char pi, char flanco, char kCurrLogState);
 ;;
 
 # 33
-asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00");
-
-# 41
-asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x01");
-
-# 48
-asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00");
-
-# 59
-void ee_write_byte(unsigned char address, unsigned char _data)
-{
-EEDATA = _data;
-EEADR = address;
-
-EECON1bits.EEPGD = 0;
-EECON1bits.CFGS = 0;
-EECON1bits.WREN = 1;
-INTCONbits.GIE = 0;
-EECON2 = 0x55;
-EECON2 = 0x0AA;
-EECON1bits.WR = 1;
-while(EECON1bits.WR) asm("nop");
-
-EECON1bits.WREN = 0;
-INTCONbits.GIE = 1;
-}
-
-# 81
-unsigned char ee_read_byte(unsigned char address)
-{
-EEADR = address;
-EECON1bits.CFGS = 0;
-EECON1bits.EEPGD = 0;
-EECON1bits.RD = 1;
-return EEDATA;
-}
-
-
 unsigned int measurement, display;
 
 int escEntMem,escDecMem;
@@ -5537,7 +5508,7 @@ char brilloMem, advModeMem;
 char state;
 char ignoreNextFp, setInc = 1;
 
-# 105
+# 47
 void enterMenu(void)
 {
 if(state == E_MENU_BRILLO) state = E_SET_BRILLO;
@@ -5556,7 +5527,7 @@ else if(state == E_MENU_USER_CAL) state = E_SET_CAL_DESCRIPTION;
 else if(state == E_MENU_FACTORY_CAL) state = E_SET_RST_DESCRIPTION;
 }
 
-# 127
+# 69
 void incVar(void)
 {
 
@@ -5567,7 +5538,7 @@ if(state == E_SET_BRILLO)
 if(brilloMem < 4)
 {
 brilloMem++;
-{ ee_write_byte(EEADDR_BRILLO_MEM, brilloMem); };
+{ ee_write_byte(0, brilloMem); };
 }
 }
 if(state == E_SET_ESCALA_ENT)
@@ -5575,7 +5546,7 @@ if(state == E_SET_ESCALA_ENT)
 if((escEntMem + setInc) <= 999)
 {
 escEntMem = escEntMem + setInc;
-{ ee_write_byte(EEADDR_ESC_ENT_MEM, ((unsigned char)(((escEntMem)>>8)&0xFF))); ee_write_byte(EEADDR_ESC_ENT_MEM + 1, ((unsigned char)((escEntMem)&0xFF))); };
+{ ee_write_byte(14, ((unsigned char)(((escEntMem)>>8)&0xFF))); ee_write_byte(14 + 1, ((unsigned char)((escEntMem)&0xFF))); };
 escala = (float) escEntMem + (float) escDecMem / 1000.0;
 }
 }
@@ -5584,7 +5555,7 @@ if(state == E_SET_ESCALA_DEC)
 if((escDecMem + setInc) <= 999)
 {
 escDecMem = escDecMem + setInc;
-{ ee_write_byte(EEADDR_ESC_DEC_MEM, ((unsigned char)(((escDecMem)>>8)&0xFF))); ee_write_byte(EEADDR_ESC_DEC_MEM + 1, ((unsigned char)((escDecMem)&0xFF))); };
+{ ee_write_byte(16, ((unsigned char)(((escDecMem)>>8)&0xFF))); ee_write_byte(16 + 1, ((unsigned char)((escDecMem)&0xFF))); };
 escala = (float) escEntMem + (float) escDecMem / 1000.0;
 }
 }
@@ -5593,7 +5564,7 @@ if(state == E_SET_ADV_MODE)
 if(advModeMem < CANT_ADV_MODES - 1)
 {
 advModeMem++;
-{ ee_write_byte(EEADDR_ADV_MODE_MEM, advModeMem); };
+{ ee_write_byte(1, advModeMem); };
 }
 }
 if(state == E_SET_ADV_XLO)
@@ -5601,7 +5572,7 @@ if(state == E_SET_ADV_XLO)
 if((xLoMem + setInc) <= 999)
 {
 xLoMem = xLoMem + setInc;
-{ ee_write_byte(EEADDR_XLO_MEM, ((unsigned char)(((xLoMem)>>8)&0xFF))); ee_write_byte(EEADDR_XLO_MEM + 1, ((unsigned char)((xLoMem)&0xFF))); };
+{ ee_write_byte(2, ((unsigned char)(((xLoMem)>>8)&0xFF))); ee_write_byte(2 + 1, ((unsigned char)((xLoMem)&0xFF))); };
 }
 }
 if(state == E_SET_ADV_XUP)
@@ -5609,7 +5580,7 @@ if(state == E_SET_ADV_XUP)
 if((xUpMem + setInc) <= 999)
 {
 xUpMem = xUpMem + setInc;
-{ ee_write_byte(EEADDR_XUP_MEM, ((unsigned char)(((xUpMem)>>8)&0xFF))); ee_write_byte(EEADDR_XUP_MEM + 1, ((unsigned char)((xUpMem)&0xFF))); };
+{ ee_write_byte(4, ((unsigned char)(((xUpMem)>>8)&0xFF))); ee_write_byte(4 + 1, ((unsigned char)((xUpMem)&0xFF))); };
 }
 }
 if(state == E_SET_ADV_ELO)
@@ -5617,7 +5588,7 @@ if(state == E_SET_ADV_ELO)
 if((eLoMem + setInc) <= 999)
 {
 eLoMem = eLoMem + setInc;
-{ ee_write_byte(EEADDR_ELO_MEM, ((unsigned char)(((eLoMem)>>8)&0xFF))); ee_write_byte(EEADDR_ELO_MEM + 1, ((unsigned char)((eLoMem)&0xFF))); };
+{ ee_write_byte(6, ((unsigned char)(((eLoMem)>>8)&0xFF))); ee_write_byte(6 + 1, ((unsigned char)((eLoMem)&0xFF))); };
 }
 }
 if(state == E_SET_ADV_EUP)
@@ -5625,7 +5596,7 @@ if(state == E_SET_ADV_EUP)
 if((eUpMem+setInc) <= 999)
 {
 eUpMem = eUpMem + setInc;
-{ ee_write_byte(EEADDR_EUP_MEM, ((unsigned char)(((eUpMem)>>8)&0xFF))); ee_write_byte(EEADDR_EUP_MEM + 1, ((unsigned char)((eUpMem)&0xFF))); };
+{ ee_write_byte(8, ((unsigned char)(((eUpMem)>>8)&0xFF))); ee_write_byte(8 + 1, ((unsigned char)((eUpMem)&0xFF))); };
 }
 }
 if(state == E_SET_ADV_VLO)
@@ -5633,7 +5604,7 @@ if(state == E_SET_ADV_VLO)
 if((vLoMem+setInc) <= 999)
 {
 vLoMem = vLoMem + setInc;
-{ ee_write_byte(EEADDR_VLO_MEM, ((unsigned char)(((vLoMem)>>8)&0xFF))); ee_write_byte(EEADDR_VLO_MEM + 1, ((unsigned char)((vLoMem)&0xFF))); };
+{ ee_write_byte(10, ((unsigned char)(((vLoMem)>>8)&0xFF))); ee_write_byte(10 + 1, ((unsigned char)((vLoMem)&0xFF))); };
 }
 }
 if(state == E_SET_ADV_VUP)
@@ -5641,15 +5612,15 @@ if(state == E_SET_ADV_VUP)
 if((vUpMem+setInc) <= 999)
 {
 vUpMem = vUpMem + setInc;
-{ ee_write_byte(EEADDR_VUP_MEM, ((unsigned char)(((vUpMem)>>8)&0xFF))); ee_write_byte(EEADDR_VUP_MEM + 1, ((unsigned char)((vUpMem)&0xFF))); };
+{ ee_write_byte(12, ((unsigned char)(((vUpMem)>>8)&0xFF))); ee_write_byte(12 + 1, ((unsigned char)((vUpMem)&0xFF))); };
 }
 }
 
-TMR_START(TMR_SHOW_SETTING);
-TMR_START(TMR_SHOW_SETTING_ON);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
 }
 
-# 223
+# 165
 void decVar(void)
 {
 
@@ -5660,7 +5631,7 @@ if(state == E_SET_BRILLO)
 if(brilloMem > 0)
 {
 brilloMem--;
-{ ee_write_byte(EEADDR_BRILLO_MEM, brilloMem); };
+{ ee_write_byte(0, brilloMem); };
 }
 }
 if(state == E_SET_ESCALA_ENT)
@@ -5668,7 +5639,7 @@ if(state == E_SET_ESCALA_ENT)
 if((escEntMem-setInc) >= 0)
 {
 escEntMem = escEntMem - setInc;
-{ ee_write_byte(EEADDR_ESC_ENT_MEM, ((unsigned char)(((escEntMem)>>8)&0xFF))); ee_write_byte(EEADDR_ESC_ENT_MEM + 1, ((unsigned char)((escEntMem)&0xFF))); };
+{ ee_write_byte(14, ((unsigned char)(((escEntMem)>>8)&0xFF))); ee_write_byte(14 + 1, ((unsigned char)((escEntMem)&0xFF))); };
 escala = (float) escEntMem + (float) escDecMem / 1000.0;
 }
 }
@@ -5677,7 +5648,7 @@ if(state == E_SET_ESCALA_DEC)
 if((escDecMem-setInc) >= 0)
 {
 escDecMem = escDecMem - setInc;
-{ ee_write_byte(EEADDR_ESC_DEC_MEM, ((unsigned char)(((escDecMem)>>8)&0xFF))); ee_write_byte(EEADDR_ESC_DEC_MEM + 1, ((unsigned char)((escDecMem)&0xFF))); };
+{ ee_write_byte(16, ((unsigned char)(((escDecMem)>>8)&0xFF))); ee_write_byte(16 + 1, ((unsigned char)((escDecMem)&0xFF))); };
 escala = (float) escEntMem + (float) escDecMem / 1000.0;
 }
 }
@@ -5686,7 +5657,7 @@ if(state == E_SET_ADV_MODE)
 if(advModeMem > 0)
 {
 advModeMem--;
-{ ee_write_byte(EEADDR_ADV_MODE_MEM, advModeMem); };
+{ ee_write_byte(1, advModeMem); };
 }
 }
 if(state == E_SET_ADV_XLO)
@@ -5694,7 +5665,7 @@ if(state == E_SET_ADV_XLO)
 if((xLoMem - setInc) >= 0)
 {
 xLoMem = xLoMem - setInc;
-{ ee_write_byte(EEADDR_XLO_MEM, ((unsigned char)(((xLoMem)>>8)&0xFF))); ee_write_byte(EEADDR_XLO_MEM + 1, ((unsigned char)((xLoMem)&0xFF))); };
+{ ee_write_byte(2, ((unsigned char)(((xLoMem)>>8)&0xFF))); ee_write_byte(2 + 1, ((unsigned char)((xLoMem)&0xFF))); };
 }
 }
 if(state == E_SET_ADV_XUP)
@@ -5702,7 +5673,7 @@ if(state == E_SET_ADV_XUP)
 if((xUpMem - setInc) >= 0)
 {
 xUpMem = xUpMem - setInc;
-{ ee_write_byte(EEADDR_XUP_MEM, ((unsigned char)(((xUpMem)>>8)&0xFF))); ee_write_byte(EEADDR_XUP_MEM + 1, ((unsigned char)((xUpMem)&0xFF))); };
+{ ee_write_byte(4, ((unsigned char)(((xUpMem)>>8)&0xFF))); ee_write_byte(4 + 1, ((unsigned char)((xUpMem)&0xFF))); };
 }
 }
 if(state == E_SET_ADV_ELO)
@@ -5710,7 +5681,7 @@ if(state == E_SET_ADV_ELO)
 if((eLoMem - setInc) >= 0)
 {
 eLoMem = eLoMem - setInc;
-{ ee_write_byte(EEADDR_ELO_MEM, ((unsigned char)(((eLoMem)>>8)&0xFF))); ee_write_byte(EEADDR_ELO_MEM + 1, ((unsigned char)((eLoMem)&0xFF))); };
+{ ee_write_byte(6, ((unsigned char)(((eLoMem)>>8)&0xFF))); ee_write_byte(6 + 1, ((unsigned char)((eLoMem)&0xFF))); };
 }
 }
 if(state == E_SET_ADV_EUP)
@@ -5718,7 +5689,7 @@ if(state == E_SET_ADV_EUP)
 if((eUpMem - setInc) >= 0)
 {
 eUpMem = eUpMem - setInc;
-{ ee_write_byte(EEADDR_EUP_MEM, ((unsigned char)(((eUpMem)>>8)&0xFF))); ee_write_byte(EEADDR_EUP_MEM + 1, ((unsigned char)((eUpMem)&0xFF))); };
+{ ee_write_byte(8, ((unsigned char)(((eUpMem)>>8)&0xFF))); ee_write_byte(8 + 1, ((unsigned char)((eUpMem)&0xFF))); };
 }
 }
 if(state == E_SET_ADV_VLO)
@@ -5726,7 +5697,7 @@ if(state == E_SET_ADV_VLO)
 if((vLoMem - setInc) >= 0)
 {
 vLoMem = vLoMem - setInc;
-{ ee_write_byte(EEADDR_VLO_MEM, ((unsigned char)(((vLoMem)>>8)&0xFF))); ee_write_byte(EEADDR_VLO_MEM + 1, ((unsigned char)((vLoMem)&0xFF))); };
+{ ee_write_byte(10, ((unsigned char)(((vLoMem)>>8)&0xFF))); ee_write_byte(10 + 1, ((unsigned char)((vLoMem)&0xFF))); };
 }
 }
 if(state==E_SET_ADV_VUP)
@@ -5734,15 +5705,15 @@ if(state==E_SET_ADV_VUP)
 if((vUpMem-setInc)>=0)
 {
 vUpMem=vUpMem-setInc;
-{ ee_write_byte(EEADDR_VUP_MEM, ((unsigned char)(((vUpMem)>>8)&0xFF))); ee_write_byte(EEADDR_VUP_MEM + 1, ((unsigned char)((vUpMem)&0xFF))); };
+{ ee_write_byte(12, ((unsigned char)(((vUpMem)>>8)&0xFF))); ee_write_byte(12 + 1, ((unsigned char)((vUpMem)&0xFF))); };
 }
 }
 
-TMR_START(TMR_SHOW_SETTING);
-TMR_START(TMR_SHOW_SETTING_ON);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
 }
 
-# 319
+# 261
 void endTestDisplayActions(void)
 {
 state=E_IDLE;
@@ -5752,78 +5723,78 @@ muxBuffer[0]='0';
 muxBuffer[1]='0';
 muxBuffer[2]='0';
 muxBuffer[ADV]=' ';
-TMR_INIT_LOOP(TMR_ADCSAMPLE);
+{ t0Mem[T0_ADCSAMPLE].flag=0; t0Mem[T0_ADCSAMPLE].prescaler=t0DelayConstant[T0_ADCSAMPLE]; t0Mem[T0_ADCSAMPLE].pause=0; t0Mem[T0_ADCSAMPLE].loop=1; };
 }
 
-# 335
+# 277
 void actionsTimeoutShowSetting(void)
 {
-if(TMR_TIMEOUT(TMR_SHOW_SETTING))
+if((t0Mem[T0_SHOW_SETTING].flag?!(t0Mem[T0_SHOW_SETTING].flag=0):0))
 {
 switch(state)
 {
 case E_SET_ESCALA_ENT_DESCRIPTION:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ESCALA_ENT:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ESCALA_DEC_DESCRIPTION:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ESCALA_DEC:
 state=E_IDLE;
 break;
 case E_SET_ADV_XLO_DESCRIPTION:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ADV_XLO:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ADV_XUP_DESCRIPTION:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ADV_XUP:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ADV_ELO_DESCRIPTION:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ADV_ELO:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ADV_EUP_DESCRIPTION:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ADV_EUP:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ADV_VLO_DESCRIPTION:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ADV_VLO_DESCRIPTION:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ADV_VLO:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ADV_VUP_DESCRIPTION:
 state++;
-TMR_START(TMR_SHOW_SETTING);
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
 break;
 case E_SET_ADV_VUP:
 state=E_IDLE;
@@ -5838,7 +5809,7 @@ break;
 
 char aux;
 
-# 421
+# 363
 void main(void)
 {
 pulsPinInit();
@@ -5847,19 +5818,19 @@ segments.portState = 0x01;
 
 
 
-{ brilloMem = ee_read_byte(EEADDR_BRILLO_MEM); };
-{ advModeMem = ee_read_byte(EEADDR_ADV_MODE_MEM); };
+{ brilloMem = ee_read_byte(0); };
+{ advModeMem = ee_read_byte(1); };
 
-{ escEntMem = 0x00; escEntMem |= ee_read_byte(EEADDR_ESC_ENT_MEM) << 8; escEntMem |= ee_read_byte(EEADDR_ESC_ENT_MEM + 1) << 0; };
-{ escDecMem = 0x00; escDecMem |= ee_read_byte(EEADDR_ESC_DEC_MEM) << 8; escDecMem |= ee_read_byte(EEADDR_ESC_DEC_MEM + 1) << 0; };
+{ escEntMem = 0x00; escEntMem |= ee_read_byte(14) << 8; escEntMem |= ee_read_byte(14 + 1) << 0; };
+{ escDecMem = 0x00; escDecMem |= ee_read_byte(16) << 8; escDecMem |= ee_read_byte(16 + 1) << 0; };
 escala = (float) escEntMem + (float) escDecMem / 1000.0;
 
-{ xLoMem = 0x00; xLoMem |= ee_read_byte(EEADDR_XLO_MEM) << 8; xLoMem |= ee_read_byte(EEADDR_XLO_MEM + 1) << 0; };
-{ xUpMem = 0x00; xUpMem |= ee_read_byte(EEADDR_XUP_MEM) << 8; xUpMem |= ee_read_byte(EEADDR_XUP_MEM + 1) << 0; };
-{ eLoMem = 0x00; eLoMem |= ee_read_byte(EEADDR_ELO_MEM) << 8; eLoMem |= ee_read_byte(EEADDR_ELO_MEM + 1) << 0; };
-{ eUpMem = 0x00; eUpMem |= ee_read_byte(EEADDR_EUP_MEM) << 8; eUpMem |= ee_read_byte(EEADDR_EUP_MEM + 1) << 0; };
-{ vLoMem = 0x00; vLoMem |= ee_read_byte(EEADDR_VLO_MEM) << 8; vLoMem |= ee_read_byte(EEADDR_VLO_MEM + 1) << 0; };
-{ vUpMem = 0x00; vUpMem |= ee_read_byte(EEADDR_VUP_MEM) << 8; vUpMem |= ee_read_byte(EEADDR_VUP_MEM + 1) << 0; };
+{ xLoMem = 0x00; xLoMem |= ee_read_byte(2) << 8; xLoMem |= ee_read_byte(2 + 1) << 0; };
+{ xUpMem = 0x00; xUpMem |= ee_read_byte(4) << 8; xUpMem |= ee_read_byte(4 + 1) << 0; };
+{ eLoMem = 0x00; eLoMem |= ee_read_byte(6) << 8; eLoMem |= ee_read_byte(6 + 1) << 0; };
+{ eUpMem = 0x00; eUpMem |= ee_read_byte(8) << 8; eUpMem |= ee_read_byte(8 + 1) << 0; };
+{ vLoMem = 0x00; vLoMem |= ee_read_byte(10) << 8; vLoMem |= ee_read_byte(10 + 1) << 0; };
+{ vUpMem = 0x00; vUpMem |= ee_read_byte(12) << 8; vUpMem |= ee_read_byte(12 + 1) << 0; };
 
 PORTCbits.RC6 = 1;
 muxBuffer[0] = '8';
@@ -5867,40 +5838,40 @@ muxBuffer[1] = '8';
 muxBuffer[2] = '8';
 muxBuffer[ADV] = 'x';
 
-TMR_INIT_LOOP(TMR_250MS);
+{ t0Mem[T0_250MS].flag=0; t0Mem[T0_250MS].prescaler=t0DelayConstant[T0_250MS]; t0Mem[T0_250MS].pause=0; t0Mem[T0_250MS].loop=1; };
 
 
-TMR_START(TMR_TEST_DISPLAYS);
-TMR_START(TMR_TEST_ADVERTENCIA);
+{ t0Mem[T0_TEST_DISPLAYS].flag=0; t0Mem[T0_TEST_DISPLAYS].prescaler=t0DelayConstant[T0_TEST_DISPLAYS]; t0Mem[T0_TEST_DISPLAYS].pause=0; };
+{ t0Mem[T0_TEST_ADVERTENCIA].flag=0; t0Mem[T0_TEST_ADVERTENCIA].prescaler=t0DelayConstant[T0_TEST_ADVERTENCIA]; t0Mem[T0_TEST_ADVERTENCIA].pause=0; };
 
 while(1)
 {
-if(TMR_TIMEOUT(TMR_250MS))
+if((t0Mem[T0_250MS].flag?!(t0Mem[T0_250MS].flag=0):0))
 {
-timerDriver(TMR_LONG_PULS_UP);
-timerDriver(TMR_LONG_PULS_DWN);
-timerDriver(TMR_TEST_DISPLAYS);
-timerDriver(TMR_TEST_ADVERTENCIA);
-timerDriver(TMR_SHOW_MENU);
-timerDriver(TMR_SHOW_SETTING);
-timerDriver(TMR_SHOW_SETTING_OFF);
-timerDriver(TMR_SHOW_SETTING_ON);
-timerDriver(TMR_SHOW_DESCRIPTION);
-timerDriver(TMR_SPACE);
+t0Driver(T0_LONG_PULS_UP);
+t0Driver(T0_LONG_PULS_DWN);
+t0Driver(T0_TEST_DISPLAYS);
+t0Driver(T0_TEST_ADVERTENCIA);
+t0Driver(T0_SHOW_MENU);
+t0Driver(T0_SHOW_SETTING);
+t0Driver(T0_SHOW_SETTING_OFF);
+t0Driver(T0_SHOW_SETTING_ON);
+t0Driver(T0_SHOW_DESCRIPTION);
+t0Driver(T0_SPACE);
 }
 
-if(TMR_TIMEOUT(TMR_SHOW_MENU)) state=E_IDLE;
+if((t0Mem[T0_SHOW_MENU].flag?!(t0Mem[T0_SHOW_MENU].flag=0):0)) state=E_IDLE;
 
 
 actionsTimeoutShowSetting();
 
-if(TMR_TIMEOUT(TMR_LONG_PULS_UP))
+if((t0Mem[T0_LONG_PULS_UP].flag?!(t0Mem[T0_LONG_PULS_UP].flag=0):0))
 {
-TMR_STOP(TMR_SHOW_MENU);
+{ t0Mem[T0_SHOW_MENU].prescaler=0; };
 PORTCbits.RC6 = 1;
-TMR_START(TMR_BEEP);
-TMR_START(TMR_SHOW_SETTING);
-TMR_START(TMR_SHOW_SETTING_ON);
+{ t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
 enterMenu();
 ignoreNextFp = 1;
 if( state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
@@ -5915,13 +5886,13 @@ case 100: setInc = 1; break;
 }
 }
 
-if(TMR_TIMEOUT(TMR_LONG_PULS_DWN))
+if((t0Mem[T0_LONG_PULS_DWN].flag?!(t0Mem[T0_LONG_PULS_DWN].flag=0):0))
 {
-TMR_STOP(TMR_SHOW_MENU);
+{ t0Mem[T0_SHOW_MENU].prescaler=0; };
 PORTCbits.RC6=1;
-TMR_START(TMR_BEEP);
-TMR_START(TMR_SHOW_SETTING);
-TMR_START(TMR_SHOW_SETTING_ON);
+{ t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
+{ t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
 enterMenu();
 ignoreNextFp=1;
 if( state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
@@ -5940,18 +5911,18 @@ case 100: setInc=10; break;
 
 if(state==E_TEST_DISPLAYS)
 {
-if(TMR_TIMEOUT(TMR_TEST_ADVERTENCIA))
+if((t0Mem[T0_TEST_ADVERTENCIA].flag?!(t0Mem[T0_TEST_ADVERTENCIA].flag=0):0))
 {
-TMR_START(TMR_TEST_ADVERTENCIA);
+{ t0Mem[T0_TEST_ADVERTENCIA].flag=0; t0Mem[T0_TEST_ADVERTENCIA].prescaler=t0DelayConstant[T0_TEST_ADVERTENCIA]; t0Mem[T0_TEST_ADVERTENCIA].pause=0; };
 if(muxBuffer[ADV]=='x') muxBuffer[ADV]='!';
 else if(muxBuffer[ADV]=='!') muxBuffer[ADV]='v';
 }
-if(TMR_TIMEOUT(TMR_TEST_DISPLAYS)) endTestDisplayActions();
+if((t0Mem[T0_TEST_DISPLAYS].flag?!(t0Mem[T0_TEST_DISPLAYS].flag=0):0)) endTestDisplayActions();
 }
 else if(state==E_IDLE)
 {
 adcDriver();
-if(TMR_TIMEOUT(TMR_ADCSAMPLE)) ((adcStruct.flgs2convert) |= 1UL << (12));
+if((t0Mem[T0_ADCSAMPLE].flag?!(t0Mem[T0_ADCSAMPLE].flag=0):0)) ((adcStruct.flgs2convert) |= 1UL << (12));
 if((adcStruct.completeFlg && adcStruct.chComp==12))
 {
 
@@ -6059,10 +6030,10 @@ muxBuffer[ADV]=' ';
 }
 else if(state==E_SET_BRILLO)
 {
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
+if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
 
-if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
+if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
 {
 muxBuffer[ADV]=' ';
 display=brilloMem;
@@ -6073,10 +6044,10 @@ else
 }
 else if(state==E_SET_ADV_MODE)
 {
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
+if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
 
-if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
+if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
 {
 muxBuffer[ADV]=' ';
 display=advModeMem;
@@ -6094,10 +6065,10 @@ muxBuffer[ADV]=' ' ;
 }
 else if(state==E_SET_ESCALA_ENT)
 {
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
+if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
 
-if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
+if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
 {
 display=escEntMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6114,10 +6085,10 @@ muxBuffer[ADV]=' ';
 }
 else if(state==E_SET_ESCALA_DEC)
 {
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
+if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
 
-if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
+if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
 {
 display=escDecMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6169,10 +6140,10 @@ muxBuffer[ADV]='v';
 }
 else if(state==E_SET_ADV_XLO)
 {
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
+if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
 
-if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
+if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
 {
 display=xLoMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6182,10 +6153,10 @@ else
 }
 else if(state==E_SET_ADV_XUP)
 {
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
+if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
 
-if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
+if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
 {
 display=xUpMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6195,10 +6166,10 @@ else
 }
 else if(state==E_SET_ADV_ELO)
 {
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
+if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
 
-if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
+if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
 {
 display=eLoMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6208,10 +6179,10 @@ else
 }
 else if(state==E_SET_ADV_EUP)
 {
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
+if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
 
-if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
+if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
 {
 display=eUpMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6221,10 +6192,10 @@ else
 }
 else if(state==E_SET_ADV_VLO)
 {
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
+if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
 
-if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
+if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
 {
 display=vLoMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6234,10 +6205,10 @@ else
 }
 else if(state==E_SET_ADV_VUP)
 {
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_OFF)) {TMR_START(TMR_SHOW_SETTING_ON);}
-if(TMR_TIMEOUT(TMR_SHOW_SETTING_ON)) {TMR_START(TMR_SHOW_SETTING_OFF);}
+if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
 
-if(TMR_RUNNING(TMR_SHOW_SETTING_ON))
+if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
 {
 display=vUpMem;
 uintToStr(display,&muxBuffer[0],3);
@@ -6247,27 +6218,27 @@ else
 }
 
 
-if(PULSPIN_EVENT_ID_FP(UP_FP))
+if(KPIN_EVENT_ID_FP(UP_FP))
 {
 if(ignoreNextFp) ignoreNextFp=0;
 else
 {
-TMR_STOP(TMR_LONG_PULS_UP);
+{ t0Mem[T0_LONG_PULS_UP].prescaler=0; };
 
 
 if(state>=E_IDLE && state<E_MENU_FACTORY_CAL)
 {
 state++;
 PORTCbits.RC6=1;
-TMR_START(TMR_SHOW_MENU);
-TMR_START(TMR_BEEP);
+{ t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+{ t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
 }
 else if(state==E_MENU_FACTORY_CAL)
 {
 state=E_MENU_BRILLO;
 PORTCbits.RC6=1;
-TMR_START(TMR_SHOW_MENU);
-TMR_START(TMR_BEEP);
+{ t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+{ t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
 }
 else incVar();
 }
@@ -6279,22 +6250,22 @@ if(PULSPIN_EVENT_ID_FP(DWN_FP))
 if(ignoreNextFp) ignoreNextFp=0;
 else
 {
-TMR_STOP(TMR_LONG_PULS_DWN);
+{ t0Mem[T0_LONG_PULS_DWN].prescaler=0; };
 
 
 if(state>=E_IDLE && state<E_MENU_FACTORY_CAL)
 {
 state++;
 PORTCbits.RC6=1;
-TMR_START(TMR_SHOW_MENU);
-TMR_START(TMR_BEEP);
+{ t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+{ t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
 }
 else if(state==E_MENU_FACTORY_CAL)
 {
 state=E_MENU_BRILLO;
 PORTCbits.RC6=1;
-TMR_START(TMR_SHOW_MENU);
-TMR_START(TMR_BEEP);
+{ t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+{ t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
 }
 else decVar();
 }
@@ -6309,7 +6280,7 @@ if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
 || state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
 || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
 || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP)
-TMR_START(TMR_LONG_PULS_UP);
+{ t0Mem[T0_LONG_PULS_UP].flag=0; t0Mem[T0_LONG_PULS_UP].prescaler=t0DelayConstant[T0_LONG_PULS_UP]; t0Mem[T0_LONG_PULS_UP].pause=0; };
 }
 
 
@@ -6321,7 +6292,7 @@ if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
 || state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
 || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
 || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP)
-TMR_START(TMR_LONG_PULS_DWN);
+{ t0Mem[T0_LONG_PULS_DWN].flag=0; t0Mem[T0_LONG_PULS_DWN].prescaler=t0DelayConstant[T0_LONG_PULS_DWN]; t0Mem[T0_LONG_PULS_DWN].pause=0; };
 }
 }
 }

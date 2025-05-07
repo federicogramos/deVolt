@@ -5165,6 +5165,46 @@ extern void _delaywdt(unsigned long);
 #pragma inline(_delay3)
 extern void _delay3(unsigned char);
 
-# 78 "C:\fgr\16gb\libSwPic\eeprom18f\20220815 0220\eeprom18f.h"
+# 26 "C:\fgr\16gb\0000 interior\deVolt\sw\eeprom18f_memInit.h"
+asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00");
+
+# 34
+asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x01");
+
+# 41
+asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00");
+
+# 89 "C:\fgr\16gb\libSwPic\eeprom18f\20220815 0220\eeprom18f.h"
 void ee_write_byte(unsigned char address, unsigned char _data);
 unsigned char ee_read_byte(unsigned char address);
+
+# 21 "C:\fgr\16gb\libSwPic\eeprom18f\20220815 0220\eeprom18f.c"
+void ee_write_byte(unsigned char addr, unsigned char dat)
+{
+EEDATA = dat;
+EEADR = addr;
+
+
+EECON1bits.EEPGD = 0;
+EECON1bits.CFGS = 0;
+EECON1bits.WREN = 1;
+INTCONbits.GIE = 0;
+EECON2 = 0x55;
+EECON2 = 0x0AA;
+EECON1bits.WR = 1;
+while(EECON1bits.WR) asm("nop");
+
+EECON1bits.WREN = 0;
+INTCONbits.GIE = 1;
+}
+
+# 46
+unsigned char ee_read_byte(unsigned char addr)
+{
+EEADR = addr;
+EECON1bits.CFGS = 0;
+EECON1bits.EEPGD = 0;
+EECON1bits.RD = 1;
+return EEDATA;
+}
+

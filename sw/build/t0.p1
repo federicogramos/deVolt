@@ -1,25 +1,25 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [c E3 0 1 2 3 4 5 6 7 8 9 10 11 12 13 .. ]
-[n E3 e_t0 TMR_LONG_PULS_UP TMR_LONG_PULS_DWN TMR_BEEP TMR_SHOW_MENU TMR_250MS TMR_SHOW_SETTING TMR_SHOW_SETTING_ON TMR_SHOW_SETTING_OFF TMR_TEST_DISPLAYS TMR_TEST_ADVERTENCIA TMR_SHOW_DESCRIPTION TMR_SPACE TMR_ADCSAMPLE T0_CANT  ]
+[n E3 e_t0 T0_LONG_PULS_UP T0_LONG_PULS_DWN T0_BEEP T0_SHOW_MENU T0_250MS T0_SHOW_SETTING T0_SHOW_SETTING_ON T0_SHOW_SETTING_OFF T0_TEST_DISPLAYS T0_TEST_ADVERTENCIA T0_SHOW_DESCRIPTION T0_SPACE T0_ADCSAMPLE T0_CANT  ]
 [s S1 `ui 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1 . prescaler loop flag pause ]
 [; ;t0_setupUser.h: 12: typedef unsigned int type_t0Size;
 [; ;t0_setupUser.h: 13: typedef type_t0Size type_t0DelayConstant;
 [; ;t0_aliases.h: 12: enum e_t0
 [; ;t0_aliases.h: 13: {
-[; ;t0_aliases.h: 14: TMR_LONG_PULS_UP,
-[; ;t0_aliases.h: 15: TMR_LONG_PULS_DWN,
-[; ;t0_aliases.h: 16: TMR_BEEP,
-[; ;t0_aliases.h: 17: TMR_SHOW_MENU,
-[; ;t0_aliases.h: 18: TMR_250MS,
-[; ;t0_aliases.h: 19: TMR_SHOW_SETTING,
-[; ;t0_aliases.h: 20: TMR_SHOW_SETTING_ON,
-[; ;t0_aliases.h: 21: TMR_SHOW_SETTING_OFF,
-[; ;t0_aliases.h: 22: TMR_TEST_DISPLAYS,
-[; ;t0_aliases.h: 23: TMR_TEST_ADVERTENCIA,
-[; ;t0_aliases.h: 24: TMR_SHOW_DESCRIPTION,
-[; ;t0_aliases.h: 25: TMR_SPACE,
-[; ;t0_aliases.h: 26: TMR_ADCSAMPLE,
+[; ;t0_aliases.h: 14: T0_LONG_PULS_UP,
+[; ;t0_aliases.h: 15: T0_LONG_PULS_DWN,
+[; ;t0_aliases.h: 16: T0_BEEP,
+[; ;t0_aliases.h: 17: T0_SHOW_MENU,
+[; ;t0_aliases.h: 18: T0_250MS,
+[; ;t0_aliases.h: 19: T0_SHOW_SETTING,
+[; ;t0_aliases.h: 20: T0_SHOW_SETTING_ON,
+[; ;t0_aliases.h: 21: T0_SHOW_SETTING_OFF,
+[; ;t0_aliases.h: 22: T0_TEST_DISPLAYS,
+[; ;t0_aliases.h: 23: T0_TEST_ADVERTENCIA,
+[; ;t0_aliases.h: 24: T0_SHOW_DESCRIPTION,
+[; ;t0_aliases.h: 25: T0_SPACE,
+[; ;t0_aliases.h: 26: T0_ADCSAMPLE,
 [; ;t0_aliases.h: 27: T0_CANT
 [; ;t0_aliases.h: 28: };
 [; ;t0.h: 28: typedef struct

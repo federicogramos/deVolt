@@ -10,7 +10,7 @@
 #include <t0.h>
 #include <mainDefinitions.h>
 #include <adc.h>
-#include <pulsadorPin_lib_1ms.h>
+#include <kPin.h>
 
 //unsigned char intensidad=8;
 char tOnFlag;
@@ -72,11 +72,11 @@ void isr_timer3(void)//placa multiplexado = 1ms
 	{
 	TMR3=IRQ_TIMER3_RESET_VAL;// Reseteo del contador de la interrupción.
 
-	timerDriver(TMR_ADCSAMPLE);
-	timerDriver(TMR_250MS);
+	t0Driver(T0_ADCSAMPLE);
+	t0Driver(T0_250MS);
 
-	timerDriver(TMR_BEEP);
-	if(TMR_TIMEOUT(TMR_BEEP)) BUZZER=0;
+	t0Driver(T0_BEEP);
+	if(T0_TIMEOUT(T0_BEEP)) BUZZER=0;
 
 	pulsPinDriver();
 

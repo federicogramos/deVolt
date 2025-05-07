@@ -5287,19 +5287,19 @@ typedef type_t0Size type_t0DelayConstant;
 # 12 "C:\fgr\16gb\0000 interior\deVolt\sw\t0_aliases.h"
 enum e_t0
 {
-TMR_LONG_PULS_UP,
-TMR_LONG_PULS_DWN,
-TMR_BEEP,
-TMR_SHOW_MENU,
-TMR_250MS,
-TMR_SHOW_SETTING,
-TMR_SHOW_SETTING_ON,
-TMR_SHOW_SETTING_OFF,
-TMR_TEST_DISPLAYS,
-TMR_TEST_ADVERTENCIA,
-TMR_SHOW_DESCRIPTION,
-TMR_SPACE,
-TMR_ADCSAMPLE,
+T0_LONG_PULS_UP,
+T0_LONG_PULS_DWN,
+T0_BEEP,
+T0_SHOW_MENU,
+T0_250MS,
+T0_SHOW_SETTING,
+T0_SHOW_SETTING_ON,
+T0_SHOW_SETTING_OFF,
+T0_TEST_DISPLAYS,
+T0_TEST_ADVERTENCIA,
+T0_SHOW_DESCRIPTION,
+T0_SPACE,
+T0_ADCSAMPLE,
 T0_CANT
 };
 
@@ -5343,3 +5343,126 @@ void isr_adc(void);
 void adcSetup(void);
 
 extern t_adc adcStruct;
+
+# 16 "C:\fgr\16gb\0000 interior\deVolt\sw\kPin_aliases.h"
+enum e_pulsadorPinFastAlias
+{
+P0N,
+P1N,
+P0P,
+IN_FN,
+IN_FP,
+PULS_PIN_CANT
+};
+
+# 25 "C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.h"
+typedef struct
+{
+unsigned char kId : 5;
+unsigned char flag : 1;
+unsigned char flanco : 1;
+} t_kEvent;
+
+typedef struct
+{
+unsigned char state : 1;
+unsigned char prevState : 1;
+unsigned char timer;
+} t_kPin;
+
+# 23 "C:\fgr\16gb\0000 interior\deVolt\sw\kPin_pindef.h"
+volatile bit PULSADOR_0 @ ((unsigned)&PORTA*8)+0;
+volatile bit PULSADOR_1 @ ((unsigned)&PORTA*8)+2;
+volatile bit PULSADOR_2 @ ((unsigned)&PORTA*8)+0;
+volatile bit PULSADOR_3 @ ((unsigned)&PORTE*8)+3;
+
+# 41
+t_kPin kPin[PULS_PIN_CANT]=
+{
+{1,1,0},
+{1,1,0},
+{1,1,0},
+{1,1,0}
+};
+
+# 52 "C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.h"
+enum e_flanco {FLANCO_N,FLANCO_P};
+
+# 59
+extern t_kEvent kPinBuffer;
+
+# 77
+void kPin_driverDc(char pi, char kCurrLogState);
+void kPin_driverAcFn(char pi, char flanco, char kCurrLogState);
+void kPin_driverAcFp(char pi, char flanco, char kCurrLogState);
+
+# 16 "C:\fgr\16gb\0000 interior\deVolt\sw\interrupts.c"
+char tOnFlag;
+unsigned char brilloTon[]={251,246,241,236,231};
+unsigned char brilloToff[]={231,236,241,246,251};
+
+void interrupt isr(void)
+{
+if(INTCONbits.TMR0IE && INTCONbits.TMR0IF) isr_timer0();
+}
+
+void interrupt low_priority isr2(void)
+{
+if(PIE2bits.TMR3IE && PIR2bits.TMR3IF) isr_timer3();
+else if(PIE1bits.ADIE && PIR1bits.ADIF) isr_adc();
+}
+
+
+void isr_timer0(void)
+{
+if(tOnFlag)
+{
+TMR0=brilloTon[brilloMem];
+tOnFlag=0;
+
+if(segments.nextUp>3)
+{
+fseek(&muxFile,0,2);
+segments.nextUp=0;
+}
+else segments.nextUp++;
+
+PORTBbits.RB3=0;
+char2pins(fgetc(&muxFile));
+
+switch(segments.nextUp)
+{
+case 0: PORTAbits.RA5=1; break;
+case 1: PORTBbits.RB3=1;PORTAbits.RA1=1; break;
+case 2: PORTAbits.RA0=1; break;
+case 3: PORTAbits.RA4=1; break;
+}
+}
+else
+{
+TMR0=brilloToff[brilloMem];
+tOnFlag=1;
+
+PORTAbits.RA0=0;
+PORTAbits.RA1=0;
+PORTAbits.RA5=0;
+PORTAbits.RA4=0;
+PORTBbits.RB3=0;
+}
+INTCONbits.TMR0IF=0;
+}
+
+void isr_timer3(void)
+{
+TMR3=64036UL;
+
+t0Driver(T0_ADCSAMPLE);
+t0Driver(T0_250MS);
+
+t0Driver(T0_BEEP);
+if((t0Mem[T0_BEEP].flag?!(t0Mem[T0_BEEP].flag=0):0)) PORTCbits.RC6=0;
+
+pulsPinDriver();
+
+PIR2bits.TMR3IF=0;
+}
