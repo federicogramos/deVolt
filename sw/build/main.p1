@@ -4371,811 +4371,827 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;kPin.h: 77: void kPin_driverDc(char pi, char kCurrLogState);
 [; ;kPin.h: 78: void kPin_driverAcFn(char pi, char flanco, char kCurrLogState);
 [; ;kPin.h: 79: void kPin_driverAcFp(char pi, char flanco, char kCurrLogState);
-[; ;main.c: 26: ;;
-"33 C:\fgr\16gb\0000 interior\deVolt\sw\main.c
+[; ;main.c: 23: ;;
+"29 C:\fgr\16gb\0000 interior\deVolt\sw\main.c
 [v _measurement `ui ~T0 1 e ]
 [v _display `ui ~T0 1 e ]
-[; ;main.c: 33: unsigned int measurement, display;
-"35
+[; ;main.c: 29: unsigned int measurement, display;
+"31
 [v _escEntMem `i ~T0 1 e ]
 [v _escDecMem `i ~T0 1 e ]
-[; ;main.c: 35: int escEntMem,escDecMem;
-"36
+[; ;main.c: 31: int escEntMem,escDecMem;
+"32
 [v _escala `f ~T0 1 e ]
 [v _medicionFloat `f ~T0 1 e ]
-[; ;main.c: 36: float escala, medicionFloat;
-"38
+[; ;main.c: 32: float escala, medicionFloat;
+"34
 [v _xLoMem `i ~T0 1 e ]
 [v _xUpMem `i ~T0 1 e ]
 [v _eLoMem `i ~T0 1 e ]
 [v _eUpMem `i ~T0 1 e ]
 [v _vLoMem `i ~T0 1 e ]
 [v _vUpMem `i ~T0 1 e ]
-[; ;main.c: 38: int xLoMem, xUpMem, eLoMem, eUpMem, vLoMem, vUpMem;
-"39
+[; ;main.c: 34: int xLoMem, xUpMem, eLoMem, eUpMem, vLoMem, vUpMem;
+"35
 [v _brilloMem `uc ~T0 1 e ]
 [v _advModeMem `uc ~T0 1 e ]
-[; ;main.c: 39: char brilloMem, advModeMem;
-"40
+[; ;main.c: 35: char brilloMem, advModeMem;
+"36
 [v _state `uc ~T0 1 e ]
-[; ;main.c: 40: char state;
-"41
+[; ;main.c: 36: char state;
+"37
 [v _ignoreNextFp `uc ~T0 1 e ]
 [v _setInc `uc ~T0 1 e ]
 [i _setInc
 -> -> 1 `i `uc
 ]
-[; ;main.c: 41: char ignoreNextFp, setInc = 1;
-"48
+[; ;main.c: 37: char ignoreNextFp, setInc = 1;
+"44
 [v _enterMenu `(v ~T0 1 ef ]
 {
-[; ;main.c: 47: void enterMenu(void)
-[; ;main.c: 48: {
+[; ;main.c: 43: void enterMenu(void)
+[; ;main.c: 44: {
 [e :U _enterMenu ]
 [f ]
-[; ;main.c: 49: if(state == E_MENU_BRILLO) state = E_SET_BRILLO;
-"49
+[; ;main.c: 45: if(state == E_MENU_BRILLO) state = E_SET_BRILLO;
+"45
 [e $ ! == -> _state `i -> . `E4245 2 `i 661  ]
 [e = _state -> . `E4245 8 `uc ]
 [e $U 662  ]
-"50
+"46
 [e :U 661 ]
-[; ;main.c: 50: else if(state == E_MENU_ADV_MODE) state = E_SET_ADV_MODE;
+[; ;main.c: 46: else if(state == E_MENU_ADV_MODE) state = E_SET_ADV_MODE;
 [e $ ! == -> _state `i -> . `E4245 3 `i 663  ]
 [e = _state -> . `E4245 13 `uc ]
 [e $U 664  ]
-"51
+"47
 [e :U 663 ]
-[; ;main.c: 51: else if(state == E_MENU_LIMITS)
+[; ;main.c: 47: else if(state == E_MENU_LIMITS)
 [e $ ! == -> _state `i -> . `E4245 4 `i 665  ]
-[; ;main.c: 52: {
-"52
+[; ;main.c: 48: {
+"48
 {
-[; ;main.c: 53: setInc = 1;
-"53
+[; ;main.c: 49: setInc = 1;
+"49
 [e = _setInc -> -> 1 `i `uc ]
-[; ;main.c: 54: state = E_SET_ADV_XLO_DESCRIPTION;
-"54
+[; ;main.c: 50: state = E_SET_ADV_XLO_DESCRIPTION;
+"50
 [e = _state -> . `E4245 14 `uc ]
-"55
+"51
 }
-[; ;main.c: 55: }
+[; ;main.c: 51: }
 [e $U 666  ]
-"56
+"52
 [e :U 665 ]
-[; ;main.c: 56: else if(state == E_MENU_ESCALA)
+[; ;main.c: 52: else if(state == E_MENU_ESCALA)
 [e $ ! == -> _state `i -> . `E4245 5 `i 667  ]
-[; ;main.c: 57: {
-"57
+[; ;main.c: 53: {
+"53
 {
-[; ;main.c: 58: setInc = 1;
-"58
+[; ;main.c: 54: setInc = 1;
+"54
 [e = _setInc -> -> 1 `i `uc ]
-[; ;main.c: 59: state = E_SET_ESCALA_ENT_DESCRIPTION;
-"59
+[; ;main.c: 55: state = E_SET_ESCALA_ENT_DESCRIPTION;
+"55
 [e = _state -> . `E4245 9 `uc ]
-"60
+"56
 }
-[; ;main.c: 60: }
+[; ;main.c: 56: }
 [e $U 668  ]
-"61
+"57
 [e :U 667 ]
-[; ;main.c: 61: else if(state == E_MENU_USER_CAL) state = E_SET_CAL_DESCRIPTION;
+[; ;main.c: 57: else if(state == E_MENU_USER_CAL) state = E_SET_CAL_DESCRIPTION;
 [e $ ! == -> _state `i -> . `E4245 6 `i 669  ]
 [e = _state -> . `E4245 26 `uc ]
 [e $U 670  ]
-"62
+"58
 [e :U 669 ]
-[; ;main.c: 62: else if(state == E_MENU_FACTORY_CAL) state = E_SET_RST_DESCRIPTION;
+[; ;main.c: 58: else if(state == E_MENU_FACTORY_CAL) state = E_SET_RST_DESCRIPTION;
 [e $ ! == -> _state `i -> . `E4245 7 `i 671  ]
 [e = _state -> . `E4245 34 `uc ]
 [e :U 671 ]
-"63
+"59
 [e :U 670 ]
 [e :U 668 ]
 [e :U 666 ]
 [e :U 664 ]
 [e :U 662 ]
-[; ;main.c: 63: }
+[; ;main.c: 59: }
 [e :UE 660 ]
 }
-"70
+"66
 [v _incVar `(v ~T0 1 ef ]
 {
-[; ;main.c: 69: void incVar(void)
-[; ;main.c: 70: {
+[; ;main.c: 65: void incVar(void)
+[; ;main.c: 66: {
 [e :U _incVar ]
 [f ]
-[; ;main.c: 74: if(state == E_SET_BRILLO)
-"74
+[; ;main.c: 70: if(state == E_SET_BRILLO)
+"70
 [e $ ! == -> _state `i -> . `E4245 8 `i 673  ]
-[; ;main.c: 75: {
+[; ;main.c: 71: {
+"71
+{
+[; ;main.c: 72: if(brilloMem < 4)
+"72
+[e $ ! < -> _brilloMem `i -> 4 `i 674  ]
+[; ;main.c: 73: {
+"73
+{
+[; ;main.c: 74: brilloMem++;
+"74
+[e ++ _brilloMem -> -> 1 `i `uc ]
+[; ;main.c: 75: { ee_write_byte(0, brilloMem); };
 "75
 {
-[; ;main.c: 76: if(brilloMem < 4)
-"76
-[e $ ! < -> _brilloMem `i -> 4 `i 674  ]
-[; ;main.c: 77: {
-"77
-{
-[; ;main.c: 78: brilloMem++;
-"78
-[e ++ _brilloMem -> -> 1 `i `uc ]
-[; ;main.c: 79: { ee_write_byte(0, brilloMem); };
-"79
-{
 [e ( _ee_write_byte (2 , -> -> 0 `i `uc _brilloMem ]
 }
-"80
+"76
 }
 [e :U 674 ]
-"81
+"77
 }
 [e :U 673 ]
-[; ;main.c: 80: }
-[; ;main.c: 81: }
-[; ;main.c: 82: if(state == E_SET_ESCALA_ENT)
-"82
+[; ;main.c: 76: }
+[; ;main.c: 77: }
+[; ;main.c: 78: if(state == E_SET_ESCALA_ENT)
+"78
 [e $ ! == -> _state `i -> . `E4245 10 `i 675  ]
-[; ;main.c: 83: {
-"83
+[; ;main.c: 79: {
+"79
 {
-[; ;main.c: 84: if((escEntMem + setInc) <= 999)
-"84
+[; ;main.c: 80: if((escEntMem + setInc) <= 999)
+"80
 [e $ ! <= + _escEntMem -> _setInc `i -> 999 `i 676  ]
-[; ;main.c: 85: {
-"85
+[; ;main.c: 81: {
+"81
 {
-[; ;main.c: 86: escEntMem = escEntMem + setInc;
-"86
+[; ;main.c: 82: escEntMem = escEntMem + setInc;
+"82
 [e = _escEntMem + _escEntMem -> _setInc `i ]
-[; ;main.c: 87: { ee_write_byte(14, ((unsigned char)(((escEntMem)>>8)&0xFF))); ee_write_byte(14 + 1, ((unsigned char)((escEntMem)&0xFF))); };
-"87
+[; ;main.c: 83: { ee_write_byte(14, ((unsigned char)(((escEntMem)>>8)&0xFF))); ee_write_byte(14 + 1, ((unsigned char)((escEntMem)&0xFF))); };
+"83
 {
 [e ( _ee_write_byte (2 , -> -> 14 `i `uc -> & >> _escEntMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 14 `i -> 1 `i `uc -> & _escEntMem -> 255 `i `uc ]
 }
-[; ;main.c: 88: escala = (float) escEntMem + (float) escDecMem / 1000.0;
-"88
+[; ;main.c: 84: escala = (float) escEntMem + (float) escDecMem / 1000.0;
+"84
 [e = _escala -> + -> -> _escEntMem `f `d / -> -> _escDecMem `f `d .1000.0 `f ]
-"89
+"85
 }
 [e :U 676 ]
-"90
+"86
 }
 [e :U 675 ]
-[; ;main.c: 89: }
-[; ;main.c: 90: }
-[; ;main.c: 91: if(state == E_SET_ESCALA_DEC)
-"91
+[; ;main.c: 85: }
+[; ;main.c: 86: }
+[; ;main.c: 87: if(state == E_SET_ESCALA_DEC)
+"87
 [e $ ! == -> _state `i -> . `E4245 12 `i 677  ]
-[; ;main.c: 92: {
-"92
+[; ;main.c: 88: {
+"88
 {
-[; ;main.c: 93: if((escDecMem + setInc) <= 999)
-"93
+[; ;main.c: 89: if((escDecMem + setInc) <= 999)
+"89
 [e $ ! <= + _escDecMem -> _setInc `i -> 999 `i 678  ]
-[; ;main.c: 94: {
-"94
+[; ;main.c: 90: {
+"90
 {
-[; ;main.c: 95: escDecMem = escDecMem + setInc;
-"95
+[; ;main.c: 91: escDecMem = escDecMem + setInc;
+"91
 [e = _escDecMem + _escDecMem -> _setInc `i ]
-[; ;main.c: 96: { ee_write_byte(16, ((unsigned char)(((escDecMem)>>8)&0xFF))); ee_write_byte(16 + 1, ((unsigned char)((escDecMem)&0xFF))); };
-"96
+[; ;main.c: 92: { ee_write_byte(16, ((unsigned char)(((escDecMem)>>8)&0xFF))); ee_write_byte(16 + 1, ((unsigned char)((escDecMem)&0xFF))); };
+"92
 {
 [e ( _ee_write_byte (2 , -> -> 16 `i `uc -> & >> _escDecMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 16 `i -> 1 `i `uc -> & _escDecMem -> 255 `i `uc ]
 }
-[; ;main.c: 97: escala = (float) escEntMem + (float) escDecMem / 1000.0;
-"97
+[; ;main.c: 93: escala = (float) escEntMem + (float) escDecMem / 1000.0;
+"93
 [e = _escala -> + -> -> _escEntMem `f `d / -> -> _escDecMem `f `d .1000.0 `f ]
-"98
+"94
 }
 [e :U 678 ]
-"99
+"95
 }
 [e :U 677 ]
-[; ;main.c: 98: }
-[; ;main.c: 99: }
-[; ;main.c: 100: if(state == E_SET_ADV_MODE)
-"100
+[; ;main.c: 94: }
+[; ;main.c: 95: }
+[; ;main.c: 96: if(state == E_SET_ADV_MODE)
+"96
 [e $ ! == -> _state `i -> . `E4245 13 `i 679  ]
-[; ;main.c: 101: {
-"101
+[; ;main.c: 97: {
+"97
 {
-[; ;main.c: 102: if(advModeMem < CANT_ADV_MODES - 1)
-"102
+[; ;main.c: 98: if(advModeMem < CANT_ADV_MODES - 1)
+"98
 [e $ ! < -> _advModeMem `i - -> . `E4235 8 `i -> 1 `i 680  ]
-[; ;main.c: 103: {
-"103
+[; ;main.c: 99: {
+"99
 {
-[; ;main.c: 104: advModeMem++;
-"104
+[; ;main.c: 100: advModeMem++;
+"100
 [e ++ _advModeMem -> -> 1 `i `uc ]
-[; ;main.c: 105: { ee_write_byte(1, advModeMem); };
-"105
+[; ;main.c: 101: { ee_write_byte(1, advModeMem); };
+"101
 {
 [e ( _ee_write_byte (2 , -> -> 1 `i `uc _advModeMem ]
 }
-"106
+"102
 }
 [e :U 680 ]
-"107
+"103
 }
 [e :U 679 ]
-[; ;main.c: 106: }
-[; ;main.c: 107: }
-[; ;main.c: 108: if(state == E_SET_ADV_XLO)
-"108
+[; ;main.c: 102: }
+[; ;main.c: 103: }
+[; ;main.c: 104: if(state == E_SET_ADV_XLO)
+"104
 [e $ ! == -> _state `i -> . `E4245 15 `i 681  ]
-[; ;main.c: 109: {
-"109
+[; ;main.c: 105: {
+"105
 {
-[; ;main.c: 110: if((xLoMem + setInc) <= 999)
-"110
+[; ;main.c: 106: if((xLoMem + setInc) <= 999)
+"106
 [e $ ! <= + _xLoMem -> _setInc `i -> 999 `i 682  ]
-[; ;main.c: 111: {
-"111
+[; ;main.c: 107: {
+"107
 {
-[; ;main.c: 112: xLoMem = xLoMem + setInc;
-"112
+[; ;main.c: 108: xLoMem = xLoMem + setInc;
+"108
 [e = _xLoMem + _xLoMem -> _setInc `i ]
-[; ;main.c: 113: { ee_write_byte(2, ((unsigned char)(((xLoMem)>>8)&0xFF))); ee_write_byte(2 + 1, ((unsigned char)((xLoMem)&0xFF))); };
-"113
+[; ;main.c: 109: { ee_write_byte(2, ((unsigned char)(((xLoMem)>>8)&0xFF))); ee_write_byte(2 + 1, ((unsigned char)((xLoMem)&0xFF))); };
+"109
 {
 [e ( _ee_write_byte (2 , -> -> 2 `i `uc -> & >> _xLoMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 2 `i -> 1 `i `uc -> & _xLoMem -> 255 `i `uc ]
 }
-"114
+"110
 }
 [e :U 682 ]
-"115
+"111
 }
 [e :U 681 ]
-[; ;main.c: 114: }
-[; ;main.c: 115: }
-[; ;main.c: 116: if(state == E_SET_ADV_XUP)
-"116
+[; ;main.c: 110: }
+[; ;main.c: 111: }
+[; ;main.c: 112: if(state == E_SET_ADV_XUP)
+"112
 [e $ ! == -> _state `i -> . `E4245 17 `i 683  ]
-[; ;main.c: 117: {
-"117
+[; ;main.c: 113: {
+"113
 {
-[; ;main.c: 118: if((xUpMem + setInc) <= 999)
-"118
+[; ;main.c: 114: if((xUpMem + setInc) <= 999)
+"114
 [e $ ! <= + _xUpMem -> _setInc `i -> 999 `i 684  ]
-[; ;main.c: 119: {
-"119
+[; ;main.c: 115: {
+"115
 {
-[; ;main.c: 120: xUpMem = xUpMem + setInc;
-"120
+[; ;main.c: 116: xUpMem = xUpMem + setInc;
+"116
 [e = _xUpMem + _xUpMem -> _setInc `i ]
-[; ;main.c: 121: { ee_write_byte(4, ((unsigned char)(((xUpMem)>>8)&0xFF))); ee_write_byte(4 + 1, ((unsigned char)((xUpMem)&0xFF))); };
-"121
+[; ;main.c: 117: { ee_write_byte(4, ((unsigned char)(((xUpMem)>>8)&0xFF))); ee_write_byte(4 + 1, ((unsigned char)((xUpMem)&0xFF))); };
+"117
 {
 [e ( _ee_write_byte (2 , -> -> 4 `i `uc -> & >> _xUpMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 4 `i -> 1 `i `uc -> & _xUpMem -> 255 `i `uc ]
 }
-"122
+"118
 }
 [e :U 684 ]
-"123
+"119
 }
 [e :U 683 ]
-[; ;main.c: 122: }
-[; ;main.c: 123: }
-[; ;main.c: 124: if(state == E_SET_ADV_ELO)
-"124
+[; ;main.c: 118: }
+[; ;main.c: 119: }
+[; ;main.c: 120: if(state == E_SET_ADV_ELO)
+"120
 [e $ ! == -> _state `i -> . `E4245 19 `i 685  ]
-[; ;main.c: 125: {
-"125
+[; ;main.c: 121: {
+"121
 {
-[; ;main.c: 126: if((eLoMem + setInc) <= 999)
-"126
+[; ;main.c: 122: if((eLoMem + setInc) <= 999)
+"122
 [e $ ! <= + _eLoMem -> _setInc `i -> 999 `i 686  ]
-[; ;main.c: 127: {
-"127
+[; ;main.c: 123: {
+"123
 {
-[; ;main.c: 128: eLoMem = eLoMem + setInc;
-"128
+[; ;main.c: 124: eLoMem = eLoMem + setInc;
+"124
 [e = _eLoMem + _eLoMem -> _setInc `i ]
-[; ;main.c: 129: { ee_write_byte(6, ((unsigned char)(((eLoMem)>>8)&0xFF))); ee_write_byte(6 + 1, ((unsigned char)((eLoMem)&0xFF))); };
-"129
+[; ;main.c: 125: { ee_write_byte(6, ((unsigned char)(((eLoMem)>>8)&0xFF))); ee_write_byte(6 + 1, ((unsigned char)((eLoMem)&0xFF))); };
+"125
 {
 [e ( _ee_write_byte (2 , -> -> 6 `i `uc -> & >> _eLoMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 6 `i -> 1 `i `uc -> & _eLoMem -> 255 `i `uc ]
 }
-"130
+"126
 }
 [e :U 686 ]
-"131
+"127
 }
 [e :U 685 ]
-[; ;main.c: 130: }
-[; ;main.c: 131: }
-[; ;main.c: 132: if(state == E_SET_ADV_EUP)
-"132
+[; ;main.c: 126: }
+[; ;main.c: 127: }
+[; ;main.c: 128: if(state == E_SET_ADV_EUP)
+"128
 [e $ ! == -> _state `i -> . `E4245 21 `i 687  ]
-[; ;main.c: 133: {
-"133
+[; ;main.c: 129: {
+"129
 {
-[; ;main.c: 134: if((eUpMem+setInc) <= 999)
-"134
+[; ;main.c: 130: if((eUpMem+setInc) <= 999)
+"130
 [e $ ! <= + _eUpMem -> _setInc `i -> 999 `i 688  ]
-[; ;main.c: 135: {
-"135
+[; ;main.c: 131: {
+"131
 {
-[; ;main.c: 136: eUpMem = eUpMem + setInc;
-"136
+[; ;main.c: 132: eUpMem = eUpMem + setInc;
+"132
 [e = _eUpMem + _eUpMem -> _setInc `i ]
-[; ;main.c: 137: { ee_write_byte(8, ((unsigned char)(((eUpMem)>>8)&0xFF))); ee_write_byte(8 + 1, ((unsigned char)((eUpMem)&0xFF))); };
-"137
+[; ;main.c: 133: { ee_write_byte(8, ((unsigned char)(((eUpMem)>>8)&0xFF))); ee_write_byte(8 + 1, ((unsigned char)((eUpMem)&0xFF))); };
+"133
 {
 [e ( _ee_write_byte (2 , -> -> 8 `i `uc -> & >> _eUpMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 8 `i -> 1 `i `uc -> & _eUpMem -> 255 `i `uc ]
 }
-"138
+"134
 }
 [e :U 688 ]
-"139
+"135
 }
 [e :U 687 ]
-[; ;main.c: 138: }
-[; ;main.c: 139: }
-[; ;main.c: 140: if(state == E_SET_ADV_VLO)
-"140
+[; ;main.c: 134: }
+[; ;main.c: 135: }
+[; ;main.c: 136: if(state == E_SET_ADV_VLO)
+"136
 [e $ ! == -> _state `i -> . `E4245 23 `i 689  ]
-[; ;main.c: 141: {
-"141
+[; ;main.c: 137: {
+"137
 {
-[; ;main.c: 142: if((vLoMem+setInc) <= 999)
-"142
+[; ;main.c: 138: if((vLoMem+setInc) <= 999)
+"138
 [e $ ! <= + _vLoMem -> _setInc `i -> 999 `i 690  ]
-[; ;main.c: 143: {
-"143
+[; ;main.c: 139: {
+"139
 {
-[; ;main.c: 144: vLoMem = vLoMem + setInc;
-"144
+[; ;main.c: 140: vLoMem = vLoMem + setInc;
+"140
 [e = _vLoMem + _vLoMem -> _setInc `i ]
-[; ;main.c: 145: { ee_write_byte(10, ((unsigned char)(((vLoMem)>>8)&0xFF))); ee_write_byte(10 + 1, ((unsigned char)((vLoMem)&0xFF))); };
-"145
+[; ;main.c: 141: { ee_write_byte(10, ((unsigned char)(((vLoMem)>>8)&0xFF))); ee_write_byte(10 + 1, ((unsigned char)((vLoMem)&0xFF))); };
+"141
 {
 [e ( _ee_write_byte (2 , -> -> 10 `i `uc -> & >> _vLoMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 10 `i -> 1 `i `uc -> & _vLoMem -> 255 `i `uc ]
 }
-"146
+"142
 }
 [e :U 690 ]
-"147
+"143
 }
 [e :U 689 ]
-[; ;main.c: 146: }
-[; ;main.c: 147: }
-[; ;main.c: 148: if(state == E_SET_ADV_VUP)
-"148
+[; ;main.c: 142: }
+[; ;main.c: 143: }
+[; ;main.c: 144: if(state == E_SET_ADV_VUP)
+"144
 [e $ ! == -> _state `i -> . `E4245 25 `i 691  ]
-[; ;main.c: 149: {
-"149
+[; ;main.c: 145: {
+"145
 {
-[; ;main.c: 150: if((vUpMem+setInc) <= 999)
-"150
+[; ;main.c: 146: if((vUpMem+setInc) <= 999)
+"146
 [e $ ! <= + _vUpMem -> _setInc `i -> 999 `i 692  ]
-[; ;main.c: 151: {
-"151
+[; ;main.c: 147: {
+"147
 {
-[; ;main.c: 152: vUpMem = vUpMem + setInc;
-"152
+[; ;main.c: 148: vUpMem = vUpMem + setInc;
+"148
 [e = _vUpMem + _vUpMem -> _setInc `i ]
-[; ;main.c: 153: { ee_write_byte(12, ((unsigned char)(((vUpMem)>>8)&0xFF))); ee_write_byte(12 + 1, ((unsigned char)((vUpMem)&0xFF))); };
-"153
+[; ;main.c: 149: { ee_write_byte(12, ((unsigned char)(((vUpMem)>>8)&0xFF))); ee_write_byte(12 + 1, ((unsigned char)((vUpMem)&0xFF))); };
+"149
 {
 [e ( _ee_write_byte (2 , -> -> 12 `i `uc -> & >> _vUpMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 12 `i -> 1 `i `uc -> & _vUpMem -> 255 `i `uc ]
 }
-"154
+"150
 }
 [e :U 692 ]
-"155
+"151
 }
 [e :U 691 ]
-[; ;main.c: 154: }
-[; ;main.c: 155: }
-[; ;main.c: 157: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
-"157
+[; ;main.c: 150: }
+[; ;main.c: 151: }
+[; ;main.c: 153: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"153
 {
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 158: { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
-"158
+[; ;main.c: 154: { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
+"154
 {
 [e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 159: }
-"159
+[; ;main.c: 155: }
+"155
 [e :UE 672 ]
 }
-"166
+"162
 [v _decVar `(v ~T0 1 ef ]
 {
-[; ;main.c: 165: void decVar(void)
-[; ;main.c: 166: {
+[; ;main.c: 161: void decVar(void)
+[; ;main.c: 162: {
 [e :U _decVar ]
 [f ]
-[; ;main.c: 170: if(state == E_SET_BRILLO)
-"170
+[; ;main.c: 166: if(state == E_SET_BRILLO)
+"166
 [e $ ! == -> _state `i -> . `E4245 8 `i 694  ]
-[; ;main.c: 171: {
-"171
+[; ;main.c: 167: {
+"167
 {
-[; ;main.c: 172: if(brilloMem > 0)
-"172
+[; ;main.c: 168: if(brilloMem > 0)
+"168
 [e $ ! > -> _brilloMem `i -> 0 `i 695  ]
-[; ;main.c: 173: {
-"173
+[; ;main.c: 169: {
+"169
 {
-[; ;main.c: 174: brilloMem--;
-"174
+[; ;main.c: 170: brilloMem--;
+"170
 [e -- _brilloMem -> -> 1 `i `uc ]
-[; ;main.c: 175: { ee_write_byte(0, brilloMem); };
-"175
+[; ;main.c: 171: { ee_write_byte(0, brilloMem); };
+"171
 {
 [e ( _ee_write_byte (2 , -> -> 0 `i `uc _brilloMem ]
 }
-"176
+"172
 }
 [e :U 695 ]
-"177
+"173
 }
 [e :U 694 ]
-[; ;main.c: 176: }
-[; ;main.c: 177: }
-[; ;main.c: 178: if(state == E_SET_ESCALA_ENT)
-"178
+[; ;main.c: 172: }
+[; ;main.c: 173: }
+[; ;main.c: 174: if(state == E_SET_ESCALA_ENT)
+"174
 [e $ ! == -> _state `i -> . `E4245 10 `i 696  ]
-[; ;main.c: 179: {
-"179
+[; ;main.c: 175: {
+"175
 {
-[; ;main.c: 180: if((escEntMem-setInc) >= 0)
-"180
+[; ;main.c: 176: if((escEntMem-setInc) >= 0)
+"176
 [e $ ! >= - _escEntMem -> _setInc `i -> 0 `i 697  ]
-[; ;main.c: 181: {
-"181
+[; ;main.c: 177: {
+"177
 {
-[; ;main.c: 182: escEntMem = escEntMem - setInc;
-"182
+[; ;main.c: 178: escEntMem = escEntMem - setInc;
+"178
 [e = _escEntMem - _escEntMem -> _setInc `i ]
-[; ;main.c: 183: { ee_write_byte(14, ((unsigned char)(((escEntMem)>>8)&0xFF))); ee_write_byte(14 + 1, ((unsigned char)((escEntMem)&0xFF))); };
-"183
+[; ;main.c: 179: { ee_write_byte(14, ((unsigned char)(((escEntMem)>>8)&0xFF))); ee_write_byte(14 + 1, ((unsigned char)((escEntMem)&0xFF))); };
+"179
 {
 [e ( _ee_write_byte (2 , -> -> 14 `i `uc -> & >> _escEntMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 14 `i -> 1 `i `uc -> & _escEntMem -> 255 `i `uc ]
 }
-[; ;main.c: 184: escala = (float) escEntMem + (float) escDecMem / 1000.0;
-"184
+[; ;main.c: 180: escala = (float) escEntMem + (float) escDecMem / 1000.0;
+"180
 [e = _escala -> + -> -> _escEntMem `f `d / -> -> _escDecMem `f `d .1000.0 `f ]
-"185
+"181
 }
 [e :U 697 ]
-"186
+"182
 }
 [e :U 696 ]
-[; ;main.c: 185: }
-[; ;main.c: 186: }
-[; ;main.c: 187: if(state == E_SET_ESCALA_DEC)
-"187
+[; ;main.c: 181: }
+[; ;main.c: 182: }
+[; ;main.c: 183: if(state == E_SET_ESCALA_DEC)
+"183
 [e $ ! == -> _state `i -> . `E4245 12 `i 698  ]
-[; ;main.c: 188: {
-"188
+[; ;main.c: 184: {
+"184
 {
-[; ;main.c: 189: if((escDecMem-setInc) >= 0)
-"189
+[; ;main.c: 185: if((escDecMem-setInc) >= 0)
+"185
 [e $ ! >= - _escDecMem -> _setInc `i -> 0 `i 699  ]
-[; ;main.c: 190: {
-"190
+[; ;main.c: 186: {
+"186
 {
-[; ;main.c: 191: escDecMem = escDecMem - setInc;
-"191
+[; ;main.c: 187: escDecMem = escDecMem - setInc;
+"187
 [e = _escDecMem - _escDecMem -> _setInc `i ]
-[; ;main.c: 192: { ee_write_byte(16, ((unsigned char)(((escDecMem)>>8)&0xFF))); ee_write_byte(16 + 1, ((unsigned char)((escDecMem)&0xFF))); };
-"192
+[; ;main.c: 188: { ee_write_byte(16, ((unsigned char)(((escDecMem)>>8)&0xFF))); ee_write_byte(16 + 1, ((unsigned char)((escDecMem)&0xFF))); };
+"188
 {
 [e ( _ee_write_byte (2 , -> -> 16 `i `uc -> & >> _escDecMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 16 `i -> 1 `i `uc -> & _escDecMem -> 255 `i `uc ]
 }
-[; ;main.c: 193: escala = (float) escEntMem + (float) escDecMem / 1000.0;
-"193
+[; ;main.c: 189: escala = (float) escEntMem + (float) escDecMem / 1000.0;
+"189
 [e = _escala -> + -> -> _escEntMem `f `d / -> -> _escDecMem `f `d .1000.0 `f ]
-"194
+"190
 }
 [e :U 699 ]
-"195
+"191
 }
 [e :U 698 ]
-[; ;main.c: 194: }
-[; ;main.c: 195: }
-[; ;main.c: 196: if(state == E_SET_ADV_MODE)
-"196
+[; ;main.c: 190: }
+[; ;main.c: 191: }
+[; ;main.c: 192: if(state == E_SET_ADV_MODE)
+"192
 [e $ ! == -> _state `i -> . `E4245 13 `i 700  ]
-[; ;main.c: 197: {
-"197
+[; ;main.c: 193: {
+"193
 {
-[; ;main.c: 198: if(advModeMem > 0)
-"198
+[; ;main.c: 194: if(advModeMem > 0)
+"194
 [e $ ! > -> _advModeMem `i -> 0 `i 701  ]
-[; ;main.c: 199: {
-"199
+[; ;main.c: 195: {
+"195
 {
-[; ;main.c: 200: advModeMem--;
-"200
+[; ;main.c: 196: advModeMem--;
+"196
 [e -- _advModeMem -> -> 1 `i `uc ]
-[; ;main.c: 201: { ee_write_byte(1, advModeMem); };
-"201
+[; ;main.c: 197: { ee_write_byte(1, advModeMem); };
+"197
 {
 [e ( _ee_write_byte (2 , -> -> 1 `i `uc _advModeMem ]
 }
-"202
+"198
 }
 [e :U 701 ]
-"203
+"199
 }
 [e :U 700 ]
-[; ;main.c: 202: }
-[; ;main.c: 203: }
-[; ;main.c: 204: if(state == E_SET_ADV_XLO)
-"204
+[; ;main.c: 198: }
+[; ;main.c: 199: }
+[; ;main.c: 200: if(state == E_SET_ADV_XLO)
+"200
 [e $ ! == -> _state `i -> . `E4245 15 `i 702  ]
-[; ;main.c: 205: {
-"205
+[; ;main.c: 201: {
+"201
 {
-[; ;main.c: 206: if((xLoMem - setInc) >= 0)
-"206
+[; ;main.c: 202: if((xLoMem - setInc) >= 0)
+"202
 [e $ ! >= - _xLoMem -> _setInc `i -> 0 `i 703  ]
-[; ;main.c: 207: {
-"207
+[; ;main.c: 203: {
+"203
 {
-[; ;main.c: 208: xLoMem = xLoMem - setInc;
-"208
+[; ;main.c: 204: xLoMem = xLoMem - setInc;
+"204
 [e = _xLoMem - _xLoMem -> _setInc `i ]
-[; ;main.c: 209: { ee_write_byte(2, ((unsigned char)(((xLoMem)>>8)&0xFF))); ee_write_byte(2 + 1, ((unsigned char)((xLoMem)&0xFF))); };
-"209
+[; ;main.c: 205: { ee_write_byte(2, ((unsigned char)(((xLoMem)>>8)&0xFF))); ee_write_byte(2 + 1, ((unsigned char)((xLoMem)&0xFF))); };
+"205
 {
 [e ( _ee_write_byte (2 , -> -> 2 `i `uc -> & >> _xLoMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 2 `i -> 1 `i `uc -> & _xLoMem -> 255 `i `uc ]
 }
-"210
+"206
 }
 [e :U 703 ]
-"211
+"207
 }
 [e :U 702 ]
-[; ;main.c: 210: }
-[; ;main.c: 211: }
-[; ;main.c: 212: if(state == E_SET_ADV_XUP)
-"212
+[; ;main.c: 206: }
+[; ;main.c: 207: }
+[; ;main.c: 208: if(state == E_SET_ADV_XUP)
+"208
 [e $ ! == -> _state `i -> . `E4245 17 `i 704  ]
-[; ;main.c: 213: {
-"213
+[; ;main.c: 209: {
+"209
 {
-[; ;main.c: 214: if((xUpMem - setInc) >= 0)
-"214
+[; ;main.c: 210: if((xUpMem - setInc) >= 0)
+"210
 [e $ ! >= - _xUpMem -> _setInc `i -> 0 `i 705  ]
-[; ;main.c: 215: {
-"215
+[; ;main.c: 211: {
+"211
 {
-[; ;main.c: 216: xUpMem = xUpMem - setInc;
-"216
+[; ;main.c: 212: xUpMem = xUpMem - setInc;
+"212
 [e = _xUpMem - _xUpMem -> _setInc `i ]
-[; ;main.c: 217: { ee_write_byte(4, ((unsigned char)(((xUpMem)>>8)&0xFF))); ee_write_byte(4 + 1, ((unsigned char)((xUpMem)&0xFF))); };
-"217
+[; ;main.c: 213: { ee_write_byte(4, ((unsigned char)(((xUpMem)>>8)&0xFF))); ee_write_byte(4 + 1, ((unsigned char)((xUpMem)&0xFF))); };
+"213
 {
 [e ( _ee_write_byte (2 , -> -> 4 `i `uc -> & >> _xUpMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 4 `i -> 1 `i `uc -> & _xUpMem -> 255 `i `uc ]
 }
-"218
+"214
 }
 [e :U 705 ]
-"219
+"215
 }
 [e :U 704 ]
-[; ;main.c: 218: }
-[; ;main.c: 219: }
-[; ;main.c: 220: if(state == E_SET_ADV_ELO)
-"220
+[; ;main.c: 214: }
+[; ;main.c: 215: }
+[; ;main.c: 216: if(state == E_SET_ADV_ELO)
+"216
 [e $ ! == -> _state `i -> . `E4245 19 `i 706  ]
-[; ;main.c: 221: {
-"221
+[; ;main.c: 217: {
+"217
 {
-[; ;main.c: 222: if((eLoMem - setInc) >= 0)
-"222
+[; ;main.c: 218: if((eLoMem - setInc) >= 0)
+"218
 [e $ ! >= - _eLoMem -> _setInc `i -> 0 `i 707  ]
-[; ;main.c: 223: {
-"223
+[; ;main.c: 219: {
+"219
 {
-[; ;main.c: 224: eLoMem = eLoMem - setInc;
-"224
+[; ;main.c: 220: eLoMem = eLoMem - setInc;
+"220
 [e = _eLoMem - _eLoMem -> _setInc `i ]
-[; ;main.c: 225: { ee_write_byte(6, ((unsigned char)(((eLoMem)>>8)&0xFF))); ee_write_byte(6 + 1, ((unsigned char)((eLoMem)&0xFF))); };
-"225
+[; ;main.c: 221: { ee_write_byte(6, ((unsigned char)(((eLoMem)>>8)&0xFF))); ee_write_byte(6 + 1, ((unsigned char)((eLoMem)&0xFF))); };
+"221
 {
 [e ( _ee_write_byte (2 , -> -> 6 `i `uc -> & >> _eLoMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 6 `i -> 1 `i `uc -> & _eLoMem -> 255 `i `uc ]
 }
-"226
+"222
 }
 [e :U 707 ]
-"227
+"223
 }
 [e :U 706 ]
-[; ;main.c: 226: }
-[; ;main.c: 227: }
-[; ;main.c: 228: if(state == E_SET_ADV_EUP)
-"228
+[; ;main.c: 222: }
+[; ;main.c: 223: }
+[; ;main.c: 224: if(state == E_SET_ADV_EUP)
+"224
 [e $ ! == -> _state `i -> . `E4245 21 `i 708  ]
-[; ;main.c: 229: {
-"229
+[; ;main.c: 225: {
+"225
 {
-[; ;main.c: 230: if((eUpMem - setInc) >= 0)
-"230
+[; ;main.c: 226: if((eUpMem - setInc) >= 0)
+"226
 [e $ ! >= - _eUpMem -> _setInc `i -> 0 `i 709  ]
-[; ;main.c: 231: {
-"231
+[; ;main.c: 227: {
+"227
 {
-[; ;main.c: 232: eUpMem = eUpMem - setInc;
-"232
+[; ;main.c: 228: eUpMem = eUpMem - setInc;
+"228
 [e = _eUpMem - _eUpMem -> _setInc `i ]
-[; ;main.c: 233: { ee_write_byte(8, ((unsigned char)(((eUpMem)>>8)&0xFF))); ee_write_byte(8 + 1, ((unsigned char)((eUpMem)&0xFF))); };
-"233
+[; ;main.c: 229: { ee_write_byte(8, ((unsigned char)(((eUpMem)>>8)&0xFF))); ee_write_byte(8 + 1, ((unsigned char)((eUpMem)&0xFF))); };
+"229
 {
 [e ( _ee_write_byte (2 , -> -> 8 `i `uc -> & >> _eUpMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 8 `i -> 1 `i `uc -> & _eUpMem -> 255 `i `uc ]
 }
-"234
+"230
 }
 [e :U 709 ]
-"235
+"231
 }
 [e :U 708 ]
-[; ;main.c: 234: }
-[; ;main.c: 235: }
-[; ;main.c: 236: if(state == E_SET_ADV_VLO)
-"236
+[; ;main.c: 230: }
+[; ;main.c: 231: }
+[; ;main.c: 232: if(state == E_SET_ADV_VLO)
+"232
 [e $ ! == -> _state `i -> . `E4245 23 `i 710  ]
-[; ;main.c: 237: {
-"237
+[; ;main.c: 233: {
+"233
 {
-[; ;main.c: 238: if((vLoMem - setInc) >= 0)
-"238
+[; ;main.c: 234: if((vLoMem - setInc) >= 0)
+"234
 [e $ ! >= - _vLoMem -> _setInc `i -> 0 `i 711  ]
-[; ;main.c: 239: {
-"239
+[; ;main.c: 235: {
+"235
 {
-[; ;main.c: 240: vLoMem = vLoMem - setInc;
-"240
+[; ;main.c: 236: vLoMem = vLoMem - setInc;
+"236
 [e = _vLoMem - _vLoMem -> _setInc `i ]
-[; ;main.c: 241: { ee_write_byte(10, ((unsigned char)(((vLoMem)>>8)&0xFF))); ee_write_byte(10 + 1, ((unsigned char)((vLoMem)&0xFF))); };
-"241
+[; ;main.c: 237: { ee_write_byte(10, ((unsigned char)(((vLoMem)>>8)&0xFF))); ee_write_byte(10 + 1, ((unsigned char)((vLoMem)&0xFF))); };
+"237
 {
 [e ( _ee_write_byte (2 , -> -> 10 `i `uc -> & >> _vLoMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 10 `i -> 1 `i `uc -> & _vLoMem -> 255 `i `uc ]
 }
-"242
+"238
 }
 [e :U 711 ]
-"243
+"239
 }
 [e :U 710 ]
-[; ;main.c: 242: }
-[; ;main.c: 243: }
-[; ;main.c: 244: if(state==E_SET_ADV_VUP)
-"244
+[; ;main.c: 238: }
+[; ;main.c: 239: }
+[; ;main.c: 240: if(state==E_SET_ADV_VUP)
+"240
 [e $ ! == -> _state `i -> . `E4245 25 `i 712  ]
-[; ;main.c: 245: {
-"245
+[; ;main.c: 241: {
+"241
 {
-[; ;main.c: 246: if((vUpMem-setInc)>=0)
-"246
+[; ;main.c: 242: if((vUpMem-setInc)>=0)
+"242
 [e $ ! >= - _vUpMem -> _setInc `i -> 0 `i 713  ]
-[; ;main.c: 247: {
-"247
+[; ;main.c: 243: {
+"243
 {
-[; ;main.c: 248: vUpMem=vUpMem-setInc;
-"248
+[; ;main.c: 244: vUpMem=vUpMem-setInc;
+"244
 [e = _vUpMem - _vUpMem -> _setInc `i ]
-[; ;main.c: 249: { ee_write_byte(12, ((unsigned char)(((vUpMem)>>8)&0xFF))); ee_write_byte(12 + 1, ((unsigned char)((vUpMem)&0xFF))); };
-"249
+[; ;main.c: 245: { ee_write_byte(12, ((unsigned char)(((vUpMem)>>8)&0xFF))); ee_write_byte(12 + 1, ((unsigned char)((vUpMem)&0xFF))); };
+"245
 {
 [e ( _ee_write_byte (2 , -> -> 12 `i `uc -> & >> _vUpMem -> 8 `i -> 255 `i `uc ]
 [e ( _ee_write_byte (2 , -> + -> 12 `i -> 1 `i `uc -> & _vUpMem -> 255 `i `uc ]
 }
-"250
+"246
 }
 [e :U 713 ]
-"251
+"247
 }
 [e :U 712 ]
-[; ;main.c: 250: }
-[; ;main.c: 251: }
-[; ;main.c: 253: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
-"253
+[; ;main.c: 246: }
+[; ;main.c: 247: }
+[; ;main.c: 249: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"249
 {
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 254: { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
-"254
+[; ;main.c: 250: { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
+"250
 {
 [e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 255: }
-"255
+[; ;main.c: 251: }
+"251
 [e :UE 693 ]
 }
-"262
+"258
 [v _endTestDisplayActions `(v ~T0 1 ef ]
 {
-[; ;main.c: 261: void endTestDisplayActions(void)
-[; ;main.c: 262: {
+[; ;main.c: 257: void endTestDisplayActions(void)
+[; ;main.c: 258: {
 [e :U _endTestDisplayActions ]
 [f ]
-[; ;main.c: 263: state=E_IDLE;
-"263
+[; ;main.c: 259: state=E_IDLE;
+"259
 [e = _state -> . `E4245 1 `uc ]
-[; ;main.c: 265: PORTCbits.RC6=0;
-"265
+[; ;main.c: 261: PORTCbits.RC6=0;
+"261
 [e = . . _PORTCbits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 266: muxBuffer[0]='0';
-"266
+[; ;main.c: 262: muxBuffer[0]='0';
+"262
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 48 `ui `uc ]
-[; ;main.c: 267: muxBuffer[1]='0';
-"267
+[; ;main.c: 263: muxBuffer[1]='0';
+"263
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 48 `ui `uc ]
-[; ;main.c: 268: muxBuffer[2]='0';
-"268
+[; ;main.c: 264: muxBuffer[2]='0';
+"264
 [e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 48 `ui `uc ]
-[; ;main.c: 269: muxBuffer[ADV]=' ';
-"269
+[; ;main.c: 265: muxBuffer[ADV]=' ';
+"265
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-[; ;main.c: 270: { t0Mem[T0_ADCSAMPLE].flag=0; t0Mem[T0_ADCSAMPLE].prescaler=t0DelayConstant[T0_ADCSAMPLE]; t0Mem[T0_ADCSAMPLE].pause=0; t0Mem[T0_ADCSAMPLE].loop=1; };
-"270
+[; ;main.c: 266: { t0Mem[T0_ADCSAMPLE].flag=0; t0Mem[T0_ADCSAMPLE].prescaler=t0DelayConstant[T0_ADCSAMPLE]; t0Mem[T0_ADCSAMPLE].pause=0; t0Mem[T0_ADCSAMPLE].loop=1; };
+"266
 {
 [e = . *U + &U _t0Mem * -> . `E4340 12 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 12 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 12 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 12 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 12 `ux -> -> # *U &U _t0Mem `ui `ux 1 -> -> 1 `i `uc ]
 }
-[; ;main.c: 271: }
-"271
+[; ;main.c: 267: }
+"267
 [e :UE 714 ]
 }
-"278
+"274
 [v _actionsTimeoutShowSetting `(v ~T0 1 ef ]
 {
-[; ;main.c: 277: void actionsTimeoutShowSetting(void)
-[; ;main.c: 278: {
+[; ;main.c: 273: void actionsTimeoutShowSetting(void)
+[; ;main.c: 274: {
 [e :U _actionsTimeoutShowSetting ]
 [f ]
-[; ;main.c: 279: if((t0Mem[T0_SHOW_SETTING].flag?!(t0Mem[T0_SHOW_SETTING].flag=0):0))
-"279
+[; ;main.c: 275: if((t0Mem[T0_SHOW_SETTING].flag?!(t0Mem[T0_SHOW_SETTING].flag=0):0))
+"275
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 716  ]
-[; ;main.c: 280: {
-"280
+[; ;main.c: 276: {
+"276
 {
-[; ;main.c: 281: switch(state)
-"281
+[; ;main.c: 277: switch(state)
+"277
 [e $U 718  ]
-[; ;main.c: 282: {
-"282
+[; ;main.c: 278: {
+"278
 {
-[; ;main.c: 283: case E_SET_ESCALA_ENT_DESCRIPTION:
-"283
+[; ;main.c: 279: case E_SET_ESCALA_ENT_DESCRIPTION:
+"279
 [e :U 719 ]
+[; ;main.c: 280: state++;
+"280
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 281: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"281
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 282: break;
+"282
+[e $U 717  ]
+[; ;main.c: 283: case E_SET_ESCALA_ENT:
+"283
+[e :U 720 ]
 [; ;main.c: 284: state++;
 "284
 [e ++ _state -> -> 1 `i `uc ]
@@ -5189,9 +5205,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 286: break;
 "286
 [e $U 717  ]
-[; ;main.c: 287: case E_SET_ESCALA_ENT:
+[; ;main.c: 287: case E_SET_ESCALA_DEC_DESCRIPTION:
 "287
-[e :U 720 ]
+[e :U 721 ]
 [; ;main.c: 288: state++;
 "288
 [e ++ _state -> -> 1 `i `uc ]
@@ -5205,34 +5221,34 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 290: break;
 "290
 [e $U 717  ]
-[; ;main.c: 291: case E_SET_ESCALA_DEC_DESCRIPTION:
+[; ;main.c: 291: case E_SET_ESCALA_DEC:
 "291
-[e :U 721 ]
-[; ;main.c: 292: state++;
+[e :U 722 ]
+[; ;main.c: 292: state=E_IDLE;
 "292
-[e ++ _state -> -> 1 `i `uc ]
-[; ;main.c: 293: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+[e = _state -> . `E4245 1 `uc ]
+[; ;main.c: 293: break;
 "293
+[e $U 717  ]
+[; ;main.c: 294: case E_SET_ADV_XLO_DESCRIPTION:
+"294
+[e :U 723 ]
+[; ;main.c: 295: state++;
+"295
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 296: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"296
 {
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 294: break;
-"294
-[e $U 717  ]
-[; ;main.c: 295: case E_SET_ESCALA_DEC:
-"295
-[e :U 722 ]
-[; ;main.c: 296: state=E_IDLE;
-"296
-[e = _state -> . `E4245 1 `uc ]
 [; ;main.c: 297: break;
 "297
 [e $U 717  ]
-[; ;main.c: 298: case E_SET_ADV_XLO_DESCRIPTION:
+[; ;main.c: 298: case E_SET_ADV_XLO:
 "298
-[e :U 723 ]
+[e :U 724 ]
 [; ;main.c: 299: state++;
 "299
 [e ++ _state -> -> 1 `i `uc ]
@@ -5246,9 +5262,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 301: break;
 "301
 [e $U 717  ]
-[; ;main.c: 302: case E_SET_ADV_XLO:
+[; ;main.c: 302: case E_SET_ADV_XUP_DESCRIPTION:
 "302
-[e :U 724 ]
+[e :U 725 ]
 [; ;main.c: 303: state++;
 "303
 [e ++ _state -> -> 1 `i `uc ]
@@ -5262,9 +5278,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 305: break;
 "305
 [e $U 717  ]
-[; ;main.c: 306: case E_SET_ADV_XUP_DESCRIPTION:
+[; ;main.c: 306: case E_SET_ADV_XUP:
 "306
-[e :U 725 ]
+[e :U 726 ]
 [; ;main.c: 307: state++;
 "307
 [e ++ _state -> -> 1 `i `uc ]
@@ -5278,9 +5294,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 309: break;
 "309
 [e $U 717  ]
-[; ;main.c: 310: case E_SET_ADV_XUP:
+[; ;main.c: 310: case E_SET_ADV_ELO_DESCRIPTION:
 "310
-[e :U 726 ]
+[e :U 727 ]
 [; ;main.c: 311: state++;
 "311
 [e ++ _state -> -> 1 `i `uc ]
@@ -5294,9 +5310,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 313: break;
 "313
 [e $U 717  ]
-[; ;main.c: 314: case E_SET_ADV_ELO_DESCRIPTION:
+[; ;main.c: 314: case E_SET_ADV_ELO:
 "314
-[e :U 727 ]
+[e :U 728 ]
 [; ;main.c: 315: state++;
 "315
 [e ++ _state -> -> 1 `i `uc ]
@@ -5310,9 +5326,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 317: break;
 "317
 [e $U 717  ]
-[; ;main.c: 318: case E_SET_ADV_ELO:
+[; ;main.c: 318: case E_SET_ADV_EUP_DESCRIPTION:
 "318
-[e :U 728 ]
+[e :U 729 ]
 [; ;main.c: 319: state++;
 "319
 [e ++ _state -> -> 1 `i `uc ]
@@ -5326,9 +5342,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 321: break;
 "321
 [e $U 717  ]
-[; ;main.c: 322: case E_SET_ADV_EUP_DESCRIPTION:
+[; ;main.c: 322: case E_SET_ADV_EUP:
 "322
-[e :U 729 ]
+[e :U 730 ]
 [; ;main.c: 323: state++;
 "323
 [e ++ _state -> -> 1 `i `uc ]
@@ -5342,9 +5358,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 325: break;
 "325
 [e $U 717  ]
-[; ;main.c: 326: case E_SET_ADV_EUP:
+[; ;main.c: 326: case E_SET_ADV_VLO_DESCRIPTION:
 "326
-[e :U 730 ]
+[e :U 731 ]
 [; ;main.c: 327: state++;
 "327
 [e ++ _state -> -> 1 `i `uc ]
@@ -5360,7 +5376,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 717  ]
 [; ;main.c: 330: case E_SET_ADV_VLO_DESCRIPTION:
 "330
-[e :U 731 ]
+[e :U 732 ]
 [; ;main.c: 331: state++;
 "331
 [e ++ _state -> -> 1 `i `uc ]
@@ -5374,9 +5390,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 333: break;
 "333
 [e $U 717  ]
-[; ;main.c: 334: case E_SET_ADV_VLO_DESCRIPTION:
+[; ;main.c: 334: case E_SET_ADV_VLO:
 "334
-[e :U 732 ]
+[e :U 733 ]
 [; ;main.c: 335: state++;
 "335
 [e ++ _state -> -> 1 `i `uc ]
@@ -5390,9 +5406,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 337: break;
 "337
 [e $U 717  ]
-[; ;main.c: 338: case E_SET_ADV_VLO:
+[; ;main.c: 338: case E_SET_ADV_VUP_DESCRIPTION:
 "338
-[e :U 733 ]
+[e :U 734 ]
 [; ;main.c: 339: state++;
 "339
 [e ++ _state -> -> 1 `i `uc ]
@@ -5406,45 +5422,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 341: break;
 "341
 [e $U 717  ]
-[; ;main.c: 342: case E_SET_ADV_VUP_DESCRIPTION:
+[; ;main.c: 342: case E_SET_ADV_VUP:
 "342
-[e :U 734 ]
-[; ;main.c: 343: state++;
-"343
-[e ++ _state -> -> 1 `i `uc ]
-[; ;main.c: 344: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
-"344
-{
-[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
-[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
-[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
-}
-[; ;main.c: 345: break;
-"345
-[e $U 717  ]
-[; ;main.c: 346: case E_SET_ADV_VUP:
-"346
 [e :U 735 ]
-[; ;main.c: 347: state=E_IDLE;
-"347
+[; ;main.c: 343: state=E_IDLE;
+"343
 [e = _state -> . `E4245 1 `uc ]
-[; ;main.c: 348: break;
-"348
+[; ;main.c: 344: break;
+"344
 [e $U 717  ]
-[; ;main.c: 349: default:
-"349
+[; ;main.c: 345: default:
+"345
 [e :U 736 ]
-[; ;main.c: 350: state=E_IDLE;
-"350
+[; ;main.c: 346: state=E_IDLE;
+"346
 [e = _state -> . `E4245 1 `uc ]
-[; ;main.c: 351: break;
-"351
+[; ;main.c: 347: break;
+"347
 [e $U 717  ]
-"352
+"348
 }
-[; ;main.c: 352: }
+[; ;main.c: 348: }
 [e $U 717  ]
-"281
+"277
 [e :U 718 ]
 [e [\ _state , $ -> . `E4245 9 `uc 719
  , $ -> . `E4245 10 `uc 720
@@ -5464,653 +5464,653 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> . `E4245 24 `uc 734
  , $ -> . `E4245 25 `uc 735
  736 ]
-"352
+"348
 [e :U 717 ]
-"353
+"349
 }
 [e :U 716 ]
-[; ;main.c: 353: }
-[; ;main.c: 354: }
-"354
+[; ;main.c: 349: }
+[; ;main.c: 350: }
+"350
 [e :UE 715 ]
 }
-"357
+"353
 [v _aux `uc ~T0 1 e ]
-[; ;main.c: 357: char aux;
-"364
+[; ;main.c: 353: char aux;
+"360
 [v _main `(v ~T0 1 ef ]
 {
-[; ;main.c: 363: void main(void)
-[; ;main.c: 364: {
+[; ;main.c: 359: void main(void)
+[; ;main.c: 360: {
 [e :U _main ]
 [f ]
-[; ;main.c: 369: systemInit();
-"369
+[; ;main.c: 365: systemInit();
+"365
 [e ( _systemInit ..  ]
-[; ;main.c: 370: segments.portState = 0x01;
-"370
+[; ;main.c: 366: segments.portState = 0x01;
+"366
 [e = . _segments 1 -> -> 1 `i `uc ]
-[; ;main.c: 374: { brilloMem = ee_read_byte(0); };
-"374
+[; ;main.c: 370: { brilloMem = ee_read_byte(0); };
+"370
 {
 [e = _brilloMem ( _ee_read_byte (1 -> -> 0 `i `uc ]
 }
-[; ;main.c: 375: { advModeMem = ee_read_byte(1); };
-"375
+[; ;main.c: 371: { advModeMem = ee_read_byte(1); };
+"371
 {
 [e = _advModeMem ( _ee_read_byte (1 -> -> 1 `i `uc ]
 }
-[; ;main.c: 377: { escEntMem = 0x00; escEntMem |= ee_read_byte(14) << 8; escEntMem |= ee_read_byte(14 + 1) << 0; };
-"377
+[; ;main.c: 373: { escEntMem = 0x00; escEntMem |= ee_read_byte(14) << 8; escEntMem |= ee_read_byte(14 + 1) << 0; };
+"373
 {
 [e = _escEntMem -> 0 `i ]
 [e =| _escEntMem << -> ( _ee_read_byte (1 -> -> 14 `i `uc `i -> 8 `i ]
 [e =| _escEntMem << -> ( _ee_read_byte (1 -> + -> 14 `i -> 1 `i `uc `i -> 0 `i ]
 }
-[; ;main.c: 378: { escDecMem = 0x00; escDecMem |= ee_read_byte(16) << 8; escDecMem |= ee_read_byte(16 + 1) << 0; };
-"378
+[; ;main.c: 374: { escDecMem = 0x00; escDecMem |= ee_read_byte(16) << 8; escDecMem |= ee_read_byte(16 + 1) << 0; };
+"374
 {
 [e = _escDecMem -> 0 `i ]
 [e =| _escDecMem << -> ( _ee_read_byte (1 -> -> 16 `i `uc `i -> 8 `i ]
 [e =| _escDecMem << -> ( _ee_read_byte (1 -> + -> 16 `i -> 1 `i `uc `i -> 0 `i ]
 }
-[; ;main.c: 379: escala = (float) escEntMem + (float) escDecMem / 1000.0;
-"379
+[; ;main.c: 375: escala = (float) escEntMem + (float) escDecMem / 1000.0;
+"375
 [e = _escala -> + -> -> _escEntMem `f `d / -> -> _escDecMem `f `d .1000.0 `f ]
-[; ;main.c: 381: { xLoMem = 0x00; xLoMem |= ee_read_byte(2) << 8; xLoMem |= ee_read_byte(2 + 1) << 0; };
-"381
+[; ;main.c: 377: { xLoMem = 0x00; xLoMem |= ee_read_byte(2) << 8; xLoMem |= ee_read_byte(2 + 1) << 0; };
+"377
 {
 [e = _xLoMem -> 0 `i ]
 [e =| _xLoMem << -> ( _ee_read_byte (1 -> -> 2 `i `uc `i -> 8 `i ]
 [e =| _xLoMem << -> ( _ee_read_byte (1 -> + -> 2 `i -> 1 `i `uc `i -> 0 `i ]
 }
-[; ;main.c: 382: { xUpMem = 0x00; xUpMem |= ee_read_byte(4) << 8; xUpMem |= ee_read_byte(4 + 1) << 0; };
-"382
+[; ;main.c: 378: { xUpMem = 0x00; xUpMem |= ee_read_byte(4) << 8; xUpMem |= ee_read_byte(4 + 1) << 0; };
+"378
 {
 [e = _xUpMem -> 0 `i ]
 [e =| _xUpMem << -> ( _ee_read_byte (1 -> -> 4 `i `uc `i -> 8 `i ]
 [e =| _xUpMem << -> ( _ee_read_byte (1 -> + -> 4 `i -> 1 `i `uc `i -> 0 `i ]
 }
-[; ;main.c: 383: { eLoMem = 0x00; eLoMem |= ee_read_byte(6) << 8; eLoMem |= ee_read_byte(6 + 1) << 0; };
-"383
+[; ;main.c: 379: { eLoMem = 0x00; eLoMem |= ee_read_byte(6) << 8; eLoMem |= ee_read_byte(6 + 1) << 0; };
+"379
 {
 [e = _eLoMem -> 0 `i ]
 [e =| _eLoMem << -> ( _ee_read_byte (1 -> -> 6 `i `uc `i -> 8 `i ]
 [e =| _eLoMem << -> ( _ee_read_byte (1 -> + -> 6 `i -> 1 `i `uc `i -> 0 `i ]
 }
-[; ;main.c: 384: { eUpMem = 0x00; eUpMem |= ee_read_byte(8) << 8; eUpMem |= ee_read_byte(8 + 1) << 0; };
-"384
+[; ;main.c: 380: { eUpMem = 0x00; eUpMem |= ee_read_byte(8) << 8; eUpMem |= ee_read_byte(8 + 1) << 0; };
+"380
 {
 [e = _eUpMem -> 0 `i ]
 [e =| _eUpMem << -> ( _ee_read_byte (1 -> -> 8 `i `uc `i -> 8 `i ]
 [e =| _eUpMem << -> ( _ee_read_byte (1 -> + -> 8 `i -> 1 `i `uc `i -> 0 `i ]
 }
-[; ;main.c: 385: { vLoMem = 0x00; vLoMem |= ee_read_byte(10) << 8; vLoMem |= ee_read_byte(10 + 1) << 0; };
-"385
+[; ;main.c: 381: { vLoMem = 0x00; vLoMem |= ee_read_byte(10) << 8; vLoMem |= ee_read_byte(10 + 1) << 0; };
+"381
 {
 [e = _vLoMem -> 0 `i ]
 [e =| _vLoMem << -> ( _ee_read_byte (1 -> -> 10 `i `uc `i -> 8 `i ]
 [e =| _vLoMem << -> ( _ee_read_byte (1 -> + -> 10 `i -> 1 `i `uc `i -> 0 `i ]
 }
-[; ;main.c: 386: { vUpMem = 0x00; vUpMem |= ee_read_byte(12) << 8; vUpMem |= ee_read_byte(12 + 1) << 0; };
-"386
+[; ;main.c: 382: { vUpMem = 0x00; vUpMem |= ee_read_byte(12) << 8; vUpMem |= ee_read_byte(12 + 1) << 0; };
+"382
 {
 [e = _vUpMem -> 0 `i ]
 [e =| _vUpMem << -> ( _ee_read_byte (1 -> -> 12 `i `uc `i -> 8 `i ]
 [e =| _vUpMem << -> ( _ee_read_byte (1 -> + -> 12 `i -> 1 `i `uc `i -> 0 `i ]
 }
-[; ;main.c: 388: PORTCbits.RC6 = 1;
-"388
+[; ;main.c: 384: PORTCbits.RC6 = 1;
+"384
 [e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 389: muxBuffer[0] = '8';
-"389
+[; ;main.c: 385: muxBuffer[0] = '8';
+"385
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 56 `ui `uc ]
-[; ;main.c: 390: muxBuffer[1] = '8';
-"390
+[; ;main.c: 386: muxBuffer[1] = '8';
+"386
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 56 `ui `uc ]
-[; ;main.c: 391: muxBuffer[2] = '8';
-"391
+[; ;main.c: 387: muxBuffer[2] = '8';
+"387
 [e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 56 `ui `uc ]
-[; ;main.c: 392: muxBuffer[ADV] = 'x';
-"392
+[; ;main.c: 388: muxBuffer[ADV] = 'x';
+"388
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
-[; ;main.c: 394: { t0Mem[T0_250MS].flag=0; t0Mem[T0_250MS].prescaler=t0DelayConstant[T0_250MS]; t0Mem[T0_250MS].pause=0; t0Mem[T0_250MS].loop=1; };
-"394
+[; ;main.c: 390: { t0Mem[T0_250MS].flag=0; t0Mem[T0_250MS].prescaler=t0DelayConstant[T0_250MS]; t0Mem[T0_250MS].pause=0; t0Mem[T0_250MS].loop=1; };
+"390
 {
 [e = . *U + &U _t0Mem * -> . `E4340 4 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 4 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 4 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 4 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 4 `ux -> -> # *U &U _t0Mem `ui `ux 1 -> -> 1 `i `uc ]
 }
-[; ;main.c: 397: { t0Mem[T0_TEST_DISPLAYS].flag=0; t0Mem[T0_TEST_DISPLAYS].prescaler=t0DelayConstant[T0_TEST_DISPLAYS]; t0Mem[T0_TEST_DISPLAYS].pause=0; };
-"397
+[; ;main.c: 393: { t0Mem[T0_TEST_DISPLAYS].flag=0; t0Mem[T0_TEST_DISPLAYS].prescaler=t0DelayConstant[T0_TEST_DISPLAYS]; t0Mem[T0_TEST_DISPLAYS].pause=0; };
+"393
 {
 [e = . *U + &U _t0Mem * -> . `E4340 8 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 8 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 8 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 8 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 398: { t0Mem[T0_TEST_ADVERTENCIA].flag=0; t0Mem[T0_TEST_ADVERTENCIA].prescaler=t0DelayConstant[T0_TEST_ADVERTENCIA]; t0Mem[T0_TEST_ADVERTENCIA].pause=0; };
-"398
+[; ;main.c: 394: { t0Mem[T0_TEST_ADVERTENCIA].flag=0; t0Mem[T0_TEST_ADVERTENCIA].prescaler=t0DelayConstant[T0_TEST_ADVERTENCIA]; t0Mem[T0_TEST_ADVERTENCIA].pause=0; };
+"394
 {
 [e = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 9 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 400: while(1)
-"400
+[; ;main.c: 396: while(1)
+"396
 [e :U 739 ]
-[; ;main.c: 401: {
-"401
+[; ;main.c: 397: {
+"397
 {
-[; ;main.c: 402: if((t0Mem[T0_250MS].flag?!(t0Mem[T0_250MS].flag=0):0))
-"402
+[; ;main.c: 398: if((t0Mem[T0_250MS].flag?!(t0Mem[T0_250MS].flag=0):0))
+"398
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 4 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 4 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 741  ]
-[; ;main.c: 403: {
-"403
+[; ;main.c: 399: {
+"399
 {
-[; ;main.c: 404: t0Driver(T0_LONG_PULS_UP);
-"404
+[; ;main.c: 400: t0Driver(T0_LONG_PULS_UP);
+"400
 [e ( _t0Driver (1 -> . `E4340 0 `uc ]
-[; ;main.c: 405: t0Driver(T0_LONG_PULS_DWN);
-"405
+[; ;main.c: 401: t0Driver(T0_LONG_PULS_DWN);
+"401
 [e ( _t0Driver (1 -> . `E4340 1 `uc ]
-[; ;main.c: 406: t0Driver(T0_TEST_DISPLAYS);
-"406
+[; ;main.c: 402: t0Driver(T0_TEST_DISPLAYS);
+"402
 [e ( _t0Driver (1 -> . `E4340 8 `uc ]
-[; ;main.c: 407: t0Driver(T0_TEST_ADVERTENCIA);
-"407
+[; ;main.c: 403: t0Driver(T0_TEST_ADVERTENCIA);
+"403
 [e ( _t0Driver (1 -> . `E4340 9 `uc ]
-[; ;main.c: 408: t0Driver(T0_SHOW_MENU);
-"408
+[; ;main.c: 404: t0Driver(T0_SHOW_MENU);
+"404
 [e ( _t0Driver (1 -> . `E4340 3 `uc ]
-[; ;main.c: 409: t0Driver(T0_SHOW_SETTING);
-"409
+[; ;main.c: 405: t0Driver(T0_SHOW_SETTING);
+"405
 [e ( _t0Driver (1 -> . `E4340 5 `uc ]
-[; ;main.c: 410: t0Driver(T0_SHOW_SETTING_OFF);
-"410
+[; ;main.c: 406: t0Driver(T0_SHOW_SETTING_OFF);
+"406
 [e ( _t0Driver (1 -> . `E4340 7 `uc ]
-[; ;main.c: 411: t0Driver(T0_SHOW_SETTING_ON);
-"411
+[; ;main.c: 407: t0Driver(T0_SHOW_SETTING_ON);
+"407
 [e ( _t0Driver (1 -> . `E4340 6 `uc ]
-[; ;main.c: 412: t0Driver(T0_SHOW_DESCRIPTION);
-"412
+[; ;main.c: 408: t0Driver(T0_SHOW_DESCRIPTION);
+"408
 [e ( _t0Driver (1 -> . `E4340 10 `uc ]
-[; ;main.c: 413: t0Driver(T0_SPACE);
-"413
+[; ;main.c: 409: t0Driver(T0_SPACE);
+"409
 [e ( _t0Driver (1 -> . `E4340 11 `uc ]
-"414
+"410
 }
 [e :U 741 ]
-[; ;main.c: 414: }
-[; ;main.c: 416: if((t0Mem[T0_SHOW_MENU].flag?!(t0Mem[T0_SHOW_MENU].flag=0):0)) state=E_IDLE;
-"416
+[; ;main.c: 410: }
+[; ;main.c: 412: if((t0Mem[T0_SHOW_MENU].flag?!(t0Mem[T0_SHOW_MENU].flag=0):0)) state=E_IDLE;
+"412
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 742  ]
 [e = _state -> . `E4245 1 `uc ]
 [e :U 742 ]
-[; ;main.c: 419: actionsTimeoutShowSetting();
-"419
+[; ;main.c: 415: actionsTimeoutShowSetting();
+"415
 [e ( _actionsTimeoutShowSetting ..  ]
-[; ;main.c: 421: if((t0Mem[T0_LONG_PULS_UP].flag?!(t0Mem[T0_LONG_PULS_UP].flag=0):0))
-"421
+[; ;main.c: 417: if((t0Mem[T0_LONG_PULS_UP].flag?!(t0Mem[T0_LONG_PULS_UP].flag=0):0))
+"417
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 0 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 0 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 743  ]
-[; ;main.c: 422: {
-"422
+[; ;main.c: 418: {
+"418
 {
-[; ;main.c: 423: { t0Mem[T0_SHOW_MENU].prescaler=0; };
-"423
+[; ;main.c: 419: { t0Mem[T0_SHOW_MENU].prescaler=0; };
+"419
 {
 [e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui ]
 }
-[; ;main.c: 424: PORTCbits.RC6 = 1;
-"424
+[; ;main.c: 420: PORTCbits.RC6 = 1;
+"420
 [e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 425: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
-"425
+[; ;main.c: 421: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
+"421
 {
 [e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 426: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
-"426
+[; ;main.c: 422: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"422
 {
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 427: { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
-"427
+[; ;main.c: 423: { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
+"423
 {
 [e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 428: enterMenu();
-"428
+[; ;main.c: 424: enterMenu();
+"424
 [e ( _enterMenu ..  ]
-[; ;main.c: 429: ignoreNextFp = 1;
-"429
+[; ;main.c: 425: ignoreNextFp = 1;
+"425
 [e = _ignoreNextFp -> -> 1 `i `uc ]
-[; ;main.c: 430: if( state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
-[; ;main.c: 431: || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
-[; ;main.c: 432: || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP
-[; ;main.c: 433: || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC)
-"433
+[; ;main.c: 426: if( state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
+[; ;main.c: 427: || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
+[; ;main.c: 428: || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP
+[; ;main.c: 429: || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC)
+"429
 [e $ ! || || || || || || || == -> _state `i -> . `E4245 15 `i == -> _state `i -> . `E4245 17 `i == -> _state `i -> . `E4245 19 `i == -> _state `i -> . `E4245 21 `i == -> _state `i -> . `E4245 23 `i == -> _state `i -> . `E4245 25 `i == -> _state `i -> . `E4245 10 `i == -> _state `i -> . `E4245 12 `i 744  ]
-[; ;main.c: 434: switch(setInc)
-"434
+[; ;main.c: 430: switch(setInc)
+"430
 [e $U 746  ]
-[; ;main.c: 435: {
-"435
+[; ;main.c: 431: {
+"431
 {
-[; ;main.c: 436: case 1: setInc = 10; break;
-"436
+[; ;main.c: 432: case 1: setInc = 10; break;
+"432
 [e :U 747 ]
 [e = _setInc -> -> 10 `i `uc ]
 [e $U 745  ]
-[; ;main.c: 437: case 10: setInc = 100; break;
-"437
+[; ;main.c: 433: case 10: setInc = 100; break;
+"433
 [e :U 748 ]
 [e = _setInc -> -> 100 `i `uc ]
 [e $U 745  ]
-[; ;main.c: 438: case 100: setInc = 1; break;
-"438
+[; ;main.c: 434: case 100: setInc = 1; break;
+"434
 [e :U 749 ]
 [e = _setInc -> -> 1 `i `uc ]
 [e $U 745  ]
-"439
+"435
 }
-[; ;main.c: 439: }
+[; ;main.c: 435: }
 [e $U 745  ]
-"434
+"430
 [e :U 746 ]
 [e [\ _setInc , $ -> -> 1 `i `uc 747
  , $ -> -> 10 `i `uc 748
  , $ -> -> 100 `i `uc 749
  745 ]
-"439
+"435
 [e :U 745 ]
 [e :U 744 ]
-"440
+"436
 }
 [e :U 743 ]
-[; ;main.c: 440: }
-[; ;main.c: 442: if((t0Mem[T0_LONG_PULS_DWN].flag?!(t0Mem[T0_LONG_PULS_DWN].flag=0):0))
-"442
+[; ;main.c: 436: }
+[; ;main.c: 438: if((t0Mem[T0_LONG_PULS_DWN].flag?!(t0Mem[T0_LONG_PULS_DWN].flag=0):0))
+"438
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 1 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 1 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 750  ]
-[; ;main.c: 443: {
-"443
+[; ;main.c: 439: {
+"439
 {
-[; ;main.c: 444: { t0Mem[T0_SHOW_MENU].prescaler=0; };
-"444
+[; ;main.c: 440: { t0Mem[T0_SHOW_MENU].prescaler=0; };
+"440
 {
 [e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui ]
 }
-[; ;main.c: 445: PORTCbits.RC6=1;
-"445
+[; ;main.c: 441: PORTCbits.RC6=1;
+"441
 [e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 446: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
-"446
+[; ;main.c: 442: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
+"442
 {
 [e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 447: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
-"447
+[; ;main.c: 443: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"443
 {
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 448: { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
-"448
+[; ;main.c: 444: { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
+"444
 {
 [e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 449: enterMenu();
-"449
+[; ;main.c: 445: enterMenu();
+"445
 [e ( _enterMenu ..  ]
-[; ;main.c: 450: ignoreNextFp=1;
-"450
+[; ;main.c: 446: ignoreNextFp=1;
+"446
 [e = _ignoreNextFp -> -> 1 `i `uc ]
-[; ;main.c: 451: if( state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
-[; ;main.c: 452: || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
-[; ;main.c: 453: || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP
-[; ;main.c: 454: || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC)
-"454
+[; ;main.c: 447: if( state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
+[; ;main.c: 448: || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
+[; ;main.c: 449: || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP
+[; ;main.c: 450: || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC)
+"450
 [e $ ! || || || || || || || == -> _state `i -> . `E4245 15 `i == -> _state `i -> . `E4245 17 `i == -> _state `i -> . `E4245 19 `i == -> _state `i -> . `E4245 21 `i == -> _state `i -> . `E4245 23 `i == -> _state `i -> . `E4245 25 `i == -> _state `i -> . `E4245 10 `i == -> _state `i -> . `E4245 12 `i 751  ]
-[; ;main.c: 455: switch(setInc)
-"455
+[; ;main.c: 451: switch(setInc)
+"451
 [e $U 753  ]
-[; ;main.c: 456: {
-"456
+[; ;main.c: 452: {
+"452
 {
-[; ;main.c: 457: case 1: setInc=100; break;
-"457
+[; ;main.c: 453: case 1: setInc=100; break;
+"453
 [e :U 754 ]
 [e = _setInc -> -> 100 `i `uc ]
 [e $U 752  ]
-[; ;main.c: 458: case 10: setInc=1; break;
-"458
+[; ;main.c: 454: case 10: setInc=1; break;
+"454
 [e :U 755 ]
 [e = _setInc -> -> 1 `i `uc ]
 [e $U 752  ]
-[; ;main.c: 459: case 100: setInc=10; break;
-"459
+[; ;main.c: 455: case 100: setInc=10; break;
+"455
 [e :U 756 ]
 [e = _setInc -> -> 10 `i `uc ]
 [e $U 752  ]
-"460
+"456
 }
-[; ;main.c: 460: }
+[; ;main.c: 456: }
 [e $U 752  ]
-"455
+"451
 [e :U 753 ]
 [e [\ _setInc , $ -> -> 1 `i `uc 754
  , $ -> -> 10 `i `uc 755
  , $ -> -> 100 `i `uc 756
  752 ]
-"460
+"456
 [e :U 752 ]
 [e :U 751 ]
-"461
+"457
 }
 [e :U 750 ]
-[; ;main.c: 461: }
-[; ;main.c: 465: if(state==E_TEST_DISPLAYS)
-"465
+[; ;main.c: 457: }
+[; ;main.c: 461: if(state==E_TEST_DISPLAYS)
+"461
 [e $ ! == -> _state `i -> . `E4245 0 `i 757  ]
-[; ;main.c: 466: {
-"466
+[; ;main.c: 462: {
+"462
 {
-[; ;main.c: 467: if((t0Mem[T0_TEST_ADVERTENCIA].flag?!(t0Mem[T0_TEST_ADVERTENCIA].flag=0):0))
-"467
+[; ;main.c: 463: if((t0Mem[T0_TEST_ADVERTENCIA].flag?!(t0Mem[T0_TEST_ADVERTENCIA].flag=0):0))
+"463
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 758  ]
-[; ;main.c: 468: {
-"468
+[; ;main.c: 464: {
+"464
 {
-[; ;main.c: 469: { t0Mem[T0_TEST_ADVERTENCIA].flag=0; t0Mem[T0_TEST_ADVERTENCIA].prescaler=t0DelayConstant[T0_TEST_ADVERTENCIA]; t0Mem[T0_TEST_ADVERTENCIA].pause=0; };
-"469
+[; ;main.c: 465: { t0Mem[T0_TEST_ADVERTENCIA].flag=0; t0Mem[T0_TEST_ADVERTENCIA].prescaler=t0DelayConstant[T0_TEST_ADVERTENCIA]; t0Mem[T0_TEST_ADVERTENCIA].pause=0; };
+"465
 {
 [e = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 9 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 470: if(muxBuffer[ADV]=='x') muxBuffer[ADV]='!';
-"470
+[; ;main.c: 466: if(muxBuffer[ADV]=='x') muxBuffer[ADV]='!';
+"466
 [e $ ! == -> *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux `ui -> 120 `ui 759  ]
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
 [e $U 760  ]
-"471
+"467
 [e :U 759 ]
-[; ;main.c: 471: else if(muxBuffer[ADV]=='!') muxBuffer[ADV]='v';
+[; ;main.c: 467: else if(muxBuffer[ADV]=='!') muxBuffer[ADV]='v';
 [e $ ! == -> *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux `ui -> 33 `ui 761  ]
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
 [e :U 761 ]
-"472
+"468
 [e :U 760 ]
 }
 [e :U 758 ]
-[; ;main.c: 472: }
-[; ;main.c: 473: if((t0Mem[T0_TEST_DISPLAYS].flag?!(t0Mem[T0_TEST_DISPLAYS].flag=0):0)) endTestDisplayActions();
-"473
+[; ;main.c: 468: }
+[; ;main.c: 469: if((t0Mem[T0_TEST_DISPLAYS].flag?!(t0Mem[T0_TEST_DISPLAYS].flag=0):0)) endTestDisplayActions();
+"469
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 8 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 8 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 762  ]
 [e ( _endTestDisplayActions ..  ]
 [e :U 762 ]
-"474
+"470
 }
-[; ;main.c: 474: }
+[; ;main.c: 470: }
 [e $U 763  ]
-"475
+"471
 [e :U 757 ]
-[; ;main.c: 475: else if(state==E_IDLE)
+[; ;main.c: 471: else if(state==E_IDLE)
 [e $ ! == -> _state `i -> . `E4245 1 `i 764  ]
-[; ;main.c: 476: {
-"476
+[; ;main.c: 472: {
+"472
 {
-[; ;main.c: 477: adcDriver();
-"477
+[; ;main.c: 473: adcDriver();
+"473
 [e ( _adcDriver ..  ]
-[; ;main.c: 478: if((t0Mem[T0_ADCSAMPLE].flag?!(t0Mem[T0_ADCSAMPLE].flag=0):0)) ((adcStruct.flgs2convert) |= 1UL << (12));
-"478
+[; ;main.c: 474: if((t0Mem[T0_ADCSAMPLE].flag?!(t0Mem[T0_ADCSAMPLE].flag=0):0)) ((adcStruct.flgs2convert) |= 1UL << (12));
+"474
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 12 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 12 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 765  ]
 [e =| . _adcStruct 3 -> << -> 1 `ul -> 12 `i `ui ]
 [e :U 765 ]
-[; ;main.c: 479: if((adcStruct.completeFlg && adcStruct.chComp==12))
-"479
+[; ;main.c: 475: if((adcStruct.completeFlg && adcStruct.chComp==12))
+"475
 [e $ ! && != -> . _adcStruct 0 `i -> -> -> 0 `i `uc `i == -> . _adcStruct 2 `i -> 12 `i 766  ]
-[; ;main.c: 480: {
-"480
+[; ;main.c: 476: {
+"476
 {
-[; ;main.c: 483: medicionFloat=iir((getConv()-21.8)/2.327);
-"483
+[; ;main.c: 479: medicionFloat=iir((getConv()-21.8)/2.327);
+"479
 [e = _medicionFloat ( _iir (1 -> / - -> ( _getConv ..  `d .21.8 .2.327 `f ]
-[; ;main.c: 484: medicionFloat=medicionFloat*escala;
-"484
+[; ;main.c: 480: medicionFloat=medicionFloat*escala;
+"480
 [e = _medicionFloat * _medicionFloat _escala ]
-[; ;main.c: 486: measurement=medicionFloat;
-"486
+[; ;main.c: 482: measurement=medicionFloat;
+"482
 [e = _measurement -> _medicionFloat `ui ]
-[; ;main.c: 490: if(measurement>999) measurement=999;
-"490
+[; ;main.c: 486: if(measurement>999) measurement=999;
+"486
 [e $ ! > _measurement -> -> 999 `i `ui 767  ]
 [e = _measurement -> -> 999 `i `ui ]
 [e :U 767 ]
-[; ;main.c: 491: uintToStr(measurement,&muxBuffer[0],3);
-"491
+[; ;main.c: 487: uintToStr(measurement,&muxBuffer[0],3);
+"487
 [e ( _uintToStr (3 , , _measurement &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
-[; ;main.c: 493: switch(advModeMem)
-"493
+[; ;main.c: 489: switch(advModeMem)
+"489
 [e $U 769  ]
-[; ;main.c: 494: {
-"494
+[; ;main.c: 490: {
+"490
 {
-[; ;main.c: 495: case ADV_MOD_OFF: muxBuffer[3]=' '; break;
-"495
+[; ;main.c: 491: case ADV_MOD_OFF: muxBuffer[3]=' '; break;
+"491
 [e :U 770 ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 [e $U 768  ]
-[; ;main.c: 496: case ADV_MOD_XEVEX_BLANK_EXTREMOS:
-"496
+[; ;main.c: 492: case ADV_MOD_XEVEX_BLANK_EXTREMOS:
+"492
 [e :U 771 ]
-[; ;main.c: 497: if(measurement<=xLoMem || measurement>=xUpMem) muxBuffer[3]='-';
-"497
+[; ;main.c: 493: if(measurement<=xLoMem || measurement>=xUpMem) muxBuffer[3]='-';
+"493
 [e $ ! || <= _measurement -> _xLoMem `ui >= _measurement -> _xUpMem `ui 772  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 45 `ui `uc ]
 [e $U 773  ]
-"498
+"494
 [e :U 772 ]
-[; ;main.c: 498: else if(measurement>xLoMem && measurement < eLoMem
-[; ;main.c: 499: || measurement>eUpMem && measurement<xUpMem) muxBuffer[3]='x';
-"499
+[; ;main.c: 494: else if(measurement>xLoMem && measurement < eLoMem
+[; ;main.c: 495: || measurement>eUpMem && measurement<xUpMem) muxBuffer[3]='x';
+"495
 [e $ ! || && > _measurement -> _xLoMem `ui < _measurement -> _eLoMem `ui && > _measurement -> _eUpMem `ui < _measurement -> _xUpMem `ui 774  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
 [e $U 775  ]
-"500
+"496
 [e :U 774 ]
-[; ;main.c: 500: else if(measurement>eLoMem && measurement < vLoMem
-[; ;main.c: 501: || measurement>vUpMem && measurement<eUpMem) muxBuffer[3]='!';
-"501
+[; ;main.c: 496: else if(measurement>eLoMem && measurement < vLoMem
+[; ;main.c: 497: || measurement>vUpMem && measurement<eUpMem) muxBuffer[3]='!';
+"497
 [e $ ! || && > _measurement -> _eLoMem `ui < _measurement -> _vLoMem `ui && > _measurement -> _vUpMem `ui < _measurement -> _eUpMem `ui 776  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
 [e $U 777  ]
-"502
+"498
 [e :U 776 ]
-[; ;main.c: 502: else if(measurement>=vLoMem && measurement<=vUpMem) muxBuffer[3]='v';
+[; ;main.c: 498: else if(measurement>=vLoMem && measurement<=vUpMem) muxBuffer[3]='v';
 [e $ ! && >= _measurement -> _vLoMem `ui <= _measurement -> _vUpMem `ui 778  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
 [e :U 778 ]
-"503
+"499
 [e :U 777 ]
 [e :U 775 ]
 [e :U 773 ]
-[; ;main.c: 503: break;
+[; ;main.c: 499: break;
 [e $U 768  ]
-[; ;main.c: 504: case ADV_MOD_XEVEX:
-"504
+[; ;main.c: 500: case ADV_MOD_XEVEX:
+"500
 [e :U 779 ]
-[; ;main.c: 505: if(measurement<=xLoMem || measurement>=xUpMem) muxBuffer[3]='x';
-"505
+[; ;main.c: 501: if(measurement<=xLoMem || measurement>=xUpMem) muxBuffer[3]='x';
+"501
 [e $ ! || <= _measurement -> _xLoMem `ui >= _measurement -> _xUpMem `ui 780  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
 [e $U 781  ]
-"506
+"502
 [e :U 780 ]
-[; ;main.c: 506: else if(measurement>xLoMem && measurement < vLoMem
-[; ;main.c: 507: || measurement>vUpMem && measurement<xUpMem) muxBuffer[3]='!';
-"507
+[; ;main.c: 502: else if(measurement>xLoMem && measurement < vLoMem
+[; ;main.c: 503: || measurement>vUpMem && measurement<xUpMem) muxBuffer[3]='!';
+"503
 [e $ ! || && > _measurement -> _xLoMem `ui < _measurement -> _vLoMem `ui && > _measurement -> _vUpMem `ui < _measurement -> _xUpMem `ui 782  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
 [e $U 783  ]
-"508
+"504
 [e :U 782 ]
-[; ;main.c: 508: else if(measurement>=vLoMem && measurement<=vUpMem) muxBuffer[3]='v';
+[; ;main.c: 504: else if(measurement>=vLoMem && measurement<=vUpMem) muxBuffer[3]='v';
 [e $ ! && >= _measurement -> _vLoMem `ui <= _measurement -> _vUpMem `ui 784  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
 [e :U 784 ]
-"509
+"505
 [e :U 783 ]
 [e :U 781 ]
-[; ;main.c: 509: break;
+[; ;main.c: 505: break;
 [e $U 768  ]
-[; ;main.c: 510: case ADV_MOD_VEXEV:
-"510
+[; ;main.c: 506: case ADV_MOD_VEXEV:
+"506
 [e :U 785 ]
-[; ;main.c: 511: if(measurement<=xLoMem || measurement>=xUpMem) muxBuffer[3]='v';
-"511
+[; ;main.c: 507: if(measurement<=xLoMem || measurement>=xUpMem) muxBuffer[3]='v';
+"507
 [e $ ! || <= _measurement -> _xLoMem `ui >= _measurement -> _xUpMem `ui 786  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
 [e $U 787  ]
-"512
+"508
 [e :U 786 ]
-[; ;main.c: 512: else if(measurement>xLoMem && measurement < vLoMem
-[; ;main.c: 513: || measurement>vUpMem && measurement<xUpMem) muxBuffer[3]='!';
-"513
+[; ;main.c: 508: else if(measurement>xLoMem && measurement < vLoMem
+[; ;main.c: 509: || measurement>vUpMem && measurement<xUpMem) muxBuffer[3]='!';
+"509
 [e $ ! || && > _measurement -> _xLoMem `ui < _measurement -> _vLoMem `ui && > _measurement -> _vUpMem `ui < _measurement -> _xUpMem `ui 788  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
 [e $U 789  ]
-"514
+"510
 [e :U 788 ]
-[; ;main.c: 514: else if(measurement>=vLoMem && measurement<=vUpMem) muxBuffer[3]='x';
+[; ;main.c: 510: else if(measurement>=vLoMem && measurement<=vUpMem) muxBuffer[3]='x';
 [e $ ! && >= _measurement -> _vLoMem `ui <= _measurement -> _vUpMem `ui 790  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
 [e :U 790 ]
-"515
+"511
 [e :U 789 ]
 [e :U 787 ]
-[; ;main.c: 515: break;
+[; ;main.c: 511: break;
 [e $U 768  ]
-[; ;main.c: 516: case ADV_MOD_XEV:
-"516
+[; ;main.c: 512: case ADV_MOD_XEV:
+"512
 [e :U 791 ]
-[; ;main.c: 517: if(measurement<=xUpMem) muxBuffer[3]='x';
-"517
+[; ;main.c: 513: if(measurement<=xUpMem) muxBuffer[3]='x';
+"513
 [e $ ! <= _measurement -> _xUpMem `ui 792  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
 [e $U 793  ]
-"518
+"514
 [e :U 792 ]
-[; ;main.c: 518: else if(measurement>xUpMem && measurement < vLoMem) muxBuffer[3]='!';
+[; ;main.c: 514: else if(measurement>xUpMem && measurement < vLoMem) muxBuffer[3]='!';
 [e $ ! && > _measurement -> _xUpMem `ui < _measurement -> _vLoMem `ui 794  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
 [e $U 795  ]
-"519
+"515
 [e :U 794 ]
-[; ;main.c: 519: else if(measurement>=vLoMem) muxBuffer[3]='v';
+[; ;main.c: 515: else if(measurement>=vLoMem) muxBuffer[3]='v';
 [e $ ! >= _measurement -> _vLoMem `ui 796  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
 [e :U 796 ]
-"520
+"516
 [e :U 795 ]
 [e :U 793 ]
-[; ;main.c: 520: break;
+[; ;main.c: 516: break;
 [e $U 768  ]
-[; ;main.c: 521: case ADV_MOD_VEX:
-"521
+[; ;main.c: 517: case ADV_MOD_VEX:
+"517
 [e :U 797 ]
-[; ;main.c: 522: if(measurement<=vUpMem) muxBuffer[3]='v';
-"522
+[; ;main.c: 518: if(measurement<=vUpMem) muxBuffer[3]='v';
+"518
 [e $ ! <= _measurement -> _vUpMem `ui 798  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
 [e $U 799  ]
-"523
+"519
 [e :U 798 ]
-[; ;main.c: 523: else if(measurement>vUpMem && measurement < vLoMem) muxBuffer[3]='!';
+[; ;main.c: 519: else if(measurement>vUpMem && measurement < vLoMem) muxBuffer[3]='!';
 [e $ ! && > _measurement -> _vUpMem `ui < _measurement -> _vLoMem `ui 800  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
 [e $U 801  ]
-"524
+"520
 [e :U 800 ]
-[; ;main.c: 524: else if(measurement>=vLoMem) muxBuffer[3]='x';
+[; ;main.c: 520: else if(measurement>=vLoMem) muxBuffer[3]='x';
 [e $ ! >= _measurement -> _vLoMem `ui 802  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
 [e :U 802 ]
-"525
+"521
 [e :U 801 ]
 [e :U 799 ]
-[; ;main.c: 525: break;
+[; ;main.c: 521: break;
 [e $U 768  ]
-[; ;main.c: 526: case ADV_MOD_EXEVE:
-"526
+[; ;main.c: 522: case ADV_MOD_EXEVE:
+"522
 [e :U 803 ]
-[; ;main.c: 527: if(measurement<=xUpMem && measurement>=eLoMem) muxBuffer[3]='x';
-"527
+[; ;main.c: 523: if(measurement<=xUpMem && measurement>=eLoMem) muxBuffer[3]='x';
+"523
 [e $ ! && <= _measurement -> _xUpMem `ui >= _measurement -> _eLoMem `ui 804  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
 [e $U 805  ]
-"528
+"524
 [e :U 804 ]
-[; ;main.c: 528: else if(measurement>xUpMem && measurement < vLoMem
-[; ;main.c: 529: || measurement<eLoMem
-[; ;main.c: 530: || measurement>eUpMem) muxBuffer[3]='!';
-"530
+[; ;main.c: 524: else if(measurement>xUpMem && measurement < vLoMem
+[; ;main.c: 525: || measurement<eLoMem
+[; ;main.c: 526: || measurement>eUpMem) muxBuffer[3]='!';
+"526
 [e $ ! || || && > _measurement -> _xUpMem `ui < _measurement -> _vLoMem `ui < _measurement -> _eLoMem `ui > _measurement -> _eUpMem `ui 806  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
 [e $U 807  ]
-"531
+"527
 [e :U 806 ]
-[; ;main.c: 531: else if(measurement>=vLoMem && measurement<=eUpMem) muxBuffer[3]='v';
+[; ;main.c: 527: else if(measurement>=vLoMem && measurement<=eUpMem) muxBuffer[3]='v';
 [e $ ! && >= _measurement -> _vLoMem `ui <= _measurement -> _eUpMem `ui 808  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
 [e :U 808 ]
-"532
+"528
 [e :U 807 ]
 [e :U 805 ]
-[; ;main.c: 532: break;
+[; ;main.c: 528: break;
 [e $U 768  ]
-[; ;main.c: 533: case ADV_MOD_EVEXE:
-"533
+[; ;main.c: 529: case ADV_MOD_EVEXE:
+"529
 [e :U 809 ]
-[; ;main.c: 534: if(measurement<=vUpMem && measurement>=eLoMem) muxBuffer[3]='v';
-"534
+[; ;main.c: 530: if(measurement<=vUpMem && measurement>=eLoMem) muxBuffer[3]='v';
+"530
 [e $ ! && <= _measurement -> _vUpMem `ui >= _measurement -> _eLoMem `ui 810  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
 [e $U 811  ]
-"535
+"531
 [e :U 810 ]
-[; ;main.c: 535: else if(measurement>vUpMem && measurement < xLoMem
-[; ;main.c: 536: || measurement<eLoMem
-[; ;main.c: 537: || measurement>eUpMem) muxBuffer[3]='!';
-"537
+[; ;main.c: 531: else if(measurement>vUpMem && measurement < xLoMem
+[; ;main.c: 532: || measurement<eLoMem
+[; ;main.c: 533: || measurement>eUpMem) muxBuffer[3]='!';
+"533
 [e $ ! || || && > _measurement -> _vUpMem `ui < _measurement -> _xLoMem `ui < _measurement -> _eLoMem `ui > _measurement -> _eUpMem `ui 812  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
 [e $U 813  ]
-"538
+"534
 [e :U 812 ]
-[; ;main.c: 538: else if(measurement>=xLoMem && measurement<=eUpMem) muxBuffer[3]='x';
+[; ;main.c: 534: else if(measurement>=xLoMem && measurement<=eUpMem) muxBuffer[3]='x';
 [e $ ! && >= _measurement -> _xLoMem `ui <= _measurement -> _eUpMem `ui 814  ]
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
 [e :U 814 ]
-"539
+"535
 [e :U 813 ]
 [e :U 811 ]
 }
-[; ;main.c: 539: }
+[; ;main.c: 535: }
 [e $U 768  ]
-"493
+"489
 [e :U 769 ]
 [e [\ _advModeMem , $ -> . `E4235 0 `uc 770
  , $ -> . `E4235 1 `uc 771
@@ -6121,163 +6121,163 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> . `E4235 6 `uc 803
  , $ -> . `E4235 7 `uc 809
  768 ]
-"539
+"535
 [e :U 768 ]
-"540
+"536
 }
 [e :U 766 ]
-"541
+"537
 }
-[; ;main.c: 540: }
-[; ;main.c: 541: }
+[; ;main.c: 536: }
+[; ;main.c: 537: }
 [e $U 815  ]
-"542
+"538
 [e :U 764 ]
-[; ;main.c: 542: else if(state==E_MENU_BRILLO)
+[; ;main.c: 538: else if(state==E_MENU_BRILLO)
 [e $ ! == -> _state `i -> . `E4245 2 `i 816  ]
-[; ;main.c: 543: {
-"543
+[; ;main.c: 539: {
+"539
 {
-[; ;main.c: 544: muxBuffer[0]='b';
-"544
+[; ;main.c: 540: muxBuffer[0]='b';
+"540
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 98 `ui `uc ]
-[; ;main.c: 545: muxBuffer[1]='r';
-"545
+[; ;main.c: 541: muxBuffer[1]='r';
+"541
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 114 `ui `uc ]
-[; ;main.c: 546: muxBuffer[2]='i';
-"546
+[; ;main.c: 542: muxBuffer[2]='i';
+"542
 [e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 105 `ui `uc ]
-[; ;main.c: 547: muxBuffer[ADV]=' ';
-"547
+[; ;main.c: 543: muxBuffer[ADV]=' ';
+"543
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-"548
+"544
 }
-[; ;main.c: 548: }
+[; ;main.c: 544: }
 [e $U 817  ]
-"549
+"545
 [e :U 816 ]
-[; ;main.c: 549: else if(state==E_MENU_ADV_MODE)
+[; ;main.c: 545: else if(state==E_MENU_ADV_MODE)
 [e $ ! == -> _state `i -> . `E4245 3 `i 818  ]
-[; ;main.c: 550: {
-"550
+[; ;main.c: 546: {
+"546
 {
-[; ;main.c: 551: muxBuffer[0]='n';
-"551
+[; ;main.c: 547: muxBuffer[0]='n';
+"547
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 110 `ui `uc ]
-[; ;main.c: 552: muxBuffer[1]='o';
-"552
+[; ;main.c: 548: muxBuffer[1]='o';
+"548
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 111 `ui `uc ]
-[; ;main.c: 553: muxBuffer[2]='d';
-"553
+[; ;main.c: 549: muxBuffer[2]='d';
+"549
 [e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 100 `ui `uc ]
-[; ;main.c: 554: muxBuffer[ADV]=' ';
-"554
+[; ;main.c: 550: muxBuffer[ADV]=' ';
+"550
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-"555
+"551
 }
-[; ;main.c: 555: }
+[; ;main.c: 551: }
 [e $U 819  ]
-"556
+"552
 [e :U 818 ]
-[; ;main.c: 556: else if(state==E_MENU_LIMITS)
+[; ;main.c: 552: else if(state==E_MENU_LIMITS)
 [e $ ! == -> _state `i -> . `E4245 4 `i 820  ]
-[; ;main.c: 557: {
-"557
+[; ;main.c: 553: {
+"553
 {
-[; ;main.c: 558: muxBuffer[0]='L';
-"558
+[; ;main.c: 554: muxBuffer[0]='L';
+"554
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 76 `ui `uc ]
-[; ;main.c: 559: muxBuffer[1]='i';
-"559
+[; ;main.c: 555: muxBuffer[1]='i';
+"555
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 105 `ui `uc ]
-[; ;main.c: 560: muxBuffer[2]='n';
-"560
+[; ;main.c: 556: muxBuffer[2]='n';
+"556
 [e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 110 `ui `uc ]
-[; ;main.c: 561: muxBuffer[ADV]=' ';
-"561
+[; ;main.c: 557: muxBuffer[ADV]=' ';
+"557
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-"562
+"558
 }
-[; ;main.c: 562: }
+[; ;main.c: 558: }
 [e $U 821  ]
-"563
+"559
 [e :U 820 ]
-[; ;main.c: 563: else if(state==E_MENU_ESCALA)
+[; ;main.c: 559: else if(state==E_MENU_ESCALA)
 [e $ ! == -> _state `i -> . `E4245 5 `i 822  ]
-[; ;main.c: 564: {
-"564
+[; ;main.c: 560: {
+"560
 {
-[; ;main.c: 565: muxBuffer[0]='E';
-"565
+[; ;main.c: 561: muxBuffer[0]='E';
+"561
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 69 `ui `uc ]
-[; ;main.c: 566: muxBuffer[1]='S';
-"566
+[; ;main.c: 562: muxBuffer[1]='S';
+"562
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 83 `ui `uc ]
-[; ;main.c: 567: muxBuffer[2]='c';
-"567
+[; ;main.c: 563: muxBuffer[2]='c';
+"563
 [e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 99 `ui `uc ]
-[; ;main.c: 568: muxBuffer[ADV]=' ';
-"568
+[; ;main.c: 564: muxBuffer[ADV]=' ';
+"564
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-"569
+"565
 }
-[; ;main.c: 569: }
+[; ;main.c: 565: }
 [e $U 823  ]
-"570
+"566
 [e :U 822 ]
-[; ;main.c: 570: else if(state==E_MENU_USER_CAL)
+[; ;main.c: 566: else if(state==E_MENU_USER_CAL)
 [e $ ! == -> _state `i -> . `E4245 6 `i 824  ]
-[; ;main.c: 571: {
-"571
+[; ;main.c: 567: {
+"567
 {
-[; ;main.c: 572: muxBuffer[0]='u';
-"572
+[; ;main.c: 568: muxBuffer[0]='u';
+"568
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 117 `ui `uc ]
-[; ;main.c: 573: muxBuffer[1]='C';
-"573
+[; ;main.c: 569: muxBuffer[1]='C';
+"569
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 67 `ui `uc ]
-[; ;main.c: 574: muxBuffer[2]='A';
-"574
+[; ;main.c: 570: muxBuffer[2]='A';
+"570
 [e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 65 `ui `uc ]
-[; ;main.c: 575: muxBuffer[ADV]=' ';
-"575
+[; ;main.c: 571: muxBuffer[ADV]=' ';
+"571
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-"576
+"572
 }
-[; ;main.c: 576: }
+[; ;main.c: 572: }
 [e $U 825  ]
-"577
+"573
 [e :U 824 ]
-[; ;main.c: 577: else if(state==E_MENU_FACTORY_CAL)
+[; ;main.c: 573: else if(state==E_MENU_FACTORY_CAL)
 [e $ ! == -> _state `i -> . `E4245 7 `i 826  ]
-[; ;main.c: 578: {
-"578
+[; ;main.c: 574: {
+"574
 {
-[; ;main.c: 579: muxBuffer[0]='F';
-"579
+[; ;main.c: 575: muxBuffer[0]='F';
+"575
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 70 `ui `uc ]
-[; ;main.c: 580: muxBuffer[1]='C';
-"580
+[; ;main.c: 576: muxBuffer[1]='C';
+"576
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 67 `ui `uc ]
-[; ;main.c: 581: muxBuffer[2]='A';
-"581
+[; ;main.c: 577: muxBuffer[2]='A';
+"577
 [e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 65 `ui `uc ]
-[; ;main.c: 582: muxBuffer[ADV]=' ';
-"582
+[; ;main.c: 578: muxBuffer[ADV]=' ';
+"578
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-"583
+"579
 }
-[; ;main.c: 583: }
+[; ;main.c: 579: }
 [e $U 827  ]
-"584
+"580
 [e :U 826 ]
-[; ;main.c: 584: else if(state==E_SET_BRILLO)
+[; ;main.c: 580: else if(state==E_SET_BRILLO)
 [e $ ! == -> _state `i -> . `E4245 8 `i 828  ]
-[; ;main.c: 585: {
-"585
+[; ;main.c: 581: {
+"581
 {
-[; ;main.c: 586: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
-"586
+[; ;main.c: 582: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"582
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 829  ]
 {
 {
@@ -6287,8 +6287,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 829 ]
-[; ;main.c: 587: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
-"587
+[; ;main.c: 583: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"583
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 830  ]
 {
 {
@@ -6298,30 +6298,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 830 ]
-[; ;main.c: 589: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
-"589
+[; ;main.c: 585: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"585
 [e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 831  ]
-[; ;main.c: 590: {
-"590
+[; ;main.c: 586: {
+"586
 {
-[; ;main.c: 591: muxBuffer[ADV]=' ';
-"591
+[; ;main.c: 587: muxBuffer[ADV]=' ';
+"587
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-[; ;main.c: 592: display=brilloMem;
-"592
+[; ;main.c: 588: display=brilloMem;
+"588
 [e = _display -> _brilloMem `ui ]
-[; ;main.c: 593: uintToStr(display,&muxBuffer[2],1);
-"593
+[; ;main.c: 589: uintToStr(display,&muxBuffer[2],1);
+"589
 [e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 1 `i `uc ]
-"594
+"590
 }
-[; ;main.c: 594: }
+[; ;main.c: 590: }
 [e $U 832  ]
-"595
+"591
 [e :U 831 ]
-[; ;main.c: 595: else
-[; ;main.c: 596: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
-"596
+[; ;main.c: 591: else
+[; ;main.c: 592: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"592
 {
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
@@ -6329,19 +6329,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 }
 [e :U 832 ]
-"597
+"593
 }
-[; ;main.c: 597: }
+[; ;main.c: 593: }
 [e $U 833  ]
-"598
+"594
 [e :U 828 ]
-[; ;main.c: 598: else if(state==E_SET_ADV_MODE)
+[; ;main.c: 594: else if(state==E_SET_ADV_MODE)
 [e $ ! == -> _state `i -> . `E4245 13 `i 834  ]
-[; ;main.c: 599: {
-"599
+[; ;main.c: 595: {
+"595
 {
-[; ;main.c: 600: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
-"600
+[; ;main.c: 596: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"596
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 835  ]
 {
 {
@@ -6351,8 +6351,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 835 ]
-[; ;main.c: 601: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
-"601
+[; ;main.c: 597: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"597
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 836  ]
 {
 {
@@ -6362,30 +6362,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 836 ]
-[; ;main.c: 603: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
-"603
+[; ;main.c: 599: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"599
 [e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 837  ]
-[; ;main.c: 604: {
-"604
+[; ;main.c: 600: {
+"600
 {
-[; ;main.c: 605: muxBuffer[ADV]=' ';
-"605
+[; ;main.c: 601: muxBuffer[ADV]=' ';
+"601
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-[; ;main.c: 606: display=advModeMem;
-"606
+[; ;main.c: 602: display=advModeMem;
+"602
 [e = _display -> _advModeMem `ui ]
-[; ;main.c: 607: uintToStr(display,&muxBuffer[2],1);
-"607
+[; ;main.c: 603: uintToStr(display,&muxBuffer[2],1);
+"603
 [e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 1 `i `uc ]
-"608
+"604
 }
-[; ;main.c: 608: }
+[; ;main.c: 604: }
 [e $U 838  ]
-"609
+"605
 [e :U 837 ]
-[; ;main.c: 609: else
-[; ;main.c: 610: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
-"610
+[; ;main.c: 605: else
+[; ;main.c: 606: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"606
 {
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
@@ -6393,42 +6393,42 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 }
 [e :U 838 ]
-"611
+"607
 }
-[; ;main.c: 611: }
+[; ;main.c: 607: }
 [e $U 839  ]
-"612
+"608
 [e :U 834 ]
-[; ;main.c: 612: else if(state==E_SET_ESCALA_ENT_DESCRIPTION)
+[; ;main.c: 608: else if(state==E_SET_ESCALA_ENT_DESCRIPTION)
 [e $ ! == -> _state `i -> . `E4245 9 `i 840  ]
-[; ;main.c: 613: {
-"613
+[; ;main.c: 609: {
+"609
 {
-[; ;main.c: 614: muxBuffer[0]='E';
-"614
+[; ;main.c: 610: muxBuffer[0]='E';
+"610
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 69 `ui `uc ]
-[; ;main.c: 615: muxBuffer[1]='n';
-"615
+[; ;main.c: 611: muxBuffer[1]='n';
+"611
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 110 `ui `uc ]
-[; ;main.c: 616: muxBuffer[2]='t';
-"616
+[; ;main.c: 612: muxBuffer[2]='t';
+"612
 [e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 116 `ui `uc ]
-[; ;main.c: 617: muxBuffer[ADV]=' ' ;
-"617
+[; ;main.c: 613: muxBuffer[ADV]=' ' ;
+"613
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-"618
+"614
 }
-[; ;main.c: 618: }
+[; ;main.c: 614: }
 [e $U 841  ]
-"619
+"615
 [e :U 840 ]
-[; ;main.c: 619: else if(state==E_SET_ESCALA_ENT)
+[; ;main.c: 615: else if(state==E_SET_ESCALA_ENT)
 [e $ ! == -> _state `i -> . `E4245 10 `i 842  ]
-[; ;main.c: 620: {
-"620
+[; ;main.c: 616: {
+"616
 {
-[; ;main.c: 621: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
-"621
+[; ;main.c: 617: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"617
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 843  ]
 {
 {
@@ -6438,8 +6438,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 843 ]
-[; ;main.c: 622: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
-"622
+[; ;main.c: 618: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"618
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 844  ]
 {
 {
@@ -6449,27 +6449,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 844 ]
-[; ;main.c: 624: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
-"624
+[; ;main.c: 620: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"620
 [e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 845  ]
-[; ;main.c: 625: {
-"625
+[; ;main.c: 621: {
+"621
 {
-[; ;main.c: 626: display=escEntMem;
-"626
+[; ;main.c: 622: display=escEntMem;
+"622
 [e = _display -> _escEntMem `ui ]
-[; ;main.c: 627: uintToStr(display,&muxBuffer[0],3);
-"627
+[; ;main.c: 623: uintToStr(display,&muxBuffer[0],3);
+"623
 [e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
-"628
+"624
 }
-[; ;main.c: 628: }
+[; ;main.c: 624: }
 [e $U 846  ]
-"629
+"625
 [e :U 845 ]
-[; ;main.c: 629: else
-[; ;main.c: 630: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
-"630
+[; ;main.c: 625: else
+[; ;main.c: 626: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"626
 {
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
@@ -6477,42 +6477,42 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 }
 [e :U 846 ]
-"631
+"627
 }
-[; ;main.c: 631: }
+[; ;main.c: 627: }
 [e $U 847  ]
-"632
+"628
 [e :U 842 ]
-[; ;main.c: 632: else if(state==E_SET_ESCALA_DEC_DESCRIPTION)
+[; ;main.c: 628: else if(state==E_SET_ESCALA_DEC_DESCRIPTION)
 [e $ ! == -> _state `i -> . `E4245 11 `i 848  ]
-[; ;main.c: 633: {
-"633
+[; ;main.c: 629: {
+"629
 {
-[; ;main.c: 634: muxBuffer[0]='d';
-"634
+[; ;main.c: 630: muxBuffer[0]='d';
+"630
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 100 `ui `uc ]
-[; ;main.c: 635: muxBuffer[1]='E';
-"635
+[; ;main.c: 631: muxBuffer[1]='E';
+"631
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 69 `ui `uc ]
-[; ;main.c: 636: muxBuffer[2]='c';
-"636
+[; ;main.c: 632: muxBuffer[2]='c';
+"632
 [e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 99 `ui `uc ]
-[; ;main.c: 637: muxBuffer[ADV]=' ';
-"637
+[; ;main.c: 633: muxBuffer[ADV]=' ';
+"633
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-"638
+"634
 }
-[; ;main.c: 638: }
+[; ;main.c: 634: }
 [e $U 849  ]
-"639
+"635
 [e :U 848 ]
-[; ;main.c: 639: else if(state==E_SET_ESCALA_DEC)
+[; ;main.c: 635: else if(state==E_SET_ESCALA_DEC)
 [e $ ! == -> _state `i -> . `E4245 12 `i 850  ]
-[; ;main.c: 640: {
-"640
+[; ;main.c: 636: {
+"636
 {
-[; ;main.c: 641: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
-"641
+[; ;main.c: 637: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"637
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 851  ]
 {
 {
@@ -6522,8 +6522,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 851 ]
-[; ;main.c: 642: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
-"642
+[; ;main.c: 638: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"638
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 852  ]
 {
 {
@@ -6533,27 +6533,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 852 ]
-[; ;main.c: 644: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
-"644
+[; ;main.c: 640: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"640
 [e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 853  ]
-[; ;main.c: 645: {
-"645
+[; ;main.c: 641: {
+"641
 {
-[; ;main.c: 646: display=escDecMem;
-"646
+[; ;main.c: 642: display=escDecMem;
+"642
 [e = _display -> _escDecMem `ui ]
-[; ;main.c: 647: uintToStr(display,&muxBuffer[0],3);
-"647
+[; ;main.c: 643: uintToStr(display,&muxBuffer[0],3);
+"643
 [e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
-"648
+"644
 }
-[; ;main.c: 648: }
+[; ;main.c: 644: }
 [e $U 854  ]
-"649
+"645
 [e :U 853 ]
-[; ;main.c: 649: else
-[; ;main.c: 650: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
-"650
+[; ;main.c: 645: else
+[; ;main.c: 646: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"646
 {
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
@@ -6561,157 +6561,157 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 }
 [e :U 854 ]
-"651
+"647
 }
-[; ;main.c: 651: }
+[; ;main.c: 647: }
 [e $U 855  ]
-"652
+"648
 [e :U 850 ]
-[; ;main.c: 652: else if(state==E_SET_ADV_XLO_DESCRIPTION)
+[; ;main.c: 648: else if(state==E_SET_ADV_XLO_DESCRIPTION)
 [e $ ! == -> _state `i -> . `E4245 14 `i 856  ]
-[; ;main.c: 653: {
+[; ;main.c: 649: {
+"649
+{
+[; ;main.c: 650: muxBuffer[0]=' ';
+"650
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[; ;main.c: 651: muxBuffer[1]='L';
+"651
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 76 `ui `uc ]
+[; ;main.c: 652: muxBuffer[2]='o';
+"652
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 111 `ui `uc ]
+[; ;main.c: 653: muxBuffer[ADV]='x';
 "653
-{
-[; ;main.c: 654: muxBuffer[0]=' ';
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
 "654
-[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-[; ;main.c: 655: muxBuffer[1]='L';
-"655
-[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 76 `ui `uc ]
-[; ;main.c: 656: muxBuffer[2]='o';
-"656
-[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 111 `ui `uc ]
-[; ;main.c: 657: muxBuffer[ADV]='x';
-"657
-[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
-"658
 }
-[; ;main.c: 658: }
+[; ;main.c: 654: }
 [e $U 857  ]
-"659
+"655
 [e :U 856 ]
-[; ;main.c: 659: else if(state==E_SET_ADV_XUP_DESCRIPTION)
+[; ;main.c: 655: else if(state==E_SET_ADV_XUP_DESCRIPTION)
 [e $ ! == -> _state `i -> . `E4245 16 `i 858  ]
-[; ;main.c: 660: {
+[; ;main.c: 656: {
+"656
+{
+[; ;main.c: 657: muxBuffer[0]=' ';
+"657
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[; ;main.c: 658: muxBuffer[1]='H';
+"658
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 72 `ui `uc ]
+[; ;main.c: 659: muxBuffer[2]='i';
+"659
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 105 `ui `uc ]
+[; ;main.c: 660: muxBuffer[ADV]='x';
 "660
-{
-[; ;main.c: 661: muxBuffer[0]=' ';
-"661
-[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-[; ;main.c: 662: muxBuffer[1]='H';
-"662
-[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 72 `ui `uc ]
-[; ;main.c: 663: muxBuffer[2]='i';
-"663
-[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 105 `ui `uc ]
-[; ;main.c: 664: muxBuffer[ADV]='x';
-"664
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
-"665
+"661
 }
-[; ;main.c: 665: }
+[; ;main.c: 661: }
 [e $U 859  ]
-"666
+"662
 [e :U 858 ]
-[; ;main.c: 666: else if(state==E_SET_ADV_ELO_DESCRIPTION)
+[; ;main.c: 662: else if(state==E_SET_ADV_ELO_DESCRIPTION)
 [e $ ! == -> _state `i -> . `E4245 18 `i 860  ]
-[; ;main.c: 667: {
+[; ;main.c: 663: {
+"663
+{
+[; ;main.c: 664: muxBuffer[0]=' ';
+"664
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[; ;main.c: 665: muxBuffer[1]='L';
+"665
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 76 `ui `uc ]
+[; ;main.c: 666: muxBuffer[2]='o';
+"666
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 111 `ui `uc ]
+[; ;main.c: 667: muxBuffer[ADV]='!';
 "667
-{
-[; ;main.c: 668: muxBuffer[0]=' ';
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
 "668
-[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-[; ;main.c: 669: muxBuffer[1]='L';
-"669
-[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 76 `ui `uc ]
-[; ;main.c: 670: muxBuffer[2]='o';
-"670
-[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 111 `ui `uc ]
-[; ;main.c: 671: muxBuffer[ADV]='!';
-"671
-[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
-"672
 }
-[; ;main.c: 672: }
+[; ;main.c: 668: }
 [e $U 861  ]
-"673
+"669
 [e :U 860 ]
-[; ;main.c: 673: else if(state==E_SET_ADV_EUP_DESCRIPTION)
+[; ;main.c: 669: else if(state==E_SET_ADV_EUP_DESCRIPTION)
 [e $ ! == -> _state `i -> . `E4245 20 `i 862  ]
-[; ;main.c: 674: {
+[; ;main.c: 670: {
+"670
+{
+[; ;main.c: 671: muxBuffer[0]=' ';
+"671
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[; ;main.c: 672: muxBuffer[1]='H';
+"672
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 72 `ui `uc ]
+[; ;main.c: 673: muxBuffer[2]='i';
+"673
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 105 `ui `uc ]
+[; ;main.c: 674: muxBuffer[ADV]='!';
 "674
-{
-[; ;main.c: 675: muxBuffer[0]=' ';
-"675
-[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-[; ;main.c: 676: muxBuffer[1]='H';
-"676
-[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 72 `ui `uc ]
-[; ;main.c: 677: muxBuffer[2]='i';
-"677
-[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 105 `ui `uc ]
-[; ;main.c: 678: muxBuffer[ADV]='!';
-"678
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
-"679
+"675
 }
-[; ;main.c: 679: }
+[; ;main.c: 675: }
 [e $U 863  ]
-"680
+"676
 [e :U 862 ]
-[; ;main.c: 680: else if(state==E_SET_ADV_VLO_DESCRIPTION)
+[; ;main.c: 676: else if(state==E_SET_ADV_VLO_DESCRIPTION)
 [e $ ! == -> _state `i -> . `E4245 22 `i 864  ]
-[; ;main.c: 681: {
-"681
+[; ;main.c: 677: {
+"677
 {
-[; ;main.c: 682: muxBuffer[0]=' ';
-"682
+[; ;main.c: 678: muxBuffer[0]=' ';
+"678
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-[; ;main.c: 683: muxBuffer[1]='L';
-"683
+[; ;main.c: 679: muxBuffer[1]='L';
+"679
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 76 `ui `uc ]
-[; ;main.c: 684: muxBuffer[2]='o';
-"684
+[; ;main.c: 680: muxBuffer[2]='o';
+"680
 [e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 111 `ui `uc ]
-[; ;main.c: 685: muxBuffer[ADV]='v';
-"685
+[; ;main.c: 681: muxBuffer[ADV]='v';
+"681
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
-"686
+"682
 }
-[; ;main.c: 686: }
+[; ;main.c: 682: }
 [e $U 865  ]
-"687
+"683
 [e :U 864 ]
-[; ;main.c: 687: else if(state==E_SET_ADV_VUP_DESCRIPTION)
+[; ;main.c: 683: else if(state==E_SET_ADV_VUP_DESCRIPTION)
 [e $ ! == -> _state `i -> . `E4245 24 `i 866  ]
-[; ;main.c: 688: {
-"688
+[; ;main.c: 684: {
+"684
 {
-[; ;main.c: 689: muxBuffer[0]=' ';
-"689
+[; ;main.c: 685: muxBuffer[0]=' ';
+"685
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
-[; ;main.c: 690: muxBuffer[1]='H';
-"690
+[; ;main.c: 686: muxBuffer[1]='H';
+"686
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 72 `ui `uc ]
-[; ;main.c: 691: muxBuffer[2]='i';
-"691
+[; ;main.c: 687: muxBuffer[2]='i';
+"687
 [e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 105 `ui `uc ]
-[; ;main.c: 692: muxBuffer[ADV]='v';
-"692
+[; ;main.c: 688: muxBuffer[ADV]='v';
+"688
 [e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
-"693
+"689
 }
-[; ;main.c: 693: }
+[; ;main.c: 689: }
 [e $U 867  ]
-"694
+"690
 [e :U 866 ]
-[; ;main.c: 694: else if(state==E_SET_ADV_XLO)
+[; ;main.c: 690: else if(state==E_SET_ADV_XLO)
 [e $ ! == -> _state `i -> . `E4245 15 `i 868  ]
-[; ;main.c: 695: {
-"695
+[; ;main.c: 691: {
+"691
 {
-[; ;main.c: 696: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
-"696
+[; ;main.c: 692: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"692
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 869  ]
 {
 {
@@ -6721,8 +6721,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 869 ]
-[; ;main.c: 697: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
-"697
+[; ;main.c: 693: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"693
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 870  ]
 {
 {
@@ -6732,27 +6732,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 870 ]
-[; ;main.c: 699: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
-"699
+[; ;main.c: 695: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"695
 [e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 871  ]
-[; ;main.c: 700: {
-"700
+[; ;main.c: 696: {
+"696
 {
-[; ;main.c: 701: display=xLoMem;
-"701
+[; ;main.c: 697: display=xLoMem;
+"697
 [e = _display -> _xLoMem `ui ]
-[; ;main.c: 702: uintToStr(display,&muxBuffer[0],3);
-"702
+[; ;main.c: 698: uintToStr(display,&muxBuffer[0],3);
+"698
 [e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
-"703
+"699
 }
-[; ;main.c: 703: }
+[; ;main.c: 699: }
 [e $U 872  ]
-"704
+"700
 [e :U 871 ]
-[; ;main.c: 704: else
-[; ;main.c: 705: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
-"705
+[; ;main.c: 700: else
+[; ;main.c: 701: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"701
 {
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
@@ -6760,19 +6760,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 }
 [e :U 872 ]
-"706
+"702
 }
-[; ;main.c: 706: }
+[; ;main.c: 702: }
 [e $U 873  ]
-"707
+"703
 [e :U 868 ]
-[; ;main.c: 707: else if(state==E_SET_ADV_XUP)
+[; ;main.c: 703: else if(state==E_SET_ADV_XUP)
 [e $ ! == -> _state `i -> . `E4245 17 `i 874  ]
-[; ;main.c: 708: {
-"708
+[; ;main.c: 704: {
+"704
 {
-[; ;main.c: 709: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
-"709
+[; ;main.c: 705: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"705
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 875  ]
 {
 {
@@ -6782,8 +6782,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 875 ]
-[; ;main.c: 710: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
-"710
+[; ;main.c: 706: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"706
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 876  ]
 {
 {
@@ -6793,27 +6793,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 876 ]
-[; ;main.c: 712: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
-"712
+[; ;main.c: 708: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"708
 [e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 877  ]
-[; ;main.c: 713: {
-"713
+[; ;main.c: 709: {
+"709
 {
-[; ;main.c: 714: display=xUpMem;
-"714
+[; ;main.c: 710: display=xUpMem;
+"710
 [e = _display -> _xUpMem `ui ]
-[; ;main.c: 715: uintToStr(display,&muxBuffer[0],3);
-"715
+[; ;main.c: 711: uintToStr(display,&muxBuffer[0],3);
+"711
 [e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
-"716
+"712
 }
-[; ;main.c: 716: }
+[; ;main.c: 712: }
 [e $U 878  ]
-"717
+"713
 [e :U 877 ]
-[; ;main.c: 717: else
-[; ;main.c: 718: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
-"718
+[; ;main.c: 713: else
+[; ;main.c: 714: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"714
 {
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
@@ -6821,19 +6821,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 }
 [e :U 878 ]
-"719
+"715
 }
-[; ;main.c: 719: }
+[; ;main.c: 715: }
 [e $U 879  ]
-"720
+"716
 [e :U 874 ]
-[; ;main.c: 720: else if(state==E_SET_ADV_ELO)
+[; ;main.c: 716: else if(state==E_SET_ADV_ELO)
 [e $ ! == -> _state `i -> . `E4245 19 `i 880  ]
-[; ;main.c: 721: {
-"721
+[; ;main.c: 717: {
+"717
 {
-[; ;main.c: 722: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
-"722
+[; ;main.c: 718: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"718
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 881  ]
 {
 {
@@ -6843,8 +6843,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 881 ]
-[; ;main.c: 723: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
-"723
+[; ;main.c: 719: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"719
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 882  ]
 {
 {
@@ -6854,27 +6854,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 882 ]
-[; ;main.c: 725: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
-"725
+[; ;main.c: 721: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"721
 [e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 883  ]
-[; ;main.c: 726: {
-"726
+[; ;main.c: 722: {
+"722
 {
-[; ;main.c: 727: display=eLoMem;
-"727
+[; ;main.c: 723: display=eLoMem;
+"723
 [e = _display -> _eLoMem `ui ]
-[; ;main.c: 728: uintToStr(display,&muxBuffer[0],3);
-"728
+[; ;main.c: 724: uintToStr(display,&muxBuffer[0],3);
+"724
 [e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
-"729
+"725
 }
-[; ;main.c: 729: }
+[; ;main.c: 725: }
 [e $U 884  ]
-"730
+"726
 [e :U 883 ]
-[; ;main.c: 730: else
-[; ;main.c: 731: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
-"731
+[; ;main.c: 726: else
+[; ;main.c: 727: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"727
 {
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
@@ -6882,19 +6882,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 }
 [e :U 884 ]
-"732
+"728
 }
-[; ;main.c: 732: }
+[; ;main.c: 728: }
 [e $U 885  ]
-"733
+"729
 [e :U 880 ]
-[; ;main.c: 733: else if(state==E_SET_ADV_EUP)
+[; ;main.c: 729: else if(state==E_SET_ADV_EUP)
 [e $ ! == -> _state `i -> . `E4245 21 `i 886  ]
-[; ;main.c: 734: {
-"734
+[; ;main.c: 730: {
+"730
 {
-[; ;main.c: 735: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
-"735
+[; ;main.c: 731: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"731
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 887  ]
 {
 {
@@ -6904,8 +6904,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 887 ]
-[; ;main.c: 736: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
-"736
+[; ;main.c: 732: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"732
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 888  ]
 {
 {
@@ -6915,27 +6915,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 888 ]
-[; ;main.c: 738: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
-"738
+[; ;main.c: 734: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"734
 [e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 889  ]
-[; ;main.c: 739: {
-"739
+[; ;main.c: 735: {
+"735
 {
-[; ;main.c: 740: display=eUpMem;
-"740
+[; ;main.c: 736: display=eUpMem;
+"736
 [e = _display -> _eUpMem `ui ]
-[; ;main.c: 741: uintToStr(display,&muxBuffer[0],3);
-"741
+[; ;main.c: 737: uintToStr(display,&muxBuffer[0],3);
+"737
 [e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
-"742
+"738
 }
-[; ;main.c: 742: }
+[; ;main.c: 738: }
 [e $U 890  ]
-"743
+"739
 [e :U 889 ]
-[; ;main.c: 743: else
-[; ;main.c: 744: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
-"744
+[; ;main.c: 739: else
+[; ;main.c: 740: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"740
 {
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
@@ -6943,19 +6943,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 }
 [e :U 890 ]
-"745
+"741
 }
-[; ;main.c: 745: }
+[; ;main.c: 741: }
 [e $U 891  ]
-"746
+"742
 [e :U 886 ]
-[; ;main.c: 746: else if(state==E_SET_ADV_VLO)
+[; ;main.c: 742: else if(state==E_SET_ADV_VLO)
 [e $ ! == -> _state `i -> . `E4245 23 `i 892  ]
-[; ;main.c: 747: {
-"747
+[; ;main.c: 743: {
+"743
 {
-[; ;main.c: 748: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
-"748
+[; ;main.c: 744: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"744
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 893  ]
 {
 {
@@ -6965,8 +6965,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 893 ]
-[; ;main.c: 749: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
-"749
+[; ;main.c: 745: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"745
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 894  ]
 {
 {
@@ -6976,27 +6976,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 894 ]
-[; ;main.c: 751: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
-"751
+[; ;main.c: 747: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"747
 [e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 895  ]
-[; ;main.c: 752: {
-"752
+[; ;main.c: 748: {
+"748
 {
-[; ;main.c: 753: display=vLoMem;
-"753
+[; ;main.c: 749: display=vLoMem;
+"749
 [e = _display -> _vLoMem `ui ]
-[; ;main.c: 754: uintToStr(display,&muxBuffer[0],3);
-"754
+[; ;main.c: 750: uintToStr(display,&muxBuffer[0],3);
+"750
 [e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
-"755
+"751
 }
-[; ;main.c: 755: }
+[; ;main.c: 751: }
 [e $U 896  ]
-"756
+"752
 [e :U 895 ]
-[; ;main.c: 756: else
-[; ;main.c: 757: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
-"757
+[; ;main.c: 752: else
+[; ;main.c: 753: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"753
 {
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
@@ -7004,19 +7004,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 }
 [e :U 896 ]
-"758
+"754
 }
-[; ;main.c: 758: }
+[; ;main.c: 754: }
 [e $U 897  ]
-"759
+"755
 [e :U 892 ]
-[; ;main.c: 759: else if(state==E_SET_ADV_VUP)
+[; ;main.c: 755: else if(state==E_SET_ADV_VUP)
 [e $ ! == -> _state `i -> . `E4245 25 `i 898  ]
-[; ;main.c: 760: {
-"760
+[; ;main.c: 756: {
+"756
 {
-[; ;main.c: 761: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
-"761
+[; ;main.c: 757: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"757
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 899  ]
 {
 {
@@ -7026,8 +7026,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 899 ]
-[; ;main.c: 762: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
-"762
+[; ;main.c: 758: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"758
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 900  ]
 {
 {
@@ -7037,27 +7037,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 }
 [e :U 900 ]
-[; ;main.c: 764: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
-"764
+[; ;main.c: 760: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"760
 [e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 901  ]
-[; ;main.c: 765: {
-"765
+[; ;main.c: 761: {
+"761
 {
-[; ;main.c: 766: display=vUpMem;
-"766
+[; ;main.c: 762: display=vUpMem;
+"762
 [e = _display -> _vUpMem `ui ]
-[; ;main.c: 767: uintToStr(display,&muxBuffer[0],3);
-"767
+[; ;main.c: 763: uintToStr(display,&muxBuffer[0],3);
+"763
 [e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
-"768
+"764
 }
-[; ;main.c: 768: }
+[; ;main.c: 764: }
 [e $U 902  ]
-"769
+"765
 [e :U 901 ]
-[; ;main.c: 769: else
-[; ;main.c: 770: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
-"770
+[; ;main.c: 765: else
+[; ;main.c: 766: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"766
 {
 [e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 [e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
@@ -7065,10 +7065,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
 }
 [e :U 902 ]
-"771
+"767
 }
 [e :U 898 ]
-"774
+"770
 [e :U 897 ]
 [e :U 891 ]
 [e :U 885 ]
@@ -7094,260 +7094,260 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 817 ]
 [e :U 815 ]
 [e :U 763 ]
-[; ;main.c: 771: }
-[; ;main.c: 774: if((kPinBuffer.flag && kPinBuffer.flanco==FLANCO_P && kPinBuffer.kId==UP_FP?!(kPinBuffer.flag=0):0))
+[; ;main.c: 767: }
+[; ;main.c: 770: if((kPinBuffer.flag && kPinBuffer.flanco==FLANCO_P && kPinBuffer.kId==UP_FP?!(kPinBuffer.flag=0):0))
 [e $ ! != ? && && != -> . _kPinBuffer 1 `i -> -> -> 0 `i `uc `i == -> . _kPinBuffer 2 `i -> . `E4433 1 `i == -> . _kPinBuffer 0 `i -> . `E4416 2 `i : -> ! != -> = . _kPinBuffer 1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 903  ]
-[; ;main.c: 775: {
-"775
+[; ;main.c: 771: {
+"771
 {
-[; ;main.c: 776: if(ignoreNextFp) ignoreNextFp=0;
-"776
+[; ;main.c: 772: if(ignoreNextFp) ignoreNextFp=0;
+"772
 [e $ ! != -> _ignoreNextFp `i -> -> -> 0 `i `uc `i 904  ]
 [e = _ignoreNextFp -> -> 0 `i `uc ]
 [e $U 905  ]
-"777
+"773
 [e :U 904 ]
-[; ;main.c: 777: else
-[; ;main.c: 778: {
-"778
+[; ;main.c: 773: else
+[; ;main.c: 774: {
+"774
 {
-[; ;main.c: 779: { t0Mem[T0_LONG_PULS_UP].prescaler=0; };
-"779
+[; ;main.c: 775: { t0Mem[T0_LONG_PULS_UP].prescaler=0; };
+"775
 {
 [e = . *U + &U _t0Mem * -> . `E4340 0 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui ]
 }
-[; ;main.c: 782: if(state>=E_IDLE && state<E_MENU_FACTORY_CAL)
-"782
+[; ;main.c: 778: if(state>=E_IDLE && state<E_MENU_FACTORY_CAL)
+"778
 [e $ ! && >= -> _state `i -> . `E4245 1 `i < -> _state `i -> . `E4245 7 `i 906  ]
-[; ;main.c: 783: {
+[; ;main.c: 779: {
+"779
+{
+[; ;main.c: 780: state++;
+"780
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 781: PORTCbits.RC6=1;
+"781
+[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 782: { t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+"782
+{
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 3 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 783: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
 "783
 {
-[; ;main.c: 784: state++;
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
 "784
-[e ++ _state -> -> 1 `i `uc ]
-[; ;main.c: 785: PORTCbits.RC6=1;
+}
+[; ;main.c: 784: }
+[e $U 907  ]
 "785
-[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 786: { t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+[e :U 906 ]
+[; ;main.c: 785: else if(state==E_MENU_FACTORY_CAL)
+[e $ ! == -> _state `i -> . `E4245 7 `i 908  ]
+[; ;main.c: 786: {
 "786
 {
+[; ;main.c: 787: state=E_MENU_BRILLO;
+"787
+[e = _state -> . `E4245 2 `uc ]
+[; ;main.c: 788: PORTCbits.RC6=1;
+"788
+[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 789: { t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+"789
+{
 [e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 3 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 787: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
-"787
-{
-[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
-[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
-[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
-}
-"788
-}
-[; ;main.c: 788: }
-[e $U 907  ]
-"789
-[e :U 906 ]
-[; ;main.c: 789: else if(state==E_MENU_FACTORY_CAL)
-[e $ ! == -> _state `i -> . `E4245 7 `i 908  ]
-[; ;main.c: 790: {
+[; ;main.c: 790: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
 "790
 {
-[; ;main.c: 791: state=E_MENU_BRILLO;
-"791
-[e = _state -> . `E4245 2 `uc ]
-[; ;main.c: 792: PORTCbits.RC6=1;
-"792
-[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 793: { t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
-"793
-{
-[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
-[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 3 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
-[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
-}
-[; ;main.c: 794: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
-"794
-{
 [e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-"795
+"791
 }
-[; ;main.c: 795: }
+[; ;main.c: 791: }
 [e $U 909  ]
-"796
+"792
 [e :U 908 ]
-[; ;main.c: 796: else incVar();
+[; ;main.c: 792: else incVar();
 [e ( _incVar ..  ]
 [e :U 909 ]
 [e :U 907 ]
-"797
+"793
 }
 [e :U 905 ]
-"798
+"794
 }
 [e :U 903 ]
-[; ;main.c: 797: }
-[; ;main.c: 798: }
-[; ;main.c: 801: if((kPinBuffer.flag && kPinBuffer.flanco==FLANCO_P && kPinBuffer.kId==DWN_FP?!(kPinBuffer.flag=0):0))
-"801
+[; ;main.c: 793: }
+[; ;main.c: 794: }
+[; ;main.c: 797: if((kPinBuffer.flag && kPinBuffer.flanco==FLANCO_P && kPinBuffer.kId==DWN_FP?!(kPinBuffer.flag=0):0))
+"797
 [e $ ! != ? && && != -> . _kPinBuffer 1 `i -> -> -> 0 `i `uc `i == -> . _kPinBuffer 2 `i -> . `E4433 1 `i == -> . _kPinBuffer 0 `i -> . `E4416 3 `i : -> ! != -> = . _kPinBuffer 1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 910  ]
-[; ;main.c: 802: {
-"802
+[; ;main.c: 798: {
+"798
 {
-[; ;main.c: 803: if(ignoreNextFp) ignoreNextFp=0;
-"803
+[; ;main.c: 799: if(ignoreNextFp) ignoreNextFp=0;
+"799
 [e $ ! != -> _ignoreNextFp `i -> -> -> 0 `i `uc `i 911  ]
 [e = _ignoreNextFp -> -> 0 `i `uc ]
 [e $U 912  ]
-"804
+"800
 [e :U 911 ]
-[; ;main.c: 804: else
-[; ;main.c: 805: {
-"805
+[; ;main.c: 800: else
+[; ;main.c: 801: {
+"801
 {
-[; ;main.c: 806: { t0Mem[T0_LONG_PULS_DWN].prescaler=0; };
-"806
+[; ;main.c: 802: { t0Mem[T0_LONG_PULS_DWN].prescaler=0; };
+"802
 {
 [e = . *U + &U _t0Mem * -> . `E4340 1 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui ]
 }
-[; ;main.c: 809: if(state>=E_IDLE && state<E_MENU_FACTORY_CAL)
-"809
+[; ;main.c: 805: if(state>=E_IDLE && state<E_MENU_FACTORY_CAL)
+"805
 [e $ ! && >= -> _state `i -> . `E4245 1 `i < -> _state `i -> . `E4245 7 `i 913  ]
-[; ;main.c: 810: {
+[; ;main.c: 806: {
+"806
+{
+[; ;main.c: 807: state++;
+"807
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 808: PORTCbits.RC6=1;
+"808
+[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 809: { t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+"809
+{
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 3 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 810: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
 "810
 {
-[; ;main.c: 811: state++;
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
 "811
-[e ++ _state -> -> 1 `i `uc ]
-[; ;main.c: 812: PORTCbits.RC6=1;
+}
+[; ;main.c: 811: }
+[e $U 914  ]
 "812
-[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 813: { t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+[e :U 913 ]
+[; ;main.c: 812: else if(state==E_MENU_FACTORY_CAL)
+[e $ ! == -> _state `i -> . `E4245 7 `i 915  ]
+[; ;main.c: 813: {
 "813
 {
+[; ;main.c: 814: state=E_MENU_BRILLO;
+"814
+[e = _state -> . `E4245 2 `uc ]
+[; ;main.c: 815: PORTCbits.RC6=1;
+"815
+[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 816: { t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+"816
+{
 [e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 3 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-[; ;main.c: 814: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
-"814
-{
-[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
-[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
-[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
-}
-"815
-}
-[; ;main.c: 815: }
-[e $U 914  ]
-"816
-[e :U 913 ]
-[; ;main.c: 816: else if(state==E_MENU_FACTORY_CAL)
-[e $ ! == -> _state `i -> . `E4245 7 `i 915  ]
-[; ;main.c: 817: {
+[; ;main.c: 817: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
 "817
 {
-[; ;main.c: 818: state=E_MENU_BRILLO;
-"818
-[e = _state -> . `E4245 2 `uc ]
-[; ;main.c: 819: PORTCbits.RC6=1;
-"819
-[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 820: { t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
-"820
-{
-[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
-[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 3 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
-[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
-}
-[; ;main.c: 821: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
-"821
-{
 [e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
-"822
+"818
 }
-[; ;main.c: 822: }
+[; ;main.c: 818: }
 [e $U 916  ]
-"823
+"819
 [e :U 915 ]
-[; ;main.c: 823: else decVar();
+[; ;main.c: 819: else decVar();
 [e ( _decVar ..  ]
 [e :U 916 ]
 [e :U 914 ]
-"824
+"820
 }
 [e :U 912 ]
-"825
+"821
 }
 [e :U 910 ]
-[; ;main.c: 824: }
-[; ;main.c: 825: }
-[; ;main.c: 828: if((kPinBuffer.flag && kPinBuffer.flanco==FLANCO_N && kPinBuffer.kId==UP_FN?!(kPinBuffer.flag=0):0))
-"828
+[; ;main.c: 820: }
+[; ;main.c: 821: }
+[; ;main.c: 824: if((kPinBuffer.flag && kPinBuffer.flanco==FLANCO_N && kPinBuffer.kId==UP_FN?!(kPinBuffer.flag=0):0))
+"824
 [e $ ! != ? && && != -> . _kPinBuffer 1 `i -> -> -> 0 `i `uc `i == -> . _kPinBuffer 2 `i -> . `E4433 0 `i == -> . _kPinBuffer 0 `i -> . `E4416 0 `i : -> ! != -> = . _kPinBuffer 1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 917  ]
-[; ;main.c: 829: {
-"829
+[; ;main.c: 825: {
+"825
 {
-[; ;main.c: 830: if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
-[; ;main.c: 831: || state==E_MENU_ESCALA || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC
-[; ;main.c: 832: || state==E_MENU_USER_CAL || state==E_MENU_FACTORY_CAL
-[; ;main.c: 833: || state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
-[; ;main.c: 834: || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
-[; ;main.c: 835: || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP)
-"835
+[; ;main.c: 826: if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
+[; ;main.c: 827: || state==E_MENU_ESCALA || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC
+[; ;main.c: 828: || state==E_MENU_USER_CAL || state==E_MENU_FACTORY_CAL
+[; ;main.c: 829: || state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
+[; ;main.c: 830: || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
+[; ;main.c: 831: || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP)
+"831
 [e $ ! || || || || || || || || || || || || || == -> _state `i -> . `E4245 2 `i == -> _state `i -> . `E4245 3 `i == -> _state `i -> . `E4245 4 `i == -> _state `i -> . `E4245 5 `i == -> _state `i -> . `E4245 10 `i == -> _state `i -> . `E4245 12 `i == -> _state `i -> . `E4245 6 `i == -> _state `i -> . `E4245 7 `i == -> _state `i -> . `E4245 15 `i == -> _state `i -> . `E4245 17 `i == -> _state `i -> . `E4245 19 `i == -> _state `i -> . `E4245 21 `i == -> _state `i -> . `E4245 23 `i == -> _state `i -> . `E4245 25 `i 918  ]
-[; ;main.c: 836: { t0Mem[T0_LONG_PULS_UP].flag=0; t0Mem[T0_LONG_PULS_UP].prescaler=t0DelayConstant[T0_LONG_PULS_UP]; t0Mem[T0_LONG_PULS_UP].pause=0; };
-"836
+[; ;main.c: 832: { t0Mem[T0_LONG_PULS_UP].flag=0; t0Mem[T0_LONG_PULS_UP].prescaler=t0DelayConstant[T0_LONG_PULS_UP]; t0Mem[T0_LONG_PULS_UP].pause=0; };
+"832
 {
 [e = . *U + &U _t0Mem * -> . `E4340 0 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 0 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 0 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 0 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
 [e :U 918 ]
-"837
+"833
 }
 [e :U 917 ]
-[; ;main.c: 837: }
-[; ;main.c: 840: if((kPinBuffer.flag && kPinBuffer.flanco==FLANCO_N && kPinBuffer.kId==DWN_FN?!(kPinBuffer.flag=0):0))
-"840
+[; ;main.c: 833: }
+[; ;main.c: 836: if((kPinBuffer.flag && kPinBuffer.flanco==FLANCO_N && kPinBuffer.kId==DWN_FN?!(kPinBuffer.flag=0):0))
+"836
 [e $ ! != ? && && != -> . _kPinBuffer 1 `i -> -> -> 0 `i `uc `i == -> . _kPinBuffer 2 `i -> . `E4433 0 `i == -> . _kPinBuffer 0 `i -> . `E4416 1 `i : -> ! != -> = . _kPinBuffer 1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 919  ]
-[; ;main.c: 841: {
-"841
+[; ;main.c: 837: {
+"837
 {
-[; ;main.c: 842: if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
-[; ;main.c: 843: || state==E_MENU_ESCALA || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC
-[; ;main.c: 844: || state==E_MENU_USER_CAL || state==E_MENU_FACTORY_CAL
-[; ;main.c: 845: || state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
-[; ;main.c: 846: || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
-[; ;main.c: 847: || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP)
-"847
+[; ;main.c: 838: if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
+[; ;main.c: 839: || state==E_MENU_ESCALA || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC
+[; ;main.c: 840: || state==E_MENU_USER_CAL || state==E_MENU_FACTORY_CAL
+[; ;main.c: 841: || state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
+[; ;main.c: 842: || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
+[; ;main.c: 843: || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP)
+"843
 [e $ ! || || || || || || || || || || || || || == -> _state `i -> . `E4245 2 `i == -> _state `i -> . `E4245 3 `i == -> _state `i -> . `E4245 4 `i == -> _state `i -> . `E4245 5 `i == -> _state `i -> . `E4245 10 `i == -> _state `i -> . `E4245 12 `i == -> _state `i -> . `E4245 6 `i == -> _state `i -> . `E4245 7 `i == -> _state `i -> . `E4245 15 `i == -> _state `i -> . `E4245 17 `i == -> _state `i -> . `E4245 19 `i == -> _state `i -> . `E4245 21 `i == -> _state `i -> . `E4245 23 `i == -> _state `i -> . `E4245 25 `i 920  ]
-[; ;main.c: 848: { t0Mem[T0_LONG_PULS_DWN].flag=0; t0Mem[T0_LONG_PULS_DWN].prescaler=t0DelayConstant[T0_LONG_PULS_DWN]; t0Mem[T0_LONG_PULS_DWN].pause=0; };
-"848
+[; ;main.c: 844: { t0Mem[T0_LONG_PULS_DWN].flag=0; t0Mem[T0_LONG_PULS_DWN].prescaler=t0DelayConstant[T0_LONG_PULS_DWN]; t0Mem[T0_LONG_PULS_DWN].pause=0; };
+"844
 {
 [e = . *U + &U _t0Mem * -> . `E4340 1 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
 [e = . *U + &U _t0Mem * -> . `E4340 1 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 1 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
 [e = . *U + &U _t0Mem * -> . `E4340 1 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
 }
 [e :U 920 ]
-"849
+"845
 }
 [e :U 919 ]
-"850
+"846
 }
 [e :U 738 ]
-"400
+"396
 [e $U 739  ]
 [e :U 740 ]
-[; ;main.c: 849: }
-[; ;main.c: 850: }
-[; ;main.c: 851: }
-"851
+[; ;main.c: 845: }
+[; ;main.c: 846: }
+[; ;main.c: 847: }
+"847
 [e :UE 737 ]
 }

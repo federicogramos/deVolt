@@ -92,7 +92,7 @@ CANT_BUFFER_IX 4
 FLANCO_N 0
 FLANCO_P 1
 ]
-"851 C:\fgr\16gb\0000 interior\deVolt\sw\main.c
+"847 C:\fgr\16gb\0000 interior\deVolt\sw\main.c
 "3025 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\include\pic18f2550.h
 "230
 "2910
@@ -202,17 +202,17 @@ T0_CANT 13
 [v _isr_timer0 `(v  1 e 0 0 ]
 "72
 [v _isr_timer3 `(v  1 e 0 0 ]
-"48 C:\fgr\16gb\0000 interior\deVolt\sw\main.c
+"44 C:\fgr\16gb\0000 interior\deVolt\sw\main.c
 [v _enterMenu `(v  1 e 0 0 ]
-"70
+"66
 [v _incVar `(v  1 e 0 0 ]
-"166
+"162
 [v _decVar `(v  1 e 0 0 ]
-"262
+"258
 [v _endTestDisplayActions `(v  1 e 0 0 ]
-"278
+"274
 [v _actionsTimeoutShowSetting `(v  1 e 0 0 ]
-"364
+"360
 [v _main `(v  1 e 0 0 ]
 "23 C:\fgr\16gb\0000 interior\deVolt\sw\segments.c
 [v _char2pins `(v  1 e 0 0 ]
@@ -385,28 +385,28 @@ T0_CANT 13
 [v _brilloToff `[5]uc  1 e 5 0 ]
 "40 C:\fgr\16gb\0000 interior\deVolt\sw\kPin_pindef.h
 [v _kPin `[4]S27  1 e 8 0 ]
-"33 C:\fgr\16gb\0000 interior\deVolt\sw\main.c
+"29 C:\fgr\16gb\0000 interior\deVolt\sw\main.c
 [v _measurement `ui  1 e 2 0 ]
 [v _display `ui  1 e 2 0 ]
-"35
+"31
 [v _escEntMem `i  1 e 2 0 ]
 [v _escDecMem `i  1 e 2 0 ]
-"36
+"32
 [v _escala `f  1 e 3 0 ]
 [v _medicionFloat `f  1 e 3 0 ]
-"38
+"34
 [v _xLoMem `i  1 e 2 0 ]
 [v _xUpMem `i  1 e 2 0 ]
 [v _eLoMem `i  1 e 2 0 ]
 [v _eUpMem `i  1 e 2 0 ]
 [v _vLoMem `i  1 e 2 0 ]
 [v _vUpMem `i  1 e 2 0 ]
-"39
+"35
 [v _brilloMem `uc  1 e 1 0 ]
 [v _advModeMem `uc  1 e 1 0 ]
-"40
+"36
 [v _state `uc  1 e 1 0 ]
-"41
+"37
 [v _ignoreNextFp `uc  1 e 1 0 ]
 [v _setInc `uc  1 e 1 0 ]
 "8 C:\fgr\16gb\0000 interior\deVolt\sw\segments.c
@@ -900,25 +900,25 @@ T0_CANT 13
 [v _TRISB7 `Vb  1 e 0 @31903 ]
 "5027
 [v _TRISC6 `Vb  1 e 0 @31910 ]
-"364 C:\fgr\16gb\0000 interior\deVolt\sw\main.c
+"360 C:\fgr\16gb\0000 interior\deVolt\sw\main.c
 [v _main `(v  1 e 0 0 ]
 {
-"851
+"847
 } 0
-"48
+"44
 [v _enterMenu `(v  1 e 0 0 ]
 {
-"63
+"59
 } 0
-"70
+"66
 [v _incVar `(v  1 e 0 0 ]
 {
-"159
+"155
 } 0
-"166
+"162
 [v _decVar `(v  1 e 0 0 ]
 {
-"255
+"251
 } 0
 "22 C:\fgr\16gb\libSwPic\eeprom18f\20220815 0220\eeprom18f.c
 [v _ee_write_byte `(v  1 e 0 0 ]
@@ -940,15 +940,15 @@ T0_CANT 13
 [v ee_read_byte@addr `uc  1 a 1 wreg ]
 "53
 } 0
-"278 C:\fgr\16gb\0000 interior\deVolt\sw\main.c
-[v _actionsTimeoutShowSetting `(v  1 e 0 0 ]
-{
-"354
-} 0
-"262
+"258 C:\fgr\16gb\0000 interior\deVolt\sw\main.c
 [v _endTestDisplayActions `(v  1 e 0 0 ]
 {
-"271
+"267
+} 0
+"274
+[v _actionsTimeoutShowSetting `(v  1 e 0 0 ]
+{
+"350
 } 0
 "31 C:\fgr\16gb\libSwPic\timer0\20220922 2300\t0.c
 [v _t0Driver `(v  1 e 0 0 ]
@@ -956,13 +956,6 @@ T0_CANT 13
 [v t0Driver@i `uc  1 a 1 wreg ]
 [v t0Driver@i `uc  1 a 1 wreg ]
 "42
-} 0
-"9 C:\fgr\16gb\0000 interior\deVolt\sw\adc.c
-[v _adcDriver `(v  1 e 0 0 ]
-{
-"10
-[v adcDriver@ch2Cnv `uc  1 a 1 8 ]
-"30
 } 0
 "21 C:\fgr\16gb\0000 interior\deVolt\sw\iir.c
 [v _iir `(f  1 e 3 0 ]
@@ -981,6 +974,18 @@ T0_CANT 13
 [v iir@F4237 `[3]f  1 s 9 F4237 ]
 "42
 } 0
+"9 C:\fgr\16gb\0000 interior\deVolt\sw\adc.c
+[v _adcDriver `(v  1 e 0 0 ]
+{
+"10
+[v adcDriver@ch2Cnv `uc  1 a 1 8 ]
+"30
+} 0
+"33
+[v _getConv `(i  1 e 2 0 ]
+{
+"37
+} 0
 "286 C:\fgr\16gb\0000 interior\deVolt\sw\stdio.c
 [v _uintToStr `(v  1 e 0 0 ]
 {
@@ -992,12 +997,7 @@ T0_CANT 13
 [v uintToStr@strLen `uc  1 p 1 10 ]
 "295
 } 0
-"33 C:\fgr\16gb\0000 interior\deVolt\sw\adc.c
-[v _getConv `(i  1 e 2 0 ]
-{
-"37
-} 0
-"48
+"48 C:\fgr\16gb\0000 interior\deVolt\sw\adc.c
 [v _adcSetup `(v  1 e 0 0 ]
 {
 "56
@@ -1011,13 +1011,6 @@ T0_CANT 13
 [v ___awtoft@c `i  1 p 2 8 ]
 "42
 } 0
-"22 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\ftsub.c
-[v ___ftsub `(f  1 e 3 0 ]
-{
-[v ___ftsub@f1 `f  1 p 3 43 ]
-[v ___ftsub@f2 `f  1 p 3 46 ]
-"25
-} 0
 "45 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\fttol.c
 [v ___fttol `(l  1 e 4 0 ]
 {
@@ -1029,6 +1022,13 @@ T0_CANT 13
 "45
 [v ___fttol@f1 `f  1 p 3 0 ]
 "73
+} 0
+"22 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\ftsub.c
+[v ___ftsub `(f  1 e 3 0 ]
+{
+[v ___ftsub@f1 `f  1 p 3 43 ]
+[v ___ftsub@f2 `f  1 p 3 46 ]
+"25
 } 0
 "10 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\sources\lwdiv.c
 [v ___lwdiv `(ui  1 e 2 0 ]
@@ -1162,14 +1162,6 @@ T0_CANT 13
 {
 "69
 } 0
-"117 C:\fgr\16gb\0000 interior\deVolt\sw\stdio.c
-[v _fseek `(v  1 e 0 0 ]
-{
-[v fseek@fp `*.bS1319  1 p 2 14 ]
-[v fseek@offset `i  1 p 2 16 ]
-[v fseek@mode `i  1 p 2 18 ]
-"158
-} 0
 "23 C:\fgr\16gb\0000 interior\deVolt\sw\segments.c
 [v _char2pins `(v  1 e 0 0 ]
 {
@@ -1182,4 +1174,12 @@ T0_CANT 13
 {
 [v fgetc@stream `*.bS1319  1 p 2 14 ]
 "85
+} 0
+"117
+[v _fseek `(v  1 e 0 0 ]
+{
+[v fseek@fp `*.bS1319  1 p 2 14 ]
+[v fseek@offset `i  1 p 2 16 ]
+[v fseek@mode `i  1 p 2 18 ]
+"158
 } 0

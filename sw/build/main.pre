@@ -5487,10 +5487,10 @@ void kPin_driverDc(char pi, char kCurrLogState);
 void kPin_driverAcFn(char pi, char flanco, char kCurrLogState);
 void kPin_driverAcFp(char pi, char flanco, char kCurrLogState);
 
-# 26 "C:\fgr\16gb\0000 interior\deVolt\sw\main.c"
+# 23 "C:\fgr\16gb\0000 interior\deVolt\sw\main.c"
 ;;
 
-# 33
+# 29
 unsigned int measurement, display;
 
 int escEntMem,escDecMem;
@@ -5501,7 +5501,7 @@ char brilloMem, advModeMem;
 char state;
 char ignoreNextFp, setInc = 1;
 
-# 47
+# 43
 void enterMenu(void)
 {
 if(state == E_MENU_BRILLO) state = E_SET_BRILLO;
@@ -5520,7 +5520,7 @@ else if(state == E_MENU_USER_CAL) state = E_SET_CAL_DESCRIPTION;
 else if(state == E_MENU_FACTORY_CAL) state = E_SET_RST_DESCRIPTION;
 }
 
-# 69
+# 65
 void incVar(void)
 {
 
@@ -5613,7 +5613,7 @@ vUpMem = vUpMem + setInc;
 { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
 }
 
-# 165
+# 161
 void decVar(void)
 {
 
@@ -5706,7 +5706,7 @@ vUpMem=vUpMem-setInc;
 { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
 }
 
-# 261
+# 257
 void endTestDisplayActions(void)
 {
 state=E_IDLE;
@@ -5719,7 +5719,7 @@ muxBuffer[ADV]=' ';
 { t0Mem[T0_ADCSAMPLE].flag=0; t0Mem[T0_ADCSAMPLE].prescaler=t0DelayConstant[T0_ADCSAMPLE]; t0Mem[T0_ADCSAMPLE].pause=0; t0Mem[T0_ADCSAMPLE].loop=1; };
 }
 
-# 277
+# 273
 void actionsTimeoutShowSetting(void)
 {
 if((t0Mem[T0_SHOW_SETTING].flag?!(t0Mem[T0_SHOW_SETTING].flag=0):0))
@@ -5802,7 +5802,7 @@ break;
 
 char aux;
 
-# 363
+# 359
 void main(void)
 {
 

@@ -8,7 +8,6 @@
 
 //==============================================================================
 // Headers
-//
 
 #include <projectHeader.h>
 #include <thisProject.h>
@@ -16,19 +15,16 @@
 #include <system.h>// Inicializacion del sistema.
 #include <eeprom18f.h>
 #include <segments.h>
-//#include <timer_lib.h>
 #include <t0.h>// Software timer0.
 #include <mainDefinitions.h>
 #include <adc.h>
 #include <iir.h>
 #include "stdio.h"
-//#include <pulsadorPin_lib_1ms.h>
 #include <kPin.h>;;
 
 
-
-
-
+//==============================================================================
+// Globals
 
 unsigned int measurement, display;
 
