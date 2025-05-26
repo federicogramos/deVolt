@@ -1,12 +1,11 @@
 //*****************************************************************************
-// ARCHIVO: pulsadorPinFast_1ms_pindef.h
+// ARCHIVO: kPin_pindef.h
 // AUTOR: Federico Ramos
 // ULT. MODIF: 2022-10-12
-// PROYECTO: TMP:11:CIC
 //*****************************************************************************
 
-#ifndef __KPIN_FAST_1MS_PINDEF_H
-#define __KPIN_FAST_1MS_PINDEF_H
+#ifndef __KPIN_PINDEF_H
+#define __KPIN_PINDEF_H
 
 
 //*****************************************************************************
@@ -20,10 +19,10 @@
 //*****************************************************************************
 // SETEAR PUERTOS UTILIZADOS COMO PULSADORES
 // 23-09-2022 ESTO ESTA CONFIGURADO PARA PROYECTO "RPM"
-volatile bit PULSADOR_0 @ ((unsigned)&PORTA*8)+0;
-volatile bit PULSADOR_1 @ ((unsigned)&PORTA*8)+2;
-volatile bit PULSADOR_2 @ ((unsigned)&PORTA*8)+0;
-volatile bit PULSADOR_3 @ ((unsigned)&PORTE*8)+3;
+//volatile bit PULSADOR_0 @ ((unsigned)&PORTA*8)+0;
+//volatile bit PULSADOR_1 @ ((unsigned)&PORTA*8)+2;
+//volatile bit PULSADOR_2 @ ((unsigned)&PORTA*8)+0;
+//volatile bit PULSADOR_3 @ ((unsigned)&PORTE*8)+3;
 
 //UNUSED
 //volatile bit PULSADOR_4 @ ((unsigned)&PORTC*8)+2;
@@ -38,7 +37,7 @@ volatile bit PULSADOR_3 @ ((unsigned)&PORTE*8)+3;
 // COMPLETAR ESTRUCTURA PRINCIPAL
 // LA CANTIDAD DE ELEMENTOS CORRESPONDE A LA CANTIDAD DE PULSADORES
 // {state,prevState,timer}
-t_kPin kPin[PULS_PIN_CANT]=
+t_kPin kPin[KPIN_CANT]=
 	{
 	{1,1,0},
     {1,1,0},
@@ -48,4 +47,4 @@ t_kPin kPin[PULS_PIN_CANT]=
 //*****************************************************************************
 
 
-#endif//__KPIN_FAST_1MS_PINDEF_H
+#endif//__KPIN_PINDEF_H

@@ -78,7 +78,11 @@ void isr_timer3(void)//placa multiplexado = 1ms
 	t0Driver(T0_BEEP);
 	if(T0_TIMEOUT(T0_BEEP)) BUZZER=0;
 
-	pulsPinDriver();
+	//pulsPinDriver();
+    kPin_driverDc(UP_FN, PORTCbits.RC0);
+    kPin_driverDc(UP_FP, PORTCbits.RC0);
+    kPin_driverDc(DWN_FN, PORTCbits.RC1);
+    kPin_driverDc(DWN_FP, PORTCbits.RC1);
 
 	PIR2bits.TMR3IF=0;
 	}

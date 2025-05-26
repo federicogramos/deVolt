@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[c E4385 0 1 2 3 4 5 .. ]
-[n E4385 e_pulsadorPinFastAlias P0N P1N P0P IN_FN IN_FP PULS_PIN_CANT  ]
+[c E4385 0 1 2 3 4 .. ]
+[n E4385 e_kPinAlias UP_FN DWN_FN UP_FP DWN_FP KPIN_CANT  ]
 [s S658 :1 `uc 1 :1 `uc 1 `uc 1 ]
 [n S658 . state prevState timer ]
 [s S609 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -143,8 +143,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S197 . . . . . . . . . ]
 "1083 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\include\pic18f2550.h
 [v _PORTCbits `VS197 ~T0 0 e@3970 ]
-"81 C:\fgr\16gb\0000 interior\deVolt\sw\interrupts.c
-[v _pulsPinDriver `(i ~T0 0 ef ]
+"77 C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.h
+[v _kPin_driverDc `(v ~T0 0 ef2`uc`uc ]
 [; ;pic18f2550.h: 17: extern volatile unsigned short UFRM @ 0xF66;
 "19 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\include\pic18f2550.h
 [; ;pic18f2550.h: 19: asm("UFRM equ 0F66h");
@@ -4276,15 +4276,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 30: void isr_adc(void);
 [; ;adc.h: 31: void adcSetup(void);
 [; ;adc.h: 33: extern t_adc adcStruct;
-[; ;kPin_aliases.h: 16: enum e_pulsadorPinFastAlias
-[; ;kPin_aliases.h: 17: {
-[; ;kPin_aliases.h: 18: P0N,
-[; ;kPin_aliases.h: 19: P1N,
-[; ;kPin_aliases.h: 20: P0P,
-[; ;kPin_aliases.h: 21: IN_FN,
-[; ;kPin_aliases.h: 22: IN_FP,
-[; ;kPin_aliases.h: 23: PULS_PIN_CANT
-[; ;kPin_aliases.h: 24: };
+[; ;kPin_aliases.h: 15: enum e_kPinAlias
+[; ;kPin_aliases.h: 16: {
+[; ;kPin_aliases.h: 17: UP_FN,
+[; ;kPin_aliases.h: 18: DWN_FN,
+[; ;kPin_aliases.h: 19: UP_FP,
+[; ;kPin_aliases.h: 20: DWN_FP,
+[; ;kPin_aliases.h: 21: KPIN_CANT
+[; ;kPin_aliases.h: 22: };
 [; ;kPin.h: 25: typedef struct
 [; ;kPin.h: 26: {
 [; ;kPin.h: 27: unsigned char kId : 5;
@@ -4297,22 +4296,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;kPin.h: 35: unsigned char prevState : 1;
 [; ;kPin.h: 36: unsigned char timer;
 [; ;kPin.h: 37: } t_kPin;
-"23 C:\fgr\16gb\0000 interior\deVolt\sw\kPin_pindef.h
-[v _PULSADOR_0 `Vb ~T0 1 e@31744 ]
-[; ;kPin_pindef.h: 23: volatile bit PULSADOR_0 @ ((unsigned)&PORTA*8)+0;
-"24
-[v _PULSADOR_1 `Vb ~T0 1 e@31746 ]
-[; ;kPin_pindef.h: 24: volatile bit PULSADOR_1 @ ((unsigned)&PORTA*8)+2;
-"25
-[v _PULSADOR_2 `Vb ~T0 1 e@31744 ]
-[; ;kPin_pindef.h: 25: volatile bit PULSADOR_2 @ ((unsigned)&PORTA*8)+0;
-"26
-[v _PULSADOR_3 `Vb ~T0 1 e@31779 ]
-[; ;kPin_pindef.h: 26: volatile bit PULSADOR_3 @ ((unsigned)&PORTE*8)+3;
-"41
-[v _kPin `S658 ~T0 . `E4385 5 e ]
+"40 C:\fgr\16gb\0000 interior\deVolt\sw\kPin_pindef.h
+[v _kPin `S658 ~T0 . `E4385 4 e ]
 [i _kPin
 :U ..
+:U ..
+"42
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+..
 :U ..
 "43
 -> -> 1 `i `uc
@@ -4331,21 +4324,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 1 `i `uc
 -> -> 0 `i `uc
 ..
-:U ..
-"46
--> -> 1 `i `uc
--> -> 1 `i `uc
--> -> 0 `i `uc
-..
 ..
 ]
-[; ;kPin_pindef.h: 41: t_kPin kPin[PULS_PIN_CANT]=
-[; ;kPin_pindef.h: 42: {
+[; ;kPin_pindef.h: 40: t_kPin kPin[KPIN_CANT]=
+[; ;kPin_pindef.h: 41: {
+[; ;kPin_pindef.h: 42: {1,1,0},
 [; ;kPin_pindef.h: 43: {1,1,0},
 [; ;kPin_pindef.h: 44: {1,1,0},
-[; ;kPin_pindef.h: 45: {1,1,0},
-[; ;kPin_pindef.h: 46: {1,1,0}
-[; ;kPin_pindef.h: 47: };
+[; ;kPin_pindef.h: 45: {1,1,0}
+[; ;kPin_pindef.h: 46: };
 [; ;kPin.h: 52: enum e_flanco {FLANCO_N,FLANCO_P};
 [; ;kPin.h: 59: extern t_kEvent kPinBuffer;
 [; ;kPin.h: 77: void kPin_driverDc(char pi, char kCurrLogState);
@@ -4379,8 +4366,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;interrupts.c: 18: unsigned char brilloToff[]={231,236,241,246,251};
 "21
-[v F4431 `(v ~T0 1 tf ]
-[v _isr `IF4431 ~T0 1 e ]
+[v F4422 `(v ~T0 1 tf ]
+[v _isr `IF4422 ~T0 1 e ]
 {
 [; ;interrupts.c: 20: void interrupt isr(void)
 [; ;interrupts.c: 21: {
@@ -4396,8 +4383,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 659 ]
 }
 "26
-[v F4434 `(v ~T0 1 tf ]
-[v _isr2 `ILF4434 ~T0 1 e ]
+[v F4425 `(v ~T0 1 tf ]
+[v _isr2 `ILF4425 ~T0 1 e ]
 {
 [; ;interrupts.c: 25: void interrupt low_priority isr2(void)
 [; ;interrupts.c: 26: {
@@ -4571,13 +4558,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4339 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4339 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 677  ]
 [e = . . _PORTCbits 0 6 -> -> 0 `i `uc ]
 [e :U 677 ]
-[; ;interrupts.c: 81: pulsPinDriver();
-"81
-[e ( _pulsPinDriver ..  ]
-[; ;interrupts.c: 83: PIR2bits.TMR3IF=0;
+[; ;interrupts.c: 82: kPin_driverDc(UP_FN, PORTCbits.RC0);
+"82
+[e ( _kPin_driverDc (2 , -> . `E4385 0 `uc . . _PORTCbits 0 0 ]
+[; ;interrupts.c: 83: kPin_driverDc(UP_FP, PORTCbits.RC0);
 "83
-[e = . . _PIR2bits 0 1 -> -> 0 `i `uc ]
-[; ;interrupts.c: 84: }
+[e ( _kPin_driverDc (2 , -> . `E4385 2 `uc . . _PORTCbits 0 0 ]
+[; ;interrupts.c: 84: kPin_driverDc(DWN_FN, PORTCbits.RC1);
 "84
+[e ( _kPin_driverDc (2 , -> . `E4385 1 `uc . . _PORTCbits 0 1 ]
+[; ;interrupts.c: 85: kPin_driverDc(DWN_FP, PORTCbits.RC1);
+"85
+[e ( _kPin_driverDc (2 , -> . `E4385 3 `uc . . _PORTCbits 0 1 ]
+[; ;interrupts.c: 87: PIR2bits.TMR3IF=0;
+"87
+[e = . . _PIR2bits 0 1 -> -> 0 `i `uc ]
+[; ;interrupts.c: 88: }
+"88
 [e :UE 676 ]
 }

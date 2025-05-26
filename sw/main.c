@@ -362,8 +362,11 @@ char aux;
  */
 void main(void)
 	{
-	pulsPinInit();// Seteo de variables antes de que habilite interrupciones.
-	systemInit();
+    // No se si es necesario con la nueva librería. Puede que si, si arranca el
+    // pulsador presionado. Debo evaluar y agregar esta funcion en tal caso.
+	////////////////pulsPinInit();// Seteo de variables antes de que habilite interrupciones.
+	
+    systemInit();
 	segments.portState = 0x01;// Uso este auxiliar en lugar de directamente el pue
 	// rto, para poder "saltear" el encendido de un digito sin alterar el ciclo 
 	// de multiplexado.
@@ -768,7 +771,7 @@ void main(void)
 			}
 
 		//CUANDO PRESIONAN BOTON INCREMENTAR
-		if(KPIN_EVENT_ID_FP(UP_FP))
+		if(KPIN_EVENT_FP_ID(UP_FP))
 			{
 			if(ignoreNextFp) ignoreNextFp=0;
 			else
@@ -795,7 +798,7 @@ void main(void)
 			}
 
 		//CUANDO PRESIONAN BOTON DECREMENTAR
-		if(PULSPIN_EVENT_ID_FP(DWN_FP))
+		if(KPIN_EVENT_FP_ID(DWN_FP))
 			{
 			if(ignoreNextFp) ignoreNextFp=0;
 			else
@@ -822,7 +825,7 @@ void main(void)
 			}
 
 		//FGR: AQUI SE DETERMINAN TODOS LOS ESTADOS QUE ACEPTAN PULSACION LARGA
-		if(PULSPIN_EVENT_ID_FN(UP_FN))
+		if(KPIN_EVENT_FN_ID(UP_FN))
 			{
 			if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
 				|| state==E_MENU_ESCALA || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC
@@ -834,7 +837,7 @@ void main(void)
 			}
 
 		//CUANDO PRESIONAN BOTON DECREMENTAR
-		if(PULSPIN_EVENT_ID_FN(DWN_FN))
+		if(KPIN_EVENT_FN_ID(DWN_FN))
 			{
 			if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
 				|| state==E_MENU_ESCALA || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC

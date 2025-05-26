@@ -5165,15 +5165,14 @@ extern void _delaywdt(unsigned long);
 #pragma inline(_delay3)
 extern void _delay3(unsigned char);
 
-# 16 "C:\fgr\16gb\0000 interior\deVolt\sw\kPin_aliases.h"
-enum e_pulsadorPinFastAlias
+# 15 "C:\fgr\16gb\0000 interior\deVolt\sw\kPin_aliases.h"
+enum e_kPinAlias
 {
-P0N,
-P1N,
-P0P,
-IN_FN,
-IN_FP,
-PULS_PIN_CANT
+UP_FN,
+DWN_FN,
+UP_FP,
+DWN_FP,
+KPIN_CANT
 };
 
 # 25 "C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.h"
@@ -5191,14 +5190,8 @@ unsigned char prevState : 1;
 unsigned char timer;
 } t_kPin;
 
-# 23 "C:\fgr\16gb\0000 interior\deVolt\sw\kPin_pindef.h"
-volatile bit PULSADOR_0 @ ((unsigned)&PORTA*8)+0;
-volatile bit PULSADOR_1 @ ((unsigned)&PORTA*8)+2;
-volatile bit PULSADOR_2 @ ((unsigned)&PORTA*8)+0;
-volatile bit PULSADOR_3 @ ((unsigned)&PORTE*8)+3;
-
-# 41
-t_kPin kPin[PULS_PIN_CANT]=
+# 40 "C:\fgr\16gb\0000 interior\deVolt\sw\kPin_pindef.h"
+t_kPin kPin[KPIN_CANT]=
 {
 {1,1,0},
 {1,1,0},

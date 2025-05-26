@@ -1,12 +1,75 @@
 Version 3.2 HI-TECH Software Intermediate Code
+[c E4416 0 1 2 3 4 .. ]
+[n E4416 e_kPinAlias UP_FN DWN_FN UP_FP DWN_FP KPIN_CANT  ]
+[s S659 :1 `uc 1 :1 `uc 1 `uc 1 ]
+[n S659 . state prevState timer ]
+[c E4245 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 .. ]
+[n E4245 e_estados E_TEST_DISPLAYS E_IDLE E_MENU_BRILLO E_MENU_ADV_MODE E_MENU_LIMITS E_MENU_ESCALA E_MENU_USER_CAL E_MENU_FACTORY_CAL E_SET_BRILLO E_SET_ESCALA_ENT_DESCRIPTION E_SET_ESCALA_ENT E_SET_ESCALA_DEC_DESCRIPTION E_SET_ESCALA_DEC E_SET_ADV_MODE E_SET_ADV_XLO_DESCRIPTION E_SET_ADV_XLO E_SET_ADV_XUP_DESCRIPTION E_SET_ADV_XUP E_SET_ADV_ELO_DESCRIPTION E_SET_ADV_ELO E_SET_ADV_EUP_DESCRIPTION E_SET_ADV_EUP E_SET_ADV_VLO_DESCRIPTION E_SET_ADV_VLO E_SET_ADV_VUP_DESCRIPTION E_SET_ADV_VUP E_SET_CAL_DESCRIPTION E_SET_0V_OFFSET E_SET_CAL_P0_DESCRIPTION E_SET_CAL_P0 E_SET_CAL_P1_DESCRIPTION E_SET_CAL_P1 E_SET_CAL_P2_DESCRIPTION E_SET_CAL_P2 E_SET_RST_DESCRIPTION CANT_ESTADOS  ]
+"89 C:\fgr\16gb\libSwPic\eeprom18f\20220815 0220\eeprom18f.h
+[v _ee_write_byte `(v ~T0 0 ef2`uc`uc ]
+[c E4235 0 1 2 3 4 5 6 7 8 .. ]
+[n E4235 e_advMode ADV_MOD_OFF ADV_MOD_XEVEX_BLANK_EXTREMOS ADV_MOD_XEVEX ADV_MOD_VEXEV ADV_MOD_XEV ADV_MOD_VEX ADV_MOD_EXEVE ADV_MOD_EVEXE CANT_ADV_MODES  ]
+[c E4340 0 1 2 3 4 5 6 7 8 9 10 11 12 13 .. ]
+[n E4340 e_t0 T0_LONG_PULS_UP T0_LONG_PULS_DWN T0_BEEP T0_SHOW_MENU T0_250MS T0_SHOW_SETTING T0_SHOW_SETTING_ON T0_SHOW_SETTING_OFF T0_TEST_DISPLAYS T0_TEST_ADVERTENCIA T0_SHOW_DESCRIPTION T0_SPACE T0_ADCSAMPLE T0_CANT  ]
+[s S655 `ui 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S655 . prescaler loop flag pause ]
+"40 C:\fgr\16gb\libSwPic\timer0\20220922 2300\t0.h
+[v _t0Mem `S655 ~T0 -> 0 `x e ]
+"41
+[v _t0DelayConstant `ui ~T0 -> 0 `x e ]
+[s S198 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S198 . RC0 RC1 RC2 . RC4 RC5 RC6 RC7 ]
+[s S199 :8 `uc 1 ]
+[n S199 . RC ]
+[s S200 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S200 . T1OSO T1OSI CCP1 . TX RX ]
+[s S201 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S201 . T13CKI . P1A . CK DT ]
+[s S202 :1 `uc 1 :1 `uc 1 ]
+[n S202 . . CCP2 ]
+[s S203 :2 `uc 1 :1 `uc 1 ]
+[n S203 . . PA1 ]
+[s S204 :1 `uc 1 :1 `uc 1 ]
+[n S204 . . PA2 ]
+[s S205 :3 `uc 1 :1 `uc 1 ]
+[n S205 . . RC3 ]
+[u S197 `S198 1 `S199 1 `S200 1 `S201 1 `S202 1 `S203 1 `S204 1 `S205 1 ]
+[n S197 . . . . . . . . . ]
+"1083 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\include\pic18f2550.h
+[v _PORTCbits `VS197 ~T0 0 e@3970 ]
+"28 C:\fgr\16gb\0000 interior\deVolt\sw\segments.h
+[v _muxBuffer `uc ~T0 -> 0 `x e ]
 [c E4229 0 1 2 3 4 .. ]
-[n E4229 e_kPinAlias UP_FN DWN_FN UP_FP DWN_FP KPIN_CANT  ]
-[s S654 :1 `uc 1 :1 `uc 1 `uc 1 ]
-[n S654 . state prevState timer ]
-[s S653 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S653 . kId flag flanco ]
-[c E4246 0 1 .. ]
-[n E4246 e_flanco FLANCO_N FLANCO_P  ]
+[n E4229 e_bufferIx MORE_DIG MIDS_DIG LESS_DIG ADV CANT_BUFFER_IX  ]
+[p mainexit ]
+"90 C:\fgr\16gb\0000 interior\deVolt\sw\system.h
+[v _systemInit `(v ~T0 0 ef ]
+[s S654 `uc 1 `uc 1 ]
+[n S654 . nextUp portState ]
+"30 C:\fgr\16gb\0000 interior\deVolt\sw\segments.h
+[v _segments `S654 ~T0 0 e ]
+"90 C:\fgr\16gb\libSwPic\eeprom18f\20220815 0220\eeprom18f.h
+[v _ee_read_byte `(uc ~T0 0 ef1`uc ]
+"83 C:\fgr\16gb\libSwPic\timer0\20220922 2300\t0.h
+[v _t0Driver `(v ~T0 0 ef1`uc ]
+"29 C:\fgr\16gb\0000 interior\deVolt\sw\adc.h
+[v _adcDriver `(v ~T0 0 ef ]
+[s S656 :1 `uc 1 :1 `uc 1 `uc 1 `ui 1 `uc 1 ]
+[n S656 . completeFlg inProcessFlg chComp flgs2convert nx2convert ]
+"33
+[v _adcStruct `S656 ~T0 0 e ]
+"8 C:\fgr\16gb\0000 interior\deVolt\sw\iir.h
+[v _iir `(f ~T0 0 ef1`f ]
+"28 C:\fgr\16gb\0000 interior\deVolt\sw\adc.h
+[v _getConv `(i ~T0 0 ef ]
+"78 C:\fgr\16gb\0000 interior\deVolt\sw\stdio.h
+[v _uintToStr `(v ~T0 0 ef3`ui`*uc`uc ]
+[s S658 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S658 . kId flag flanco ]
+"59 C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.h
+[v _kPinBuffer `S658 ~T0 0 e ]
+[c E4433 0 1 .. ]
+[n E4433 e_flanco FLANCO_N FLANCO_P  ]
 [; ;pic18f2550.h: 17: extern volatile unsigned short UFRM @ 0xF66;
 "19 C:\Program Files (x86)\HI-TECH Software\PICC-18\9.80\include\pic18f2550.h
 [; ;pic18f2550.h: 19: asm("UFRM equ 0F66h");
@@ -4008,6 +4071,244 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 186: extern void _delay(unsigned long);
 [; ;pic18.h: 188: extern void _delaywdt(unsigned long);
 [; ;pic18.h: 190: extern void _delay3(unsigned char);
+[; ;thisProject.h: 6: enum e_bufferIx {
+[; ;thisProject.h: 7: MORE_DIG,
+[; ;thisProject.h: 8: MIDS_DIG,
+[; ;thisProject.h: 9: LESS_DIG,
+[; ;thisProject.h: 10: ADV,
+[; ;thisProject.h: 11: CANT_BUFFER_IX};
+[; ;thisProject.h: 13: enum e_advMode {
+[; ;thisProject.h: 14: ADV_MOD_OFF,
+[; ;thisProject.h: 15: ADV_MOD_XEVEX_BLANK_EXTREMOS,
+[; ;thisProject.h: 16: ADV_MOD_XEVEX,
+[; ;thisProject.h: 17: ADV_MOD_VEXEV,
+[; ;thisProject.h: 18: ADV_MOD_XEV,
+[; ;thisProject.h: 19: ADV_MOD_VEX,
+[; ;thisProject.h: 20: ADV_MOD_EXEVE,
+[; ;thisProject.h: 21: ADV_MOD_EVEXE,
+[; ;thisProject.h: 22: CANT_ADV_MODES};
+[; ;thisProject.h: 24: enum e_estados {
+[; ;thisProject.h: 25: E_TEST_DISPLAYS,
+[; ;thisProject.h: 26: E_IDLE,
+[; ;thisProject.h: 27: E_MENU_BRILLO,
+[; ;thisProject.h: 28: E_MENU_ADV_MODE,
+[; ;thisProject.h: 29: E_MENU_LIMITS,
+[; ;thisProject.h: 30: E_MENU_ESCALA,
+[; ;thisProject.h: 31: E_MENU_USER_CAL,
+[; ;thisProject.h: 32: E_MENU_FACTORY_CAL,
+[; ;thisProject.h: 33: E_SET_BRILLO,
+[; ;thisProject.h: 34: E_SET_ESCALA_ENT_DESCRIPTION,
+[; ;thisProject.h: 35: E_SET_ESCALA_ENT,
+[; ;thisProject.h: 36: E_SET_ESCALA_DEC_DESCRIPTION,
+[; ;thisProject.h: 37: E_SET_ESCALA_DEC,
+[; ;thisProject.h: 38: E_SET_ADV_MODE,
+[; ;thisProject.h: 39: E_SET_ADV_XLO_DESCRIPTION,
+[; ;thisProject.h: 40: E_SET_ADV_XLO,
+[; ;thisProject.h: 41: E_SET_ADV_XUP_DESCRIPTION,
+[; ;thisProject.h: 42: E_SET_ADV_XUP,
+[; ;thisProject.h: 43: E_SET_ADV_ELO_DESCRIPTION,
+[; ;thisProject.h: 44: E_SET_ADV_ELO,
+[; ;thisProject.h: 45: E_SET_ADV_EUP_DESCRIPTION,
+[; ;thisProject.h: 46: E_SET_ADV_EUP,
+[; ;thisProject.h: 47: E_SET_ADV_VLO_DESCRIPTION,
+[; ;thisProject.h: 48: E_SET_ADV_VLO,
+[; ;thisProject.h: 49: E_SET_ADV_VUP_DESCRIPTION,
+[; ;thisProject.h: 50: E_SET_ADV_VUP,
+[; ;thisProject.h: 51: E_SET_CAL_DESCRIPTION,
+[; ;thisProject.h: 52: E_SET_0V_OFFSET,
+[; ;thisProject.h: 53: E_SET_CAL_P0_DESCRIPTION,
+[; ;thisProject.h: 54: E_SET_CAL_P0,
+[; ;thisProject.h: 55: E_SET_CAL_P1_DESCRIPTION,
+[; ;thisProject.h: 56: E_SET_CAL_P1,
+[; ;thisProject.h: 57: E_SET_CAL_P2_DESCRIPTION,
+[; ;thisProject.h: 58: E_SET_CAL_P2,
+[; ;thisProject.h: 59: E_SET_RST_DESCRIPTION,
+[; ;thisProject.h: 60: CANT_ESTADOS};
+[; ;thisProject.h: 63: extern char state;
+[; ;thisProject.h: 64: extern char brilloMem;
+"9 C:\fgr\16gb\0000 interior\deVolt\sw\main.h
+[p x PLLDIV=5 ]
+"10
+[p x CPUDIV=OSC1_PLL2 ]
+"12
+[p x FOSC=HSPLL_HS ]
+"18
+[p x BOR=ON ]
+"19
+[p x BORV=1 ]
+"20
+[p x PWRT=ON ]
+"22
+[p x WDT=OFF ]
+"24
+[p x PBADEN=OFF ]
+"25
+[p x LPT1OSC=OFF ]
+"26
+[p x MCLRE=OFF ]
+"28
+[p x DEBUG=OFF ]
+"29
+[p x STVREN=OFF ]
+"30
+[p x LVP=OFF ]
+"32
+[p x CP0=ON ]
+"33
+[p x CP1=ON ]
+"34
+[p x CP2=ON ]
+"35
+[p x CP3=ON ]
+"37
+[p x CPD=ON ]
+"38
+[p x CPB=ON ]
+"40
+[p x WRT0=ON ]
+"41
+[p x WRT1=ON ]
+"42
+[p x WRT2=ON ]
+"43
+[p x WRT3=ON ]
+"46
+[p x WRTB=ON ]
+"47
+[p x WRTC=ON ]
+"49
+[p x EBTR0=OFF ]
+"50
+[p x EBTR1=OFF ]
+"51
+[p x EBTR2=OFF ]
+"52
+[p x EBTR3=OFF ]
+"54
+[p x EBTRB=OFF ]
+"56
+[p x IDLOC0=0x0 ]
+"57
+[p x IDLOC1=0x0 ]
+"58
+[p x IDLOC2=0x0 ]
+"59
+[p x IDLOC3=0x0 ]
+"60
+[p x IDLOC4=0x0 ]
+"61
+[p x IDLOC5=0x0 ]
+"62
+[p x IDLOC6=0x0 ]
+"63
+[p x IDLOC7=0x0 ]
+[; ;system.h: 90: void systemInit(void);
+"26 C:\fgr\16gb\0000 interior\deVolt\sw\eeprom18f_memInit.h
+[; ;eeprom18f_memInit.h: 26: asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00");
+[; <" 	psect eeprom_data,class=EEDATA ;# ">
+[; <" 	db	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 ;# ">
+"34
+[; ;eeprom18f_memInit.h: 34: asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x01");
+[; <" 	psect eeprom_data,class=EEDATA ;# ">
+[; <" 	db	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01 ;# ">
+"41
+[; ;eeprom18f_memInit.h: 41: asm("\tpsect eeprom_data,class=EEDATA"); asm("\tdb\t" "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00" "," "0x00");
+[; <" 	psect eeprom_data,class=EEDATA ;# ">
+[; <" 	db	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 ;# ">
+[; ;eeprom18f.h: 89: void ee_write_byte(unsigned char address, unsigned char _data);
+[; ;eeprom18f.h: 90: unsigned char ee_read_byte(unsigned char address);
+[; ;stdio.h: 45: typedef struct
+[; ;stdio.h: 46: {
+[; ;stdio.h: 47: char flg;
+[; ;stdio.h: 48: char *nxr;
+[; ;stdio.h: 49: char *nxw;
+[; ;stdio.h: 50: char *bas;
+[; ;stdio.h: 51: char nr;
+[; ;stdio.h: 52: char nw;
+[; ;stdio.h: 53: char bufsiz;
+[; ;stdio.h: 54: }FILE;
+[; ;stdio.h: 65: char fputc(char c, FILE *stream);
+[; ;stdio.h: 66: char fgetc(FILE *stream);
+[; ;stdio.h: 67: void fseek(FILE *fp,int offset,int mode);
+[; ;stdio.h: 68: void unget(FILE *stream);
+[; ;stdio.h: 73: void fprintf(FILE *fp,char *fmt,...);
+[; ;stdio.h: 74: void fprinti(FILE *fp,char *str);
+[; ;stdio.h: 76: char *intToStr(int num,char *str,char strLen);
+[; ;stdio.h: 77: void ucharToStr(unsigned char num,char *str,char strLen);
+[; ;stdio.h: 78: void uintToStr(unsigned int num,char *str,char strLen);
+[; ;segments.h: 19: typedef struct
+[; ;segments.h: 20: {
+[; ;segments.h: 21: unsigned char nextUp;
+[; ;segments.h: 22: char portState;
+[; ;segments.h: 23: } t_7seg;
+[; ;segments.h: 28: extern char muxBuffer[(4*1+1)];
+[; ;segments.h: 29: extern FILE muxFile;
+[; ;segments.h: 30: extern t_7seg segments;
+[; ;segments.h: 35: void char2pins(char c);
+[; ;t0_setupUser.h: 12: typedef unsigned int type_t0Size;
+[; ;t0_setupUser.h: 13: typedef type_t0Size type_t0DelayConstant;
+[; ;t0_aliases.h: 12: enum e_t0
+[; ;t0_aliases.h: 13: {
+[; ;t0_aliases.h: 14: T0_LONG_PULS_UP,
+[; ;t0_aliases.h: 15: T0_LONG_PULS_DWN,
+[; ;t0_aliases.h: 16: T0_BEEP,
+[; ;t0_aliases.h: 17: T0_SHOW_MENU,
+[; ;t0_aliases.h: 18: T0_250MS,
+[; ;t0_aliases.h: 19: T0_SHOW_SETTING,
+[; ;t0_aliases.h: 20: T0_SHOW_SETTING_ON,
+[; ;t0_aliases.h: 21: T0_SHOW_SETTING_OFF,
+[; ;t0_aliases.h: 22: T0_TEST_DISPLAYS,
+[; ;t0_aliases.h: 23: T0_TEST_ADVERTENCIA,
+[; ;t0_aliases.h: 24: T0_SHOW_DESCRIPTION,
+[; ;t0_aliases.h: 25: T0_SPACE,
+[; ;t0_aliases.h: 26: T0_ADCSAMPLE,
+[; ;t0_aliases.h: 27: T0_CANT
+[; ;t0_aliases.h: 28: };
+[; ;t0.h: 28: typedef struct
+[; ;t0.h: 29: {
+[; ;t0.h: 30: type_t0Size prescaler;
+[; ;t0.h: 31: unsigned char loop:1;
+[; ;t0.h: 32: unsigned char flag:1;
+[; ;t0.h: 33: unsigned char pause:1;
+[; ;t0.h: 34: }t_t0;
+[; ;t0.h: 40: extern t_t0 t0Mem[T0_CANT];
+[; ;t0.h: 41: extern type_t0DelayConstant t0DelayConstant[T0_CANT];
+[; ;t0.h: 83: void t0Driver(char i);
+[; ;mainDefinitions.h: 8: extern unsigned char seg,min,hora;
+[; ;mainDefinitions.h: 9: extern char blink,blinkCols;
+[; ;adc.h: 15: typedef struct
+[; ;adc.h: 16: {
+[; ;adc.h: 17: unsigned int completeFlg:1;
+[; ;adc.h: 18: unsigned int inProcessFlg:1;
+[; ;adc.h: 21: unsigned char chComp;
+[; ;adc.h: 22: unsigned int flgs2convert;
+[; ;adc.h: 23: char nx2convert;
+[; ;adc.h: 26: }t_adc;
+[; ;adc.h: 28: int getConv(void);
+[; ;adc.h: 29: void adcDriver(void);
+[; ;adc.h: 30: void isr_adc(void);
+[; ;adc.h: 31: void adcSetup(void);
+[; ;adc.h: 33: extern t_adc adcStruct;
+[; ;iir.h: 8: float iir(float NewSample);
+[; ;stdio.h: 45: typedef struct
+[; ;stdio.h: 46: {
+[; ;stdio.h: 47: char flg;
+[; ;stdio.h: 48: char *nxr;
+[; ;stdio.h: 49: char *nxw;
+[; ;stdio.h: 50: char *bas;
+[; ;stdio.h: 51: char nr;
+[; ;stdio.h: 52: char nw;
+[; ;stdio.h: 53: char bufsiz;
+[; ;stdio.h: 54: }FILE;
+[; ;stdio.h: 65: char fputc(char c, FILE *stream);
+[; ;stdio.h: 66: char fgetc(FILE *stream);
+[; ;stdio.h: 67: void fseek(FILE *fp,int offset,int mode);
+[; ;stdio.h: 68: void unget(FILE *stream);
+[; ;stdio.h: 73: void fprintf(FILE *fp,char *fmt,...);
+[; ;stdio.h: 74: void fprinti(FILE *fp,char *str);
+[; ;stdio.h: 76: char *intToStr(int num,char *str,char strLen);
+[; ;stdio.h: 77: void ucharToStr(unsigned char num,char *str,char strLen);
+[; ;stdio.h: 78: void uintToStr(unsigned int num,char *str,char strLen);
 [; ;kPin_aliases.h: 15: enum e_kPinAlias
 [; ;kPin_aliases.h: 16: {
 [; ;kPin_aliases.h: 17: UP_FN,
@@ -4029,7 +4330,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;kPin.h: 36: unsigned char timer;
 [; ;kPin.h: 37: } t_kPin;
 "40 C:\fgr\16gb\0000 interior\deVolt\sw\kPin_pindef.h
-[v _kPin `S654 ~T0 . `E4229 4 e ]
+[v _kPin `S659 ~T0 . `E4416 4 e ]
 [i _kPin
 :U ..
 :U ..
@@ -4070,235 +4371,2983 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;kPin.h: 77: void kPin_driverDc(char pi, char kCurrLogState);
 [; ;kPin.h: 78: void kPin_driverAcFn(char pi, char flanco, char kCurrLogState);
 [; ;kPin.h: 79: void kPin_driverAcFp(char pi, char flanco, char kCurrLogState);
-"20 C:\fgr\16gb\libSwPic\keyPin\20250428 0057\kPin.c
-[v _kPinBuffer `S653 ~T0 1 e ]
-[; ;kPin.c: 20: t_kEvent kPinBuffer;
-[; ;system.h: 90: void systemInit(void);
+[; ;main.c: 26: ;;
+"33 C:\fgr\16gb\0000 interior\deVolt\sw\main.c
+[v _measurement `ui ~T0 1 e ]
+[v _display `ui ~T0 1 e ]
+[; ;main.c: 33: unsigned int measurement, display;
+"35
+[v _escEntMem `i ~T0 1 e ]
+[v _escDecMem `i ~T0 1 e ]
+[; ;main.c: 35: int escEntMem,escDecMem;
+"36
+[v _escala `f ~T0 1 e ]
+[v _medicionFloat `f ~T0 1 e ]
+[; ;main.c: 36: float escala, medicionFloat;
+"38
+[v _xLoMem `i ~T0 1 e ]
+[v _xUpMem `i ~T0 1 e ]
+[v _eLoMem `i ~T0 1 e ]
+[v _eUpMem `i ~T0 1 e ]
+[v _vLoMem `i ~T0 1 e ]
+[v _vUpMem `i ~T0 1 e ]
+[; ;main.c: 38: int xLoMem, xUpMem, eLoMem, eUpMem, vLoMem, vUpMem;
+"39
+[v _brilloMem `uc ~T0 1 e ]
+[v _advModeMem `uc ~T0 1 e ]
+[; ;main.c: 39: char brilloMem, advModeMem;
 "40
-[v _kPin_driverDc `(v ~T0 1 ef2`uc`uc ]
-{
-[; ;kPin.c: 39: void kPin_driverDc(char pi, char kCurrLogState)
-[; ;kPin.c: 40: {
-[e :U _kPin_driverDc ]
-[v _pi `uc ~T0 1 r1 ]
-[v _kCurrLogState `uc ~T0 1 r2 ]
-[f ]
-[; ;kPin.c: 41: if(kPin[pi].timer) kPin[pi].timer--;
+[v _state `uc ~T0 1 e ]
+[; ;main.c: 40: char state;
 "41
-[e $ ! != -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 `i -> -> -> 0 `i `uc `i 656  ]
-[e -- . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 1 `i `uc ]
-[e $U 657  ]
-"42
-[e :U 656 ]
-[; ;kPin.c: 42: else
-[; ;kPin.c: 43: {
-"43
-{
-[; ;kPin.c: 44: kPin[pi].state = kCurrLogState;
-"44
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 _kCurrLogState ]
-[; ;kPin.c: 46: if(kPin[pi].state==FLANCO_P && kPin[pi].prevState==!FLANCO_P)
-"46
-[e $ ! && == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 `i -> . `E4246 1 `i == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 `i -> ! != -> . `E4246 1 `i -> -> -> 0 `i `E4246 `i `i 658  ]
-[; ;kPin.c: 47: {
-"47
-{
-[; ;kPin.c: 48: kPinBuffer.flag = 1;
+[v _ignoreNextFp `uc ~T0 1 e ]
+[v _setInc `uc ~T0 1 e ]
+[i _setInc
+-> -> 1 `i `uc
+]
+[; ;main.c: 41: char ignoreNextFp, setInc = 1;
 "48
-[e = . _kPinBuffer 1 -> -> 1 `i `uc ]
-[; ;kPin.c: 49: kPinBuffer.flanco = FLANCO_P;
-"49
-[e = . _kPinBuffer 2 -> . `E4246 1 `uc ]
-[; ;kPin.c: 50: kPin[pi].timer = 10;
-"50
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 10 `i `uc ]
-[; ;kPin.c: 56: kPinBuffer.kId = pi;
-"56
-[e = . _kPinBuffer 0 _pi ]
-"57
-}
-[; ;kPin.c: 57: }
-[e $U 659  ]
-"58
-[e :U 658 ]
-[; ;kPin.c: 58: else if(kPin[pi].state==FLANCO_N && kPin[pi].prevState==!FLANCO_N)
-[e $ ! && == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 `i -> . `E4246 0 `i == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 `i -> ! != -> . `E4246 0 `i -> -> -> 0 `i `E4246 `i `i 660  ]
-[; ;kPin.c: 59: {
-"59
+[v _enterMenu `(v ~T0 1 ef ]
 {
-[; ;kPin.c: 60: kPinBuffer.flag = 1;
-"60
-[e = . _kPinBuffer 1 -> -> 1 `i `uc ]
-[; ;kPin.c: 61: kPinBuffer.flanco = FLANCO_N;
-"61
-[e = . _kPinBuffer 2 -> . `E4246 0 `uc ]
-[; ;kPin.c: 62: kPin[pi].timer = 10;
-"62
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 10 `i `uc ]
-[; ;kPin.c: 63: kPinBuffer.kId = pi;
-"63
-[e = . _kPinBuffer 0 _pi ]
-"64
-}
-[e :U 660 ]
-"66
-[e :U 659 ]
-[; ;kPin.c: 64: }
-[; ;kPin.c: 66: kPin[pi].prevState = kPin[pi].state;
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 ]
-"67
-}
-[e :U 657 ]
-[; ;kPin.c: 67: }
-[; ;kPin.c: 68: }
-"68
-[e :UE 655 ]
-}
-"77
-[v _kPin_driverAcFn `(v ~T0 1 ef3`uc`uc`uc ]
-{
-[; ;kPin.c: 76: void kPin_driverAcFn(char pi, char flanco, char kCurrLogState)
-[; ;kPin.c: 77: {
-[e :U _kPin_driverAcFn ]
-[v _pi `uc ~T0 1 r1 ]
-[v _flanco `uc ~T0 1 r2 ]
-[v _kCurrLogState `uc ~T0 1 r3 ]
+[; ;main.c: 47: void enterMenu(void)
+[; ;main.c: 48: {
+[e :U _enterMenu ]
 [f ]
-[; ;kPin.c: 78: if(kPin[pi].timer)
+[; ;main.c: 49: if(state == E_MENU_BRILLO) state = E_SET_BRILLO;
+"49
+[e $ ! == -> _state `i -> . `E4245 2 `i 661  ]
+[e = _state -> . `E4245 8 `uc ]
+[e $U 662  ]
+"50
+[e :U 661 ]
+[; ;main.c: 50: else if(state == E_MENU_ADV_MODE) state = E_SET_ADV_MODE;
+[e $ ! == -> _state `i -> . `E4245 3 `i 663  ]
+[e = _state -> . `E4245 13 `uc ]
+[e $U 664  ]
+"51
+[e :U 663 ]
+[; ;main.c: 51: else if(state == E_MENU_LIMITS)
+[e $ ! == -> _state `i -> . `E4245 4 `i 665  ]
+[; ;main.c: 52: {
+"52
+{
+[; ;main.c: 53: setInc = 1;
+"53
+[e = _setInc -> -> 1 `i `uc ]
+[; ;main.c: 54: state = E_SET_ADV_XLO_DESCRIPTION;
+"54
+[e = _state -> . `E4245 14 `uc ]
+"55
+}
+[; ;main.c: 55: }
+[e $U 666  ]
+"56
+[e :U 665 ]
+[; ;main.c: 56: else if(state == E_MENU_ESCALA)
+[e $ ! == -> _state `i -> . `E4245 5 `i 667  ]
+[; ;main.c: 57: {
+"57
+{
+[; ;main.c: 58: setInc = 1;
+"58
+[e = _setInc -> -> 1 `i `uc ]
+[; ;main.c: 59: state = E_SET_ESCALA_ENT_DESCRIPTION;
+"59
+[e = _state -> . `E4245 9 `uc ]
+"60
+}
+[; ;main.c: 60: }
+[e $U 668  ]
+"61
+[e :U 667 ]
+[; ;main.c: 61: else if(state == E_MENU_USER_CAL) state = E_SET_CAL_DESCRIPTION;
+[e $ ! == -> _state `i -> . `E4245 6 `i 669  ]
+[e = _state -> . `E4245 26 `uc ]
+[e $U 670  ]
+"62
+[e :U 669 ]
+[; ;main.c: 62: else if(state == E_MENU_FACTORY_CAL) state = E_SET_RST_DESCRIPTION;
+[e $ ! == -> _state `i -> . `E4245 7 `i 671  ]
+[e = _state -> . `E4245 34 `uc ]
+[e :U 671 ]
+"63
+[e :U 670 ]
+[e :U 668 ]
+[e :U 666 ]
+[e :U 664 ]
+[e :U 662 ]
+[; ;main.c: 63: }
+[e :UE 660 ]
+}
+"70
+[v _incVar `(v ~T0 1 ef ]
+{
+[; ;main.c: 69: void incVar(void)
+[; ;main.c: 70: {
+[e :U _incVar ]
+[f ]
+[; ;main.c: 74: if(state == E_SET_BRILLO)
+"74
+[e $ ! == -> _state `i -> . `E4245 8 `i 673  ]
+[; ;main.c: 75: {
+"75
+{
+[; ;main.c: 76: if(brilloMem < 4)
+"76
+[e $ ! < -> _brilloMem `i -> 4 `i 674  ]
+[; ;main.c: 77: {
+"77
+{
+[; ;main.c: 78: brilloMem++;
 "78
-[e $ ! != -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 `i -> -> -> 0 `i `uc `i 662  ]
-[; ;kPin.c: 79: {
+[e ++ _brilloMem -> -> 1 `i `uc ]
+[; ;main.c: 79: { ee_write_byte(0, brilloMem); };
 "79
 {
-[; ;kPin.c: 80: kPin[pi].timer--;
+[e ( _ee_write_byte (2 , -> -> 0 `i `uc _brilloMem ]
+}
 "80
-[e -- . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 1 `i `uc ]
-[; ;kPin.c: 81: kPin[pi].state=kCurrLogState;
+}
+[e :U 674 ]
 "81
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 _kCurrLogState ]
-[; ;kPin.c: 82: if(kPin[pi].state==flanco && kPin[pi].prevState==!flanco) kPin[pi].timer=10;
+}
+[e :U 673 ]
+[; ;main.c: 80: }
+[; ;main.c: 81: }
+[; ;main.c: 82: if(state == E_SET_ESCALA_ENT)
 "82
-[e $ ! && == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 `i -> _flanco `i == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 `i -> ! != -> _flanco `i -> -> -> 0 `i `uc `i `i 663  ]
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 10 `i `uc ]
-[e :U 663 ]
-[; ;kPin.c: 83: kPin[pi].prevState=kPin[pi].state;
+[e $ ! == -> _state `i -> . `E4245 10 `i 675  ]
+[; ;main.c: 83: {
 "83
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 ]
+{
+[; ;main.c: 84: if((escEntMem + setInc) <= 999)
 "84
-}
-[; ;kPin.c: 84: }
-[e $U 664  ]
+[e $ ! <= + _escEntMem -> _setInc `i -> 999 `i 676  ]
+[; ;main.c: 85: {
 "85
-[e :U 662 ]
-[; ;kPin.c: 85: else
-[; ;kPin.c: 86: {
+{
+[; ;main.c: 86: escEntMem = escEntMem + setInc;
 "86
-{
-[; ;kPin.c: 87: kPin[pi].state=kCurrLogState;
+[e = _escEntMem + _escEntMem -> _setInc `i ]
+[; ;main.c: 87: { ee_write_byte(14, ((unsigned char)(((escEntMem)>>8)&0xFF))); ee_write_byte(14 + 1, ((unsigned char)((escEntMem)&0xFF))); };
 "87
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 _kCurrLogState ]
-[; ;kPin.c: 88: if(kPin[pi].state==flanco && kPin[pi].prevState==!flanco)
+{
+[e ( _ee_write_byte (2 , -> -> 14 `i `uc -> & >> _escEntMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 14 `i -> 1 `i `uc -> & _escEntMem -> 255 `i `uc ]
+}
+[; ;main.c: 88: escala = (float) escEntMem + (float) escDecMem / 1000.0;
 "88
-[e $ ! && == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 `i -> _flanco `i == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 `i -> ! != -> _flanco `i -> -> -> 0 `i `uc `i `i 665  ]
-[; ;kPin.c: 89: {
+[e = _escala -> + -> -> _escEntMem `f `d / -> -> _escDecMem `f `d .1000.0 `f ]
 "89
-{
-[; ;kPin.c: 90: kPin[pi].timer=10;
+}
+[e :U 676 ]
 "90
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 10 `i `uc ]
-[; ;kPin.c: 91: kPinBuffer.kId=pi;
+}
+[e :U 675 ]
+[; ;main.c: 89: }
+[; ;main.c: 90: }
+[; ;main.c: 91: if(state == E_SET_ESCALA_DEC)
 "91
-[e = . _kPinBuffer 0 _pi ]
-[; ;kPin.c: 92: kPinBuffer.flag=1;
+[e $ ! == -> _state `i -> . `E4245 12 `i 677  ]
+[; ;main.c: 92: {
 "92
-[e = . _kPinBuffer 1 -> -> 1 `i `uc ]
+{
+[; ;main.c: 93: if((escDecMem + setInc) <= 999)
 "93
-}
-[e :U 665 ]
-[; ;kPin.c: 93: }
-[; ;kPin.c: 94: kPin[pi].prevState=kPin[pi].state;
+[e $ ! <= + _escDecMem -> _setInc `i -> 999 `i 678  ]
+[; ;main.c: 94: {
 "94
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 ]
+{
+[; ;main.c: 95: escDecMem = escDecMem + setInc;
 "95
-}
-[e :U 664 ]
-[; ;kPin.c: 95: }
-[; ;kPin.c: 96: }
+[e = _escDecMem + _escDecMem -> _setInc `i ]
+[; ;main.c: 96: { ee_write_byte(16, ((unsigned char)(((escDecMem)>>8)&0xFF))); ee_write_byte(16 + 1, ((unsigned char)((escDecMem)&0xFF))); };
 "96
-[e :UE 661 ]
+{
+[e ( _ee_write_byte (2 , -> -> 16 `i `uc -> & >> _escDecMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 16 `i -> 1 `i `uc -> & _escDecMem -> 255 `i `uc ]
 }
+[; ;main.c: 97: escala = (float) escEntMem + (float) escDecMem / 1000.0;
+"97
+[e = _escala -> + -> -> _escEntMem `f `d / -> -> _escDecMem `f `d .1000.0 `f ]
+"98
+}
+[e :U 678 ]
+"99
+}
+[e :U 677 ]
+[; ;main.c: 98: }
+[; ;main.c: 99: }
+[; ;main.c: 100: if(state == E_SET_ADV_MODE)
+"100
+[e $ ! == -> _state `i -> . `E4245 13 `i 679  ]
+[; ;main.c: 101: {
+"101
+{
+[; ;main.c: 102: if(advModeMem < CANT_ADV_MODES - 1)
+"102
+[e $ ! < -> _advModeMem `i - -> . `E4235 8 `i -> 1 `i 680  ]
+[; ;main.c: 103: {
+"103
+{
+[; ;main.c: 104: advModeMem++;
+"104
+[e ++ _advModeMem -> -> 1 `i `uc ]
+[; ;main.c: 105: { ee_write_byte(1, advModeMem); };
 "105
-[v _kPin_driverAcFp `(v ~T0 1 ef3`uc`uc`uc ]
 {
-[; ;kPin.c: 104: void kPin_driverAcFp(char pi, char flanco, char kCurrLogState)
-[; ;kPin.c: 105: {
-[e :U _kPin_driverAcFp ]
-[v _pi `uc ~T0 1 r1 ]
-[v _flanco `uc ~T0 1 r2 ]
-[v _kCurrLogState `uc ~T0 1 r3 ]
-[f ]
-[; ;kPin.c: 106: if(kPin[pi].timer)
+[e ( _ee_write_byte (2 , -> -> 1 `i `uc _advModeMem ]
+}
 "106
-[e $ ! != -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 `i -> -> -> 0 `i `uc `i 667  ]
-[; ;kPin.c: 107: {
+}
+[e :U 680 ]
 "107
-{
-[; ;kPin.c: 108: kPin[pi].timer--;
+}
+[e :U 679 ]
+[; ;main.c: 106: }
+[; ;main.c: 107: }
+[; ;main.c: 108: if(state == E_SET_ADV_XLO)
 "108
-[e -- . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 1 `i `uc ]
-[; ;kPin.c: 109: if(kPin[pi].timer==0) kPinBuffer.flag=1;
+[e $ ! == -> _state `i -> . `E4245 15 `i 681  ]
+[; ;main.c: 109: {
 "109
-[e $ ! == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 `i -> 0 `i 668  ]
-[e = . _kPinBuffer 1 -> -> 1 `i `uc ]
-[e :U 668 ]
-[; ;kPin.c: 110: kPin[pi].state=kCurrLogState;
+{
+[; ;main.c: 110: if((xLoMem + setInc) <= 999)
 "110
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 _kCurrLogState ]
-[; ;kPin.c: 111: if(kPin[pi].state==flanco && kPin[pi].prevState==!flanco) kPin[pi].timer=10;
+[e $ ! <= + _xLoMem -> _setInc `i -> 999 `i 682  ]
+[; ;main.c: 111: {
 "111
-[e $ ! && == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 `i -> _flanco `i == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 `i -> ! != -> _flanco `i -> -> -> 0 `i `uc `i `i 669  ]
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 10 `i `uc ]
-[e :U 669 ]
-[; ;kPin.c: 112: kPin[pi].prevState=kPin[pi].state;
+{
+[; ;main.c: 112: xLoMem = xLoMem + setInc;
 "112
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 ]
+[e = _xLoMem + _xLoMem -> _setInc `i ]
+[; ;main.c: 113: { ee_write_byte(2, ((unsigned char)(((xLoMem)>>8)&0xFF))); ee_write_byte(2 + 1, ((unsigned char)((xLoMem)&0xFF))); };
 "113
+{
+[e ( _ee_write_byte (2 , -> -> 2 `i `uc -> & >> _xLoMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 2 `i -> 1 `i `uc -> & _xLoMem -> 255 `i `uc ]
 }
-[; ;kPin.c: 113: }
-[e $U 670  ]
 "114
-[e :U 667 ]
-[; ;kPin.c: 114: else
-[; ;kPin.c: 115: {
-"115
-{
-[; ;kPin.c: 116: kPin[pi].state=kCurrLogState;
-"116
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 _kCurrLogState ]
-[; ;kPin.c: 117: if(kPin[pi].state==flanco && kPin[pi].prevState==!flanco)
-"117
-[e $ ! && == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 `i -> _flanco `i == -> . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 `i -> ! != -> _flanco `i -> -> -> 0 `i `uc `i `i 671  ]
-[; ;kPin.c: 118: {
-"118
-{
-[; ;kPin.c: 119: kPin[pi].timer=10;
-"119
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 2 -> -> 10 `i `uc ]
-[; ;kPin.c: 120: kPinBuffer.kId=pi;
-"120
-[e = . _kPinBuffer 0 _pi ]
-"121
 }
-[e :U 671 ]
-[; ;kPin.c: 121: }
-[; ;kPin.c: 122: kPin[pi].prevState=kPin[pi].state;
+[e :U 682 ]
+"115
+}
+[e :U 681 ]
+[; ;main.c: 114: }
+[; ;main.c: 115: }
+[; ;main.c: 116: if(state == E_SET_ADV_XUP)
+"116
+[e $ ! == -> _state `i -> . `E4245 17 `i 683  ]
+[; ;main.c: 117: {
+"117
+{
+[; ;main.c: 118: if((xUpMem + setInc) <= 999)
+"118
+[e $ ! <= + _xUpMem -> _setInc `i -> 999 `i 684  ]
+[; ;main.c: 119: {
+"119
+{
+[; ;main.c: 120: xUpMem = xUpMem + setInc;
+"120
+[e = _xUpMem + _xUpMem -> _setInc `i ]
+[; ;main.c: 121: { ee_write_byte(4, ((unsigned char)(((xUpMem)>>8)&0xFF))); ee_write_byte(4 + 1, ((unsigned char)((xUpMem)&0xFF))); };
+"121
+{
+[e ( _ee_write_byte (2 , -> -> 4 `i `uc -> & >> _xUpMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 4 `i -> 1 `i `uc -> & _xUpMem -> 255 `i `uc ]
+}
 "122
-[e = . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 1 . *U + &U _kPin * -> _pi `ux -> -> # *U &U _kPin `ui `ux 0 ]
+}
+[e :U 684 ]
 "123
 }
-[e :U 670 ]
-[; ;kPin.c: 123: }
-[; ;kPin.c: 124: }
+[e :U 683 ]
+[; ;main.c: 122: }
+[; ;main.c: 123: }
+[; ;main.c: 124: if(state == E_SET_ADV_ELO)
 "124
-[e :UE 666 ]
+[e $ ! == -> _state `i -> . `E4245 19 `i 685  ]
+[; ;main.c: 125: {
+"125
+{
+[; ;main.c: 126: if((eLoMem + setInc) <= 999)
+"126
+[e $ ! <= + _eLoMem -> _setInc `i -> 999 `i 686  ]
+[; ;main.c: 127: {
+"127
+{
+[; ;main.c: 128: eLoMem = eLoMem + setInc;
+"128
+[e = _eLoMem + _eLoMem -> _setInc `i ]
+[; ;main.c: 129: { ee_write_byte(6, ((unsigned char)(((eLoMem)>>8)&0xFF))); ee_write_byte(6 + 1, ((unsigned char)((eLoMem)&0xFF))); };
+"129
+{
+[e ( _ee_write_byte (2 , -> -> 6 `i `uc -> & >> _eLoMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 6 `i -> 1 `i `uc -> & _eLoMem -> 255 `i `uc ]
+}
+"130
+}
+[e :U 686 ]
+"131
+}
+[e :U 685 ]
+[; ;main.c: 130: }
+[; ;main.c: 131: }
+[; ;main.c: 132: if(state == E_SET_ADV_EUP)
+"132
+[e $ ! == -> _state `i -> . `E4245 21 `i 687  ]
+[; ;main.c: 133: {
+"133
+{
+[; ;main.c: 134: if((eUpMem+setInc) <= 999)
+"134
+[e $ ! <= + _eUpMem -> _setInc `i -> 999 `i 688  ]
+[; ;main.c: 135: {
+"135
+{
+[; ;main.c: 136: eUpMem = eUpMem + setInc;
+"136
+[e = _eUpMem + _eUpMem -> _setInc `i ]
+[; ;main.c: 137: { ee_write_byte(8, ((unsigned char)(((eUpMem)>>8)&0xFF))); ee_write_byte(8 + 1, ((unsigned char)((eUpMem)&0xFF))); };
+"137
+{
+[e ( _ee_write_byte (2 , -> -> 8 `i `uc -> & >> _eUpMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 8 `i -> 1 `i `uc -> & _eUpMem -> 255 `i `uc ]
+}
+"138
+}
+[e :U 688 ]
+"139
+}
+[e :U 687 ]
+[; ;main.c: 138: }
+[; ;main.c: 139: }
+[; ;main.c: 140: if(state == E_SET_ADV_VLO)
+"140
+[e $ ! == -> _state `i -> . `E4245 23 `i 689  ]
+[; ;main.c: 141: {
+"141
+{
+[; ;main.c: 142: if((vLoMem+setInc) <= 999)
+"142
+[e $ ! <= + _vLoMem -> _setInc `i -> 999 `i 690  ]
+[; ;main.c: 143: {
+"143
+{
+[; ;main.c: 144: vLoMem = vLoMem + setInc;
+"144
+[e = _vLoMem + _vLoMem -> _setInc `i ]
+[; ;main.c: 145: { ee_write_byte(10, ((unsigned char)(((vLoMem)>>8)&0xFF))); ee_write_byte(10 + 1, ((unsigned char)((vLoMem)&0xFF))); };
+"145
+{
+[e ( _ee_write_byte (2 , -> -> 10 `i `uc -> & >> _vLoMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 10 `i -> 1 `i `uc -> & _vLoMem -> 255 `i `uc ]
+}
+"146
+}
+[e :U 690 ]
+"147
+}
+[e :U 689 ]
+[; ;main.c: 146: }
+[; ;main.c: 147: }
+[; ;main.c: 148: if(state == E_SET_ADV_VUP)
+"148
+[e $ ! == -> _state `i -> . `E4245 25 `i 691  ]
+[; ;main.c: 149: {
+"149
+{
+[; ;main.c: 150: if((vUpMem+setInc) <= 999)
+"150
+[e $ ! <= + _vUpMem -> _setInc `i -> 999 `i 692  ]
+[; ;main.c: 151: {
+"151
+{
+[; ;main.c: 152: vUpMem = vUpMem + setInc;
+"152
+[e = _vUpMem + _vUpMem -> _setInc `i ]
+[; ;main.c: 153: { ee_write_byte(12, ((unsigned char)(((vUpMem)>>8)&0xFF))); ee_write_byte(12 + 1, ((unsigned char)((vUpMem)&0xFF))); };
+"153
+{
+[e ( _ee_write_byte (2 , -> -> 12 `i `uc -> & >> _vUpMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 12 `i -> 1 `i `uc -> & _vUpMem -> 255 `i `uc ]
+}
+"154
+}
+[e :U 692 ]
+"155
+}
+[e :U 691 ]
+[; ;main.c: 154: }
+[; ;main.c: 155: }
+[; ;main.c: 157: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"157
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 158: { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
+"158
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 159: }
+"159
+[e :UE 672 ]
+}
+"166
+[v _decVar `(v ~T0 1 ef ]
+{
+[; ;main.c: 165: void decVar(void)
+[; ;main.c: 166: {
+[e :U _decVar ]
+[f ]
+[; ;main.c: 170: if(state == E_SET_BRILLO)
+"170
+[e $ ! == -> _state `i -> . `E4245 8 `i 694  ]
+[; ;main.c: 171: {
+"171
+{
+[; ;main.c: 172: if(brilloMem > 0)
+"172
+[e $ ! > -> _brilloMem `i -> 0 `i 695  ]
+[; ;main.c: 173: {
+"173
+{
+[; ;main.c: 174: brilloMem--;
+"174
+[e -- _brilloMem -> -> 1 `i `uc ]
+[; ;main.c: 175: { ee_write_byte(0, brilloMem); };
+"175
+{
+[e ( _ee_write_byte (2 , -> -> 0 `i `uc _brilloMem ]
+}
+"176
+}
+[e :U 695 ]
+"177
+}
+[e :U 694 ]
+[; ;main.c: 176: }
+[; ;main.c: 177: }
+[; ;main.c: 178: if(state == E_SET_ESCALA_ENT)
+"178
+[e $ ! == -> _state `i -> . `E4245 10 `i 696  ]
+[; ;main.c: 179: {
+"179
+{
+[; ;main.c: 180: if((escEntMem-setInc) >= 0)
+"180
+[e $ ! >= - _escEntMem -> _setInc `i -> 0 `i 697  ]
+[; ;main.c: 181: {
+"181
+{
+[; ;main.c: 182: escEntMem = escEntMem - setInc;
+"182
+[e = _escEntMem - _escEntMem -> _setInc `i ]
+[; ;main.c: 183: { ee_write_byte(14, ((unsigned char)(((escEntMem)>>8)&0xFF))); ee_write_byte(14 + 1, ((unsigned char)((escEntMem)&0xFF))); };
+"183
+{
+[e ( _ee_write_byte (2 , -> -> 14 `i `uc -> & >> _escEntMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 14 `i -> 1 `i `uc -> & _escEntMem -> 255 `i `uc ]
+}
+[; ;main.c: 184: escala = (float) escEntMem + (float) escDecMem / 1000.0;
+"184
+[e = _escala -> + -> -> _escEntMem `f `d / -> -> _escDecMem `f `d .1000.0 `f ]
+"185
+}
+[e :U 697 ]
+"186
+}
+[e :U 696 ]
+[; ;main.c: 185: }
+[; ;main.c: 186: }
+[; ;main.c: 187: if(state == E_SET_ESCALA_DEC)
+"187
+[e $ ! == -> _state `i -> . `E4245 12 `i 698  ]
+[; ;main.c: 188: {
+"188
+{
+[; ;main.c: 189: if((escDecMem-setInc) >= 0)
+"189
+[e $ ! >= - _escDecMem -> _setInc `i -> 0 `i 699  ]
+[; ;main.c: 190: {
+"190
+{
+[; ;main.c: 191: escDecMem = escDecMem - setInc;
+"191
+[e = _escDecMem - _escDecMem -> _setInc `i ]
+[; ;main.c: 192: { ee_write_byte(16, ((unsigned char)(((escDecMem)>>8)&0xFF))); ee_write_byte(16 + 1, ((unsigned char)((escDecMem)&0xFF))); };
+"192
+{
+[e ( _ee_write_byte (2 , -> -> 16 `i `uc -> & >> _escDecMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 16 `i -> 1 `i `uc -> & _escDecMem -> 255 `i `uc ]
+}
+[; ;main.c: 193: escala = (float) escEntMem + (float) escDecMem / 1000.0;
+"193
+[e = _escala -> + -> -> _escEntMem `f `d / -> -> _escDecMem `f `d .1000.0 `f ]
+"194
+}
+[e :U 699 ]
+"195
+}
+[e :U 698 ]
+[; ;main.c: 194: }
+[; ;main.c: 195: }
+[; ;main.c: 196: if(state == E_SET_ADV_MODE)
+"196
+[e $ ! == -> _state `i -> . `E4245 13 `i 700  ]
+[; ;main.c: 197: {
+"197
+{
+[; ;main.c: 198: if(advModeMem > 0)
+"198
+[e $ ! > -> _advModeMem `i -> 0 `i 701  ]
+[; ;main.c: 199: {
+"199
+{
+[; ;main.c: 200: advModeMem--;
+"200
+[e -- _advModeMem -> -> 1 `i `uc ]
+[; ;main.c: 201: { ee_write_byte(1, advModeMem); };
+"201
+{
+[e ( _ee_write_byte (2 , -> -> 1 `i `uc _advModeMem ]
+}
+"202
+}
+[e :U 701 ]
+"203
+}
+[e :U 700 ]
+[; ;main.c: 202: }
+[; ;main.c: 203: }
+[; ;main.c: 204: if(state == E_SET_ADV_XLO)
+"204
+[e $ ! == -> _state `i -> . `E4245 15 `i 702  ]
+[; ;main.c: 205: {
+"205
+{
+[; ;main.c: 206: if((xLoMem - setInc) >= 0)
+"206
+[e $ ! >= - _xLoMem -> _setInc `i -> 0 `i 703  ]
+[; ;main.c: 207: {
+"207
+{
+[; ;main.c: 208: xLoMem = xLoMem - setInc;
+"208
+[e = _xLoMem - _xLoMem -> _setInc `i ]
+[; ;main.c: 209: { ee_write_byte(2, ((unsigned char)(((xLoMem)>>8)&0xFF))); ee_write_byte(2 + 1, ((unsigned char)((xLoMem)&0xFF))); };
+"209
+{
+[e ( _ee_write_byte (2 , -> -> 2 `i `uc -> & >> _xLoMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 2 `i -> 1 `i `uc -> & _xLoMem -> 255 `i `uc ]
+}
+"210
+}
+[e :U 703 ]
+"211
+}
+[e :U 702 ]
+[; ;main.c: 210: }
+[; ;main.c: 211: }
+[; ;main.c: 212: if(state == E_SET_ADV_XUP)
+"212
+[e $ ! == -> _state `i -> . `E4245 17 `i 704  ]
+[; ;main.c: 213: {
+"213
+{
+[; ;main.c: 214: if((xUpMem - setInc) >= 0)
+"214
+[e $ ! >= - _xUpMem -> _setInc `i -> 0 `i 705  ]
+[; ;main.c: 215: {
+"215
+{
+[; ;main.c: 216: xUpMem = xUpMem - setInc;
+"216
+[e = _xUpMem - _xUpMem -> _setInc `i ]
+[; ;main.c: 217: { ee_write_byte(4, ((unsigned char)(((xUpMem)>>8)&0xFF))); ee_write_byte(4 + 1, ((unsigned char)((xUpMem)&0xFF))); };
+"217
+{
+[e ( _ee_write_byte (2 , -> -> 4 `i `uc -> & >> _xUpMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 4 `i -> 1 `i `uc -> & _xUpMem -> 255 `i `uc ]
+}
+"218
+}
+[e :U 705 ]
+"219
+}
+[e :U 704 ]
+[; ;main.c: 218: }
+[; ;main.c: 219: }
+[; ;main.c: 220: if(state == E_SET_ADV_ELO)
+"220
+[e $ ! == -> _state `i -> . `E4245 19 `i 706  ]
+[; ;main.c: 221: {
+"221
+{
+[; ;main.c: 222: if((eLoMem - setInc) >= 0)
+"222
+[e $ ! >= - _eLoMem -> _setInc `i -> 0 `i 707  ]
+[; ;main.c: 223: {
+"223
+{
+[; ;main.c: 224: eLoMem = eLoMem - setInc;
+"224
+[e = _eLoMem - _eLoMem -> _setInc `i ]
+[; ;main.c: 225: { ee_write_byte(6, ((unsigned char)(((eLoMem)>>8)&0xFF))); ee_write_byte(6 + 1, ((unsigned char)((eLoMem)&0xFF))); };
+"225
+{
+[e ( _ee_write_byte (2 , -> -> 6 `i `uc -> & >> _eLoMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 6 `i -> 1 `i `uc -> & _eLoMem -> 255 `i `uc ]
+}
+"226
+}
+[e :U 707 ]
+"227
+}
+[e :U 706 ]
+[; ;main.c: 226: }
+[; ;main.c: 227: }
+[; ;main.c: 228: if(state == E_SET_ADV_EUP)
+"228
+[e $ ! == -> _state `i -> . `E4245 21 `i 708  ]
+[; ;main.c: 229: {
+"229
+{
+[; ;main.c: 230: if((eUpMem - setInc) >= 0)
+"230
+[e $ ! >= - _eUpMem -> _setInc `i -> 0 `i 709  ]
+[; ;main.c: 231: {
+"231
+{
+[; ;main.c: 232: eUpMem = eUpMem - setInc;
+"232
+[e = _eUpMem - _eUpMem -> _setInc `i ]
+[; ;main.c: 233: { ee_write_byte(8, ((unsigned char)(((eUpMem)>>8)&0xFF))); ee_write_byte(8 + 1, ((unsigned char)((eUpMem)&0xFF))); };
+"233
+{
+[e ( _ee_write_byte (2 , -> -> 8 `i `uc -> & >> _eUpMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 8 `i -> 1 `i `uc -> & _eUpMem -> 255 `i `uc ]
+}
+"234
+}
+[e :U 709 ]
+"235
+}
+[e :U 708 ]
+[; ;main.c: 234: }
+[; ;main.c: 235: }
+[; ;main.c: 236: if(state == E_SET_ADV_VLO)
+"236
+[e $ ! == -> _state `i -> . `E4245 23 `i 710  ]
+[; ;main.c: 237: {
+"237
+{
+[; ;main.c: 238: if((vLoMem - setInc) >= 0)
+"238
+[e $ ! >= - _vLoMem -> _setInc `i -> 0 `i 711  ]
+[; ;main.c: 239: {
+"239
+{
+[; ;main.c: 240: vLoMem = vLoMem - setInc;
+"240
+[e = _vLoMem - _vLoMem -> _setInc `i ]
+[; ;main.c: 241: { ee_write_byte(10, ((unsigned char)(((vLoMem)>>8)&0xFF))); ee_write_byte(10 + 1, ((unsigned char)((vLoMem)&0xFF))); };
+"241
+{
+[e ( _ee_write_byte (2 , -> -> 10 `i `uc -> & >> _vLoMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 10 `i -> 1 `i `uc -> & _vLoMem -> 255 `i `uc ]
+}
+"242
+}
+[e :U 711 ]
+"243
+}
+[e :U 710 ]
+[; ;main.c: 242: }
+[; ;main.c: 243: }
+[; ;main.c: 244: if(state==E_SET_ADV_VUP)
+"244
+[e $ ! == -> _state `i -> . `E4245 25 `i 712  ]
+[; ;main.c: 245: {
+"245
+{
+[; ;main.c: 246: if((vUpMem-setInc)>=0)
+"246
+[e $ ! >= - _vUpMem -> _setInc `i -> 0 `i 713  ]
+[; ;main.c: 247: {
+"247
+{
+[; ;main.c: 248: vUpMem=vUpMem-setInc;
+"248
+[e = _vUpMem - _vUpMem -> _setInc `i ]
+[; ;main.c: 249: { ee_write_byte(12, ((unsigned char)(((vUpMem)>>8)&0xFF))); ee_write_byte(12 + 1, ((unsigned char)((vUpMem)&0xFF))); };
+"249
+{
+[e ( _ee_write_byte (2 , -> -> 12 `i `uc -> & >> _vUpMem -> 8 `i -> 255 `i `uc ]
+[e ( _ee_write_byte (2 , -> + -> 12 `i -> 1 `i `uc -> & _vUpMem -> 255 `i `uc ]
+}
+"250
+}
+[e :U 713 ]
+"251
+}
+[e :U 712 ]
+[; ;main.c: 250: }
+[; ;main.c: 251: }
+[; ;main.c: 253: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"253
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 254: { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
+"254
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 255: }
+"255
+[e :UE 693 ]
+}
+"262
+[v _endTestDisplayActions `(v ~T0 1 ef ]
+{
+[; ;main.c: 261: void endTestDisplayActions(void)
+[; ;main.c: 262: {
+[e :U _endTestDisplayActions ]
+[f ]
+[; ;main.c: 263: state=E_IDLE;
+"263
+[e = _state -> . `E4245 1 `uc ]
+[; ;main.c: 265: PORTCbits.RC6=0;
+"265
+[e = . . _PORTCbits 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 266: muxBuffer[0]='0';
+"266
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 48 `ui `uc ]
+[; ;main.c: 267: muxBuffer[1]='0';
+"267
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 48 `ui `uc ]
+[; ;main.c: 268: muxBuffer[2]='0';
+"268
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 48 `ui `uc ]
+[; ;main.c: 269: muxBuffer[ADV]=' ';
+"269
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[; ;main.c: 270: { t0Mem[T0_ADCSAMPLE].flag=0; t0Mem[T0_ADCSAMPLE].prescaler=t0DelayConstant[T0_ADCSAMPLE]; t0Mem[T0_ADCSAMPLE].pause=0; t0Mem[T0_ADCSAMPLE].loop=1; };
+"270
+{
+[e = . *U + &U _t0Mem * -> . `E4340 12 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 12 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 12 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 12 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 12 `ux -> -> # *U &U _t0Mem `ui `ux 1 -> -> 1 `i `uc ]
+}
+[; ;main.c: 271: }
+"271
+[e :UE 714 ]
+}
+"278
+[v _actionsTimeoutShowSetting `(v ~T0 1 ef ]
+{
+[; ;main.c: 277: void actionsTimeoutShowSetting(void)
+[; ;main.c: 278: {
+[e :U _actionsTimeoutShowSetting ]
+[f ]
+[; ;main.c: 279: if((t0Mem[T0_SHOW_SETTING].flag?!(t0Mem[T0_SHOW_SETTING].flag=0):0))
+"279
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 716  ]
+[; ;main.c: 280: {
+"280
+{
+[; ;main.c: 281: switch(state)
+"281
+[e $U 718  ]
+[; ;main.c: 282: {
+"282
+{
+[; ;main.c: 283: case E_SET_ESCALA_ENT_DESCRIPTION:
+"283
+[e :U 719 ]
+[; ;main.c: 284: state++;
+"284
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 285: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"285
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 286: break;
+"286
+[e $U 717  ]
+[; ;main.c: 287: case E_SET_ESCALA_ENT:
+"287
+[e :U 720 ]
+[; ;main.c: 288: state++;
+"288
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 289: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"289
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 290: break;
+"290
+[e $U 717  ]
+[; ;main.c: 291: case E_SET_ESCALA_DEC_DESCRIPTION:
+"291
+[e :U 721 ]
+[; ;main.c: 292: state++;
+"292
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 293: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"293
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 294: break;
+"294
+[e $U 717  ]
+[; ;main.c: 295: case E_SET_ESCALA_DEC:
+"295
+[e :U 722 ]
+[; ;main.c: 296: state=E_IDLE;
+"296
+[e = _state -> . `E4245 1 `uc ]
+[; ;main.c: 297: break;
+"297
+[e $U 717  ]
+[; ;main.c: 298: case E_SET_ADV_XLO_DESCRIPTION:
+"298
+[e :U 723 ]
+[; ;main.c: 299: state++;
+"299
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 300: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"300
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 301: break;
+"301
+[e $U 717  ]
+[; ;main.c: 302: case E_SET_ADV_XLO:
+"302
+[e :U 724 ]
+[; ;main.c: 303: state++;
+"303
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 304: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"304
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 305: break;
+"305
+[e $U 717  ]
+[; ;main.c: 306: case E_SET_ADV_XUP_DESCRIPTION:
+"306
+[e :U 725 ]
+[; ;main.c: 307: state++;
+"307
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 308: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"308
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 309: break;
+"309
+[e $U 717  ]
+[; ;main.c: 310: case E_SET_ADV_XUP:
+"310
+[e :U 726 ]
+[; ;main.c: 311: state++;
+"311
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 312: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"312
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 313: break;
+"313
+[e $U 717  ]
+[; ;main.c: 314: case E_SET_ADV_ELO_DESCRIPTION:
+"314
+[e :U 727 ]
+[; ;main.c: 315: state++;
+"315
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 316: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"316
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 317: break;
+"317
+[e $U 717  ]
+[; ;main.c: 318: case E_SET_ADV_ELO:
+"318
+[e :U 728 ]
+[; ;main.c: 319: state++;
+"319
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 320: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"320
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 321: break;
+"321
+[e $U 717  ]
+[; ;main.c: 322: case E_SET_ADV_EUP_DESCRIPTION:
+"322
+[e :U 729 ]
+[; ;main.c: 323: state++;
+"323
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 324: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"324
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 325: break;
+"325
+[e $U 717  ]
+[; ;main.c: 326: case E_SET_ADV_EUP:
+"326
+[e :U 730 ]
+[; ;main.c: 327: state++;
+"327
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 328: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"328
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 329: break;
+"329
+[e $U 717  ]
+[; ;main.c: 330: case E_SET_ADV_VLO_DESCRIPTION:
+"330
+[e :U 731 ]
+[; ;main.c: 331: state++;
+"331
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 332: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"332
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 333: break;
+"333
+[e $U 717  ]
+[; ;main.c: 334: case E_SET_ADV_VLO_DESCRIPTION:
+"334
+[e :U 732 ]
+[; ;main.c: 335: state++;
+"335
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 336: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"336
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 337: break;
+"337
+[e $U 717  ]
+[; ;main.c: 338: case E_SET_ADV_VLO:
+"338
+[e :U 733 ]
+[; ;main.c: 339: state++;
+"339
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 340: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"340
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 341: break;
+"341
+[e $U 717  ]
+[; ;main.c: 342: case E_SET_ADV_VUP_DESCRIPTION:
+"342
+[e :U 734 ]
+[; ;main.c: 343: state++;
+"343
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 344: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"344
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 345: break;
+"345
+[e $U 717  ]
+[; ;main.c: 346: case E_SET_ADV_VUP:
+"346
+[e :U 735 ]
+[; ;main.c: 347: state=E_IDLE;
+"347
+[e = _state -> . `E4245 1 `uc ]
+[; ;main.c: 348: break;
+"348
+[e $U 717  ]
+[; ;main.c: 349: default:
+"349
+[e :U 736 ]
+[; ;main.c: 350: state=E_IDLE;
+"350
+[e = _state -> . `E4245 1 `uc ]
+[; ;main.c: 351: break;
+"351
+[e $U 717  ]
+"352
+}
+[; ;main.c: 352: }
+[e $U 717  ]
+"281
+[e :U 718 ]
+[e [\ _state , $ -> . `E4245 9 `uc 719
+ , $ -> . `E4245 10 `uc 720
+ , $ -> . `E4245 11 `uc 721
+ , $ -> . `E4245 12 `uc 722
+ , $ -> . `E4245 14 `uc 723
+ , $ -> . `E4245 15 `uc 724
+ , $ -> . `E4245 16 `uc 725
+ , $ -> . `E4245 17 `uc 726
+ , $ -> . `E4245 18 `uc 727
+ , $ -> . `E4245 19 `uc 728
+ , $ -> . `E4245 20 `uc 729
+ , $ -> . `E4245 21 `uc 730
+ , $ -> . `E4245 22 `uc 731
+ , $ -> . `E4245 22 `uc 732
+ , $ -> . `E4245 23 `uc 733
+ , $ -> . `E4245 24 `uc 734
+ , $ -> . `E4245 25 `uc 735
+ 736 ]
+"352
+[e :U 717 ]
+"353
+}
+[e :U 716 ]
+[; ;main.c: 353: }
+[; ;main.c: 354: }
+"354
+[e :UE 715 ]
+}
+"357
+[v _aux `uc ~T0 1 e ]
+[; ;main.c: 357: char aux;
+"364
+[v _main `(v ~T0 1 ef ]
+{
+[; ;main.c: 363: void main(void)
+[; ;main.c: 364: {
+[e :U _main ]
+[f ]
+[; ;main.c: 369: systemInit();
+"369
+[e ( _systemInit ..  ]
+[; ;main.c: 370: segments.portState = 0x01;
+"370
+[e = . _segments 1 -> -> 1 `i `uc ]
+[; ;main.c: 374: { brilloMem = ee_read_byte(0); };
+"374
+{
+[e = _brilloMem ( _ee_read_byte (1 -> -> 0 `i `uc ]
+}
+[; ;main.c: 375: { advModeMem = ee_read_byte(1); };
+"375
+{
+[e = _advModeMem ( _ee_read_byte (1 -> -> 1 `i `uc ]
+}
+[; ;main.c: 377: { escEntMem = 0x00; escEntMem |= ee_read_byte(14) << 8; escEntMem |= ee_read_byte(14 + 1) << 0; };
+"377
+{
+[e = _escEntMem -> 0 `i ]
+[e =| _escEntMem << -> ( _ee_read_byte (1 -> -> 14 `i `uc `i -> 8 `i ]
+[e =| _escEntMem << -> ( _ee_read_byte (1 -> + -> 14 `i -> 1 `i `uc `i -> 0 `i ]
+}
+[; ;main.c: 378: { escDecMem = 0x00; escDecMem |= ee_read_byte(16) << 8; escDecMem |= ee_read_byte(16 + 1) << 0; };
+"378
+{
+[e = _escDecMem -> 0 `i ]
+[e =| _escDecMem << -> ( _ee_read_byte (1 -> -> 16 `i `uc `i -> 8 `i ]
+[e =| _escDecMem << -> ( _ee_read_byte (1 -> + -> 16 `i -> 1 `i `uc `i -> 0 `i ]
+}
+[; ;main.c: 379: escala = (float) escEntMem + (float) escDecMem / 1000.0;
+"379
+[e = _escala -> + -> -> _escEntMem `f `d / -> -> _escDecMem `f `d .1000.0 `f ]
+[; ;main.c: 381: { xLoMem = 0x00; xLoMem |= ee_read_byte(2) << 8; xLoMem |= ee_read_byte(2 + 1) << 0; };
+"381
+{
+[e = _xLoMem -> 0 `i ]
+[e =| _xLoMem << -> ( _ee_read_byte (1 -> -> 2 `i `uc `i -> 8 `i ]
+[e =| _xLoMem << -> ( _ee_read_byte (1 -> + -> 2 `i -> 1 `i `uc `i -> 0 `i ]
+}
+[; ;main.c: 382: { xUpMem = 0x00; xUpMem |= ee_read_byte(4) << 8; xUpMem |= ee_read_byte(4 + 1) << 0; };
+"382
+{
+[e = _xUpMem -> 0 `i ]
+[e =| _xUpMem << -> ( _ee_read_byte (1 -> -> 4 `i `uc `i -> 8 `i ]
+[e =| _xUpMem << -> ( _ee_read_byte (1 -> + -> 4 `i -> 1 `i `uc `i -> 0 `i ]
+}
+[; ;main.c: 383: { eLoMem = 0x00; eLoMem |= ee_read_byte(6) << 8; eLoMem |= ee_read_byte(6 + 1) << 0; };
+"383
+{
+[e = _eLoMem -> 0 `i ]
+[e =| _eLoMem << -> ( _ee_read_byte (1 -> -> 6 `i `uc `i -> 8 `i ]
+[e =| _eLoMem << -> ( _ee_read_byte (1 -> + -> 6 `i -> 1 `i `uc `i -> 0 `i ]
+}
+[; ;main.c: 384: { eUpMem = 0x00; eUpMem |= ee_read_byte(8) << 8; eUpMem |= ee_read_byte(8 + 1) << 0; };
+"384
+{
+[e = _eUpMem -> 0 `i ]
+[e =| _eUpMem << -> ( _ee_read_byte (1 -> -> 8 `i `uc `i -> 8 `i ]
+[e =| _eUpMem << -> ( _ee_read_byte (1 -> + -> 8 `i -> 1 `i `uc `i -> 0 `i ]
+}
+[; ;main.c: 385: { vLoMem = 0x00; vLoMem |= ee_read_byte(10) << 8; vLoMem |= ee_read_byte(10 + 1) << 0; };
+"385
+{
+[e = _vLoMem -> 0 `i ]
+[e =| _vLoMem << -> ( _ee_read_byte (1 -> -> 10 `i `uc `i -> 8 `i ]
+[e =| _vLoMem << -> ( _ee_read_byte (1 -> + -> 10 `i -> 1 `i `uc `i -> 0 `i ]
+}
+[; ;main.c: 386: { vUpMem = 0x00; vUpMem |= ee_read_byte(12) << 8; vUpMem |= ee_read_byte(12 + 1) << 0; };
+"386
+{
+[e = _vUpMem -> 0 `i ]
+[e =| _vUpMem << -> ( _ee_read_byte (1 -> -> 12 `i `uc `i -> 8 `i ]
+[e =| _vUpMem << -> ( _ee_read_byte (1 -> + -> 12 `i -> 1 `i `uc `i -> 0 `i ]
+}
+[; ;main.c: 388: PORTCbits.RC6 = 1;
+"388
+[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 389: muxBuffer[0] = '8';
+"389
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 56 `ui `uc ]
+[; ;main.c: 390: muxBuffer[1] = '8';
+"390
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 56 `ui `uc ]
+[; ;main.c: 391: muxBuffer[2] = '8';
+"391
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 56 `ui `uc ]
+[; ;main.c: 392: muxBuffer[ADV] = 'x';
+"392
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
+[; ;main.c: 394: { t0Mem[T0_250MS].flag=0; t0Mem[T0_250MS].prescaler=t0DelayConstant[T0_250MS]; t0Mem[T0_250MS].pause=0; t0Mem[T0_250MS].loop=1; };
+"394
+{
+[e = . *U + &U _t0Mem * -> . `E4340 4 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 4 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 4 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 4 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 4 `ux -> -> # *U &U _t0Mem `ui `ux 1 -> -> 1 `i `uc ]
+}
+[; ;main.c: 397: { t0Mem[T0_TEST_DISPLAYS].flag=0; t0Mem[T0_TEST_DISPLAYS].prescaler=t0DelayConstant[T0_TEST_DISPLAYS]; t0Mem[T0_TEST_DISPLAYS].pause=0; };
+"397
+{
+[e = . *U + &U _t0Mem * -> . `E4340 8 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 8 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 8 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 8 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 398: { t0Mem[T0_TEST_ADVERTENCIA].flag=0; t0Mem[T0_TEST_ADVERTENCIA].prescaler=t0DelayConstant[T0_TEST_ADVERTENCIA]; t0Mem[T0_TEST_ADVERTENCIA].pause=0; };
+"398
+{
+[e = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 9 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 400: while(1)
+"400
+[e :U 739 ]
+[; ;main.c: 401: {
+"401
+{
+[; ;main.c: 402: if((t0Mem[T0_250MS].flag?!(t0Mem[T0_250MS].flag=0):0))
+"402
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 4 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 4 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 741  ]
+[; ;main.c: 403: {
+"403
+{
+[; ;main.c: 404: t0Driver(T0_LONG_PULS_UP);
+"404
+[e ( _t0Driver (1 -> . `E4340 0 `uc ]
+[; ;main.c: 405: t0Driver(T0_LONG_PULS_DWN);
+"405
+[e ( _t0Driver (1 -> . `E4340 1 `uc ]
+[; ;main.c: 406: t0Driver(T0_TEST_DISPLAYS);
+"406
+[e ( _t0Driver (1 -> . `E4340 8 `uc ]
+[; ;main.c: 407: t0Driver(T0_TEST_ADVERTENCIA);
+"407
+[e ( _t0Driver (1 -> . `E4340 9 `uc ]
+[; ;main.c: 408: t0Driver(T0_SHOW_MENU);
+"408
+[e ( _t0Driver (1 -> . `E4340 3 `uc ]
+[; ;main.c: 409: t0Driver(T0_SHOW_SETTING);
+"409
+[e ( _t0Driver (1 -> . `E4340 5 `uc ]
+[; ;main.c: 410: t0Driver(T0_SHOW_SETTING_OFF);
+"410
+[e ( _t0Driver (1 -> . `E4340 7 `uc ]
+[; ;main.c: 411: t0Driver(T0_SHOW_SETTING_ON);
+"411
+[e ( _t0Driver (1 -> . `E4340 6 `uc ]
+[; ;main.c: 412: t0Driver(T0_SHOW_DESCRIPTION);
+"412
+[e ( _t0Driver (1 -> . `E4340 10 `uc ]
+[; ;main.c: 413: t0Driver(T0_SPACE);
+"413
+[e ( _t0Driver (1 -> . `E4340 11 `uc ]
+"414
+}
+[e :U 741 ]
+[; ;main.c: 414: }
+[; ;main.c: 416: if((t0Mem[T0_SHOW_MENU].flag?!(t0Mem[T0_SHOW_MENU].flag=0):0)) state=E_IDLE;
+"416
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 742  ]
+[e = _state -> . `E4245 1 `uc ]
+[e :U 742 ]
+[; ;main.c: 419: actionsTimeoutShowSetting();
+"419
+[e ( _actionsTimeoutShowSetting ..  ]
+[; ;main.c: 421: if((t0Mem[T0_LONG_PULS_UP].flag?!(t0Mem[T0_LONG_PULS_UP].flag=0):0))
+"421
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 0 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 0 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 743  ]
+[; ;main.c: 422: {
+"422
+{
+[; ;main.c: 423: { t0Mem[T0_SHOW_MENU].prescaler=0; };
+"423
+{
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui ]
+}
+[; ;main.c: 424: PORTCbits.RC6 = 1;
+"424
+[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 425: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
+"425
+{
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 426: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"426
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 427: { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
+"427
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 428: enterMenu();
+"428
+[e ( _enterMenu ..  ]
+[; ;main.c: 429: ignoreNextFp = 1;
+"429
+[e = _ignoreNextFp -> -> 1 `i `uc ]
+[; ;main.c: 430: if( state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
+[; ;main.c: 431: || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
+[; ;main.c: 432: || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP
+[; ;main.c: 433: || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC)
+"433
+[e $ ! || || || || || || || == -> _state `i -> . `E4245 15 `i == -> _state `i -> . `E4245 17 `i == -> _state `i -> . `E4245 19 `i == -> _state `i -> . `E4245 21 `i == -> _state `i -> . `E4245 23 `i == -> _state `i -> . `E4245 25 `i == -> _state `i -> . `E4245 10 `i == -> _state `i -> . `E4245 12 `i 744  ]
+[; ;main.c: 434: switch(setInc)
+"434
+[e $U 746  ]
+[; ;main.c: 435: {
+"435
+{
+[; ;main.c: 436: case 1: setInc = 10; break;
+"436
+[e :U 747 ]
+[e = _setInc -> -> 10 `i `uc ]
+[e $U 745  ]
+[; ;main.c: 437: case 10: setInc = 100; break;
+"437
+[e :U 748 ]
+[e = _setInc -> -> 100 `i `uc ]
+[e $U 745  ]
+[; ;main.c: 438: case 100: setInc = 1; break;
+"438
+[e :U 749 ]
+[e = _setInc -> -> 1 `i `uc ]
+[e $U 745  ]
+"439
+}
+[; ;main.c: 439: }
+[e $U 745  ]
+"434
+[e :U 746 ]
+[e [\ _setInc , $ -> -> 1 `i `uc 747
+ , $ -> -> 10 `i `uc 748
+ , $ -> -> 100 `i `uc 749
+ 745 ]
+"439
+[e :U 745 ]
+[e :U 744 ]
+"440
+}
+[e :U 743 ]
+[; ;main.c: 440: }
+[; ;main.c: 442: if((t0Mem[T0_LONG_PULS_DWN].flag?!(t0Mem[T0_LONG_PULS_DWN].flag=0):0))
+"442
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 1 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 1 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 750  ]
+[; ;main.c: 443: {
+"443
+{
+[; ;main.c: 444: { t0Mem[T0_SHOW_MENU].prescaler=0; };
+"444
+{
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui ]
+}
+[; ;main.c: 445: PORTCbits.RC6=1;
+"445
+[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 446: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
+"446
+{
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 447: { t0Mem[T0_SHOW_SETTING].flag=0; t0Mem[T0_SHOW_SETTING].prescaler=t0DelayConstant[T0_SHOW_SETTING]; t0Mem[T0_SHOW_SETTING].pause=0; };
+"447
+{
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 5 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 5 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 448: { t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };
+"448
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 449: enterMenu();
+"449
+[e ( _enterMenu ..  ]
+[; ;main.c: 450: ignoreNextFp=1;
+"450
+[e = _ignoreNextFp -> -> 1 `i `uc ]
+[; ;main.c: 451: if( state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
+[; ;main.c: 452: || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
+[; ;main.c: 453: || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP
+[; ;main.c: 454: || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC)
+"454
+[e $ ! || || || || || || || == -> _state `i -> . `E4245 15 `i == -> _state `i -> . `E4245 17 `i == -> _state `i -> . `E4245 19 `i == -> _state `i -> . `E4245 21 `i == -> _state `i -> . `E4245 23 `i == -> _state `i -> . `E4245 25 `i == -> _state `i -> . `E4245 10 `i == -> _state `i -> . `E4245 12 `i 751  ]
+[; ;main.c: 455: switch(setInc)
+"455
+[e $U 753  ]
+[; ;main.c: 456: {
+"456
+{
+[; ;main.c: 457: case 1: setInc=100; break;
+"457
+[e :U 754 ]
+[e = _setInc -> -> 100 `i `uc ]
+[e $U 752  ]
+[; ;main.c: 458: case 10: setInc=1; break;
+"458
+[e :U 755 ]
+[e = _setInc -> -> 1 `i `uc ]
+[e $U 752  ]
+[; ;main.c: 459: case 100: setInc=10; break;
+"459
+[e :U 756 ]
+[e = _setInc -> -> 10 `i `uc ]
+[e $U 752  ]
+"460
+}
+[; ;main.c: 460: }
+[e $U 752  ]
+"455
+[e :U 753 ]
+[e [\ _setInc , $ -> -> 1 `i `uc 754
+ , $ -> -> 10 `i `uc 755
+ , $ -> -> 100 `i `uc 756
+ 752 ]
+"460
+[e :U 752 ]
+[e :U 751 ]
+"461
+}
+[e :U 750 ]
+[; ;main.c: 461: }
+[; ;main.c: 465: if(state==E_TEST_DISPLAYS)
+"465
+[e $ ! == -> _state `i -> . `E4245 0 `i 757  ]
+[; ;main.c: 466: {
+"466
+{
+[; ;main.c: 467: if((t0Mem[T0_TEST_ADVERTENCIA].flag?!(t0Mem[T0_TEST_ADVERTENCIA].flag=0):0))
+"467
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 758  ]
+[; ;main.c: 468: {
+"468
+{
+[; ;main.c: 469: { t0Mem[T0_TEST_ADVERTENCIA].flag=0; t0Mem[T0_TEST_ADVERTENCIA].prescaler=t0DelayConstant[T0_TEST_ADVERTENCIA]; t0Mem[T0_TEST_ADVERTENCIA].pause=0; };
+"469
+{
+[e = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 9 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 9 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 470: if(muxBuffer[ADV]=='x') muxBuffer[ADV]='!';
+"470
+[e $ ! == -> *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux `ui -> 120 `ui 759  ]
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
+[e $U 760  ]
+"471
+[e :U 759 ]
+[; ;main.c: 471: else if(muxBuffer[ADV]=='!') muxBuffer[ADV]='v';
+[e $ ! == -> *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux `ui -> 33 `ui 761  ]
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
+[e :U 761 ]
+"472
+[e :U 760 ]
+}
+[e :U 758 ]
+[; ;main.c: 472: }
+[; ;main.c: 473: if((t0Mem[T0_TEST_DISPLAYS].flag?!(t0Mem[T0_TEST_DISPLAYS].flag=0):0)) endTestDisplayActions();
+"473
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 8 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 8 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 762  ]
+[e ( _endTestDisplayActions ..  ]
+[e :U 762 ]
+"474
+}
+[; ;main.c: 474: }
+[e $U 763  ]
+"475
+[e :U 757 ]
+[; ;main.c: 475: else if(state==E_IDLE)
+[e $ ! == -> _state `i -> . `E4245 1 `i 764  ]
+[; ;main.c: 476: {
+"476
+{
+[; ;main.c: 477: adcDriver();
+"477
+[e ( _adcDriver ..  ]
+[; ;main.c: 478: if((t0Mem[T0_ADCSAMPLE].flag?!(t0Mem[T0_ADCSAMPLE].flag=0):0)) ((adcStruct.flgs2convert) |= 1UL << (12));
+"478
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 12 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 12 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 765  ]
+[e =| . _adcStruct 3 -> << -> 1 `ul -> 12 `i `ui ]
+[e :U 765 ]
+[; ;main.c: 479: if((adcStruct.completeFlg && adcStruct.chComp==12))
+"479
+[e $ ! && != -> . _adcStruct 0 `i -> -> -> 0 `i `uc `i == -> . _adcStruct 2 `i -> 12 `i 766  ]
+[; ;main.c: 480: {
+"480
+{
+[; ;main.c: 483: medicionFloat=iir((getConv()-21.8)/2.327);
+"483
+[e = _medicionFloat ( _iir (1 -> / - -> ( _getConv ..  `d .21.8 .2.327 `f ]
+[; ;main.c: 484: medicionFloat=medicionFloat*escala;
+"484
+[e = _medicionFloat * _medicionFloat _escala ]
+[; ;main.c: 486: measurement=medicionFloat;
+"486
+[e = _measurement -> _medicionFloat `ui ]
+[; ;main.c: 490: if(measurement>999) measurement=999;
+"490
+[e $ ! > _measurement -> -> 999 `i `ui 767  ]
+[e = _measurement -> -> 999 `i `ui ]
+[e :U 767 ]
+[; ;main.c: 491: uintToStr(measurement,&muxBuffer[0],3);
+"491
+[e ( _uintToStr (3 , , _measurement &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
+[; ;main.c: 493: switch(advModeMem)
+"493
+[e $U 769  ]
+[; ;main.c: 494: {
+"494
+{
+[; ;main.c: 495: case ADV_MOD_OFF: muxBuffer[3]=' '; break;
+"495
+[e :U 770 ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e $U 768  ]
+[; ;main.c: 496: case ADV_MOD_XEVEX_BLANK_EXTREMOS:
+"496
+[e :U 771 ]
+[; ;main.c: 497: if(measurement<=xLoMem || measurement>=xUpMem) muxBuffer[3]='-';
+"497
+[e $ ! || <= _measurement -> _xLoMem `ui >= _measurement -> _xUpMem `ui 772  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 45 `ui `uc ]
+[e $U 773  ]
+"498
+[e :U 772 ]
+[; ;main.c: 498: else if(measurement>xLoMem && measurement < eLoMem
+[; ;main.c: 499: || measurement>eUpMem && measurement<xUpMem) muxBuffer[3]='x';
+"499
+[e $ ! || && > _measurement -> _xLoMem `ui < _measurement -> _eLoMem `ui && > _measurement -> _eUpMem `ui < _measurement -> _xUpMem `ui 774  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
+[e $U 775  ]
+"500
+[e :U 774 ]
+[; ;main.c: 500: else if(measurement>eLoMem && measurement < vLoMem
+[; ;main.c: 501: || measurement>vUpMem && measurement<eUpMem) muxBuffer[3]='!';
+"501
+[e $ ! || && > _measurement -> _eLoMem `ui < _measurement -> _vLoMem `ui && > _measurement -> _vUpMem `ui < _measurement -> _eUpMem `ui 776  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
+[e $U 777  ]
+"502
+[e :U 776 ]
+[; ;main.c: 502: else if(measurement>=vLoMem && measurement<=vUpMem) muxBuffer[3]='v';
+[e $ ! && >= _measurement -> _vLoMem `ui <= _measurement -> _vUpMem `ui 778  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
+[e :U 778 ]
+"503
+[e :U 777 ]
+[e :U 775 ]
+[e :U 773 ]
+[; ;main.c: 503: break;
+[e $U 768  ]
+[; ;main.c: 504: case ADV_MOD_XEVEX:
+"504
+[e :U 779 ]
+[; ;main.c: 505: if(measurement<=xLoMem || measurement>=xUpMem) muxBuffer[3]='x';
+"505
+[e $ ! || <= _measurement -> _xLoMem `ui >= _measurement -> _xUpMem `ui 780  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
+[e $U 781  ]
+"506
+[e :U 780 ]
+[; ;main.c: 506: else if(measurement>xLoMem && measurement < vLoMem
+[; ;main.c: 507: || measurement>vUpMem && measurement<xUpMem) muxBuffer[3]='!';
+"507
+[e $ ! || && > _measurement -> _xLoMem `ui < _measurement -> _vLoMem `ui && > _measurement -> _vUpMem `ui < _measurement -> _xUpMem `ui 782  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
+[e $U 783  ]
+"508
+[e :U 782 ]
+[; ;main.c: 508: else if(measurement>=vLoMem && measurement<=vUpMem) muxBuffer[3]='v';
+[e $ ! && >= _measurement -> _vLoMem `ui <= _measurement -> _vUpMem `ui 784  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
+[e :U 784 ]
+"509
+[e :U 783 ]
+[e :U 781 ]
+[; ;main.c: 509: break;
+[e $U 768  ]
+[; ;main.c: 510: case ADV_MOD_VEXEV:
+"510
+[e :U 785 ]
+[; ;main.c: 511: if(measurement<=xLoMem || measurement>=xUpMem) muxBuffer[3]='v';
+"511
+[e $ ! || <= _measurement -> _xLoMem `ui >= _measurement -> _xUpMem `ui 786  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
+[e $U 787  ]
+"512
+[e :U 786 ]
+[; ;main.c: 512: else if(measurement>xLoMem && measurement < vLoMem
+[; ;main.c: 513: || measurement>vUpMem && measurement<xUpMem) muxBuffer[3]='!';
+"513
+[e $ ! || && > _measurement -> _xLoMem `ui < _measurement -> _vLoMem `ui && > _measurement -> _vUpMem `ui < _measurement -> _xUpMem `ui 788  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
+[e $U 789  ]
+"514
+[e :U 788 ]
+[; ;main.c: 514: else if(measurement>=vLoMem && measurement<=vUpMem) muxBuffer[3]='x';
+[e $ ! && >= _measurement -> _vLoMem `ui <= _measurement -> _vUpMem `ui 790  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
+[e :U 790 ]
+"515
+[e :U 789 ]
+[e :U 787 ]
+[; ;main.c: 515: break;
+[e $U 768  ]
+[; ;main.c: 516: case ADV_MOD_XEV:
+"516
+[e :U 791 ]
+[; ;main.c: 517: if(measurement<=xUpMem) muxBuffer[3]='x';
+"517
+[e $ ! <= _measurement -> _xUpMem `ui 792  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
+[e $U 793  ]
+"518
+[e :U 792 ]
+[; ;main.c: 518: else if(measurement>xUpMem && measurement < vLoMem) muxBuffer[3]='!';
+[e $ ! && > _measurement -> _xUpMem `ui < _measurement -> _vLoMem `ui 794  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
+[e $U 795  ]
+"519
+[e :U 794 ]
+[; ;main.c: 519: else if(measurement>=vLoMem) muxBuffer[3]='v';
+[e $ ! >= _measurement -> _vLoMem `ui 796  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
+[e :U 796 ]
+"520
+[e :U 795 ]
+[e :U 793 ]
+[; ;main.c: 520: break;
+[e $U 768  ]
+[; ;main.c: 521: case ADV_MOD_VEX:
+"521
+[e :U 797 ]
+[; ;main.c: 522: if(measurement<=vUpMem) muxBuffer[3]='v';
+"522
+[e $ ! <= _measurement -> _vUpMem `ui 798  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
+[e $U 799  ]
+"523
+[e :U 798 ]
+[; ;main.c: 523: else if(measurement>vUpMem && measurement < vLoMem) muxBuffer[3]='!';
+[e $ ! && > _measurement -> _vUpMem `ui < _measurement -> _vLoMem `ui 800  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
+[e $U 801  ]
+"524
+[e :U 800 ]
+[; ;main.c: 524: else if(measurement>=vLoMem) muxBuffer[3]='x';
+[e $ ! >= _measurement -> _vLoMem `ui 802  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
+[e :U 802 ]
+"525
+[e :U 801 ]
+[e :U 799 ]
+[; ;main.c: 525: break;
+[e $U 768  ]
+[; ;main.c: 526: case ADV_MOD_EXEVE:
+"526
+[e :U 803 ]
+[; ;main.c: 527: if(measurement<=xUpMem && measurement>=eLoMem) muxBuffer[3]='x';
+"527
+[e $ ! && <= _measurement -> _xUpMem `ui >= _measurement -> _eLoMem `ui 804  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
+[e $U 805  ]
+"528
+[e :U 804 ]
+[; ;main.c: 528: else if(measurement>xUpMem && measurement < vLoMem
+[; ;main.c: 529: || measurement<eLoMem
+[; ;main.c: 530: || measurement>eUpMem) muxBuffer[3]='!';
+"530
+[e $ ! || || && > _measurement -> _xUpMem `ui < _measurement -> _vLoMem `ui < _measurement -> _eLoMem `ui > _measurement -> _eUpMem `ui 806  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
+[e $U 807  ]
+"531
+[e :U 806 ]
+[; ;main.c: 531: else if(measurement>=vLoMem && measurement<=eUpMem) muxBuffer[3]='v';
+[e $ ! && >= _measurement -> _vLoMem `ui <= _measurement -> _eUpMem `ui 808  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
+[e :U 808 ]
+"532
+[e :U 807 ]
+[e :U 805 ]
+[; ;main.c: 532: break;
+[e $U 768  ]
+[; ;main.c: 533: case ADV_MOD_EVEXE:
+"533
+[e :U 809 ]
+[; ;main.c: 534: if(measurement<=vUpMem && measurement>=eLoMem) muxBuffer[3]='v';
+"534
+[e $ ! && <= _measurement -> _vUpMem `ui >= _measurement -> _eLoMem `ui 810  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
+[e $U 811  ]
+"535
+[e :U 810 ]
+[; ;main.c: 535: else if(measurement>vUpMem && measurement < xLoMem
+[; ;main.c: 536: || measurement<eLoMem
+[; ;main.c: 537: || measurement>eUpMem) muxBuffer[3]='!';
+"537
+[e $ ! || || && > _measurement -> _vUpMem `ui < _measurement -> _xLoMem `ui < _measurement -> _eLoMem `ui > _measurement -> _eUpMem `ui 812  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
+[e $U 813  ]
+"538
+[e :U 812 ]
+[; ;main.c: 538: else if(measurement>=xLoMem && measurement<=eUpMem) muxBuffer[3]='x';
+[e $ ! && >= _measurement -> _xLoMem `ui <= _measurement -> _eUpMem `ui 814  ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
+[e :U 814 ]
+"539
+[e :U 813 ]
+[e :U 811 ]
+}
+[; ;main.c: 539: }
+[e $U 768  ]
+"493
+[e :U 769 ]
+[e [\ _advModeMem , $ -> . `E4235 0 `uc 770
+ , $ -> . `E4235 1 `uc 771
+ , $ -> . `E4235 2 `uc 779
+ , $ -> . `E4235 3 `uc 785
+ , $ -> . `E4235 4 `uc 791
+ , $ -> . `E4235 5 `uc 797
+ , $ -> . `E4235 6 `uc 803
+ , $ -> . `E4235 7 `uc 809
+ 768 ]
+"539
+[e :U 768 ]
+"540
+}
+[e :U 766 ]
+"541
+}
+[; ;main.c: 540: }
+[; ;main.c: 541: }
+[e $U 815  ]
+"542
+[e :U 764 ]
+[; ;main.c: 542: else if(state==E_MENU_BRILLO)
+[e $ ! == -> _state `i -> . `E4245 2 `i 816  ]
+[; ;main.c: 543: {
+"543
+{
+[; ;main.c: 544: muxBuffer[0]='b';
+"544
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 98 `ui `uc ]
+[; ;main.c: 545: muxBuffer[1]='r';
+"545
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 114 `ui `uc ]
+[; ;main.c: 546: muxBuffer[2]='i';
+"546
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 105 `ui `uc ]
+[; ;main.c: 547: muxBuffer[ADV]=' ';
+"547
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+"548
+}
+[; ;main.c: 548: }
+[e $U 817  ]
+"549
+[e :U 816 ]
+[; ;main.c: 549: else if(state==E_MENU_ADV_MODE)
+[e $ ! == -> _state `i -> . `E4245 3 `i 818  ]
+[; ;main.c: 550: {
+"550
+{
+[; ;main.c: 551: muxBuffer[0]='n';
+"551
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 110 `ui `uc ]
+[; ;main.c: 552: muxBuffer[1]='o';
+"552
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 111 `ui `uc ]
+[; ;main.c: 553: muxBuffer[2]='d';
+"553
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 100 `ui `uc ]
+[; ;main.c: 554: muxBuffer[ADV]=' ';
+"554
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+"555
+}
+[; ;main.c: 555: }
+[e $U 819  ]
+"556
+[e :U 818 ]
+[; ;main.c: 556: else if(state==E_MENU_LIMITS)
+[e $ ! == -> _state `i -> . `E4245 4 `i 820  ]
+[; ;main.c: 557: {
+"557
+{
+[; ;main.c: 558: muxBuffer[0]='L';
+"558
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 76 `ui `uc ]
+[; ;main.c: 559: muxBuffer[1]='i';
+"559
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 105 `ui `uc ]
+[; ;main.c: 560: muxBuffer[2]='n';
+"560
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 110 `ui `uc ]
+[; ;main.c: 561: muxBuffer[ADV]=' ';
+"561
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+"562
+}
+[; ;main.c: 562: }
+[e $U 821  ]
+"563
+[e :U 820 ]
+[; ;main.c: 563: else if(state==E_MENU_ESCALA)
+[e $ ! == -> _state `i -> . `E4245 5 `i 822  ]
+[; ;main.c: 564: {
+"564
+{
+[; ;main.c: 565: muxBuffer[0]='E';
+"565
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 69 `ui `uc ]
+[; ;main.c: 566: muxBuffer[1]='S';
+"566
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 83 `ui `uc ]
+[; ;main.c: 567: muxBuffer[2]='c';
+"567
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 99 `ui `uc ]
+[; ;main.c: 568: muxBuffer[ADV]=' ';
+"568
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+"569
+}
+[; ;main.c: 569: }
+[e $U 823  ]
+"570
+[e :U 822 ]
+[; ;main.c: 570: else if(state==E_MENU_USER_CAL)
+[e $ ! == -> _state `i -> . `E4245 6 `i 824  ]
+[; ;main.c: 571: {
+"571
+{
+[; ;main.c: 572: muxBuffer[0]='u';
+"572
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 117 `ui `uc ]
+[; ;main.c: 573: muxBuffer[1]='C';
+"573
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 67 `ui `uc ]
+[; ;main.c: 574: muxBuffer[2]='A';
+"574
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 65 `ui `uc ]
+[; ;main.c: 575: muxBuffer[ADV]=' ';
+"575
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+"576
+}
+[; ;main.c: 576: }
+[e $U 825  ]
+"577
+[e :U 824 ]
+[; ;main.c: 577: else if(state==E_MENU_FACTORY_CAL)
+[e $ ! == -> _state `i -> . `E4245 7 `i 826  ]
+[; ;main.c: 578: {
+"578
+{
+[; ;main.c: 579: muxBuffer[0]='F';
+"579
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 70 `ui `uc ]
+[; ;main.c: 580: muxBuffer[1]='C';
+"580
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 67 `ui `uc ]
+[; ;main.c: 581: muxBuffer[2]='A';
+"581
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 65 `ui `uc ]
+[; ;main.c: 582: muxBuffer[ADV]=' ';
+"582
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+"583
+}
+[; ;main.c: 583: }
+[e $U 827  ]
+"584
+[e :U 826 ]
+[; ;main.c: 584: else if(state==E_SET_BRILLO)
+[e $ ! == -> _state `i -> . `E4245 8 `i 828  ]
+[; ;main.c: 585: {
+"585
+{
+[; ;main.c: 586: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"586
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 829  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 829 ]
+[; ;main.c: 587: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"587
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 830  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 7 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 830 ]
+[; ;main.c: 589: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"589
+[e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 831  ]
+[; ;main.c: 590: {
+"590
+{
+[; ;main.c: 591: muxBuffer[ADV]=' ';
+"591
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[; ;main.c: 592: display=brilloMem;
+"592
+[e = _display -> _brilloMem `ui ]
+[; ;main.c: 593: uintToStr(display,&muxBuffer[2],1);
+"593
+[e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 1 `i `uc ]
+"594
+}
+[; ;main.c: 594: }
+[e $U 832  ]
+"595
+[e :U 831 ]
+[; ;main.c: 595: else
+[; ;main.c: 596: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"596
+{
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+}
+[e :U 832 ]
+"597
+}
+[; ;main.c: 597: }
+[e $U 833  ]
+"598
+[e :U 828 ]
+[; ;main.c: 598: else if(state==E_SET_ADV_MODE)
+[e $ ! == -> _state `i -> . `E4245 13 `i 834  ]
+[; ;main.c: 599: {
+"599
+{
+[; ;main.c: 600: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"600
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 835  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 835 ]
+[; ;main.c: 601: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"601
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 836  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 7 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 836 ]
+[; ;main.c: 603: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"603
+[e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 837  ]
+[; ;main.c: 604: {
+"604
+{
+[; ;main.c: 605: muxBuffer[ADV]=' ';
+"605
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[; ;main.c: 606: display=advModeMem;
+"606
+[e = _display -> _advModeMem `ui ]
+[; ;main.c: 607: uintToStr(display,&muxBuffer[2],1);
+"607
+[e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 1 `i `uc ]
+"608
+}
+[; ;main.c: 608: }
+[e $U 838  ]
+"609
+[e :U 837 ]
+[; ;main.c: 609: else
+[; ;main.c: 610: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"610
+{
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+}
+[e :U 838 ]
+"611
+}
+[; ;main.c: 611: }
+[e $U 839  ]
+"612
+[e :U 834 ]
+[; ;main.c: 612: else if(state==E_SET_ESCALA_ENT_DESCRIPTION)
+[e $ ! == -> _state `i -> . `E4245 9 `i 840  ]
+[; ;main.c: 613: {
+"613
+{
+[; ;main.c: 614: muxBuffer[0]='E';
+"614
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 69 `ui `uc ]
+[; ;main.c: 615: muxBuffer[1]='n';
+"615
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 110 `ui `uc ]
+[; ;main.c: 616: muxBuffer[2]='t';
+"616
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 116 `ui `uc ]
+[; ;main.c: 617: muxBuffer[ADV]=' ' ;
+"617
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+"618
+}
+[; ;main.c: 618: }
+[e $U 841  ]
+"619
+[e :U 840 ]
+[; ;main.c: 619: else if(state==E_SET_ESCALA_ENT)
+[e $ ! == -> _state `i -> . `E4245 10 `i 842  ]
+[; ;main.c: 620: {
+"620
+{
+[; ;main.c: 621: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"621
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 843  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 843 ]
+[; ;main.c: 622: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"622
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 844  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 7 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 844 ]
+[; ;main.c: 624: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"624
+[e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 845  ]
+[; ;main.c: 625: {
+"625
+{
+[; ;main.c: 626: display=escEntMem;
+"626
+[e = _display -> _escEntMem `ui ]
+[; ;main.c: 627: uintToStr(display,&muxBuffer[0],3);
+"627
+[e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
+"628
+}
+[; ;main.c: 628: }
+[e $U 846  ]
+"629
+[e :U 845 ]
+[; ;main.c: 629: else
+[; ;main.c: 630: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"630
+{
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+}
+[e :U 846 ]
+"631
+}
+[; ;main.c: 631: }
+[e $U 847  ]
+"632
+[e :U 842 ]
+[; ;main.c: 632: else if(state==E_SET_ESCALA_DEC_DESCRIPTION)
+[e $ ! == -> _state `i -> . `E4245 11 `i 848  ]
+[; ;main.c: 633: {
+"633
+{
+[; ;main.c: 634: muxBuffer[0]='d';
+"634
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 100 `ui `uc ]
+[; ;main.c: 635: muxBuffer[1]='E';
+"635
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 69 `ui `uc ]
+[; ;main.c: 636: muxBuffer[2]='c';
+"636
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 99 `ui `uc ]
+[; ;main.c: 637: muxBuffer[ADV]=' ';
+"637
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+"638
+}
+[; ;main.c: 638: }
+[e $U 849  ]
+"639
+[e :U 848 ]
+[; ;main.c: 639: else if(state==E_SET_ESCALA_DEC)
+[e $ ! == -> _state `i -> . `E4245 12 `i 850  ]
+[; ;main.c: 640: {
+"640
+{
+[; ;main.c: 641: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"641
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 851  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 851 ]
+[; ;main.c: 642: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"642
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 852  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 7 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 852 ]
+[; ;main.c: 644: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"644
+[e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 853  ]
+[; ;main.c: 645: {
+"645
+{
+[; ;main.c: 646: display=escDecMem;
+"646
+[e = _display -> _escDecMem `ui ]
+[; ;main.c: 647: uintToStr(display,&muxBuffer[0],3);
+"647
+[e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
+"648
+}
+[; ;main.c: 648: }
+[e $U 854  ]
+"649
+[e :U 853 ]
+[; ;main.c: 649: else
+[; ;main.c: 650: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"650
+{
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+}
+[e :U 854 ]
+"651
+}
+[; ;main.c: 651: }
+[e $U 855  ]
+"652
+[e :U 850 ]
+[; ;main.c: 652: else if(state==E_SET_ADV_XLO_DESCRIPTION)
+[e $ ! == -> _state `i -> . `E4245 14 `i 856  ]
+[; ;main.c: 653: {
+"653
+{
+[; ;main.c: 654: muxBuffer[0]=' ';
+"654
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[; ;main.c: 655: muxBuffer[1]='L';
+"655
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 76 `ui `uc ]
+[; ;main.c: 656: muxBuffer[2]='o';
+"656
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 111 `ui `uc ]
+[; ;main.c: 657: muxBuffer[ADV]='x';
+"657
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
+"658
+}
+[; ;main.c: 658: }
+[e $U 857  ]
+"659
+[e :U 856 ]
+[; ;main.c: 659: else if(state==E_SET_ADV_XUP_DESCRIPTION)
+[e $ ! == -> _state `i -> . `E4245 16 `i 858  ]
+[; ;main.c: 660: {
+"660
+{
+[; ;main.c: 661: muxBuffer[0]=' ';
+"661
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[; ;main.c: 662: muxBuffer[1]='H';
+"662
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 72 `ui `uc ]
+[; ;main.c: 663: muxBuffer[2]='i';
+"663
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 105 `ui `uc ]
+[; ;main.c: 664: muxBuffer[ADV]='x';
+"664
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 120 `ui `uc ]
+"665
+}
+[; ;main.c: 665: }
+[e $U 859  ]
+"666
+[e :U 858 ]
+[; ;main.c: 666: else if(state==E_SET_ADV_ELO_DESCRIPTION)
+[e $ ! == -> _state `i -> . `E4245 18 `i 860  ]
+[; ;main.c: 667: {
+"667
+{
+[; ;main.c: 668: muxBuffer[0]=' ';
+"668
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[; ;main.c: 669: muxBuffer[1]='L';
+"669
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 76 `ui `uc ]
+[; ;main.c: 670: muxBuffer[2]='o';
+"670
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 111 `ui `uc ]
+[; ;main.c: 671: muxBuffer[ADV]='!';
+"671
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
+"672
+}
+[; ;main.c: 672: }
+[e $U 861  ]
+"673
+[e :U 860 ]
+[; ;main.c: 673: else if(state==E_SET_ADV_EUP_DESCRIPTION)
+[e $ ! == -> _state `i -> . `E4245 20 `i 862  ]
+[; ;main.c: 674: {
+"674
+{
+[; ;main.c: 675: muxBuffer[0]=' ';
+"675
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[; ;main.c: 676: muxBuffer[1]='H';
+"676
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 72 `ui `uc ]
+[; ;main.c: 677: muxBuffer[2]='i';
+"677
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 105 `ui `uc ]
+[; ;main.c: 678: muxBuffer[ADV]='!';
+"678
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 33 `ui `uc ]
+"679
+}
+[; ;main.c: 679: }
+[e $U 863  ]
+"680
+[e :U 862 ]
+[; ;main.c: 680: else if(state==E_SET_ADV_VLO_DESCRIPTION)
+[e $ ! == -> _state `i -> . `E4245 22 `i 864  ]
+[; ;main.c: 681: {
+"681
+{
+[; ;main.c: 682: muxBuffer[0]=' ';
+"682
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[; ;main.c: 683: muxBuffer[1]='L';
+"683
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 76 `ui `uc ]
+[; ;main.c: 684: muxBuffer[2]='o';
+"684
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 111 `ui `uc ]
+[; ;main.c: 685: muxBuffer[ADV]='v';
+"685
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
+"686
+}
+[; ;main.c: 686: }
+[e $U 865  ]
+"687
+[e :U 864 ]
+[; ;main.c: 687: else if(state==E_SET_ADV_VUP_DESCRIPTION)
+[e $ ! == -> _state `i -> . `E4245 24 `i 866  ]
+[; ;main.c: 688: {
+"688
+{
+[; ;main.c: 689: muxBuffer[0]=' ';
+"689
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[; ;main.c: 690: muxBuffer[1]='H';
+"690
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 72 `ui `uc ]
+[; ;main.c: 691: muxBuffer[2]='i';
+"691
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 105 `ui `uc ]
+[; ;main.c: 692: muxBuffer[ADV]='v';
+"692
+[e = *U + &U _muxBuffer * -> . `E4229 3 `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 118 `ui `uc ]
+"693
+}
+[; ;main.c: 693: }
+[e $U 867  ]
+"694
+[e :U 866 ]
+[; ;main.c: 694: else if(state==E_SET_ADV_XLO)
+[e $ ! == -> _state `i -> . `E4245 15 `i 868  ]
+[; ;main.c: 695: {
+"695
+{
+[; ;main.c: 696: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"696
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 869  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 869 ]
+[; ;main.c: 697: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"697
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 870  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 7 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 870 ]
+[; ;main.c: 699: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"699
+[e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 871  ]
+[; ;main.c: 700: {
+"700
+{
+[; ;main.c: 701: display=xLoMem;
+"701
+[e = _display -> _xLoMem `ui ]
+[; ;main.c: 702: uintToStr(display,&muxBuffer[0],3);
+"702
+[e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
+"703
+}
+[; ;main.c: 703: }
+[e $U 872  ]
+"704
+[e :U 871 ]
+[; ;main.c: 704: else
+[; ;main.c: 705: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"705
+{
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+}
+[e :U 872 ]
+"706
+}
+[; ;main.c: 706: }
+[e $U 873  ]
+"707
+[e :U 868 ]
+[; ;main.c: 707: else if(state==E_SET_ADV_XUP)
+[e $ ! == -> _state `i -> . `E4245 17 `i 874  ]
+[; ;main.c: 708: {
+"708
+{
+[; ;main.c: 709: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"709
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 875  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 875 ]
+[; ;main.c: 710: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"710
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 876  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 7 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 876 ]
+[; ;main.c: 712: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"712
+[e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 877  ]
+[; ;main.c: 713: {
+"713
+{
+[; ;main.c: 714: display=xUpMem;
+"714
+[e = _display -> _xUpMem `ui ]
+[; ;main.c: 715: uintToStr(display,&muxBuffer[0],3);
+"715
+[e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
+"716
+}
+[; ;main.c: 716: }
+[e $U 878  ]
+"717
+[e :U 877 ]
+[; ;main.c: 717: else
+[; ;main.c: 718: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"718
+{
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+}
+[e :U 878 ]
+"719
+}
+[; ;main.c: 719: }
+[e $U 879  ]
+"720
+[e :U 874 ]
+[; ;main.c: 720: else if(state==E_SET_ADV_ELO)
+[e $ ! == -> _state `i -> . `E4245 19 `i 880  ]
+[; ;main.c: 721: {
+"721
+{
+[; ;main.c: 722: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"722
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 881  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 881 ]
+[; ;main.c: 723: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"723
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 882  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 7 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 882 ]
+[; ;main.c: 725: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"725
+[e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 883  ]
+[; ;main.c: 726: {
+"726
+{
+[; ;main.c: 727: display=eLoMem;
+"727
+[e = _display -> _eLoMem `ui ]
+[; ;main.c: 728: uintToStr(display,&muxBuffer[0],3);
+"728
+[e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
+"729
+}
+[; ;main.c: 729: }
+[e $U 884  ]
+"730
+[e :U 883 ]
+[; ;main.c: 730: else
+[; ;main.c: 731: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"731
+{
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+}
+[e :U 884 ]
+"732
+}
+[; ;main.c: 732: }
+[e $U 885  ]
+"733
+[e :U 880 ]
+[; ;main.c: 733: else if(state==E_SET_ADV_EUP)
+[e $ ! == -> _state `i -> . `E4245 21 `i 886  ]
+[; ;main.c: 734: {
+"734
+{
+[; ;main.c: 735: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"735
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 887  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 887 ]
+[; ;main.c: 736: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"736
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 888  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 7 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 888 ]
+[; ;main.c: 738: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"738
+[e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 889  ]
+[; ;main.c: 739: {
+"739
+{
+[; ;main.c: 740: display=eUpMem;
+"740
+[e = _display -> _eUpMem `ui ]
+[; ;main.c: 741: uintToStr(display,&muxBuffer[0],3);
+"741
+[e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
+"742
+}
+[; ;main.c: 742: }
+[e $U 890  ]
+"743
+[e :U 889 ]
+[; ;main.c: 743: else
+[; ;main.c: 744: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"744
+{
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+}
+[e :U 890 ]
+"745
+}
+[; ;main.c: 745: }
+[e $U 891  ]
+"746
+[e :U 886 ]
+[; ;main.c: 746: else if(state==E_SET_ADV_VLO)
+[e $ ! == -> _state `i -> . `E4245 23 `i 892  ]
+[; ;main.c: 747: {
+"747
+{
+[; ;main.c: 748: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"748
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 893  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 893 ]
+[; ;main.c: 749: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"749
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 894  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 7 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 894 ]
+[; ;main.c: 751: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"751
+[e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 895  ]
+[; ;main.c: 752: {
+"752
+{
+[; ;main.c: 753: display=vLoMem;
+"753
+[e = _display -> _vLoMem `ui ]
+[; ;main.c: 754: uintToStr(display,&muxBuffer[0],3);
+"754
+[e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
+"755
+}
+[; ;main.c: 755: }
+[e $U 896  ]
+"756
+[e :U 895 ]
+[; ;main.c: 756: else
+[; ;main.c: 757: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"757
+{
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+}
+[e :U 896 ]
+"758
+}
+[; ;main.c: 758: }
+[e $U 897  ]
+"759
+[e :U 892 ]
+[; ;main.c: 759: else if(state==E_SET_ADV_VUP)
+[e $ ! == -> _state `i -> . `E4245 25 `i 898  ]
+[; ;main.c: 760: {
+"760
+{
+[; ;main.c: 761: if((t0Mem[T0_SHOW_SETTING_OFF].flag?!(t0Mem[T0_SHOW_SETTING_OFF].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_ON].flag=0; t0Mem[T0_SHOW_SETTING_ON].prescaler=t0DelayConstant[T0_SHOW_SETTING_ON]; t0Mem[T0_SHOW_SETTING_ON].pause=0; };}
+"761
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 899  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 6 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 899 ]
+[; ;main.c: 762: if((t0Mem[T0_SHOW_SETTING_ON].flag?!(t0Mem[T0_SHOW_SETTING_ON].flag=0):0)) {{ t0Mem[T0_SHOW_SETTING_OFF].flag=0; t0Mem[T0_SHOW_SETTING_OFF].prescaler=t0DelayConstant[T0_SHOW_SETTING_OFF]; t0Mem[T0_SHOW_SETTING_OFF].pause=0; };}
+"762
+[e $ ! != ? != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 `i -> -> -> 0 `i `uc `i : -> ! != -> = . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 900  ]
+{
+{
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 7 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 7 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+}
+[e :U 900 ]
+[; ;main.c: 764: if((!t0Mem[T0_SHOW_SETTING_ON].pause && t0Mem[T0_SHOW_SETTING_ON].prescaler!=0))
+"764
+[e $ ! && ! != -> . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 3 `i -> -> -> 0 `i `uc `i != . *U + &U _t0Mem * -> . `E4340 6 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui 901  ]
+[; ;main.c: 765: {
+"765
+{
+[; ;main.c: 766: display=vUpMem;
+"766
+[e = _display -> _vUpMem `ui ]
+[; ;main.c: 767: uintToStr(display,&muxBuffer[0],3);
+"767
+[e ( _uintToStr (3 , , _display &U *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 3 `i `uc ]
+"768
+}
+[; ;main.c: 768: }
+[e $U 902  ]
+"769
+[e :U 901 ]
+[; ;main.c: 769: else
+[; ;main.c: 770: { muxBuffer[0]=' '; muxBuffer[1]=' '; muxBuffer[2]=' '; muxBuffer[3]=' '; };
+"770
+{
+[e = *U + &U _muxBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+[e = *U + &U _muxBuffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _muxBuffer `ui `ux -> -> 32 `ui `uc ]
+}
+[e :U 902 ]
+"771
+}
+[e :U 898 ]
+"774
+[e :U 897 ]
+[e :U 891 ]
+[e :U 885 ]
+[e :U 879 ]
+[e :U 873 ]
+[e :U 867 ]
+[e :U 865 ]
+[e :U 863 ]
+[e :U 861 ]
+[e :U 859 ]
+[e :U 857 ]
+[e :U 855 ]
+[e :U 849 ]
+[e :U 847 ]
+[e :U 841 ]
+[e :U 839 ]
+[e :U 833 ]
+[e :U 827 ]
+[e :U 825 ]
+[e :U 823 ]
+[e :U 821 ]
+[e :U 819 ]
+[e :U 817 ]
+[e :U 815 ]
+[e :U 763 ]
+[; ;main.c: 771: }
+[; ;main.c: 774: if((kPinBuffer.flag && kPinBuffer.flanco==FLANCO_P && kPinBuffer.kId==UP_FP?!(kPinBuffer.flag=0):0))
+[e $ ! != ? && && != -> . _kPinBuffer 1 `i -> -> -> 0 `i `uc `i == -> . _kPinBuffer 2 `i -> . `E4433 1 `i == -> . _kPinBuffer 0 `i -> . `E4416 2 `i : -> ! != -> = . _kPinBuffer 1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 903  ]
+[; ;main.c: 775: {
+"775
+{
+[; ;main.c: 776: if(ignoreNextFp) ignoreNextFp=0;
+"776
+[e $ ! != -> _ignoreNextFp `i -> -> -> 0 `i `uc `i 904  ]
+[e = _ignoreNextFp -> -> 0 `i `uc ]
+[e $U 905  ]
+"777
+[e :U 904 ]
+[; ;main.c: 777: else
+[; ;main.c: 778: {
+"778
+{
+[; ;main.c: 779: { t0Mem[T0_LONG_PULS_UP].prescaler=0; };
+"779
+{
+[e = . *U + &U _t0Mem * -> . `E4340 0 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui ]
+}
+[; ;main.c: 782: if(state>=E_IDLE && state<E_MENU_FACTORY_CAL)
+"782
+[e $ ! && >= -> _state `i -> . `E4245 1 `i < -> _state `i -> . `E4245 7 `i 906  ]
+[; ;main.c: 783: {
+"783
+{
+[; ;main.c: 784: state++;
+"784
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 785: PORTCbits.RC6=1;
+"785
+[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 786: { t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+"786
+{
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 3 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 787: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
+"787
+{
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+"788
+}
+[; ;main.c: 788: }
+[e $U 907  ]
+"789
+[e :U 906 ]
+[; ;main.c: 789: else if(state==E_MENU_FACTORY_CAL)
+[e $ ! == -> _state `i -> . `E4245 7 `i 908  ]
+[; ;main.c: 790: {
+"790
+{
+[; ;main.c: 791: state=E_MENU_BRILLO;
+"791
+[e = _state -> . `E4245 2 `uc ]
+[; ;main.c: 792: PORTCbits.RC6=1;
+"792
+[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 793: { t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+"793
+{
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 3 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 794: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
+"794
+{
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+"795
+}
+[; ;main.c: 795: }
+[e $U 909  ]
+"796
+[e :U 908 ]
+[; ;main.c: 796: else incVar();
+[e ( _incVar ..  ]
+[e :U 909 ]
+[e :U 907 ]
+"797
+}
+[e :U 905 ]
+"798
+}
+[e :U 903 ]
+[; ;main.c: 797: }
+[; ;main.c: 798: }
+[; ;main.c: 801: if((kPinBuffer.flag && kPinBuffer.flanco==FLANCO_P && kPinBuffer.kId==DWN_FP?!(kPinBuffer.flag=0):0))
+"801
+[e $ ! != ? && && != -> . _kPinBuffer 1 `i -> -> -> 0 `i `uc `i == -> . _kPinBuffer 2 `i -> . `E4433 1 `i == -> . _kPinBuffer 0 `i -> . `E4416 3 `i : -> ! != -> = . _kPinBuffer 1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 910  ]
+[; ;main.c: 802: {
+"802
+{
+[; ;main.c: 803: if(ignoreNextFp) ignoreNextFp=0;
+"803
+[e $ ! != -> _ignoreNextFp `i -> -> -> 0 `i `uc `i 911  ]
+[e = _ignoreNextFp -> -> 0 `i `uc ]
+[e $U 912  ]
+"804
+[e :U 911 ]
+[; ;main.c: 804: else
+[; ;main.c: 805: {
+"805
+{
+[; ;main.c: 806: { t0Mem[T0_LONG_PULS_DWN].prescaler=0; };
+"806
+{
+[e = . *U + &U _t0Mem * -> . `E4340 1 `ux -> -> # *U &U _t0Mem `ui `ux 0 -> -> 0 `i `ui ]
+}
+[; ;main.c: 809: if(state>=E_IDLE && state<E_MENU_FACTORY_CAL)
+"809
+[e $ ! && >= -> _state `i -> . `E4245 1 `i < -> _state `i -> . `E4245 7 `i 913  ]
+[; ;main.c: 810: {
+"810
+{
+[; ;main.c: 811: state++;
+"811
+[e ++ _state -> -> 1 `i `uc ]
+[; ;main.c: 812: PORTCbits.RC6=1;
+"812
+[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 813: { t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+"813
+{
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 3 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 814: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
+"814
+{
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+"815
+}
+[; ;main.c: 815: }
+[e $U 914  ]
+"816
+[e :U 913 ]
+[; ;main.c: 816: else if(state==E_MENU_FACTORY_CAL)
+[e $ ! == -> _state `i -> . `E4245 7 `i 915  ]
+[; ;main.c: 817: {
+"817
+{
+[; ;main.c: 818: state=E_MENU_BRILLO;
+"818
+[e = _state -> . `E4245 2 `uc ]
+[; ;main.c: 819: PORTCbits.RC6=1;
+"819
+[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 820: { t0Mem[T0_SHOW_MENU].flag=0; t0Mem[T0_SHOW_MENU].prescaler=t0DelayConstant[T0_SHOW_MENU]; t0Mem[T0_SHOW_MENU].pause=0; };
+"820
+{
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 3 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 3 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[; ;main.c: 821: { t0Mem[T0_BEEP].flag=0; t0Mem[T0_BEEP].prescaler=t0DelayConstant[T0_BEEP]; t0Mem[T0_BEEP].pause=0; };
+"821
+{
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 2 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 2 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+"822
+}
+[; ;main.c: 822: }
+[e $U 916  ]
+"823
+[e :U 915 ]
+[; ;main.c: 823: else decVar();
+[e ( _decVar ..  ]
+[e :U 916 ]
+[e :U 914 ]
+"824
+}
+[e :U 912 ]
+"825
+}
+[e :U 910 ]
+[; ;main.c: 824: }
+[; ;main.c: 825: }
+[; ;main.c: 828: if((kPinBuffer.flag && kPinBuffer.flanco==FLANCO_N && kPinBuffer.kId==UP_FN?!(kPinBuffer.flag=0):0))
+"828
+[e $ ! != ? && && != -> . _kPinBuffer 1 `i -> -> -> 0 `i `uc `i == -> . _kPinBuffer 2 `i -> . `E4433 0 `i == -> . _kPinBuffer 0 `i -> . `E4416 0 `i : -> ! != -> = . _kPinBuffer 1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 917  ]
+[; ;main.c: 829: {
+"829
+{
+[; ;main.c: 830: if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
+[; ;main.c: 831: || state==E_MENU_ESCALA || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC
+[; ;main.c: 832: || state==E_MENU_USER_CAL || state==E_MENU_FACTORY_CAL
+[; ;main.c: 833: || state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
+[; ;main.c: 834: || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
+[; ;main.c: 835: || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP)
+"835
+[e $ ! || || || || || || || || || || || || || == -> _state `i -> . `E4245 2 `i == -> _state `i -> . `E4245 3 `i == -> _state `i -> . `E4245 4 `i == -> _state `i -> . `E4245 5 `i == -> _state `i -> . `E4245 10 `i == -> _state `i -> . `E4245 12 `i == -> _state `i -> . `E4245 6 `i == -> _state `i -> . `E4245 7 `i == -> _state `i -> . `E4245 15 `i == -> _state `i -> . `E4245 17 `i == -> _state `i -> . `E4245 19 `i == -> _state `i -> . `E4245 21 `i == -> _state `i -> . `E4245 23 `i == -> _state `i -> . `E4245 25 `i 918  ]
+[; ;main.c: 836: { t0Mem[T0_LONG_PULS_UP].flag=0; t0Mem[T0_LONG_PULS_UP].prescaler=t0DelayConstant[T0_LONG_PULS_UP]; t0Mem[T0_LONG_PULS_UP].pause=0; };
+"836
+{
+[e = . *U + &U _t0Mem * -> . `E4340 0 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 0 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 0 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 0 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[e :U 918 ]
+"837
+}
+[e :U 917 ]
+[; ;main.c: 837: }
+[; ;main.c: 840: if((kPinBuffer.flag && kPinBuffer.flanco==FLANCO_N && kPinBuffer.kId==DWN_FN?!(kPinBuffer.flag=0):0))
+"840
+[e $ ! != ? && && != -> . _kPinBuffer 1 `i -> -> -> 0 `i `uc `i == -> . _kPinBuffer 2 `i -> . `E4433 0 `i == -> . _kPinBuffer 0 `i -> . `E4416 1 `i : -> ! != -> = . _kPinBuffer 1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 919  ]
+[; ;main.c: 841: {
+"841
+{
+[; ;main.c: 842: if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
+[; ;main.c: 843: || state==E_MENU_ESCALA || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC
+[; ;main.c: 844: || state==E_MENU_USER_CAL || state==E_MENU_FACTORY_CAL
+[; ;main.c: 845: || state==E_SET_ADV_XLO || state==E_SET_ADV_XUP
+[; ;main.c: 846: || state==E_SET_ADV_ELO || state==E_SET_ADV_EUP
+[; ;main.c: 847: || state==E_SET_ADV_VLO || state==E_SET_ADV_VUP)
+"847
+[e $ ! || || || || || || || || || || || || || == -> _state `i -> . `E4245 2 `i == -> _state `i -> . `E4245 3 `i == -> _state `i -> . `E4245 4 `i == -> _state `i -> . `E4245 5 `i == -> _state `i -> . `E4245 10 `i == -> _state `i -> . `E4245 12 `i == -> _state `i -> . `E4245 6 `i == -> _state `i -> . `E4245 7 `i == -> _state `i -> . `E4245 15 `i == -> _state `i -> . `E4245 17 `i == -> _state `i -> . `E4245 19 `i == -> _state `i -> . `E4245 21 `i == -> _state `i -> . `E4245 23 `i == -> _state `i -> . `E4245 25 `i 920  ]
+[; ;main.c: 848: { t0Mem[T0_LONG_PULS_DWN].flag=0; t0Mem[T0_LONG_PULS_DWN].prescaler=t0DelayConstant[T0_LONG_PULS_DWN]; t0Mem[T0_LONG_PULS_DWN].pause=0; };
+"848
+{
+[e = . *U + &U _t0Mem * -> . `E4340 1 `ux -> -> # *U &U _t0Mem `ui `ux 2 -> -> 0 `i `uc ]
+[e = . *U + &U _t0Mem * -> . `E4340 1 `ux -> -> # *U &U _t0Mem `ui `ux 0 *U + &U _t0DelayConstant * -> . `E4340 1 `ux -> -> # *U &U _t0DelayConstant `ui `ux ]
+[e = . *U + &U _t0Mem * -> . `E4340 1 `ux -> -> # *U &U _t0Mem `ui `ux 3 -> -> 0 `i `uc ]
+}
+[e :U 920 ]
+"849
+}
+[e :U 919 ]
+"850
+}
+[e :U 738 ]
+"400
+[e $U 739  ]
+[e :U 740 ]
+[; ;main.c: 849: }
+[; ;main.c: 850: }
+[; ;main.c: 851: }
+"851
+[e :UE 737 ]
 }
