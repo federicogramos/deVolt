@@ -1,1 +1,0 @@
-stdio.d stdio.p1: C:\fgr\16gb\0000 interior\deVolt\sw\stdio.c C:/fgr/16gb/0000\ interior/deVolt/sw/stdio.h C:/Program\ Files\ (x86)/HI-TECH\ Software/PICC-18/9.80/include/stdarg.h C:/Program\ Files\ (x86)/HI-TECH\ Software/PICC-18/9.80/include/string.h
