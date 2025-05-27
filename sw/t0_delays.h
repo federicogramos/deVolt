@@ -15,7 +15,7 @@ type_t0DelayConstant t0DelayConstant[T0_CANT]=
     12,
     12,
     150,
-    18,
+    25,//menu
     250,
     18,
     2,

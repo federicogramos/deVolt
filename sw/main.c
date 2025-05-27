@@ -358,7 +358,7 @@ char aux;
  */
 void main(void)
 	{
-    // No se si es necesario con la nueva librería. Puede que si, si arranca el
+    // No se si es necesario con la nueva librerï¿½a. Puede que si, si arranca el
     // pulsador presionado. Debo evaluar y agregar esta funcion en tal caso.
 	////////////////pulsPinInit();// Seteo de variables antes de que habilite interrupciones.
 	
@@ -393,6 +393,8 @@ void main(void)
 	T0_START(T0_TEST_DISPLAYS);
 	T0_START(T0_TEST_ADVERTENCIA);
 
+
+
 	while(1)// Main program loop.
 		{
 		if(T0_TIMEOUT(T0_250MS))
@@ -411,7 +413,7 @@ void main(void)
 
 		if(T0_TIMEOUT(T0_SHOW_MENU)) state=E_IDLE;
 
-		// Algunas transiciones de estaodo.
+		// Algunas transiciones de estado.
 		actionsTimeoutShowSetting();
 
 		if(T0_TIMEOUT(T0_LONG_PULS_UP))
@@ -767,7 +769,7 @@ void main(void)
 			}
 
 		//CUANDO PRESIONAN BOTON INCREMENTAR
-		if(KPIN_EVENT_FP_ID(UP_FP))
+		if(KPIN_EVENT_FP_ID(UP))
 			{
 			if(ignoreNextFp) ignoreNextFp=0;
 			else
@@ -794,7 +796,7 @@ void main(void)
 			}
 
 		//CUANDO PRESIONAN BOTON DECREMENTAR
-		if(KPIN_EVENT_FP_ID(DWN_FP))
+		if(KPIN_EVENT_FP_ID(DWN))
 			{
 			if(ignoreNextFp) ignoreNextFp=0;
 			else
@@ -821,7 +823,7 @@ void main(void)
 			}
 
 		//FGR: AQUI SE DETERMINAN TODOS LOS ESTADOS QUE ACEPTAN PULSACION LARGA
-		if(KPIN_EVENT_FN_ID(UP_FN))
+		if(KPIN_EVENT_FN_ID(UP))
 			{
 			if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
 				|| state==E_MENU_ESCALA || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC
@@ -833,7 +835,7 @@ void main(void)
 			}
 
 		//CUANDO PRESIONAN BOTON DECREMENTAR
-		if(KPIN_EVENT_FN_ID(DWN_FN))
+		if(KPIN_EVENT_FN_ID(DWN))
 			{
 			if(state==E_MENU_BRILLO || state==E_MENU_ADV_MODE || state==E_MENU_LIMITS
 				|| state==E_MENU_ESCALA || state==E_SET_ESCALA_ENT || state==E_SET_ESCALA_DEC
