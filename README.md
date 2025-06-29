@@ -6,9 +6,9 @@ Contiene el firmware para ser utilizado con https://github.com/federicogramos/le
 Contiene distintas placas adicionales que se conectan a la placa controladora (led7SegDriverWithPS). Algunos ejemplos:
 ### Una placa para que en lugar de medir voltaje, mida corriente 4 a 20mA.
 ![alt text](https://raw.githubusercontent.com/federicogramos/deVolt/main/pcb/4-20ma/imgAux/4-20ma.jpg)
-### Placa optoacopladora.
+### Una placa optoacopladora.
 ![alt text](https://raw.githubusercontent.com/federicogramos/deVolt/main/pcb/optoFast/imgAux/optoFast.jpg)
-### Placa pulsadores.
+### Una placa con pulsadores.
 ![alt text](https://raw.githubusercontent.com/federicogramos/deVolt/main/pcb/switches/imgAux/switches.jpg)
 ### Etc.
 ![alt text](https://raw.githubusercontent.com/federicogramos/deVolt/main/pcb/advSymb/imgAux/advSymb_0.jpg)
